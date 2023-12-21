@@ -1,0 +1,59 @@
+/* .outSide{
+	background-color: '#d3a478';
+  }
+
+  .outSide:hover{
+	background-color: 'black';
+  } */
+
+
+/* .outside{
+	color: rgb(235, 232, 232);
+} */
+
+
+/* YourSliderStyles.css */
+
+.slider-container {
+	position: relative;
+  }
+  
+  .slider {
+	display: flex;
+	overflow: hidden;
+	position: relative;
+  }
+  
+  .slider-inner {
+	display: flex;
+	transition: transform 0.3s ease-in-out;
+  }
+  
+  .slider-item {
+	flex: 0 0 100%;
+	box-sizing: border-box;
+  }
+
+  
+  .slider-arrow {
+	position: absolute;
+	top: 50%;
+	font-size: 24px;
+	color: #fff;
+	cursor: pointer;
+	z-index: 10;
+  }
+  
+  .slider-prev {
+	left: 10px;
+  }
+  
+  .slider-next {
+	right: 10px;
+  }
+  
+
+
+  .overlay{
+	background-color: rgb(155, 154, 154);
+  }
