@@ -58,12 +58,7 @@ export const UserRegister = () => {
 									<div className="billing-details">
 										<h3 className="title tw-mb-7 tw-text-2xl tw-font-semibold tw-text-center">Register Details</h3>
 										<div className="row">
-											<div>
-												<GoogleOAuthProvider>
-													<GoogleLogin
-													/>
-												</GoogleOAuthProvider>
-											</div>
+
 											<div className="col-md-12">
 												<div className="tw-flex tw-mb-4 tw-mt-4">
 													<label className='tw-border-2 tw-mr-[2px]  tw-text-black tw-p-2 tw-mb-1' htmlFor='name'>
@@ -145,8 +140,14 @@ export const UserRegister = () => {
 													/>
 												</div>
 											</div>
+											<div>
+												<GoogleOAuthProvider>
+													<GoogleLogin
+													/>
+												</GoogleOAuthProvider>
+											</div>
 											<div className="col-md-12 ">
-												<div className="relative group">
+												<div className="relative group tw-mt-6">
 													{/* <button
                                                         type="button"
                                                         className={`w-full bg-black text-white h-11 rounded-md button ${isHovered ? 'cursor-pointer' : ''}`}

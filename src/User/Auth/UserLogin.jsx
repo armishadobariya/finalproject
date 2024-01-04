@@ -36,23 +36,9 @@ const UserLogin = () => {
 							<section className="grid content-center bg-white rounded-sm text-center border-2 md:w-[500px] h-auto p-2 m-3 shadow-md ">
 								<form onSubmit={handleSubmit}>
 									<div className="md:p-10">
-										<h3 className="text-3xl font-bold text-black mb-10 md:tw-mt-[2px] tw-mt-6">
+										<h3 className="text-3xl font-bold text-black mb-3 md:tw-mt-[2px] tw-mt-6">
 											Log In
 										</h3>
-										<div>
-											<GoogleOAuthProvider>
-												<GoogleLogin
-												// onSuccess={async (credentialResponse) => {
-												// 	console.log(credentialResponse);
-												// 	const data = jwtDecode(credentialResponse.credential)
-												// 	console.log(data);
-												// }}
-												// onError={() => {
-												// 	console.log('Login Failed');
-												// }}
-												/>
-											</GoogleOAuthProvider>
-										</div>
 										<div className="flex">
 											<label className='border-2 mr-[2px] text-black p-2 mb-4 mt-4' htmlFor='email'>
 												<PersonIcon />
@@ -67,7 +53,7 @@ const UserLogin = () => {
 												onChange={e => setEmail(e.target.value)}
 											/>
 										</div>
-										<div className="flex">
+										<div className="flex tw-mb-5">
 											<label className='border-2 mr-[2px]  text-black p-2 mb-1 ' htmlFor='password'>
 												<LockIcon />
 											</label>
@@ -80,6 +66,20 @@ const UserLogin = () => {
 												value={password}
 												onChange={e => setPassword(e.target.value)}
 											/>
+										</div>
+										<div>
+											<GoogleOAuthProvider>
+												<GoogleLogin
+												// onSuccess={async (credentialResponse) => {
+												// 	console.log(credentialResponse);
+												// 	const data = jwtDecode(credentialResponse.credential)
+												// 	console.log(data);
+												// }}
+												// onError={() => {
+												// 	console.log('Login Failed');
+												// }}
+												/>
+											</GoogleOAuthProvider>
 										</div>
 										<div className=''>
 											<input type="checkbox"
