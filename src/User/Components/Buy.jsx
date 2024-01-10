@@ -1,14 +1,21 @@
 import React, { useState } from 'react';
 import '../../../node_modules/bootstrap/dist/css/bootstrap.min.css';
 // import '../../../node_modules/bootstrap/dist/js/bootstrap.bundle';
-import "../../../node_modules/bootstrap/dist/js/bootstrap.bundle";
+// import "../../../node_modules/bootstrap/dist/js/bootstrap.bundle";
 import img from "../../Assests/Image/Home1/reg_bg.jpeg";
 import './Buy.css';
 // import ReadMoreIcon from '@mui/icons-material/ReadMore';
 
+
 const Buy = () => {
 
 	const [showMore, setShowMore] = useState(false);
+	const [isNavbarCollapsed, setIsNavbarCollapsed] = useState(true);
+
+
+	const handleNavbarToggle = () => {
+		setIsNavbarCollapsed(!isNavbarCollapsed);
+	};
 
 	const handleShowMore = () => {
 		setShowMore(!showMore);
@@ -21,12 +28,23 @@ const Buy = () => {
 					<nav className="navbar navbar-expand-lg navbar-light bg-white rounded shadow">
 						<div className="container-fluid flex-lg-column align-items-stretch">
 							<h4 className="mt-2">FILTERS</h4>
-							<button className="navbar-toggler shadow-none" type="button" data-bs-toggle="collapse"
+							{/* <button className="navbar-toggler shadow-none" type="button" data-bs-toggle="collapse"
 								data-bs-target="#filterDropDown" aria-controls="navbarNav" aria-expanded="false"
 								aria-label="Toggle navigation">
 								<span className="navbar-toggler-icon"></span>
+							</button> */}
+							<button
+								className="navbar-toggler shadow-none"
+								type='button'
+								onClick={handleNavbarToggle}
+								aria-controls="showNavbar"
+								aria-expanded={!isNavbarCollapsed}
+								aria-label="Toggle navigation"
+								style={{ background: 'white' }}
+							>
+								<span className="navbar-toggler-icon"></span>
 							</button>
-							<div className="collapse navbar-collapse flex-column mt-2 align-items-stretch" id="filterDropDown">
+							<div className={`collapse navbar-collapse ${isNavbarCollapsed ? '' : 'show'}`} id="showNavbar" >
 								<div className="border bg-light p-3 rounded mb-3">
 									<div className="mb-3">
 										<label htmlFor="cityDropdown" className="form-label">SELECT CITY</label>
