@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import "./UserForgotPassword.css";
 import backgroundImage from '../../Assests/Image/home3.avif';
 import '../../../node_modules/bootstrap/dist/css/bootstrap.min.css';
@@ -9,6 +9,16 @@ import { Link } from 'react-router-dom';
 import PasswordIcon from '@mui/icons-material/Password';
 
 const UserForgotPassword = () => {
+
+	const [email, setEmail] = useState('');
+	const [password, setPassword] = useState('');
+
+	const handleSubmit = (e) => {
+		e.preventDefault();
+		setEmail('');
+		setPassword('');
+	}
+
 	return (
 		<div>
 
@@ -27,21 +37,33 @@ const UserForgotPassword = () => {
 										Forgot Password
 									</h3>
 
-									<form>
+									<form onSubmit={handleSubmit}>
 										<div>
 											<div className="flex">
-												<label className='border-2 mr-[2px] text-black p-2 mb-4'>
+												<label className='border-2 mr-[2px] text-black p-2 mb-4' htmlFor='email'>
 													<PersonIcon />
 												</label>
 												<input
+													id='email'
 													type="email"
 													name="email"
-													class="w-full border-2 h-12 p-3 mb-4"
+													class="w-full border-2 h-12 p-3 mb-4 tw-text-black"
 													placeholder="Email"
+													value={email}
+													onChange={e => setEmail(e.target.value)}
 
 												/>
 											</div>
-											<button type="button" class="bg-black mb-4 w-full text-center text-white text-lg font-semibold h-11" >
+											{/* <button type="button" class="bg-black mb-4 w-full text-center text-white text-lg font-semibold h-11" >
+												Get Otp
+											</button> */}
+
+											<button
+												disabled={!email}
+												type="submit"
+												className={`tw-w-full tw-text-center tw-text-lg tw-font-semibold tw-h-11 tw-mb-6
+    												${(!email) ? 'tw-bg-gray-300 tw-cursor-not-allowed tw-text-gray-600' : 'tw-bg-black tw-hover:bg-green-400 tw-text-white'}`}
+											>
 												Get Otp
 											</button>
 
@@ -49,18 +71,30 @@ const UserForgotPassword = () => {
 
 										<div>
 											<div className="flex">
-												<label className='border-2 mr-[2px] text-black p-2 mb-4'>
+												<label className='border-2 mr-[2px] text-black p-2 mb-4' htmlFor='otp'>
 													<PasswordIcon />
 												</label>
 												<input
+													id='otp'
 													type="text"
 													name="otp"
-													class="w-full border-2 h-12 p-3 mb-4"
+													class="w-full border-2 h-12 p-3 mb-4 tw-text-black"
 													placeholder="Enter Otp"
+													value={password}
+													onChange={e => setPassword(e.target.value)}
 
 												/>
 											</div>
-											<button type="button" class="bg-black  w-full text-center text-white text-lg font-semibold h-11" >
+											{/* <button type="button" class="bg-black  w-full text-center text-white text-lg font-semibold h-11" >
+												Reset Password
+											</button> */}
+
+											<button
+												disabled={!password}
+												type="submit"
+												className={`tw-w-full tw-text-center tw-text-lg tw-font-semibold tw-h-11
+    												${(!password) ? 'tw-bg-gray-300 tw-cursor-not-allowed tw-text-gray-600' : 'tw-bg-black tw-hover:bg-green-400 tw-text-white'}`}
+											>
 												Reset Password
 											</button>
 
