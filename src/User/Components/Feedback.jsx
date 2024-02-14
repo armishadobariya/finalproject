@@ -1,11 +1,21 @@
 import React from 'react'
+import Nav from '../Nav/Nav'
+import { Footer } from '../Footer/Footer'
 
 const Feedback = () => {
-  return (
-	<div>
-	  <h6>feeedback</h6>
-	</div>
-  )
+	return (
+		<>
+			<Nav />
+
+			<h6>feeedback</h6>
+
+			<Footer />
+		</>
+
+	)
 }
 
 export default Feedback
+
+
+

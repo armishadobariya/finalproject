@@ -4,13 +4,15 @@ import '../../../node_modules/bootstrap/dist/css/bootstrap.min.css';
 // import "../../../node_modules/bootstrap/dist/js/bootstrap.bundle";
 import img from "../../Assests/Image/Home1/reg_bg.jpeg";
 import './Buy.css';
+import Nav from '../Nav/Nav';
+import { Footer } from '../Footer/Footer';
 // import ReadMoreIcon from '@mui/icons-material/ReadMore';
 
 
 const Buy = () => {
 
 	const [showMore, setShowMore] = useState(false);
-	const [isNavbarCollapsed, setIsNavbarCollapsed] = useState(true);
+	const [isNavbarCollapsed, setIsNavbarCollapsed] = useState(false);
 
 
 	const handleNavbarToggle = () => {
@@ -23,6 +25,7 @@ const Buy = () => {
 
 	return (
 		<>
+			<Nav />
 			<div className='mt-5 md:flex'>
 				<div className="col-lg-3 col-md-12 mb-lg-0 mb-4 ps-4">
 					<nav className="navbar navbar-expand-lg navbar-light bg-white rounded shadow">
@@ -44,7 +47,7 @@ const Buy = () => {
 							>
 								<span className="navbar-toggler-icon"></span>
 							</button>
-							<div className={`collapse navbar-collapse ${isNavbarCollapsed ? '' : 'show'}`} id="showNavbar" >
+							<div className={`collapse navbar ${isNavbarCollapsed ? '' : 'show'}`} id="showNavbar" >
 								<div className="border bg-light p-3 rounded mb-3">
 									<div className="mb-3">
 										<label htmlFor="cityDropdown" className="form-label">SELECT CITY</label>
@@ -52,7 +55,6 @@ const Buy = () => {
 											<option value="city1">City 1</option>
 											<option value="city2">City 2</option>
 											<option value="city3">City 3</option>
-											{/* Add moxre options as needed */}
 										</select>
 									</div>
 								</div>
@@ -96,7 +98,6 @@ const Buy = () => {
 											<option value="city1">Apartment</option>
 											<option value="city2">Independent House</option>
 											<option value="city3">Villa</option>
-											{/* Add more options as needed */}
 										</select>
 
 									</div>
@@ -265,6 +266,7 @@ const Buy = () => {
 
 			<br />
 			<br />
+			<Footer />
 
 		</>
 	)

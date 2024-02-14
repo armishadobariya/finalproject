@@ -4,17 +4,21 @@ import '../../../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import logo from '../../Assests/Image/nav2.svg';
 // import DensityMediumIcon from '@mui/icons-material/DensityMedium';
 import { NavLink, useNavigate } from 'react-router-dom';
-// import "./nav.css";
+import "./menu.css";
 
 
 const Nav = () => {
 	const [isNavbarCollapsed, setIsNavbarCollapsed] = useState(true);
+	const [isNavbarActive, setIsNavbarActive] = useState(false);
+
 	const navigate = useNavigate();
+
 
 	const handleNavbarToggle = () => {
 		setIsNavbarCollapsed(!isNavbarCollapsed);
-	};
+		setIsNavbarActive(!isNavbarActive);
 
+	};
 
 	const showRegister = () => {
 		navigate("/UserRegister");
@@ -29,13 +33,16 @@ const Nav = () => {
 		<div>
 			<nav
 				id="nav-bar"
-				className="navbar navbar-expand-lg px-lg-3 py-lg-2 shadow-sm sticky-top"
+				className="navbar navbar-expand-lg px-lg-3 py-lg-2 shadow-sm sticky_nav"
 				style={{ background: '#191919' }}
 			>
 				<div className="container-fluid">
 					<a className="navbar-brand ml-4 me-5 fw-bold fs-3 h-font">
+
 						<img src={logo} alt="" height="80px" width="180px" />
 					</a>
+
+
 					<button
 						className="navbar-toggler"
 						onClick={handleNavbarToggle}
@@ -46,15 +53,7 @@ const Nav = () => {
 					>
 						<span className="navbar-toggler-icon"></span>
 					</button>
-					{/* <div className='text-white'>
-						<DensityMediumIcon
-							className="navbar-toggler"
-							onClick={handleNavbarToggle}
-							aria-controls="showNavbar"
-							aria-expanded={!isNavbarCollapsed}
-							aria-label="Toggle navigation"
-						/>
-					</div> */}
+
 					<div className={`collapse navbar-collapse ${isNavbarCollapsed ? '' : 'show'}`} id="showNavbar" >
 						<ul className="navbar-nav ms-3 me-auto mb-2 mb-lg-0">
 							<NavLink className="nav-link me-4 text-white " to="/">
@@ -107,6 +106,9 @@ const Nav = () => {
 };
 
 export default Nav;
+
+
+
 
 
 

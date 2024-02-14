@@ -20,10 +20,14 @@ import StarIcon from '@mui/icons-material/Star';
 import s1 from "../../Assests/Image/Home1/s1.svg";
 import s2 from "../../Assests/Image/Home1/s2.svg";
 import s3 from "../../Assests/Image/Home1/s3.svg";
-import serviceback from "../../Assests/Image/Home1/sback.svg"
+// import serviceback from "../../Assests/Image/Home1/sback.svg"
+import serviceback from "../../Assests/Image/Home1/serviceback.png"
 import CloseIcon from '@mui/icons-material/Close';
 import { useNavigate } from 'react-router-dom';
 import { BiUpArrow } from "react-icons/bi";
+import Nav from '../Nav/Nav';
+import { Footer } from '../Footer/Footer';
+import HomeSlide from './HomeSlide';
 
 const Home = () => {
 
@@ -32,7 +36,6 @@ const Home = () => {
 	const navigate = useNavigate();
 	const [visible, setVisible] = useState(false);
 	const [modalVisible, setModalVisible] = useState(false);
-
 
 	const toggleVisible = () => {
 		const scrolled = document.documentElement.scrollTop;
@@ -70,53 +73,6 @@ const Home = () => {
 		setModalVisible(!modalVisible);
 	}
 
-
-	const slides = [
-		{
-			image: apar,
-			title: 'Townships',
-			description: 'Redefining community living',
-		},
-		{
-			image: villa,
-			title: 'Independent House',
-			description: 'Comfortable homes available for immediate use',
-		},
-		{
-			image: lux,
-			title: 'Luxury',
-			description: 'Premium housing for the lifestyle-conscious',
-		},
-		// {
-		// 	image: aroom,
-		// 	title: 'Affordable Homes',
-		// 	description: 'Pocket-friendly homes',
-		// },
-	];
-
-	// const nextSlide = () => {
-	// 	setCurrentSlide((prevSlide) => (prevSlide + 1) % slides.length);
-	// };
-
-	// const prevSlide = () => {
-	// 	setCurrentSlide((prevSlide) =>
-	// 		prevSlide === 0 ? slides.length - 1 : prevSlide - 1
-	// 	);
-	// };
-
-
-
-	const nextSlide = () => {
-		setCurrentSlide((prevSlide) => (prevSlide + 1) % slides.length);
-	};
-
-	const prevSlide = () => {
-		setCurrentSlide((prevSlide) =>
-			prevSlide === 0 ? slides.length - 1 : prevSlide - 1
-		);
-	};
-
-
 	const totalFeedbacks = [
 		{
 			id: 1,
@@ -134,19 +90,45 @@ const Home = () => {
 			rating: 4,
 			avatar: armisha,
 		},
+		{
+			id: 3,
+			name: 'Ayushi Dobariya',
+			role: 'Broker',
+			feedback: 'Inquire about the neighborhood\'s safety, convenience, and overall satisfaction. Seek input on the rental agreement\'s clarity, value for money, and any maintenance concerns.',
+			rating: 5,
+			avatar: me,
+		},
+		{
+			id: 4,
+			name: 'Armisha Dobariya',
+			role: 'Manager',
+			feedback: 'I like it here, especially my favorite room with a terrace overlooking the park. Hot coffee, a blanket, and a foggy October morning are something. I recommend this hotel to all my friends.',
+			rating: 4,
+			avatar: armisha,
+		},
 	];
 
-
-
 	const handleForwardArrowClick = () => {
-		setCurrentFeedback((prevSlide) => (prevSlide + 1) % totalFeedbacks.length);
+		if (currentFeedback < totalFeedbacks.length - 1) {
+			setCurrentFeedback((prevSlide) => prevSlide + 1);
+		}
 	};
+
+	// const handleBackArrowClick = () => {
+	// 	if (currentFeedback > 0) {
+	// 		setCurrentFeedback((prevSlide) => prevSlide - 1);
+	// 	} else {
+	// 		setCurrentFeedback(totalFeedbacks.length - 1);
+	// 	}
+	// };
 
 	const handleBackArrowClick = () => {
-		setCurrentFeedback((prevSlide) =>
-			prevSlide === 0 ? totalFeedbacks.length - 1 : prevSlide - 1
-		);
+		if (currentFeedback > 0) {
+			setCurrentFeedback((prevSlide) => prevSlide - 1);
+		}
 	};
+
+
 
 
 	const handleMouseLeave = () => {
@@ -183,13 +165,9 @@ const Home = () => {
 		document.getElementById('forword-container').style.border = '';
 	};
 
-
-
-
 	return (
 		<>
-
-
+			<Nav />
 			{visible &&
 				<div className='arrow-up'
 					style={{
@@ -202,6 +180,7 @@ const Home = () => {
 						bottom: '20px',
 						right: '20px',
 						cursor: 'pointer',
+						zIndex: '999',
 					}}>
 					<BiUpArrow onClick={scrollToTop}
 						style={{ fontSize: '25px', marginTop: '-8px', color: '#d3a478', display: visible ? 'inline' : 'none' }} />
@@ -266,7 +245,6 @@ const Home = () => {
 
 				{/* Feacture Collections */}
 
-
 				{/* <div class='flex justify-center'>
 					<div class='tw-border-2 tw-border-white tw-mt-16 text-center slider-container '>
 
@@ -319,99 +297,8 @@ const Home = () => {
 					</div>
 				</div> */}
 
-				<div className='flex justify-center'>
-					<div className='tw-border-2 tw-border-white tw-mt-16 text-center slider-container'>
-						<div className='tw-flex tw-items-center tw-justify-center'>
 
-							<div className='lg:tw-w-[200px] tw-w-20 tw-border-b-2' style={{ border: '0px solid #d3a478' }}></div>
-
-							<h2 class='tw-text-lg tw-mb-3 tw-mr-8 tw-ml-8'>FEATURED <span class='tw-font-bold'>COLLECTIONS</span></h2>
-							<div className='lg:tw-w-[200px] tw-w-20 tw-border-b-2' style={{ border: '0px solid #d3a478' }}></div>
-						</div>
-						<p class='tw-mb-10' style={{ fontFamily: 'Cormorant Garamond, serif', fontSize: '40px' }}>Handpicked projects for you</p>
-
-						<div className='slider-arrow slider-prev' onClick={prevSlide}>
-							<h2 className=' tw-text-6xl tw-font-bold'>
-								‹
-							</h2>
-						</div>
-						<div className='slider'>
-							<div
-								className='slider-inner'
-								style={{
-									transform: `translateX(-${currentSlide * 100}%)`,
-									transition: 'transform 0.3s ease-in-out',
-								}}
-							>
-								{slides.map((slide, index) => (
-									<div className='slider-item' key={index}>
-										<img src={slide.image} alt='' width='330px' className='tw-rounded-2xl tw-items-center' />
-										<div className='slider-caption'>
-											<h2 className=' tw-mt-[-50px] tw-text-white tw-font-semibold tw-text-center tw-mb-[5px] tw-ml-[-980px]'>{slide.title}</h2>
-											<p className='tw-mt-[-2px] tw-mb-[5px] tw-text-white tw-ml-[-980px]'>{slide.description}</p>
-										</div>
-
-									</div>
-
-								))}
-							</div>
-						</div>
-						<div className='slider-arrow slider-next' onClick={nextSlide} style={{ color: 'black' }}>
-
-							<h2 className='tw-text-6xl tw-font-bold'>›</h2>
-						</div>
-					</div>
-				</div>
-
-
-				<div className='flex justify-center'>
-					<div className='tw-border-2 tw-border-white tw-mt-16 text-center slider-container'>
-						<div className='tw-flex tw-items-center tw-justify-center'>
-
-							<div className='lg:tw-w-[200px] tw-w-20 tw-border-b-2' style={{ border: '0px solid #d3a478' }}></div>
-
-							<h2 class='tw-text-lg tw-mb-3 tw-mr-8 tw-ml-8'>FEATURED <span class='tw-font-bold'>COLLECTIONS</span></h2>
-							<div className='lg:tw-w-[200px] tw-w-20 tw-border-b-2' style={{ border: '0px solid #d3a478' }}></div>
-						</div>
-						<p class='tw-mb-10' style={{ fontFamily: 'Cormorant Garamond, serif', fontSize: '40px' }}>Handpicked projects for you</p>
-
-						<div className='slider-arrow slider-prev' onClick={prevSlide}>
-							<h2 className=' tw-text-6xl tw-font-bold tw-ml-[25px]' >
-								‹
-							</h2>
-						</div>
-						<div className='slider'>
-							<div
-								className='slider-inner'
-								style={{
-									transform: `translateX(-${currentSlide * 100}%)`,
-									transition: 'transform 0.3s ease-in-out',
-								}}
-							>
-								{slides.map((slide, index) => (
-									<div className='tw-ml-[30px]'>
-
-										<div className='slider-item' key={index}>
-											<img src={slide.image} alt='' width='330px' className='tw-rounded-2xl tw-items-center' />
-											<div className='slider-caption'>
-												<h2 className=' tw-mt-[-50px] tw-text-white tw-font-semibold tw-text-center tw-mb-[5px] tw-ml-[-980px]'>{slide.title}</h2>
-												<p className='tw-mt-[-2px] tw-mb-[5px] tw-text-white tw-ml-[-980px]'>{slide.description}</p>
-											</div>
-
-										</div>
-
-									</div>
-
-
-								))}
-							</div>
-						</div>
-						<div className='slider-arrow slider-next' onClick={nextSlide} style={{ color: 'black' }}>
-							<h2 className='tw-text-6xl tw-font-bold tw-mr-30 tw-text-white'>›</h2>
-						</div>
-					</div>
-				</div>
-
+				<HomeSlide />
 
 				{/* TESTIMONIALS  */}
 
@@ -423,7 +310,7 @@ const Home = () => {
 								<div className="tw-grid tw-place-content-center">
 									<div className='md:tw-ml-[173px] lg:tw-ml-[180px] tw-ml-[130px]'>
 									</div>
-									<div className='tw-flex tw-items-center tw-justify-center tw-mt-8'>
+									<div className='tw-flex tw-items-center tw-justify-center tw-mt-20'>
 										<div className='lg:tw-w-[200px] tw-w-20 tw-border-b-2' style={{ border: '0px solid #d3a478' }}></div>
 										<h2 class='tw-text-lg tw-mb-3 tw-mr-8 tw-ml-8 tw-font-bold'>TESTIMONIALS AND OPINIONS</h2>
 										<div className='lg:tw-w-[200px] tw-w-20 tw-border-b-2' style={{ border: '0px solid #d3a478' }}></div>
@@ -463,10 +350,7 @@ const Home = () => {
 												/>
 											</div>
 										</div>
-
-
 										<div className=''>
-
 											{modalVisible && (
 												<div className="modal" >
 													<div className="modal-content" onClick={(e) => e.stopPropagation()}>
@@ -624,53 +508,96 @@ const Home = () => {
 							</div>
 						</div>
 					</div>
-				</div>
+				</div >
 
 				{/* Services */}
 
-				<div>
-					<div className='md:tw-m-auto tw-shadow-2xl md:tw-rounded-full tw-mt-16 md:tw-h-[250px] md:tw-w-[1300px] tw-ml-26'>
-						<img src={serviceback} alt="" />
+				< div style={{ position: 'relative', marginTop: '30px' }
+				}>
+					<img className='tw-h-[230vh] md:tw-h-[800px] bg-cover w-full  md:tw-m-auto' src={serviceback} alt="" />
+					<div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }}>
+						<div className="tw-grid tw-place-content-center">
+							<div className='md:tw-ml-[173px] lg:tw-ml-[180px] tw-ml-[130px]'>
+							</div>
+							<div className='tw-flex tw-items-center tw-justify-center tw-mt-20'>
+								<div className='lg:tw-w-[200px] tw-w-20 tw-border-b-2' style={{ border: '0px solid #d3a478' }}></div>
+								<h2 class='tw-text-lg tw-mb-3 tw-mr-8 tw-ml-8 tw-font-bold'>FAST AND ECONOMICAL</h2>
+								<div className='lg:tw-w-[200px] tw-w-20 tw-border-b-2' style={{ border: '0px solid #d3a478' }}></div>
+							</div>
+							<p className='tw-text-center tw-text-6xl-text-6xl' style={{ fontFamily: 'Cormorant Garamond, serif', fontSize: '40px' }}>Our Services
+							</p>
+							<div className='md:tw-flex tw-mt-[80px] md:tw-items-center md:tw-justify-center'>
+								<div className='md:tw-h-[360px] md:tw-w-[290px] tw-h-[300px] tw-w-[250px] tw-border-white tw-shadow-2xl md:tw-shadow-2xl tw-m-auto md:tw-ml-[70px]  tw-mb-[40px]'>
+									<img src={s1} alt="" className='tw-h-[190px] tw-w-[190px] tw-mb-2 md:tw-ml-10 tw-mt-10 tw-ml-[30px] ' />
+									<h2 className='tw-text-center tw-font-semibold tw-text-lg '>India's Insights derived from
+										<br />over 10 lakh listings
+									</h2>
+								</div>
+								<div className='md:tw-h-[360px] md:tw-w-[290px] tw-h-[300px] tw-w-[250px] tw-border-white tw-shadow-2xl md:tw-ml-[100px]  md:tw-shadow-2xl tw-m-auto tw-mb-[40px]'>
+									<img src={s2} alt="" className='tw-h-[190px] tw-w-[190px] tw-mb-2 md:tw-ml-[50px] tw-mt-10 tw-ml-[30px]   ' />
+									<h2 className='tw-text-center tw-font-semibold tw-text-lg md:tw-ml-[-10px] '>Exhaustive data-backed
+										<br />repository of rates and
+										<br />trends
+									</h2>
+								</div>
+								<div className='md:tw-h-[320px] md:tw-w-[290px] tw-h-[300px] tw-w-[250px] tw-border-white tw-shadow-2xl md:tw-shadow-2xl tw-m-auto md:tw-mr-[80px] md:tw-ml-[100px]'>
+									<img src={s3} alt="" className='tw-h-[190px] tw-w-[190px] tw-mb-2 tw-mt-2 md:tw-ml-[40px] tw-ml-[20px]' />
+									<h2 className='tw-text-center tw-font-semibold tw-text-lg '>Trusted by over 1.5 cr
+										<br /> buyers, sellers and partners
+									</h2>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div >
+
+				{/* <div>
+					<div className='md:tw-m-auto tw-shadow-2xl md:tw-rounded-full md:tw-mt-16 tw-mt-16 md:tw-h-[250px] md:tw-w-[1300px] tw-w-[300px] tw-ml-26'>
+						<div className='md:tw-m-auto tw-shadow-2xl md:tw-mt-16 tw-mt-16 md:tw-h-[500px] tw-h-[1300px] md:tw-w-[1300px] tw-w-[900px] tw-ml-26'>
+							<img src={serviceback} alt="" />
+
+						</div>
+						<div className='md:tw-mt-[-500px] md:tw-mb-[100px] tw-mt-[-1400px] tw-mb-[100px] ' >
+							<div className='tw-flex tw-items-center tw-justify-center tw-mt-8'>
+								<div className='lg:tw-w-[200px] tw-w-20 tw-border-b-2' style={{ border: '0px solid #d3a478' }}></div>
+								<h2 class='tw-text-lg tw-mb-3 tw-mr-8 tw-ml-8 tw-font-bold'>FAST AND ECONOMICAL</h2>
+								<div className='lg:tw-w-[200px] tw-w-20 tw-border-b-2' style={{ border: '0px solid #d3a478' }}></div>
+							</div>
+							<p className='tw-text-center tw-text-6xl-text-6xl' style={{ fontFamily: 'Cormorant Garamond, serif', fontSize: '40px' }}>Our Services
+							</p>
+							<div className='md:tw-flex tw-mt-[100px] md:tw-items-center md:tw-justify-center'>
+								<div className='md:tw-h-[290px] md:tw-w-[390px] tw-h-[300px] tw-w-[250px] tw-border-white tw-shadow-2xl md:tw-shadow-sm tw-m-auto md:tw-ml-[150px]  tw-mb-[40px]'>
+									<img src={s1} alt="" className='tw-h-[190px] tw-w-[190px] tw-mb-2 md:tw-ml-20 tw-ml-[30px] ' />
+									<h2 className='tw-text-center tw-font-semibold tw-text-lg '>India's Insights derived from
+										<br />over 10 lakh listings
+									</h2>
+								</div>
+								<div className='md:tw-h-[290px] md:tw-w-[240px] tw-border-2 tw-h-[300px] tw-w-[250px] tw-border-white tw-shadow-2xl  md:tw-shadow-sm tw-m-auto tw-mb-[40px]'>
+									<img src={s2} alt="" className='tw-h-[190px] tw-w-[190px] tw-mb-2 md:tw-ml-[-40px] tw-ml-[30px]   ' />
+									<h2 className='tw-text-center tw-font-semibold tw-text-lg md:tw-ml-[-120px] '>Exhaustive data-backed
+										<br />repository of rates and
+										<br />trends
+									</h2>
+								</div>
+								<div className='md:tw-h-[290px] md:tw-w-[240px] tw-border-2 tw-h-[300px] tw-w-[250px] tw-border-white tw-shadow-2xl md:tw-shadow-sm tw-m-auto md:tw-mr-[200px]'>
+									<img src={s3} alt="" className='tw-h-[190px] tw-w-[190px] tw-mb-2 tw-mt-[-7px]' />
+									<h2 className='tw-text-center tw-font-semibold tw-text-lg '>Trusted by over 1.5 cr
+										<br /> buyers, sellers and partners
+									</h2>
+								</div>
+							</div>
+						</div>
+
+
 
 					</div>
-					<div className='md:tw-mt-[-200px] md:tw-mb-[100px] tw-mt-[-156px] tw-mb-[100px] ' >
-						<div className='tw-flex tw-items-center tw-justify-center tw-mt-8'>
-							<div className='lg:tw-w-[200px] tw-w-20 tw-border-b-2' style={{ border: '0px solid #d3a478' }}></div>
-							<h2 class='tw-text-lg tw-mb-3 tw-mr-8 tw-ml-8 tw-font-bold'>FAST AND ECONOMICAL</h2>
-							<div className='lg:tw-w-[200px] tw-w-20 tw-border-b-2' style={{ border: '0px solid #d3a478' }}></div>
-						</div>
-						<p className='tw-text-center tw-text-6xl-text-6xl' style={{ fontFamily: 'Cormorant Garamond, serif', fontSize: '40px' }}>Our Services
-						</p>
-						<div className='md:tw-flex tw-mt-[100px] md:tw-items-center md:tw-justify-center'>
-							<div className='md:tw-h-[290px] md:tw-w-[390px] tw-h-[300px] tw-w-[250px] tw-border-2 tw-border-white tw-shadow-2xl md:tw-shadow-sm tw-m-auto  tw-mb-[40px]'>
-								<img src={s1} alt="" className='tw-h-[190px] tw-w-[190px] tw-mb-2 tw-ml-20 ' />
-								<h2 className='tw-text-center tw-font-semibold tw-text-lg '>India's Insights derived from
-									<br />over 10 lakh listings
-								</h2>
-							</div>
-							<div className='md:tw-h-[290px] md:tw-w-[240px] tw-border-2 tw-h-[300px] tw-w-[250px] tw-border-white tw-shadow-2xl  md:tw-shadow-sm tw-m-auto tw-mb-[40px]'>
-								<img src={s2} alt="" className='tw-h-[190px] tw-w-[190px] tw-mb-2 tw-ml-[-40px]   ' />
-								<h2 className='tw-text-center tw-font-semibold tw-text-lg tw-ml-[-120px] '>Exhaustive data-backed
-									<br />repository of rates and
-									<br />trends
-								</h2>
-							</div>
-							<div className='md:tw-h-[290px] md:tw-w-[240px] tw-border-2 tw-h-[300px] tw-w-[250px] tw-border-white tw-shadow-2xl md:tw-shadow-sm tw-m-auto tw-ml-[60px]'>
-								<img src={s3} alt="" className='tw-h-[190px] tw-w-[190px] tw-mb-2' />
-								<h2 className='tw-text-center tw-font-semibold tw-text-lg '>Trusted by over 1.5 cr
-									<br /> buyers, sellers and partners
-								</h2>
-							</div>
-						</div>
-					</div>
+				</div> */}
 
-
-
-				</div>
 
 
 
 			</div >
+			<Footer />
 
 		</>
 	);
@@ -678,3 +605,7 @@ const Home = () => {
 
 
 export default Home;
+
+
+
+

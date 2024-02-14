@@ -17,7 +17,7 @@ export const UserResetPassword = () => {
 	}
 	return (
 		<div>
-			<div style={{ position: 'relative' }}>
+			<div style={{ position: 'relative', marginTop: '-80px'  }}>
 				<img class="w-full md:h-[800px] h-[100vh] " src={backgroundImage} alt="background" srcset="" />
 				<div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', background: 'rgba(0, 0, 0, 0.5)' }}>
 				</div>

@@ -12,10 +12,16 @@ import ContactImg from '../../Assests/Image/Contact/contact.jpg';
 import '../../../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import './Contact.css';
 import GitHubIcon from '@mui/icons-material/GitHub';
+import { Footer } from '../Footer/Footer';
+import Nav from '../Nav/Nav';
+import { useNavigate } from 'react-router-dom';
 
 const Contact = () => {
+
+	const navigate = useNavigate();
 	return (
 		<>
+			<Nav />
 			<div className="relative mb-10">
 				<div className="" style={{ position: 'relative' }}>
 
@@ -24,7 +30,7 @@ const Contact = () => {
 				</div>
 				<div className=" absolute top-0 left-0 w-full h-full bg-cover  text-center text-white grid place-content-center ">
 					<h2 className=' text-3xl font-bold '>Contact</h2>
-					<h5 className=' text-2xl font-semibold '>Home {'>>'} Contact </h5>
+					<h5 className=' text-2xl font-semibold tw-cursor-pointer ' ><span onClick={() => navigate('/')} >Home</span> {'>>'} Contact </h5>
 				</div>
 			</div >
 			<div className='mt-10'>
@@ -387,6 +393,7 @@ const Contact = () => {
 				</div>
 
 			</div>
+			<Footer />
 		</>
 	)
 }

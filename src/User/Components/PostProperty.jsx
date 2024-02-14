@@ -6,6 +6,8 @@ import DescriptionIcon from '@mui/icons-material/Description';
 
 // import bg from "../../Assets/Image/reg_bg1.jpg";
 import bg from "../../Assests/Image/form_bg.jpg";
+import Nav from '../Nav/Nav';
+import { Footer } from '../Footer/Footer';
 
 const PostProperty = () => {
 
@@ -48,6 +50,7 @@ const PostProperty = () => {
 
 	return (
 		<div>
+			<Nav />
 
 			<div style={{ position: 'relative' }}>
 				<img class="w-full  rounded-bottom-5" src={bg} alt="background" srcset="" />
@@ -496,8 +499,10 @@ const PostProperty = () => {
 
 				</div>
 			</div>
+			<Footer />
 
 		</div >
+
 
 
 	)

@@ -1,3 +1,14 @@
-#btnLogin:hover{
-	color: #ffae68;
-}
+.sticky_nav {
+	position: fixed;
+	top: 0;
+	width: 100%;
+	background-color: '';
+	z-index: 1000;
+  }
+  
+  body{
+	padding-top: 80px; 
+  }
+
+
+  

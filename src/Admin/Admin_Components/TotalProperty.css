@@ -98,12 +98,24 @@
   --tw-backdrop-sepia:  
 }
 
+.tw-absolute {
+  position: absolute !important
+}
+
 .tw-left-0 {
   left: 0px !important
 }
 
+.tw-right-4 {
+  right: 1rem !important
+}
+
 .tw-top-0 {
   top: 0px !important
+}
+
+.tw-top-7 {
+  top: 1.75rem !important
 }
 
 .tw-m-10 {
@@ -120,6 +132,11 @@
 
 .tw-m-auto {
   margin: auto !important
+}
+
+.tw-mx-3 {
+  margin-left: 0.75rem !important;
+  margin-right: 0.75rem !important
 }
 
 .tw-my-5 {
@@ -207,8 +224,16 @@
   margin-inline-end: 2rem !important
 }
 
+.tw-me-80 {
+  margin-inline-end: 20rem !important
+}
+
 .tw-me-\[-30px\] {
   margin-inline-end: -30px !important
+}
+
+.tw-me-\[-40px\] {
+  margin-inline-end: -40px !important
 }
 
 .tw-me-\[-550px\] {
@@ -253,6 +278,10 @@
 
 .tw-ml-8 {
   margin-left: 2rem !important
+}
+
+.tw-ml-\[-20px\] {
+  margin-left: -20px !important
 }
 
 .tw-ml-\[-230px\] {
@@ -599,24 +628,28 @@
   margin-top: 80px !important
 }
 
-.tw-ml-20 {
-  margin-left: 5rem !important
+.tw-mt-\[-200px\] {
+  margin-top: -200px !important
 }
 
-.tw-ml-\[-120px\] {
-  margin-left: -120px !important
+.tw-mt-\[200px\] {
+  margin-top: 200px !important
 }
 
-.tw-ml-\[-40px\] {
-  margin-left: -40px !important
+.tw-mt-\[\] {
+  margin-top:  !important
 }
 
-.tw-mt-\[-156px\] {
-  margin-top: -156px !important
+.tw-mt-\[150px\] {
+  margin-top: 150px !important
 }
 
-.tw-mt-\[-300px\] {
-  margin-top: -300px !important
+.tw-mt-\[1\] {
+  margin-top: 1 !important
+}
+
+.tw-block {
+  display: block !important
 }
 
 .tw-flex {
@@ -625,6 +658,10 @@
 
 .tw-grid {
   display: grid !important
+}
+
+.tw-hidden {
+  display: none !important
 }
 
 .tw-h-10 {
@@ -663,6 +700,10 @@
   height: 190px !important
 }
 
+.tw-h-\[200vh\] {
+  height: 200vh !important
+}
+
 .tw-h-\[230vh\] {
   height: 230vh !important
 }
@@ -693,10 +734,6 @@
 
 .tw-h-full {
   height: 100% !important
-}
-
-.tw-h-\[200vh\] {
-  height: 200vh !important
 }
 
 .tw-w-10 {
@@ -863,6 +900,10 @@
   justify-content: center !important
 }
 
+.tw-justify-between {
+  justify-content: space-between !important
+}
+
 .tw-justify-around {
   justify-content: space-around !important
 }
@@ -879,6 +920,10 @@
 
 .tw-rounded-2xl {
   border-radius: 1rem !important
+}
+
+.tw-rounded-lg {
+  border-radius: 0.5rem !important
 }
 
 .tw-rounded-md {
@@ -949,6 +994,11 @@
   background-color: rgb(209 213 219 / var(--tw-bg-opacity)) !important
 }
 
+.tw-bg-green-500 {
+  --tw-bg-opacity: 1 !important;
+  background-color: rgb(34 197 94 / var(--tw-bg-opacity)) !important
+}
+
 .tw-bg-white {
   --tw-bg-opacity: 1 !important;
   background-color: rgb(255 255 255 / var(--tw-bg-opacity)) !important
@@ -978,9 +1028,24 @@
   padding: 0.75rem !important
 }
 
+.tw-px-3 {
+  padding-left: 0.75rem !important;
+  padding-right: 0.75rem !important
+}
+
 .tw-px-4 {
   padding-left: 1rem !important;
   padding-right: 1rem !important
+}
+
+.tw-py-3 {
+  padding-top: 0.75rem !important;
+  padding-bottom: 0.75rem !important
+}
+
+.tw-py-5 {
+  padding-top: 1.25rem !important;
+  padding-bottom: 1.25rem !important
 }
 
 .tw-pb-11 {
@@ -1329,12 +1394,12 @@
     margin-top: 70px !important
   }
 
-  .md\:tw-mt-\[-200px\] {
-    margin-top: -200px !important
-  }
-
   .md\:tw-flex {
     display: flex !important
+  }
+
+  .md\:tw-h-\[130vh\] {
+    height: 130vh !important
   }
 
   .md\:tw-h-\[250px\] {
@@ -1371,10 +1436,6 @@
 
   .md\:tw-h-\[88\.4vh\] {
     height: 88.4vh !important
-  }
-
-  .md\:tw-h-\[130vh\] {
-    height: 130vh !important
   }
 
   .md\:tw-w-\[1300px\] {
@@ -1459,8 +1520,16 @@
     margin-right: 5rem !important
   }
 
+  .lg\:tw-block {
+    display: block !important
+  }
+
   .lg\:tw-flex {
     display: flex !important
+  }
+
+  .lg\:tw-hidden {
+    display: none !important
   }
 
   .lg\:tw-h-\[88\.4vh\] {
