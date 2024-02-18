@@ -1,18 +1,21 @@
 import React, { useState } from 'react';
 import '../../../node_modules/bootstrap/dist/css/bootstrap.min.css';
-// import '../../../node_modules/bootstrap/dist/js/bootstrap.bundle';
-// import "../../../node_modules/bootstrap/dist/js/bootstrap.bundle";
 import img from "../../Assests/Image/Home1/reg_bg.jpeg";
 import './Buy.css';
 import Nav from '../Nav/Nav';
 import { Footer } from '../Footer/Footer';
-// import ReadMoreIcon from '@mui/icons-material/ReadMore';
+import Box from '@mui/material/Box';
+import Slider from '@mui/material/Slider';
+import { useNavigate } from 'react-router-dom';
 
 
 const Buy = () => {
 
 	const [showMore, setShowMore] = useState(false);
 	const [isNavbarCollapsed, setIsNavbarCollapsed] = useState(false);
+	const [value, setValue] = React.useState([0, 100]);
+
+	const navigate = useNavigate();
 
 
 	const handleNavbarToggle = () => {
@@ -22,6 +25,18 @@ const Buy = () => {
 	const handleShowMore = () => {
 		setShowMore(!showMore);
 	};
+
+	function valuetext(value) {
+		return `${value}°C`;
+	}
+
+	const handleChange = (event, newValue) => {
+		setValue(newValue);
+	};
+
+	const handleMoreDetail = () => {
+		navigate('/Buy/ReadMoreDetails')
+	}
 
 	return (
 		<>
@@ -48,7 +63,7 @@ const Buy = () => {
 								<span className="navbar-toggler-icon"></span>
 							</button>
 							<div className={`collapse navbar ${isNavbarCollapsed ? '' : 'show'}`} id="showNavbar" >
-								<div className="border bg-light p-3 rounded mb-3">
+								<div className="border bg-light p-3 rounded mb-3 tw-w-full">
 									<div className="mb-3">
 										<label htmlFor="cityDropdown" className="form-label">SELECT CITY</label>
 										<select className="form-select shadow-none" id="cityDropdown">
@@ -59,9 +74,25 @@ const Buy = () => {
 									</div>
 								</div>
 
-								<div className="border bg-light p-3 rounded mb-3">
+
+
+								<div className="border bg-light p-3 rounded mb-3 tw-w-full">
+
 									<label htmlFor="cityDropdown" className="form-label">PRICE</label>
-									<div>
+
+									<Box >
+										<Slider
+											getAriaLabel={() => 'Temperature range'}
+											value={value}
+											onChange={handleChange}
+											valueLabelDisplay="auto"
+											getAriaValueText={valuetext}
+											style={{
+												color: "black",
+											}}
+										/>
+									</Box>
+									{/* <div>
 										<div className="d-flex">
 											<div className='me-2'>
 												<input type="number" className="form-control shadow-none" />
@@ -73,7 +104,7 @@ const Buy = () => {
 												<input type="number" className="form-control shadow-none" />
 											</div>
 										</div>
-									</div>
+									</div> */}
 								</div>
 								<div className="border bg-light p-3 rounded mb-3">
 									<label htmlFor="cityDropdown" className="form-label">SQUARE FEET</label>
@@ -91,7 +122,7 @@ const Buy = () => {
 										</div>
 									</div>
 								</div>
-								<div className="border bg-light p-3 rounded mb-3">
+								<div className="border bg-light p-3 rounded mb-3 tw-w-full">
 									<div className='mb-3'>
 										<label htmlFor="cityDropdown" className="form-label">PROPERTY TYPE</label>
 										<select className="form-select shadow-none" id="cityDropdown">
@@ -102,7 +133,7 @@ const Buy = () => {
 
 									</div>
 								</div>
-								<div className="border bg-light p-3 rounded mb-3 ">
+								<div className="border bg-light p-3 rounded mb-3 tw-w-full ">
 									<label className="form-label">BHK</label>
 									<div className="form-check">
 										<input className="form-check-input" type="radio" name="bhk" id="1bhk" value="1bhk" />
@@ -123,8 +154,8 @@ const Buy = () => {
 										</label>
 									</div>
 								</div>
-								<div>
-									<button type="submit" className='border-2 p-2 bg-black text-white font-semibold w-full mb-3 mt-2'>
+								<div className='tw-w-full'>
+									<button type="submit" className='tw-border-2 tw-p-2 tw-bg-black tw-text-white tw-font-semibold tw-w-full tw-mb-3 tw-mt-2'>
 										FIND
 									</button>
 								</div>
@@ -251,10 +282,27 @@ const Buy = () => {
 											<h6 className="mb-3">Owner Name</h6>
 										</div>
 									</div>
-									<div className='ml-auto'>
+									{/* <div className='ml-auto'>
+										<button type="submit" className='p-2 bg-black text-white font-semibold mb-3 tw-mr-4'>
+											More Details
+										</button>
 										<button type="submit" className='p-2 bg-black text-white font-semibold mb-3'>
 											Contact Seller
 										</button>
+									</div> */}
+
+
+									<div className='tw-flex tw-mt-8'>
+										<div className=' '>
+											<button type="submit" class="tw-p-2 tw-bg-custom-color tw-me-2 tw-ml-6  tw-text-white tw-font-semibold tw-mb-3 tw-rounded-md">
+												Contact Seller</button>
+
+										</div>
+										<div className=' '>
+											<button type="submit" className='tw-pl-2 tw-pr-2 tw-pt-[6px] tw-pb-[6px] tw-bg-white tw-text-black tw-border-2 hover:tw-bg-black hover:tw-text-white tw-border-black tw-font-semibold tw-mb-3 tw-rounded-md' onClick={handleMoreDetail}>
+												More Details
+											</button>
+										</div>
 									</div>
 								</div>
 							</div>

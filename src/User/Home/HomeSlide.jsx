@@ -8,6 +8,7 @@ import aroom from "../../Assests/Image/Home1/room2.jpg";
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 
+
 export const HomeSlide = () => {
 	const swiperRef = useRef(null);
 
