@@ -330,9 +330,7 @@ const About = () => {
 							Contact Us
 							<NorthEastIcon className='tw-w-8 ' />
 						</button>
-
-
-
+						
 						<button className='tw-text-wrap tw-rounded-xl tw-mt-6 lg:tw-ml-6 max-md:tw-ml-6 md:tw-ml-6 max-sm:tw-ml-0 
                      tw-h-[57px] 
                     lg:tw-w-[180px]

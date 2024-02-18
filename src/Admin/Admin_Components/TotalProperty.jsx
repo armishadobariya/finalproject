@@ -237,7 +237,7 @@ const TotalProperty = () => {
 							<div class=" tw-w-[360px] tw-ml-[40px] tw-h-[800px] mb-4 border-0 tw-shadow-2xl tw-rounded-md	 ">
 								<div class="g-0 align-items-center">
 									<div class="">
-										<img src={h4} height='300px' width='380px' className=' tw-shadow-sm' />
+										<img src={h2} height='300px' width='380px' className=' tw-shadow-sm' />
 									</div>
 								</div >
 
