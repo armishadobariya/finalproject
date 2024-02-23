@@ -687,6 +687,10 @@
   height: 460px !important
 }
 
+.tw-h-\[48px\] {
+  height: 48px !important
+}
+
 .tw-h-\[57px\] {
   height: 57px !important
 }
@@ -709,14 +713,6 @@
 
 .tw-h-screen {
   height: 100vh !important
-}
-
-.tw-h-\[8px\] {
-  height: 8px !important
-}
-
-.tw-h-\[48px\] {
-  height: 48px !important
 }
 
 .tw-w-10 {
@@ -869,14 +865,6 @@
 
 .tw-w-full {
   width: 100% !important
-}
-
-.tw-w-\[78px\] {
-  width: 78px !important
-}
-
-.tw-w-\[8px\] {
-  width: 8px !important
 }
 
 .tw-cursor-not-allowed {
@@ -1834,6 +1822,10 @@
     padding: 0px !important
   }
 
+  .md\:tw-p-10 {
+    padding: 2.5rem !important
+  }
+
   .md\:tw-p-12 {
     padding: 3rem !important
   }
@@ -1846,20 +1838,8 @@
     padding: 1.25rem !important
   }
 
-  .md\:tw-p-\[10px\] {
-    padding: 10px !important
-  }
-
-  .md\:tw-p-\[50px\] {
-    padding: 50px !important
-  }
-
   .md\:tw-p-\[30px\] {
     padding: 30px !important
-  }
-
-  .md\:tw-p-10 {
-    padding: 2.5rem !important
   }
 
   .md\:tw-pl-5 {

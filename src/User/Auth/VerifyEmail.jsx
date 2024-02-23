@@ -8,13 +8,38 @@ import { Link } from 'react-router-dom';
 import 'animate.css';
 import PasswordIcon from '@mui/icons-material/Password';
 import OtpInput from 'react-otp-input';
+import axios from 'axios';
+import { verifyEmailUrl } from '../Components/Api';
 
-const UserForgotPassword = () => {
+const VerifyEmail = () => {
 	const [otp, setOtp] = useState('');
+	const [email, setEmail] = useState("");
+	const [response, setResponse] = useState(null);
+
+
+	const handleVerifyEmail = async () => {
+		try {
+
+			const reqData = {
+				email: email,
+			};
+
+			const resposeData = await axios.post(verifyEmailUrl, reqData);
+
+		}
+		catch (error) {
+			setResponse('error', "email not found")
+		}
+	};
 
 
 	return (
 		<div>
+
+
+			<div className='msg'>
+				{response && <div>{response.message}</div>}
+			</div>
 
 
 			<div style={{ position: 'relative', marginTop: '-80px' }}>
@@ -26,27 +51,31 @@ const UserForgotPassword = () => {
 						<div class="tw-grid tw-place-content-center">
 							<section className="tw-grid tw-content-center tw-bg-white tw-text-center tw-border-2 md:tw-w-[500px] tw-h-auto tw-p-2 tw-m-3 tw-shadow-md ">
 
-								<div className=" md:tw-p-[30px]">
-									<h3 class="tw-text-3xl tw-font-bold  tw-text-black tw-mb-10">
-										Forgot Password
+								<div className="md:tw-p-10">
+									<h3 class="tw-text-3xl tw-font-bold tw-text-black tw-mb-10">
+										Register
 									</h3>
 
 									<form>
 										<div>
 											<div className="tw-flex">
-												<label className='tw-border-2 tw-mr-[2px] tw-text-black tw-p-2 tw-mb-4'>
+												<label className='tw-border-2 tw-mr-[2px] tw-text-black tw-p-2 tw-mb-4' htmlFor='email'>
 													<PersonIcon />
 												</label>
 												<input
+													id='email'
 													type="email"
 													name="email"
-													class="tw-w-full tw-border-2 tw-h-12 tw-p-3 tw-mb-4 tw-text-black"
+													class="tw-w-full tw-border-2 tw-h-12 tw-p-3 tw-4 tw-text-black"
 													placeholder="Email"
-
+													value={email}
+													onChange={(e) => { setEmail(e.target.value) }}
 												/>
 											</div>
-											<button type="button" class="tw-bg-black tw-mb-4 tw-w-full tw-text-center tw-text-white tw-text-lg tw-font-semibold tw-h-11" >
-												Get Otp
+											<button type="button" class="tw-bg-black tw-mb-4 tw-w-full tw-text-center tw-text-white tw-text-lg tw-font-semibold tw-h-11"
+												onClick={handleVerifyEmail}
+											>
+												Verify Email
 											</button>
 
 										</div>
@@ -65,17 +94,29 @@ const UserForgotPassword = () => {
 													}
 													renderInput={(props) =>
 														<input {...props}
-															class=" tw-border-2 tw-h-[48px] tw-mb-4 tw-w-[48px] tw-text-black"
+															class="tw-border-2 tw-h-[48px] tw-mb-4 tw-w-[48px] tw-text-black"
 
 														/>}
 												/>
 
 											</div>
 											<button type="button" class="tw-bg-black tw-w-full tw-text-center tw-text-white tw-text-lg tw-font-semibold tw-h-11" >
-												Reset Password
+												Register
 											</button>
 
 										</div>
+
+
+
+
+
+
+
+
+
+
+
+
 
 									</form>
 								</div>
@@ -94,4 +135,8 @@ const UserForgotPassword = () => {
 	)
 }
 
-export default UserForgotPassword;
+export default VerifyEmail;
+
+
+
+

@@ -2,7 +2,7 @@ import React from 'react'
 import Nav from './User/Nav/Nav'
 import { Route, Routes } from 'react-router-dom'
 import Home from './User/Home/Home'
-import Features from './User/Components/Features'
+// import Features from './User/Components/Features'
 import Contact from './User/Contact/Contact'
 import About from './User/About/About'
 // import Feedback from './User/Components/Feedback'
@@ -25,6 +25,9 @@ import ReadMoreDetails from './User/Buy/ReadMoreDetails'
 import Buy from './User/Buy/Buy';
 // import PostProperty from './User/Components/PostProperty'
 import AdminLogin from './Admin/Auth/AdminLogin'
+import Demo from './User/Components/Demo'
+import VerifyEmail from './User/Auth/VerifyEmail'
+import { PropertyHistory } from './User/Status/PropertyHistory'
 // 
 
 
@@ -37,12 +40,14 @@ const App = () => {
 				<Route exact path='/' element={<Home name="Home" />}></Route>
 				<Route exact path='/Buy' element={<Buy name="Buy" />} />
 				<Route exact path='/Buy/ReadMoreDetails' element={<ReadMoreDetails name="ReadMoreDetails" />} />
-				<Route exact path='/Features' element={<Features name="Features" />}></Route>
+				<Route exact path='/PropertyHistory' element={<PropertyHistory name="PropertyHistory" />}></Route>
 				<Route exact path='/Contact' element={<Contact name="Contact" />}></Route>
 				<Route exact path='/About' element={<About name="About" />}></Route>
 				{/* <Route exact path='/HomeSlide' element={<HomeSlide name="HomeSlide" />}></Route> */}
 				<Route exact path='/UserRegister' element={<UserRegister
 					name="UserRegister" />}></Route>
+				<Route exact path='/VerifyEmail' element={<VerifyEmail
+					name="VerifyEmail" />}></Route>
 				<Route exact path='/UserLogin' element={<UserLogin name="UserLogin" />}></Route>
 				<Route exact path='/UserForgotPassword' element={<UserForgotPassword name="UserForgotPassword" />}></Route>
 				<Route exact path='/UserResetPassword' element={<UserResetPassword name="UserResetPassword" />}></Route>
@@ -71,6 +76,7 @@ const App = () => {
 
 			{/* <ReadMoreDetails /> */}
 
+			{/* <Demo /> */}
 
 
 

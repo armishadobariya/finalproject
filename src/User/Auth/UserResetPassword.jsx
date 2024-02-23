@@ -17,13 +17,13 @@ export const UserResetPassword = () => {
 	}
 	return (
 		<div>
-			<div style={{ position: 'relative', marginTop: '-80px'  }}>
-				<img class="w-full md:h-[800px] h-[100vh] " src={backgroundImage} alt="background" srcset="" />
+			<div style={{ position: 'relative', marginTop: '-80px' }}>
+				<img class="tw-w-full md:tw-h-[800px] tw-h-[100vh] " src={backgroundImage} alt="background" srcset="" />
 				<div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', background: 'rgba(0, 0, 0, 0.5)' }}>
 				</div>
 				<div >
 					<div style={{ color: 'white', width: '100%', position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', textAlign: 'center' }}>
-						<div class="grid place-content-center">
+						<div class="tw-grid tw-place-content-center">
 							<section className="tw-grid tw-content-center tw-bg-white tw-rounded-sm tw-text-center tw-border-2 md:tw-w-[500px] tw-h-auto tw-p-2 tw-m-3 tw-shadow-md ">
 
 								<div className=" md:tw-p-5">
@@ -49,11 +49,11 @@ export const UserResetPassword = () => {
 
 										</div> */}
 										<div className="tw-flex tw-mb-4">
-											<label className='tw-border-2 tw-mr-[2px]  tw-text-black tw-p-2 tw-mb-1 ' htmlFor='cpassword'>
+											<label className='tw-border-2 tw-mr-[2px]  tw-text-black tw-p-2 tw-mb-1 ' htmlFor='password'>
 												<LockIcon />
 											</label>
 											<input
-												id='cpassword'
+												id='password'
 												type="password"
 												name="password"
 												class="tw-w-full tw-border-2 tw-h-12 tw-p-3 tw-mb-1 tw-text-black "
