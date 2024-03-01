@@ -22,23 +22,23 @@ const Contact = () => {
 	return (
 		<>
 			<Nav />
-			<div className="relative mb-10">
+			<div className="tw-relative tw-mb-10">
 				<div className="" style={{ position: 'relative' }}>
 
-					<img className=' bg-cover w-full  md:h-full' src={ContactImg} alt="" />
+					<img className=' tw-bg-cover tw-w-full  md:tw-h-full' src={ContactImg} alt="" />
 					<div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', background: 'rgba(0, 0, 0, 0.5)' }}></div>
 				</div>
-				<div className=" absolute top-0 left-0 w-full h-full bg-cover  text-center text-white grid place-content-center ">
-					<h2 className=' text-3xl font-bold '>Contact</h2>
-					<h5 className=' text-2xl font-semibold tw-cursor-pointer ' ><span onClick={() => navigate('/')} >Home</span> {'>>'} Contact </h5>
+				<div className=" tw-absolute tw-top-0 tw-left-0 tw-w-full tw-h-full tw-bg-cover  tw-text-center tw-text-white tw-grid tw-place-content-center ">
+					<h2 className=' tw-text-3xl tw-mt-[-120px] tw-font-bold '>Contact</h2>
+					<h5 className=' tw-text-2xl tw-font-semibold tw-cursor-pointer  tw-mt-[-70px] ' ><span onClick={() => navigate('/')} >Home</span> {'>>'} Contact </h5>
 				</div>
 			</div >
-			<div className='mt-10'>
-				<div className=' text-black'>
-					<h1 className=' font-bold text-2xl  flex justify-center'>Team</h1>
-					<h3 className=' font-semibold text-3xl  flex justify-center mt-1'>Meet Our Team</h3>
+			<div className='tw-mt-10'>
+				<div className=' tw-text-black'>
+					<h1 className=' tw-font-bold tw-text-2xl  tw-flex tw-justify-center'>Team</h1>
+					<h3 className=' tw-font-semibold tw-text-3xl  tw-flex tw-justify-center tw-mt-1'>Meet Our Team</h3>
 				</div>
-				<div className=' mt-4'>
+				<div className=' tw-mt-4'>
 					<Swiper
 						slidesPerView={3}
 						centeredSlides={true}
@@ -55,7 +55,7 @@ const Contact = () => {
 						modules={[Autoplay, Pagination, Navigation]}
 						className="mySwiper"
 					>
-						<SwiperSlide><div className="col-lg-8 col-md-8  flex place-content-center">
+						<SwiperSlide><div className="col-lg-8 col-md-8  tw-flex tw-place-content-center">
 							<div className="container">
 								<img
 									src="https://images.unsplash.com/photo-1554080353-a576cf803bda?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8cGhvdG98ZW58MHx8MHx8fDA%3D"
@@ -65,33 +65,33 @@ const Contact = () => {
 								/>
 								<div className="middle">
 									<div className="text">
-										<ul className=' flex'>
-											<li className='p-2'>
+										<ul className=' tw-flex'>
+											<li className='tw-p-2'>
 												<a href="https://web.whatsapp.com/">
 													<WhatsAppIcon />
 												</a>
 											</li>
-											<li className='p-2'>
+											<li className='tw-p-2'>
 												<a href="https://web.whatsapp.com/">
 													<WhatsAppIcon />
 												</a>
 											</li>
-											<li className='p-2'>
+											<li className='tw-p-2'>
 												<a href="https://web.whatsapp.com/">
 													<WhatsAppIcon />
 												</a>
 											</li>
 
 										</ul>
-										<h3 className=' font-bold text-2xl'> Demo</h3>
-										<span className=' text-lg font-semibold'>Founder</span>
+										<h3 className=' tw-font-bold tw-text-2xl'> Demo</h3>
+										<span className=' tw-text-lg tw-font-semibold'>Founder</span>
 									</div>
 								</div>
 							</div>
 						</div>
 						</SwiperSlide>
 						<SwiperSlide>
-							<div className="col-lg-8 col-md-8  flex place-content-center">
+							<div className="col-lg-8 col-md-8  tw-flex tw-place-content-center">
 								<div className="container">
 									<img
 										src="https://images.unsplash.com/photo-1554080353-a576cf803bda?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8cGhvdG98ZW58MHx8MHx8fDA%3D"
@@ -101,32 +101,32 @@ const Contact = () => {
 									/>
 									<div className="middle">
 										<div className="text">
-											<ul className=' flex'>
-												<li className='p-2'>
+											<ul className=' tw-flex'>
+												<li className='tw-p-2'>
 													<a href="https://web.whatsapp.com/">
 														<WhatsAppIcon />
 													</a>
 												</li>
-												<li className='p-2'>
+												<li className='tw-p-2'>
 													<a href="https://web.whatsapp.com/">
 														<WhatsAppIcon />
 													</a>
 												</li>
-												<li className='p-2'>
+												<li className='tw-p-2'>
 													<a href="https://web.whatsapp.com/">
 														<WhatsAppIcon />
 													</a>
 												</li>
 
 											</ul>
-											<h3 className=' font-bold text-2xl'> Demo</h3>
-											<span className=' text-lg font-semibold'>Founder</span>
+											<h3 className=' tw-font-bold tw-text-2xl'> Demo</h3>
+											<span className=' tw-text-lg tw-font-semibold'>Founder</span>
 										</div>
 									</div>
 								</div>
 							</div>
 						</SwiperSlide>
-						<SwiperSlide><div className="col-lg-8 col-md-8   flex place-content-center">
+						<SwiperSlide><div className="col-lg-8 col-md-8 tw-flex tw-place-content-center">
 							<div className="container">
 								<img
 									src="https://images.unsplash.com/photo-1554080353-a576cf803bda?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8cGhvdG98ZW58MHx8MHx8fDA%3D"
@@ -136,32 +136,32 @@ const Contact = () => {
 								/>
 								<div className="middle">
 									<div className="text">
-										<ul className=' flex'>
-											<li className='p-2'>
+										<ul className=' tw-flex'>
+											<li className='tw-p-2'>
 												<a href="https://web.whatsapp.com/">
 													<WhatsAppIcon />
 												</a>
 											</li>
-											<li className='p-2'>
+											<li className='tw-p-2'>
 												<a href="https://web.whatsapp.com/">
 													<WhatsAppIcon />
 												</a>
 											</li>
-											<li className='p-2'>
+											<li className='tw-p-2'>
 												<a href="https://web.whatsapp.com/">
 													<WhatsAppIcon />
 												</a>
 											</li>
 
 										</ul>
-										<h3 className=' font-bold text-2xl'> Demo</h3>
-										<span className=' text-lg font-semibold'>Founder</span>
+										<h3 className=' tw-font-bold tw-text-2xl'> Demo</h3>
+										<span className=' tw-text-lg tw-font-semibold'>Founder</span>
 									</div>
 								</div>
 							</div>
 						</div>
 						</SwiperSlide>
-						<SwiperSlide><div className="col-lg-8 col-md-8  flex place-content-center">
+						<SwiperSlide><div className="col-lg-8 col-md-8  tw-flex tw-place-content-center">
 							<div className="container">
 								<img
 									src="https://images.unsplash.com/photo-1554080353-a576cf803bda?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8cGhvdG98ZW58MHx8MHx8fDA%3D"
@@ -171,26 +171,26 @@ const Contact = () => {
 								/>
 								<div className="middle">
 									<div className="text">
-										<ul className=' flex'>
-											<li className='p-2'>
+										<ul className=' tw-flex'>
+											<li className='tw-p-2'>
 												<a href="https://web.whatsapp.com/">
 													<WhatsAppIcon />
 												</a>
 											</li>
-											<li className='p-2'>
+											<li className='tw-p-2'>
 												<a href="https://web.whatsapp.com/">
 													<WhatsAppIcon />
 												</a>
 											</li>
-											<li className='p-2'>
+											<li className='tw-p-2'>
 												<a href="https://web.whatsapp.com/">
 													<WhatsAppIcon />
 												</a>
 											</li>
 
 										</ul>
-										<h3 className=' font-bold text-2xl'> Demo</h3>
-										<span className=' text-lg font-semibold'>Founder</span>
+										<h3 className=' tw-font-bold tw-text-2xl'> Demo</h3>
+										<span className=' tw-text-lg tw-font-semibold'>Founder</span>
 									</div>
 								</div>
 							</div>
@@ -207,26 +207,26 @@ const Contact = () => {
 									/>
 									<div className="middle">
 										<div className="text">
-											<ul className=' flex'>
-												<li className='p-2'>
+											<ul className=' tw-flex'>
+												<li className='tw-p-2'>
 													<a href="https://github.com/">
 														<GitHubIcon />
 													</a>
 												</li>
-												<li className='p-2'>
+												<li className='tw-p-2'>
 													<a href="https://web.whatsapp.com/">
 														<InstagramIcon />
 													</a>
 												</li>
-												<li className='p-2'>
+												<li className='tw-p-2'>
 													<a href="https://web.whatsapp.com/">
 														<LinkedInIcon />
 													</a>
 												</li>
 
 											</ul>
-											<h3 className=' font-bold text-2xl'> Demo</h3>
-											<span className=' text-lg font-semibold'>Founder</span>
+											<h3 className=' tw-font-bold tw-text-2xl'> Demo</h3>
+											<span className=' tw-text-lg tw-font-semibold'>Founder</span>
 										</div>
 									</div>
 								</div>
@@ -244,26 +244,26 @@ const Contact = () => {
 									/>
 									<div className="middle">
 										<div className="text">
-											<ul className=' flex'>
-												<li className='p-2'>
+											<ul className=' tw-flex'>
+												<li className='tw-p-2'>
 													<a href="https://github.com/">
 														<GitHubIcon />
 													</a>
 												</li>
-												<li className='p-2'>
+												<li className='tw-p-2'>
 													<a href="https://web.whatsapp.com/">
 														<InstagramIcon />
 													</a>
 												</li>
-												<li className='p-2'>
+												<li className='tw-p-2'>
 													<a href="https://web.whatsapp.com/">
 														<LinkedInIcon />
 													</a>
 												</li>
 
 											</ul>
-											<h3 className=' font-bold text-2xl'> Demo</h3>
-											<span className=' text-lg font-semibold'>Founder</span>
+											<h3 className=' tw-font-bold tw-text-2xl'> Demo</h3>
+											<span className=' tw-text-lg tw-font-semibold'>Founder</span>
 										</div>
 									</div>
 								</div>
@@ -275,11 +275,11 @@ const Contact = () => {
 			</div>
 
 
-			<div className=' flex place-content-center'>
-				<div className="faq-contact  m-5 shadow-lg p-3 bg-white rounded-md md:w-[700px]   md:-top-18">
-					<h3 className=' text-2xl font-bold text-center'>Ask Your Question</h3>
+			<div className=' tw-flex tw-place-content-center'>
+				<div className="faq-contact tw-m-5 tw-shadow-lg tw-p-3 tw-bg-white tw-rounded-md md:tw-w-[700px] md:tw-top-18">
+					<h3 className=' tw-text-2xl tw-font-bold tw-text-center'>Ask Your Question</h3>
 					<form id="contactForm ">
-						<div className="row  mt-4">
+						<div className="row tw-mt-4">
 							<div className="col-lg-6 col-md-12">
 								<div className="form-group">
 									<input
@@ -344,7 +344,7 @@ const Contact = () => {
 									<div className="help-block with-errors" />
 								</div>
 							</div>
-							<div className="col-lg-12 col-md-12 mt-4">
+							<div className="col-lg-12 col-md-12 tw-mt-4">
 								<div className="form-group">
 									<textarea
 										name="message"
@@ -362,7 +362,7 @@ const Contact = () => {
 							</div>
 							<div className="col-lg-12 col-md-12">
 								<div className="form-group">
-									<div className="form-check mt-4">
+									<div className="form-check tw-mt-4">
 										<input
 											name="gridCheck"
 											defaultValue="I agree to the terms and privacy policy."
@@ -382,10 +382,10 @@ const Contact = () => {
 								</div>
 							</div>
 							<div className="col-lg-12 col-md-12">
-								<button type="submit" className='border-2 p-2 bg-black text-white font-semibold'>
+								<button type="submit" className='  tw-border-2 tw-p-2 tw-bg-black tw-text-white tw-font-semibold'>
 									Send Message
 								</button>
-								<div id="msgSubmit" className="h3 text-center hidden" />
+								<div id="msgSubmit" className="h3 tw-text-center tw-hidden" />
 								<div className="clearfix" />
 							</div>
 						</div>

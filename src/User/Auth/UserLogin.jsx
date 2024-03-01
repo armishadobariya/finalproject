@@ -4,9 +4,11 @@ import backgroundImage from '../../Assests/Image/home7.jpg';
 import '../../../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import PersonIcon from '@mui/icons-material/Person';
 import LockIcon from '@mui/icons-material/Lock';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { GoogleLogin } from '@react-oauth/google';
 import { GoogleOAuthProvider } from '@react-oauth/google';
+import axios from 'axios';
+import { signInUrl } from '../Components/Api';
 
 
 
@@ -14,6 +16,29 @@ const UserLogin = () => {
 
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
+	const [response, setResponse] = useState('');
+
+	const navigate = useNavigate();
+
+	const userLogin = async (e) => {
+		// try {
+		// 	e.preventDefault();
+
+		// 	const reqdata = {
+		// 		email: email,
+		// 		password: password,
+		// 	}
+
+		// 	const responseData = await axios.post(signInUrl, reqdata);
+
+		// 	setResponse("success", 'success ...');
+		// 	navigate("/");
+
+		// }
+		// catch (error) {
+		// 	setResponse("error", 'error ...');
+		// }
+	}
 
 	const handleSubmit = (e) => {
 		console.log("submitted");
@@ -23,7 +48,11 @@ const UserLogin = () => {
 	}
 
 	return (
+
 		<div>
+			<div className='msg'>
+				{response && <div>{response}</div>}
+			</div>
 			<div style={{ position: 'relative', marginTop: '-80px' }}>
 				<img className="tw-w-full md:tw-h-[800px] tw-h-[100vh] " src={backgroundImage} alt="background" srcset="" />
 				<div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', background: 'rgba(0, 0, 0, 0.3)' }}>
@@ -107,6 +136,7 @@ const UserLogin = () => {
 											type="submit"
 											className={`tw-w-full tw-text-center tw-text-lg tw-font-semibold tw-h-11
     												${(!email || !password) ? 'tw-bg-gray-300 tw-cursor-not-allowed tw-text-gray-600' : 'tw-bg-black tw-hover:bg-green-400 tw-text-white'}`}
+											onClick={userLogin}
 										>
 											Login
 										</button>

@@ -4,39 +4,68 @@ import backgroundImage from '../../Assests/Image/home3.avif';
 import '../../../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import PersonIcon from '@mui/icons-material/Person';
 import LockIcon from '@mui/icons-material/Lock';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import 'animate.css';
 import PasswordIcon from '@mui/icons-material/Password';
 import OtpInput from 'react-otp-input';
 import axios from 'axios';
-import { verifyEmailUrl } from '../Components/Api';
+import { verifyEmailUrl, verifyOtpUrl } from '../Components/Api';
 
 const VerifyEmail = () => {
 	const [otp, setOtp] = useState('');
 	const [email, setEmail] = useState("");
 	const [response, setResponse] = useState(null);
+	const navigate = useNavigate();
 
 
 	const handleVerifyEmail = async () => {
 		try {
-
 			const reqData = {
 				email: email,
 			};
 
-			const resposeData = await axios.post(verifyEmailUrl, reqData);
+			const responseData = await axios.post(verifyEmailUrl, reqData);
+		} catch (error) {
+			if (error.response && error.response.status === 404) {
+				setResponse('error', "Email not found");
+			} else {
+				console.error("Error:", error);
+				setResponse('error', "An unexpected error occurred");
+			}
+		}
+	};
+
+	const verifyOtp = async (e) => {
+		try {
+			e.preventDefault();
+
+			const reqdata = {
+				email: email,
+				otp: otp,
+			};
+
+			const responseData = await axios.post(verifyOtpUrl, reqdata);
+
+			if (responseData.status === 200) {
+				const { token } = responseData.data;
+				localStorage.setItem("token", token);
+
+				setResponse("success: ", responseData.data);
+				navigate('/UserRegister', { state: email })
+			}
+
 
 		}
 		catch (error) {
-			setResponse('error', "email not found")
+			setResponse("error :", response.data.message);
+
 		}
-	};
+	}
+
 
 
 	return (
 		<div>
-
-
 			<div className='msg'>
 				{response && <div>{response.message}</div>}
 			</div>
@@ -100,23 +129,13 @@ const VerifyEmail = () => {
 												/>
 
 											</div>
-											<button type="button" class="tw-bg-black tw-w-full tw-text-center tw-text-white tw-text-lg tw-font-semibold tw-h-11" >
+											<button type="button" class="tw-bg-black tw-w-full tw-text-center tw-text-white tw-text-lg tw-font-semibold tw-h-11"
+												onClick={verifyOtp}
+											>
 												Register
 											</button>
 
 										</div>
-
-
-
-
-
-
-
-
-
-
-
-
 
 									</form>
 								</div>

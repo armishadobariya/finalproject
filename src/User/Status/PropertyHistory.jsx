@@ -21,10 +21,10 @@ export const PropertyHistory = () => {
 				<div className='tw-grid  shadow-lg lg:tw-p-5 tw-rounded-md '>
 					<div>
 						<div >
-							<div className=' tw-flex place-content-center tw-font-bold tw-text-xl'>
+							<div className=' tw-flex tw-place-center tw-font-bold tw-text-xl'>
 								<h1>Property History</h1>
 							</div>
-							<div className=' tw-flex justify-content-end '>
+							<div className=' tw-flex  tw-justify-end '>
 								<label htmlFor="status" className="tw-font-semibold tw-mr-2">Select Status:</label>
 
 								<select name="status" id="status" style={{ outline: 'none' }}>Select status
@@ -67,8 +67,8 @@ export const PropertyHistory = () => {
                             </div>
                         </div> */}
 
-						<div class="col-lg-12 col-md-12 px-4 mt-4">
-							<div class="card mb-4 border-0 shadow">
+						<div class="col-lg-12 col-md-12 tw-px-4 tw-mt-4">
+							<div class="card tw-mb-4 tw-border-0 tw-shadow">
 								<div class="row g-0 p-3 align-items-center">
 									<div class="col-md-3 mb-lg-0 mb-md-0 mb-3">
 										<img src={img} class="img-fluid rounded" />
@@ -130,8 +130,10 @@ export const PropertyHistory = () => {
 												<div className="facilities tw-ml-1 flex">
 													<p className='tw-mt-1 tw-font-semibold tw-text-lg'>Status :</p>
 													<div className='tw-ml-2'>
+														{/* <button type="submit" className='tw-pl-2 tw-pr-2 tw-pt-[6px] tw-pb-[6px] tw-bg-white tw-text-black tw-border-2 hover:tw-bg-black hover:tw-text-white tw-border-black tw-font-semibold tw-mb-3 tw-rounded-md' onClick={handleMoreDetail}> */}
 
-														<h6 className="mb-3 p-2 ml-2 rounded-2  w-20" style={{ color: 'red', border: '1px solid red' }}>Rejected</h6>
+
+														<h6 className="tw-mb-3 tw-p-2 tw-ml-2 tw-rounded-md tw-w-20 tw-bg-white tw-text-red-600 tw-border-1 hover:tw-bg-red-600 hover:tw-text-white tw-border-red-600 " style={{ color: 'red', border: '1px solid red' }}>Rejected</h6>
 													</div>
 												</div>
 											</div>
@@ -210,7 +212,7 @@ export const PropertyHistory = () => {
 													<p className='tw-mt-1 tw-font-semibold tw-text-lg'>Status :</p>
 													<div className='tw-ml-2'>
 
-														<h6 className="mb-3 p-2 ml-2  rounded-2  w-20" style={{ color: 'orange', border: '1px solid orange' }}>Pending</h6>
+														<h6 className="tw-mb-3 tw-p-2 tw-ml-2  tw-rounded-md  tw-w-20  tw-bg-white tw-text-yellow-500 tw-border-1 hover:tw-bg-yellow-500 hover:tw-text-white tw-border-yellow-500 " style={{ color: 'orange', border: '1px solid orange' }}>Pending</h6>
 													</div>
 												</div>
 											</div>
@@ -289,7 +291,7 @@ export const PropertyHistory = () => {
 													<p className='tw-mt-1 tw-font-semibold tw-text-lg'>Status :</p>
 													<div className='tw-ml-2'>
 
-														<h6 className="mb-3 p-2 ml-2 rounded-2 w-20" style={{ color: 'green', border: '1px solid green' }}>Confirm</h6>
+														<h6 className="tw-mb-3 tw-p-2 tw-ml-2 tw-rounded-md tw-w-20  tw-bg-white tw-text-green-600 tw-border-1 hover:tw-bg-green-600 hover:tw-text-white tw-border-green-600 " style={{ color: 'green', border: '1px solid green' }}>Confirm</h6>
 													</div>
 												</div>
 											</div>
