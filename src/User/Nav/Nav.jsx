@@ -59,14 +59,14 @@ const Nav = () => {
 							<NavLink className="nav-link me-4 text-white " to="/">
 								Home
 							</NavLink>
-							<NavLink className="nav-link me-4 text-white" to="/features">
-								Features
-							</NavLink>
 							<NavLink className="nav-link me-4 text-white" to="/contact">
 								Contact
 							</NavLink>
 							<NavLink className="nav-link me-4 text-white" to="/about">
 								About
+							</NavLink>
+							<NavLink className="nav-link me-4 text-white" to="/propertyHistory">
+								Status
 							</NavLink>
 							<NavLink className="nav-link text-white" to="/feedback">
 								Feedback

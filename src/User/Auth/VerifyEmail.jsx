@@ -3,51 +3,39 @@ import "./UserForgotPassword.css";
 import backgroundImage from '../../Assests/Image/home3.avif';
 import '../../../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import PersonIcon from '@mui/icons-material/Person';
-// import LockIcon from '@mui/icons-material/Lock';
-// import { Link } from 'react-router-dom';
+import LockIcon from '@mui/icons-material/Lock';
+import { Link, useNavigate } from 'react-router-dom';
 import 'animate.css';
-// import PasswordIcon from '@mui/icons-material/Password';
+import PasswordIcon from '@mui/icons-material/Password';
 import OtpInput from 'react-otp-input';
 import axios from 'axios';
-import { forgetPasswordUrl, verifyOtpUrl } from '../Components/Api';
-import { useNavigate } from 'react-router-dom';
+import { verifyEmailUrl, verifyOtpUrl } from '../Components/Api';
 
-const UserForgotPassword = () => {
-
-	const [email, setEmail] = useState('');
+const VerifyEmail = () => {
 	const [otp, setOtp] = useState('');
+	const [email, setEmail] = useState("");
 	const [response, setResponse] = useState(null);
-	const [showOtp, setShowOtp] = useState(false);
 	const navigate = useNavigate();
 
 
-	const handleEmail = async () => {
+	const handleVerifyEmail = async () => {
 		try {
-			const reqdata = {
+			const reqData = {
 				email: email,
 			};
 
-			const responseData = await axios.post(forgetPasswordUrl, reqdata);
-			toggleForm();
-		}
-		catch (error) {
+			const responseData = await axios.post(verifyEmailUrl, reqData);
+		} catch (error) {
 			if (error.response && error.response.status === 404) {
 				setResponse('error', "Email not found");
 			} else {
-				// console.error("Error:", error);
-
+				console.error("Error:", error);
 				setResponse('error', "An unexpected error occurred");
 			}
 		}
-	}
+	};
 
-	const toggleForm = () => {
-		setShowOtp(!showOtp);
-		console.log('hello');
-
-	}
-
-	const handleOtp = async (e) => {
+	const verifyOtp = async (e) => {
 		try {
 			e.preventDefault();
 
@@ -92,69 +80,60 @@ const UserForgotPassword = () => {
 						<div class="tw-grid tw-place-content-center">
 							<section className="tw-grid tw-content-center tw-bg-white tw-text-center tw-border-2 md:tw-w-[500px] tw-h-auto tw-p-2 tw-m-3 tw-shadow-md ">
 
-								<div className=" md:tw-p-[30px]">
-									<h3 class="tw-text-3xl tw-font-bold  tw-text-black tw-mb-10">
-										Forgot Password
+								<div className="md:tw-p-10">
+									<h3 class="tw-text-3xl tw-font-bold tw-text-black tw-mb-10">
+										Register
 									</h3>
 
 									<form>
 										<div>
 											<div className="tw-flex">
-												<label className='tw-border-2 tw-mr-[2px] tw-text-black tw-p-2 tw-mb-4'>
+												<label className='tw-border-2 tw-mr-[2px] tw-text-black tw-p-2 tw-mb-4' htmlFor='email'>
 													<PersonIcon />
 												</label>
 												<input
+													id='email'
 													type="email"
 													name="email"
-													class="tw-w-full tw-border-2 tw-h-12 tw-p-3 tw-mb-4 tw-text-black"
+													class="tw-w-full tw-border-2 tw-h-12 tw-p-3 tw-4 tw-text-black"
 													placeholder="Email"
 													value={email}
 													onChange={(e) => { setEmail(e.target.value) }}
-
 												/>
 											</div>
-											{
-												!showOtp &&
-
-												<button type="button" class="tw-bg-black tw-mb-4 tw-w-full tw-text-center tw-text-white tw-text-lg tw-font-semibold tw-h-11"
-													onClick={handleEmail} >
-													Get Otp
-												</button>
-											}
+											<button type="button" class="tw-bg-black tw-mb-4 tw-w-full tw-text-center tw-text-white tw-text-lg tw-font-semibold tw-h-11"
+												onClick={handleVerifyEmail}
+											>
+												Verify Email
+											</button>
 
 										</div>
 
-
 										<div>
-											{
-												showOtp &&
-												<>
-
-													<div className="tw-grid tw-place-content-center">
+											<div className="tw-grid tw-place-content-center">
 
 
-														<OtpInput
-															value={otp}
-															onChange={(e) => { setOtp(e.target.value) }}
-															numInputs={4}
+												<OtpInput
+													value={otp}
+													onChange={setOtp}
+													numInputs={4}
 
-															renderSeparator={
-																<span class="tw-text-black tw-mb-6 tw-p-2 tw-text-2xl">-</span>
-															}
-															renderInput={(props) =>
-																<input {...props}
-																	class=" tw-border-2 tw-h-[48px] tw-mb-4 tw-w-[48px] tw-text-black"
+													renderSeparator={
+														<span class="tw-text-black tw-mb-6 tw-p-2 tw-text-2xl">-</span>
+													}
+													renderInput={(props) =>
+														<input {...props}
+															class="tw-border-2 tw-h-[48px] tw-mb-4 tw-w-[48px] tw-text-black"
 
-																/>}
-														/>
+														/>}
+												/>
 
-													</div>
-													<button type="button" class="tw-bg-black tw-w-full tw-text-center tw-text-white tw-text-lg tw-font-semibold tw-h-11"
-														onClick={handleOtp}>
-														Reset Password
-													</button>
-												</>
-											}
+											</div>
+											<button type="button" class="tw-bg-black tw-w-full tw-text-center tw-text-white tw-text-lg tw-font-semibold tw-h-11"
+												onClick={verifyOtp}
+											>
+												Register
+											</button>
 
 										</div>
 
@@ -175,4 +154,8 @@ const UserForgotPassword = () => {
 	)
 }
 
-export default UserForgotPassword;
+export default VerifyEmail;
+
+
+
+

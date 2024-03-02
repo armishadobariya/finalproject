@@ -540,7 +540,7 @@ const Home = () => {
 										<br />trends
 									</h2>
 								</div>
-								<div className='md:tw-h-[320px] md:tw-w-[290px] tw-h-[300px] tw-w-[250px] tw-border-white tw-shadow-2xl md:tw-shadow-2xl tw-m-auto md:tw-mr-[80px] md:tw-ml-[100px]'>
+								<div className='md:tw-h-[320px] md:tw-w-[290px] tw-h-[300px] tw-w-[250px] tw-border-white tw-shadow-2xl md:tw-shadow-2xl tw-m-auto md:tw-mr-[-50px] md:tw-ml-[100px]'>
 									<img src={s3} alt="" className='tw-h-[190px] tw-w-[190px] tw-mb-2 tw-mt-2 md:tw-ml-[40px] tw-ml-[20px]' />
 									<h2 className='tw-text-center tw-font-semibold tw-text-lg '>Trusted by over 1.5 cr
 										<br /> buyers, sellers and partners

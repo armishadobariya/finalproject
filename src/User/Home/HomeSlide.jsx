@@ -26,7 +26,7 @@ export const HomeSlide = () => {
 	};
 	return (
 		<>
-			<div className='flex justify-center'>
+			<div className='tw-flex tw-justify-center'>
 				<div className='tw-border-2 tw-border-white tw-mt-16 text-center slider-container'>
 					<div className='tw-flex tw-items-center tw-justify-center'>
 
@@ -66,7 +66,7 @@ export const HomeSlide = () => {
 						<button className='tw-text-6xl tw-mt-[130px] tw-me-[-550px] tw-font-bold'>
 							<div
 								id='circle'
-								className='md:tw-mt-[70px] tw-flex tw-justify-center tw-items-center tw-shadow-full tw-mt-[120px] tw-ml-[-320px] md:tw-ml-[-120px] '
+								className='md:tw-mt-[70px] tw-flex tw-justify-center tw-items-center tw-shadow-full tw-mt-[120px] tw-ml-[-320px] md:tw-ml-[-120px] tw-mr-20 '
 								style={{
 									borderRadius: '50%',
 									height: '60px',
@@ -74,7 +74,6 @@ export const HomeSlide = () => {
 									background: 'white',
 									boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1), 0 6px 15px rgba(0, 0, 0, 0.1), 0 9px 28px rgba(0, 0, 0, 0.1)',
 									transition: 'background 0.3s',
-
 								}}
 							>
 								<ArrowForwardIcon style={{ height: '30px', width: '30px' }} className=' tw-font-light' />

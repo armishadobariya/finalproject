@@ -25,7 +25,7 @@ const ReadMoreDetails = () => {
 		<>
 
 			<Nav />
-			<Demo /> 
+			{/* <Demo /> */}
 
 			<div className='container tw-flex tw-place-content-center tw-mt-4'>
 				<div className='tw-p-4'>
@@ -41,13 +41,14 @@ const ReadMoreDetails = () => {
 					</div>
 
 					<div className='row tw-mt-10 '>
-						<div className="col-lg-7  ">
-							<img src={img} alt="" className=' tw-w-[700px] tw-h-[400px] tw-rounded-sm' />
-
+						<div className="col-lg-7">
+							{/* <img src={img} alt="" className='tw-w-[700px] tw-h-[400px] tw-rounded-sm' /> */}
+							<Demo className="" />
 						</div>
 
+
 						<div className="col-lg-5 md:w-full shadow-lg tw-p-6 tw-flex  tw-place-content-center tw-rounded-sm">
-							<div className=' ml-3 place-content-center'>
+							<div className=' tw-ml-3 place-content-center'>
 								<h1 className='tw-font-semibold text-2xl mt-2'>₹34.45L</h1>
 								<div className="col-sm-3">
 									<h1 className='border-1 w-full flex items-center justify-center p-2 rounded-2 mt-3 tw-font-semibold tw-border-black'>For Rent</h1>

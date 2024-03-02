@@ -399,6 +399,10 @@
   margin-right: 0.5rem !important
 }
 
+.tw-mr-20 {
+  margin-right: 5rem !important
+}
+
 .tw-mr-4 {
   margin-right: 1rem !important
 }
@@ -433,6 +437,10 @@
 
 .tw-mt-1 {
   margin-top: 0.25rem !important
+}
+
+.tw-mt-1\.5 {
+  margin-top: 0.375rem !important
 }
 
 .tw-mt-10 {
@@ -513,6 +521,10 @@
 
 .tw-mt-\[-2px\] {
   margin-top: -2px !important
+}
+
+.tw-mt-\[-3px\] {
+  margin-top: -3px !important
 }
 
 .tw-mt-\[-48px\] {
@@ -687,6 +699,10 @@
   height: 460px !important
 }
 
+.tw-h-\[48px\] {
+  height: 48px !important
+}
+
 .tw-h-\[57px\] {
   height: 57px !important
 }
@@ -709,14 +725,6 @@
 
 .tw-h-screen {
   height: 100vh !important
-}
-
-.tw-h-\[8px\] {
-  height: 8px !important
-}
-
-.tw-h-\[48px\] {
-  height: 48px !important
 }
 
 .tw-w-10 {
@@ -869,14 +877,6 @@
 
 .tw-w-full {
   width: 100% !important
-}
-
-.tw-w-\[78px\] {
-  width: 78px !important
-}
-
-.tw-w-\[8px\] {
-  width: 8px !important
 }
 
 .tw-cursor-not-allowed {
@@ -1378,6 +1378,11 @@
   border-style: none !important
 }
 
+.hover\:tw-border-red-500:hover {
+  --tw-border-opacity: 1 !important;
+  border-color: rgb(239 68 68 / var(--tw-border-opacity)) !important
+}
+
 .hover\:tw-bg-\[\#d3a478\]:hover {
   --tw-bg-opacity: 1 !important;
   background-color: rgb(211 164 120 / var(--tw-bg-opacity)) !important
@@ -1396,6 +1401,11 @@
 .hover\:tw-text-blue-600:hover {
   --tw-text-opacity: 1 !important;
   color: rgb(37 99 235 / var(--tw-text-opacity)) !important
+}
+
+.hover\:tw-text-red-500:hover {
+  --tw-text-opacity: 1 !important;
+  color: rgb(239 68 68 / var(--tw-text-opacity)) !important
 }
 
 .hover\:tw-text-white:hover {
@@ -1642,8 +1652,8 @@
     margin-right: 200px !important
   }
 
-  .md\:tw-mr-\[80px\] {
-    margin-right: 80px !important
+  .md\:tw-mr-\[30px\] {
+    margin-right: 30px !important
   }
 
   .md\:tw-mt-10 {
@@ -1700,6 +1710,10 @@
 
   .md\:tw-mt-\[70px\] {
     margin-top: 70px !important
+  }
+
+  .md\:tw-mr-\[-50px\] {
+    margin-right: -50px !important
   }
 
   .md\:tw-flex {
@@ -1834,6 +1848,10 @@
     padding: 0px !important
   }
 
+  .md\:tw-p-10 {
+    padding: 2.5rem !important
+  }
+
   .md\:tw-p-12 {
     padding: 3rem !important
   }
@@ -1846,20 +1864,8 @@
     padding: 1.25rem !important
   }
 
-  .md\:tw-p-\[10px\] {
-    padding: 10px !important
-  }
-
-  .md\:tw-p-\[50px\] {
-    padding: 50px !important
-  }
-
   .md\:tw-p-\[30px\] {
     padding: 30px !important
-  }
-
-  .md\:tw-p-10 {
-    padding: 2.5rem !important
   }
 
   .md\:tw-pl-5 {
@@ -2008,12 +2014,20 @@
     grid-template-columns: repeat(3, minmax(0, 1fr)) !important
   }
 
+  .lg\:tw-p-10 {
+    padding: 2.5rem !important
+  }
+
   .lg\:tw-p-20 {
     padding: 5rem !important
   }
 
   .lg\:tw-p-24 {
     padding: 6rem !important
+  }
+
+  .lg\:tw-p-5 {
+    padding: 1.25rem !important
   }
 
   .lg\:tw-pl-40 {
