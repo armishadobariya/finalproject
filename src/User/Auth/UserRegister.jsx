@@ -20,9 +20,10 @@ const UserRegister = () => {
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
 	const [cpassword, setCpassword] = useState("");
-	const [phone, setPhone] = useState("");
+	const [mobileNo, setMobileNo] = useState("");
 	const [response, setResponse] = useState("");
-	const [disabled, setDisabled] = useState(true);
+	const [nameErr, setNameErr] = useState('');
+	const [passwordErr, setPasswordErr] = useState('');
 	const navigate = useNavigate();
 	const location = useLocation();
 
@@ -34,31 +35,95 @@ const UserRegister = () => {
 		}
 	}, [location.state]);
 
+	const validateName = (name) => {
+		const allowAlphabet = /^[a-zA-Z]+$/;
+
+		if (name.length <= 2 || !allowAlphabet.test(name)) {
+			setNameErr('Name must be contain mote than two Alphabets..');
+			return false;
+		}
+
+		setNameErr('');
+		return true;
+	}
+
+	const validatePassword = (pass) => {
+		if (pass.length < 8) {
+			setPasswordErr('Password must be between 8 characters');
+			return false;
+		}
+		setPasswordErr('');
+		return true;
+	}
+
+	// const UserRegister = async (e) => {
+	// 	try {
+	// 		e.preventDefault();
+
+	// 		if (validatePassword(password)) {
+
+	// 			const reqdata = {
+	// 				email: email,
+	// 				name: name,
+	// 				password: password,
+	// 				mobileNo: mobileNo,
+	// 			};
+
+	// 			console.log(email);
+
+	// 			const responseData = await axios.post(signUpUrl, reqdata);
+
+	// 			if (responseData.status == 201) {
+	// 				console.log('responseData: ', responseData);
+	// 				setResponse("success", "success ...");
+	// 				navigate('/UserLogin');
+	// 				console.log("register email: ", email);
+	// 			}
+	// 		}
+	// 	} catch (error) {
+	// 		setResponse("error", "error...");
+	// 		// setResponse(alert(error.response.message))
+	// 	}
+	// };
+
+
+
 	const UserRegister = async (e) => {
 		try {
 			e.preventDefault();
 
-			const emailid = location.state;
-			console.log("emailid: ", emailid);
+			if (validatePassword(password)) {
+				const reqdata = {
+					email: email,
+					name: name,
+					password: password,
+					mobileNo: mobileNo,
+				};
 
-			const reqdata = {
-				email: email,
-				name: name,
-				password: password,
-				cpassword: cpassword,
-				phone: phone,
-			};
+				console.log("Request data:", reqdata);
 
-			console.log(email);
+				const responseData = await axios.post(signUpUrl, reqdata);
 
-			const responseData = await axios.post(signUpUrl, reqdata);
-			setResponse("success", "success ...");
-			navigate("/UserLogin", { state: email });
-			console.log("register email: ", email);
+				console.log("Response data:", responseData);
+
+				if (responseData.status === 201) {
+					console.log('Registration successful.');
+					setResponse("success", "Registration successful.");
+					navigate('/UserLogin');
+				} else {
+					console.log('Registration failed. Unexpected status code:', responseData.status);
+					setResponse("error", "Registration failed. Please try again later.");
+				}
+			} else {
+				console.log('Invalid password.');
+				setResponse("error", "Invalid password.");
+			}
 		} catch (error) {
-			setResponse("error", "error...");
+			console.error("Error during registration:", error);
+			setResponse("error", "An error occurred during registration. Please try again later.");
 		}
 	};
+
 
 
 
@@ -73,7 +138,7 @@ const UserRegister = () => {
 		setEmail("");
 		setPassword("");
 		setCpassword("");
-		setPhone("");
+		setMobileNo("");
 	};
 
 	return (
@@ -132,6 +197,7 @@ const UserRegister = () => {
 														class="tw-w-full tw-border-2 tw-h-12 tw-p-3 tw-mb-1 "
 														placeholder="Email"
 														value={email}
+														readOnly
 														onChange={(e) => {
 															setEmail(e.target.value);
 														}}
@@ -139,25 +205,6 @@ const UserRegister = () => {
 												</div>
 											</div>
 
-
-
-
-											{/* <div className="col-md-12">
-												<div className="tw-flex tw-mb-4 tw-mt-4">
-													<label className='tw-border-2 tw-mr-[2px]  tw-text-black tw-p-2 tw-mb-1' htmlFor='name'>
-														<PersonIcon />
-													</label>
-													<input
-														id='name'
-														type="name"
-														name="name"
-														class="tw-w-full tw-border-2 tw-h-12 tw-p-3 tw-mb-1 "
-														placeholder="Name"
-														value={name}
-														onChange={(e) => setName(e.target.value)}
-													/>
-												</div>
-											</div> */}
 
 											<div className="col-md-12">
 												<div className="tw-flex tw-mb-4 tw-mt-4">
@@ -173,11 +220,15 @@ const UserRegister = () => {
 														name="name"
 														className="tw-w-full tw-border-2 tw-h-12 tw-p-3 tw-mb-1 "
 														placeholder="Name"
+														required
 														value={name}
-														onChange={(e) => setName(e.target.value)}
-														disabled={disabled}
+														onChange={(e) => {
+															setName(e.target.value)
+															validateName(e.target.value)
+														}}
 													/>
 												</div>
+												<p style={{ color: 'red', marginLeft: '45px', marginBottom: '20px' }}>{nameErr}</p>
 											</div>
 
 											<div className="col-md-12  mb-4">
@@ -194,11 +245,17 @@ const UserRegister = () => {
 														name="password"
 														class="tw-w-full tw-border-2 tw-h-12 tw-p-3 tw-mb-1 "
 														placeholder="Password"
+														required
 														value={password}
-														onChange={(e) => setPassword(e.target.value)}
-														disabled={disabled}
+														onChange={(e) => {
+															setPassword(e.target.value)
+															validatePassword(e.target.value);
+														}
+														}
 													/>
 												</div>
+												<p style={{ color: 'red', marginLeft: '45px' }}>{passwordErr}</p>
+
 											</div>
 
 
@@ -216,9 +273,9 @@ const UserRegister = () => {
 														name="phone"
 														class="tw-w-full tw-border-2 tw-h-12 tw-p-3 tw-mb-1 "
 														placeholder="Phone"
-														value={phone}
-														onChange={(e) => setPhone(e.target.value)}
-														disabled={disabled}
+														required
+														value={mobileNo}
+														onChange={(e) => setMobileNo(e.target.value)}
 													/>
 												</div>
 											</div>
@@ -242,20 +299,20 @@ const UserRegister = () => {
                                                         )}
                                                     </button> */}
 												</div>
-												{/* <button type="button" class="tw-bg-black hover:bg-green-400 hover:text-black  tw-w-full tw-text-center tw-text-white tw-text-lg tw-font-semibold tw-h-11" >
+												{/* <button type="button" class="tw-bg-black hover:bg-green-400 hover:text-black  tw-w-full tw-text-center tw-text-white tw-text-lg tw-font-semibold tw-h-11"
+													onClick={UserRegister} >
 													Register
 												</button> */}
 												<button
 													disabled={
-														!name || !email || !password || !cpassword || !phone
+														!name || !email || !password || !mobileNo
 													}
 													type="submit"
 													className={`tw-w-full tw-text-center tw-text-lg tw-font-semibold tw-h-11
     												${!name ||
 															!email ||
 															!password ||
-															!cpassword ||
-															!phone
+															!mobileNo
 															? "tw-bg-gray-300 tw-cursor-not-allowed tw-text-gray-600"
 															: "tw-bg-black hover:bg-green-400 tw-text-white"
 														}`}

@@ -76,7 +76,7 @@ const Nav = () => {
 							<div className="d-flex">
 								<button
 									type="button"
-									className="btn shadow-none me-lg-3 me-3 ms-3"
+									className="btn shadow-none"
 									data-bs-toggle="modal"
 									data-bs-target="#loginModal"
 									onClick={showLogin}
@@ -85,7 +85,7 @@ const Nav = () => {
 								>
 									Login
 								</button>
-								<button
+								{/* <button
 									type="button"
 									className="btn shadow-none me-lg-3 me-3"
 									data-bs-toggle="modal"
@@ -95,7 +95,7 @@ const Nav = () => {
 									style={{ background: '#d3a478' }}
 								>
 									Register
-								</button>
+								</button> */}
 							</div>
 						</form>
 					</div>

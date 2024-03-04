@@ -16,28 +16,42 @@ const UserLogin = () => {
 
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
-	const [response, setResponse] = useState('');
+	const [response, setResponse] = useState(null);
+	const [verificationResult, setVerificationResult] = useState('');
+
 
 	const navigate = useNavigate();
 
+
+
 	const userLogin = async (e) => {
-		// try {
-		// 	e.preventDefault();
+		try {
+			e.preventDefault();
+			const reqdata = {
+				email: email,
+				password: password,
+			};
+			const responseData = await axios.post(signInUrl, reqdata);
 
-		// 	const reqdata = {
-		// 		email: email,
-		// 		password: password,
-		// 	}
+			if (responseData.status === 201) {
 
-		// 	const responseData = await axios.post(signInUrl, reqdata);
+				const { token } = responseData.data;
+				console.log('token: ', token);
+				localStorage.setItem("token", token);
+				navigate("/", { state: email });
+				// console.log('responseData: ', responseData);
+				// setResponse("success", 'success ...');
+			}
 
-		// 	setResponse("success", 'success ...');
-		// 	navigate("/");
 
-		// }
-		// catch (error) {
-		// 	setResponse("error", 'error ...');
-		// }
+		}
+		catch (error) {
+			setResponse("error", 'error ...');
+			console.log('error');
+			// setResponse(alert('wrong user'));
+
+			// setResponse(alert(error.response.data.message));
+		}
 	}
 
 	const handleSubmit = (e) => {
@@ -46,6 +60,8 @@ const UserLogin = () => {
 		setEmail('');
 		setPassword('');
 	}
+
+
 
 	return (
 
@@ -81,6 +97,8 @@ const UserLogin = () => {
 												onChange={e => setEmail(e.target.value)}
 											/>
 										</div>
+
+										<h1>{verificationResult}</h1>
 										<div className="tw-flex tw-mb-5">
 											<label className='tw-border-2 tw-mr-[2px]  tw-text-black tw-p-2 tw-mb-1 ' htmlFor='password'>
 												<LockIcon />
@@ -114,9 +132,9 @@ const UserLogin = () => {
 												id='remember'
 												className='tw-h-3 tw-w-3 md:tw-ml-[-102px]  '
 											/>
-											<label className=' tw-text-gray-400 p-2 md:tw-ml-1  tw-mt-[10px] ' htmlFor='remember'>
+											<label className=' tw-text-gray-400 p-2 md:tw-ml-1  tw-mt-[10px] tw-mb-4 ' htmlFor='remember'>
 												Remember me</label>
-											<a href="/ForgotPassword">Forget Your Password?</a>
+											<a href="/ForgotPassword" className=' tw-text-black tw-float-right tw-mt-4'>Forget Your Password?</a>
 											<Link className="text-slate-600  text-sm grid place-content-end mb-6 md:tw-mt-[-30px] tw-mt-[-20px] " style={{ textDecoration: "none" }} to="/UserForgotPassword">Forgot Your Password?</Link>
 										</div>
 										<div >
@@ -140,6 +158,12 @@ const UserLogin = () => {
 										>
 											Login
 										</button>
+
+										<div className=' tw-text-gray-400 tw-mt-4 '>
+											{/* Don't have an Account? Create New Account */}
+											<p>Don't have an account? <a href="/UserEmail" className=' tw-cursor-pointer '><u>Create New Account</u></a></p>
+										</div>
+
 									</div>
 								</form>
 							</section>

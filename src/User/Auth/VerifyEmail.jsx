@@ -35,6 +35,10 @@ const VerifyEmail = () => {
 			};
 
 			const responseData = await axios.post(verifyEmailUrl, reqData);
+
+			if (responseData.status === 201) {
+				setResponse('success', 'success..')
+			}
 		} catch (error) {
 			if (error.response && error.response.status === 404) {
 				setResponse("error", "Email not found");
@@ -57,11 +61,12 @@ const VerifyEmail = () => {
 			const responseData = await axios.post(verifyOtpUrl, reqdata);
 
 			if (responseData.status === 200) {
-				const { token } = responseData.data;
-				localStorage.setItem("token", token);
+				// const { token } = responseData.data;
+				// localStorage.setItem("token", token);
+				// console.log('token: ', token);
 
 				setResponse("success: ", responseData.data);
-				navigate("/UserRegister", { state: email });
+				navigate("/UserRegister", { state: { email: email } });
 				console.log('verify email: ', email);
 			}
 		} catch (error) {
