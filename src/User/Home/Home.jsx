@@ -240,6 +240,7 @@ const Home = () => {
 								>BUY</button>
 							</div>
 						</div>
+
 					</div>
 				</div>
 
