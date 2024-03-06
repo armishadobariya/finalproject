@@ -56,43 +56,12 @@ const UserRegister = () => {
 		return true;
 	}
 
-	// const UserRegister = async (e) => {
-	// 	try {
-	// 		e.preventDefault();
-
-	// 		if (validatePassword(password)) {
-
-	// 			const reqdata = {
-	// 				email: email,
-	// 				name: name,
-	// 				password: password,
-	// 				mobileNo: mobileNo,
-	// 			};
-
-	// 			console.log(email);
-
-	// 			const responseData = await axios.post(signUpUrl, reqdata);
-
-	// 			if (responseData.status == 201) {
-	// 				console.log('responseData: ', responseData);
-	// 				setResponse("success", "success ...");
-	// 				navigate('/UserLogin');
-	// 				console.log("register email: ", email);
-	// 			}
-	// 		}
-	// 	} catch (error) {
-	// 		setResponse("error", "error...");
-	// 		// setResponse(alert(error.response.message))
-	// 	}
-	// };
-
-
-
 	const UserRegister = async (e) => {
 		try {
 			e.preventDefault();
 
 			if (validatePassword(password)) {
+
 				const reqdata = {
 					email: email,
 					name: name,
@@ -100,30 +69,22 @@ const UserRegister = () => {
 					mobileNo: mobileNo,
 				};
 
-				console.log("Request data:", reqdata);
+				console.log(email);
 
 				const responseData = await axios.post(signUpUrl, reqdata);
 
-				console.log("Response data:", responseData);
-
-				if (responseData.status === 201) {
-					console.log('Registration successful.');
-					setResponse("success", "Registration successful.");
+				if (responseData.data.statusCode === 201) {
+					console.log('responseData: ', responseData);
+					setResponse("success", "success ...");
 					navigate('/UserLogin');
-				} else {
-					console.log('Registration failed. Unexpected status code:', responseData.status);
-					setResponse("error", "Registration failed. Please try again later.");
+					console.log("register email: ", email);
 				}
-			} else {
-				console.log('Invalid password.');
-				setResponse("error", "Invalid password.");
 			}
 		} catch (error) {
-			console.error("Error during registration:", error);
-			setResponse("error", "An error occurred during registration. Please try again later.");
+			setResponse("error", "error...");
+			// setResponse(alert(error.response.message))
 		}
 	};
-
 
 
 

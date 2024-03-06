@@ -8,7 +8,9 @@ import { Link, useNavigate } from 'react-router-dom';
 import { GoogleLogin } from '@react-oauth/google';
 import { GoogleOAuthProvider } from '@react-oauth/google';
 import axios from 'axios';
-import { signInUrl } from '../Components/Api';
+import { signInUrl, googleLoginUrl } from '../Components/Api';
+import { jwtDecode } from 'jwt-decode';
+
 
 
 
@@ -33,7 +35,7 @@ const UserLogin = () => {
 			};
 			const responseData = await axios.post(signInUrl, reqdata);
 
-			if (responseData.status === 201) {
+			if (responseData.data.statusCode === 201) {
 
 				const { token } = responseData.data;
 				console.log('token: ', token);
@@ -48,9 +50,8 @@ const UserLogin = () => {
 		catch (error) {
 			setResponse("error", 'error ...');
 			console.log('error');
-			// setResponse(alert('wrong user'));
-
-			// setResponse(alert(error.response.data.message));
+			// setResponse(alert(response.data.message));
+			setResponse(alert(response.data.message));
 		}
 	}
 
@@ -126,6 +127,38 @@ const UserLogin = () => {
 												// }}
 												/>
 											</GoogleOAuthProvider>
+
+											{/* <GoogleOAuthProvider clientId="295805594505-sq8l6g2m1dlgnlepvim7h03gmo48gco3.apps.googleusercontent.com"> */}
+											{/* <GoogleLogin
+													onSuccess={async (credentialResponse) => {
+														try {
+															console.log(credentialResponse);
+															const data = jwtDecode(credentialResponse.credential)
+															console.log(data)
+
+															const token = credentialResponse.credential;
+															const response = await axios.post(googleLoginUrl, {
+																"token": token,
+															});
+
+															if (response.status === 200) {
+
+																const { token } = response.data;
+																localStorage.setItem("token", token);
+																navigate("/");
+															}
+
+															console.log('Google Login Response:', response.data);
+
+														} catch (error) {
+															console.error('Error:', error.message);
+														}
+													}}
+													onError={() => {
+														console.log('Login Failed');
+													}}
+												/> */}
+											{/* </GoogleOAuthProvider> */}
 										</div>
 										<div className=''>
 											<input type="checkbox"
@@ -134,7 +167,7 @@ const UserLogin = () => {
 											/>
 											<label className=' tw-text-gray-400 p-2 md:tw-ml-1  tw-mt-[10px] tw-mb-4 ' htmlFor='remember'>
 												Remember me</label>
-											<a href="/ForgotPassword" className=' tw-text-black tw-float-right tw-mt-4'>Forget Your Password?</a>
+											<a href="/UserForgotPassword" className=' tw-text-gray-600 tw-float-right tw-mt-4'>Forget Your Password?</a>
 											<Link className="text-slate-600  text-sm grid place-content-end mb-6 md:tw-mt-[-30px] tw-mt-[-20px] " style={{ textDecoration: "none" }} to="/UserForgotPassword">Forgot Your Password?</Link>
 										</div>
 										<div >

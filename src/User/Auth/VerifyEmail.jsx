@@ -36,16 +36,16 @@ const VerifyEmail = () => {
 
 			const responseData = await axios.post(verifyEmailUrl, reqData);
 
-			if (responseData.status === 201) {
+			if (responseData.status === 200) {
 				setResponse('success', 'success..')
 			}
 		} catch (error) {
-			if (error.response && error.response.status === 404) {
-				setResponse("error", "Email not found");
-			} else {
-				console.error("Error:", error);
-				setResponse("error", "An unexpected error occurred");
-			}
+			// if (error.response && error.response.status === 404) {
+			// 	setResponse("error", "Email not found");
+			// } else {
+			// 	console.error("Error:", error);
+			// 	setResponse("error", "An unexpected error occurred");
+			// }
 		}
 	};
 
