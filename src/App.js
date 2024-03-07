@@ -28,6 +28,7 @@ import AdminLogin from './Admin/Auth/AdminLogin'
 import Demo from './User/Components/Demo'
 import VerifyEmail from './User/Auth/VerifyEmail'
 import { PropertyHistory } from './User/Status/PropertyHistory'
+import UserEmail from './User/Auth/UserEmail'
 // 
 
 
@@ -44,6 +45,7 @@ const App = () => {
 				<Route exact path='/Contact' element={<Contact name="Contact" />}></Route>
 				<Route exact path='/About' element={<About name="About" />}></Route>
 				{/* <Route exact path='/HomeSlide' element={<HomeSlide name="HomeSlide" />}></Route> */}
+				<Route exact path='/UserEmail' element={<UserEmail name="UserEmail" />}></Route>
 				<Route exact path='/UserRegister' element={<UserRegister
 					name="UserRegister" />}></Route>
 				<Route exact path='/VerifyEmail' element={<VerifyEmail

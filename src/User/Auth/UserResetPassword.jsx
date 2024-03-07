@@ -4,11 +4,73 @@ import backgroundImage from '../../Assests/Image/home8.jpg';
 import '../../../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import LockIcon from '@mui/icons-material/Lock';
 import { Link } from 'react-router-dom';
+import { useNavigate, useLocation, Navigate } from 'react-router-dom';
+import { resetPasswordUrl } from '../Components/Api';
+import axios from 'axios';
+import IconButton from '@mui/material/IconButton';
+import OutlinedInput from '@mui/material/OutlinedInput';
+import InputAdornment from '@mui/material/InputAdornment';
+import FormControl from '@mui/material/FormControl';
+import Visibility from '@mui/icons-material/Visibility';
+import VisibilityOff from '@mui/icons-material/VisibilityOff';
 
 export const UserResetPassword = () => {
 
 	const [password, setPassword] = useState('');
 	const [cpassword, setCpassword] = useState('');
+	const [response, setResponse] = useState(null);
+	const location = useLocation();
+	const [passwordError, setPasswordError] = useState('');
+	const navigate = useNavigate();
+
+	const [showPassword, setShowPassword] = useState(false);
+	const [showConfirmPassword, setConfirmShowPassword] = useState(false);
+
+	const email = location.state;
+	console.log(location.state);
+	if (email === null) {
+		return <Navigate to='/UserForgotPassword' />
+	}
+
+	const validatePassword = (p, cf) => {
+
+		if (p.length < 8) {
+			setPasswordError('Password must be between 8 characters');
+
+			return false;
+		}
+		else if (p !== cf) {
+			setPasswordError('Password and confirm password is not same');
+			return false;
+		}
+		setPasswordError('');
+		return true;
+	};
+
+
+	const resetPassword = async (e) => {
+		try {
+			e.preventDefault();
+
+			if (validatePassword(password, cpassword)) {
+				const email = location.state;
+
+				console.log(email);
+				const reqdata = {
+					email: email,
+					newPassword: password,
+				};
+				const responseData = await axios.post(resetPasswordUrl, reqdata);
+				setResponse("success: ", 'success');
+				setResponse(() => { navigate("/UserLogin") });
+			}
+		}
+		catch (error) {
+			setResponse(error);
+			setResponse("error:", 'error');
+
+		}
+	}
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
@@ -17,6 +79,9 @@ export const UserResetPassword = () => {
 	}
 	return (
 		<div>
+			<div className="msg">
+				{response && <div>{response.message}</div>}
+			</div>
 			<div style={{ position: 'relative', marginTop: '-80px' }}>
 				<img class="tw-w-full md:tw-h-[800px] tw-h-[100vh] " src={backgroundImage} alt="background" srcset="" />
 				<div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', background: 'rgba(0, 0, 0, 0.5)' }}>
@@ -32,36 +97,36 @@ export const UserResetPassword = () => {
 									</h3>
 
 									<form onSubmit={handleSubmit}>
-										{/* <div>
-											<div>
-												<label className=' tw-text-black tw-p-2 tw-grid tw-justify-start
-                                                ' htmlFor='password'>
-													Password *
-												</label>
-												<input
-													id='password'
-													type="password"
-													name="password"
-													class="tw-w-full tw-border-2 tw-h-11 tw-p-3 tw-mb-2 tw-rounded-sm"
 
-												/>
-											</div>
-
-										</div> */}
 										<div className="tw-flex tw-mb-4">
 											<label className='tw-border-2 tw-mr-[2px]  tw-text-black tw-p-2 tw-mb-1 ' htmlFor='password'>
 												<LockIcon />
 											</label>
 											<input
 												id='password'
-												type="password"
+												// type="password"
+
 												name="password"
 												class="tw-w-full tw-border-2 tw-h-12 tw-p-3 tw-mb-1 tw-text-black "
 												placeholder="Password"
 												value={password}
 												onChange={(e) => setPassword(e.target.value)}
+												type={showPassword ? 'text' : 'password'}
+												endAdornment={
+													<InputAdornment position="end">
+														<IconButton
+															aria-label="toggle password visibility"
+															onClick={() => setShowPassword((pre) => !pre)}
+															edge="end"
+														>
+															{showPassword ? <VisibilityOff /> : <Visibility />}
+														</IconButton>
+													</InputAdornment>
+												}
 											/>
 										</div>
+										<p style={{ color: 'red' }}>{passwordError}</p>
+
 
 										<div>
 											{/* <div >
@@ -83,12 +148,24 @@ export const UserResetPassword = () => {
 												</label>
 												<input
 													id='cpassword'
-													type="password"
+													// type="password"
 													name="password"
 													class="tw-w-full tw-border-2 tw-h-12 tw-p-3 tw-mb-1 tw-text-black"
 													placeholder="Confirm Password"
 													value={cpassword}
 													onChange={(e) => setCpassword(e.target.value)}
+													type={showConfirmPassword ? 'text' : 'password'}
+													endAdornment={
+														<InputAdornment position="end">
+															<IconButton
+																aria-label="toggle password visibility"
+																onClick={() => setConfirmShowPassword((pre) => !pre)}
+																edge="end"
+															>
+																{showConfirmPassword ? <VisibilityOff /> : <Visibility />}
+															</IconButton>
+														</InputAdornment>
+													}
 												/>
 											</div>
 											{/* <button type="button" class="tw-bg-black  tw-w-full tw-text-center tw-text-white tw-text-lg tw-font-semibold tw-h-11 tw-mb-3 tw-mt-2 tw-rounded-sm " >
@@ -98,7 +175,10 @@ export const UserResetPassword = () => {
 												disabled={!password || !cpassword}
 												type="submit"
 												className={`tw-w-full tw-text-center tw-text-lg tw-font-semibold tw-h-11
-    												${(!password || !cpassword) ? 'tw-bg-gray-300 tw-cursor-not-allowed tw-text-gray-600' : 'tw-bg-black tw-hover:bg-green-400 tw-text-white'}`}
+    												${(!password || !cpassword) ? 'tw-bg-gray-300 tw-cursor-not-allowed tw-text-gray-600' : 'tw-bg-black tw-hover:bg-green-400 tw-text-white'}`
+
+												}
+												onClick={resetPassword}
 											>
 												Reset My Password
 											</button>
