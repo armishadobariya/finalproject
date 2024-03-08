@@ -11,6 +11,8 @@ import OtpInput from "react-otp-input";
 import axios from "axios";
 import { useLocation } from "react-router-dom";
 import { verifyEmailUrl, verifyOtpUrl } from "../Components/Api";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const VerifyEmail = () => {
 	const [otp, setOtp] = useState("");
@@ -28,6 +30,8 @@ const VerifyEmail = () => {
 	}, [location.state]);
 
 
+
+
 	const handleVerifyEmail = async () => {
 		try {
 			const reqData = {
@@ -36,7 +40,7 @@ const VerifyEmail = () => {
 
 			const responseData = await axios.post(verifyEmailUrl, reqData);
 
-			if (responseData.status === 200) {
+			if (responseData.status === 201) {
 				setResponse('success', 'success..')
 			}
 		} catch (error) {
@@ -60,22 +64,29 @@ const VerifyEmail = () => {
 
 			const responseData = await axios.post(verifyOtpUrl, reqdata);
 
-			if (responseData.status === 200) {
-				// const { token } = responseData.data;
-				// localStorage.setItem("token", token);
-				// console.log('token: ', token);
-
+			if (responseData.data.statusCode === 200) {
+				toast.success('Email verified successfully!');
 				setResponse("success: ", responseData.data);
 				navigate("/UserRegister", { state: { email: email } });
 				console.log('verify email: ', email);
 			}
+
+			else {
+				console.log(responseData.data.message);
+				toast.error(responseData.data.message);
+
+			}
 		} catch (error) {
-			setResponse("error :", response.data.message);
+			// setResponse("error :", response.data.message);
+			// console.log(responseData.data.message);
+
 		}
 	};
 
 	return (
 		<div>
+			<ToastContainer position='top-right' />
+
 			<div className="msg">{response && <div>{response.message}</div>}</div>
 
 			<div style={{ position: "relative", marginTop: "-80px" }}>

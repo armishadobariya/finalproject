@@ -60,7 +60,7 @@ const UserForgotPassword = () => {
 
 			const responseData = await axios.post(verifyOtpUrl, reqdata);
 
-			if (responseData.status === 200) {
+			if (responseData.data.statusCode === 200) {
 				// const { token } = responseData.data;
 				// localStorage.setItem("token", token);
 				// console.log('token: ', token);
@@ -71,6 +71,7 @@ const UserForgotPassword = () => {
 			}
 		} catch (error) {
 			setResponse("error :", response.data.message);
+			console.log('hello');
 		}
 	}
 
