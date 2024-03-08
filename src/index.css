@@ -10,7 +10,12 @@
 }
 
 
-/* code {
-	font-family: "Poppins", sans-serif;
 
-} */
+ */
+
+
+*{
+	scrollbar-width: none;
+	margin: 0;
+	padding: 0;
+}

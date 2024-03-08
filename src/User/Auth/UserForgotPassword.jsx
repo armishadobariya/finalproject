@@ -10,13 +10,14 @@ import 'animate.css';
 import OtpInput from 'react-otp-input';
 import axios from 'axios';
 import { forgetPasswordUrl, verifyOtpUrl } from '../Components/Api';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 const UserForgotPassword = () => {
 
 	const [email, setEmail] = useState('');
 	const [otp, setOtp] = useState('');
 	const [response, setResponse] = useState(null);
+	const location = useLocation();
 	const [showOtp, setShowOtp] = useState(false);
 	const navigate = useNavigate();
 
@@ -47,6 +48,7 @@ const UserForgotPassword = () => {
 
 	}
 
+
 	const handleOtp = async (e) => {
 		try {
 			e.preventDefault();
@@ -58,19 +60,18 @@ const UserForgotPassword = () => {
 
 			const responseData = await axios.post(verifyOtpUrl, reqdata);
 
-			if (responseData.status === 200) {
-				const { token } = responseData.data;
-				localStorage.setItem("token", token);
+			if (responseData.data.statusCode === 200) {
+				// const { token } = responseData.data;
+				// localStorage.setItem("token", token);
+				// console.log('token: ', token);
 
 				setResponse("success: ", responseData.data);
-				navigate('/UserRegister', { state: email })
+				navigate("/UserResetPassword", { state: { email: email } });
+				console.log('verify email: ', email);
 			}
-
-
-		}
-		catch (error) {
+		} catch (error) {
 			setResponse("error :", response.data.message);
-
+			console.log('hello');
 		}
 	}
 
@@ -135,7 +136,7 @@ const UserForgotPassword = () => {
 
 														<OtpInput
 															value={otp}
-															onChange={(e) => { setOtp(e.target.value) }}
+															onChange={setOtp}
 															numInputs={4}
 
 															renderSeparator={

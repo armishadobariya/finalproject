@@ -8,7 +8,9 @@ import { Link, useNavigate } from 'react-router-dom';
 import { GoogleLogin } from '@react-oauth/google';
 import { GoogleOAuthProvider } from '@react-oauth/google';
 import axios from 'axios';
-import { signInUrl } from '../Components/Api';
+import { signInUrl, googleLoginUrl } from '../Components/Api';
+import { jwtDecode } from 'jwt-decode';
+
 
 
 
@@ -16,28 +18,41 @@ const UserLogin = () => {
 
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
-	const [response, setResponse] = useState('');
+	const [response, setResponse] = useState(null);
+	const [verificationResult, setVerificationResult] = useState('');
+
 
 	const navigate = useNavigate();
 
+
+
 	const userLogin = async (e) => {
-		// try {
-		// 	e.preventDefault();
+		try {
+			e.preventDefault();
+			const reqdata = {
+				email: email,
+				password: password,
+			};
+			const responseData = await axios.post(signInUrl, reqdata);
 
-		// 	const reqdata = {
-		// 		email: email,
-		// 		password: password,
-		// 	}
+			if (responseData.data.statusCode === 201) {
 
-		// 	const responseData = await axios.post(signInUrl, reqdata);
+				const { token } = responseData.data;
+				console.log('token: ', token);
+				localStorage.setItem("token", token);
+				navigate("/", { state: email });
+				// console.log('responseData: ', responseData);
+				// setResponse("success", 'success ...');
+			}
 
-		// 	setResponse("success", 'success ...');
-		// 	navigate("/");
 
-		// }
-		// catch (error) {
-		// 	setResponse("error", 'error ...');
-		// }
+		}
+		catch (error) {
+			setResponse("error", 'error ...');
+			console.log('error');
+			// setResponse(alert(response.data.message));
+			setResponse(alert(response.data.message));
+		}
 	}
 
 	const handleSubmit = (e) => {
@@ -46,6 +61,8 @@ const UserLogin = () => {
 		setEmail('');
 		setPassword('');
 	}
+
+
 
 	return (
 
@@ -81,6 +98,8 @@ const UserLogin = () => {
 												onChange={e => setEmail(e.target.value)}
 											/>
 										</div>
+
+										<h1>{verificationResult}</h1>
 										<div className="tw-flex tw-mb-5">
 											<label className='tw-border-2 tw-mr-[2px]  tw-text-black tw-p-2 tw-mb-1 ' htmlFor='password'>
 												<LockIcon />
@@ -108,15 +127,47 @@ const UserLogin = () => {
 												// }}
 												/>
 											</GoogleOAuthProvider>
+
+											{/* <GoogleOAuthProvider clientId="295805594505-sq8l6g2m1dlgnlepvim7h03gmo48gco3.apps.googleusercontent.com"> */}
+											{/* <GoogleLogin
+													onSuccess={async (credentialResponse) => {
+														try {
+															console.log(credentialResponse);
+															const data = jwtDecode(credentialResponse.credential)
+															console.log(data)
+
+															const token = credentialResponse.credential;
+															const response = await axios.post(googleLoginUrl, {
+																"token": token,
+															});
+
+															if (response.status === 200) {
+
+																const { token } = response.data;
+																localStorage.setItem("token", token);
+																navigate("/");
+															}
+
+															console.log('Google Login Response:', response.data);
+
+														} catch (error) {
+															console.error('Error:', error.message);
+														}
+													}}
+													onError={() => {
+														console.log('Login Failed');
+													}}
+												/> */}
+											{/* </GoogleOAuthProvider> */}
 										</div>
 										<div className=''>
 											<input type="checkbox"
 												id='remember'
 												className='tw-h-3 tw-w-3 md:tw-ml-[-102px]  '
 											/>
-											<label className=' tw-text-gray-400 p-2 md:tw-ml-1  tw-mt-[10px] ' htmlFor='remember'>
+											<label className=' tw-text-gray-400 p-2 md:tw-ml-1  tw-mt-[10px] tw-mb-4 ' htmlFor='remember'>
 												Remember me</label>
-											<a href="/ForgotPassword">Forget Your Password?</a>
+											<a href="/UserForgotPassword" className=' tw-text-gray-600 tw-float-right tw-mt-4'>Forget Your Password?</a>
 											<Link className="text-slate-600  text-sm grid place-content-end mb-6 md:tw-mt-[-30px] tw-mt-[-20px] " style={{ textDecoration: "none" }} to="/UserForgotPassword">Forgot Your Password?</Link>
 										</div>
 										<div >
@@ -140,6 +191,12 @@ const UserLogin = () => {
 										>
 											Login
 										</button>
+
+										<div className=' tw-text-gray-400 tw-mt-4 '>
+											{/* Don't have an Account? Create New Account */}
+											<p>Don't have an account? <a href="/UserEmail" className=' tw-cursor-pointer '><u>Create New Account</u></a></p>
+										</div>
+
 									</div>
 								</form>
 							</section>
