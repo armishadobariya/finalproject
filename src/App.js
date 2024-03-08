@@ -28,6 +28,8 @@ import AdminLogin from './Admin/Auth/AdminLogin'
 import Demo from './User/Components/Demo'
 import VerifyEmail from './User/Auth/VerifyEmail'
 import { PropertyHistory } from './User/Status/PropertyHistory'
+import { AgentRegister } from './Agent/AgentRegister'
+
 // 
 
 
@@ -59,6 +61,10 @@ const App = () => {
 				<Route exact path='/Admin/UserQueries' element={<User_Queries name="UserQueries" />}></Route>
 				<Route exact path='/Admin/TotalProperty' element={<TotalProperty name="TotalProperty" />}></Route>
 				<Route exact path='/Admin/MoreDetails' element={<MoreDetails name="MoreDetails" />}></Route>
+
+
+				<Route exact path='/Agent/' element={<AgentRegister name="AgentRegister" />}></Route>
+
 			</Routes>
 
 			{/* <PostProperty /> */}
