@@ -80,7 +80,7 @@ const UserRegister = () => {
 					<img className='h-[130vh] bg-cover w-full' src={img2} alt="" />
 					<div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', background: 'rgba(0, 0, 0, 0.5)' }}></div>
 				</div>
-				<div className="absolute tw-top-0 tw-left-0 tw-w-full tw-h-full tw-bg-cover tw-flex tw-grid tw-items-center tw-justify-center">
+				<div className="absolute tw-top-0 tw-left-0 tw-w-full tw-h-full tw-bg-cover  tw-grid tw-items-center tw-justify-center">
 					<h5 className=' tw-text-center tw-text-white tw-text-2xl tw-font-semibold'>
 						<Link to="/">{`Home >> Register`}</Link>
 

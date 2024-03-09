@@ -175,7 +175,6 @@ export const AgentRegister = () => {
                                                     <input type="file" id='file' style={{ display: "none" }} />
                                                     <label htmlFor="file" className=' tw-place-content-center tw-flex tw-gap-3 tw-p-1 tw-h-full tw-w-full tw-mt-1 rounded-3' style={{ color: "#de0611", border: "1px dashed black" }}>
                                                         <h1 className=' tw-place-content-center tw-grid'>  <FileUploadIcon style={{ height: "28px", width: "28px", color: "#ddd" }} className=' tw-border-2 rounded-3' /></h1>
-                                                        {/* <h1 className=' tw-font-bold  place-content-center grid tw-text-black'>Front side</h1> */}
                                                         <h1 className='  tw-place-content-center tw-grid tw-pl-2' style={{ color: "#aaa" }}>Front side of Pan</h1>
 
                                                     </label>
@@ -184,7 +183,6 @@ export const AgentRegister = () => {
                                                     <input type="file" id='file' style={{ display: "none" }} />
                                                     <label htmlFor="file" className=' tw-place-content-center tw-flex tw-gap-3 tw-p-1 tw-h-full tw-w-full tw-mt-1 rounded-3' style={{ color: "#de0611", border: "1px dashed black" }}>
                                                         <h1 className=' tw-place-content-center tw-grid'>  <FileUploadIcon style={{ height: "28px", width: "28px", color: "#ddd" }} className=' tw-border-2 rounded-3' /></h1>
-                                                        {/* <h1 className=' tw-font-bold  place-content-center grid tw-text-black'>Front side</h1> */}
                                                         <h1 className='  tw-place-content-center tw-grid tw-pl-2' style={{ color: "#aaa" }}>Back side of Pan</h1>
 
                                                     </label>
