@@ -11,6 +11,8 @@ import OtpInput from 'react-otp-input';
 import axios from 'axios';
 import { forgetPasswordUrl, verifyOtpUrl } from '../Components/Api';
 import { useLocation, useNavigate } from 'react-router-dom';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const UserForgotPassword = () => {
 
@@ -29,7 +31,14 @@ const UserForgotPassword = () => {
 			};
 
 			const responseData = await axios.post(forgetPasswordUrl, reqdata);
-			toggleForm();
+			if (responseData.data.statusCode === 200) {
+
+				toggleForm();
+			}
+			else {
+				toast.error(responseData.data.message);
+
+			}
 		}
 		catch (error) {
 			if (error.response && error.response.status === 404) {
@@ -69,6 +78,10 @@ const UserForgotPassword = () => {
 				navigate("/UserResetPassword", { state: { email: email } });
 				console.log('verify email: ', email);
 			}
+			else {
+				toast.error(responseData.data.message);
+
+			}
 		} catch (error) {
 			setResponse("error :", response.data.message);
 			console.log('hello');
@@ -79,6 +92,7 @@ const UserForgotPassword = () => {
 
 	return (
 		<div>
+			<ToastContainer position='top-right' />
 			<div className='msg'>
 				{response && <div>{response.message}</div>}
 			</div>

@@ -13,6 +13,8 @@ import InputAdornment from '@mui/material/InputAdornment';
 import FormControl from '@mui/material/FormControl';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export const UserResetPassword = () => {
 
@@ -61,8 +63,16 @@ export const UserResetPassword = () => {
 					newPassword: password,
 				};
 				const responseData = await axios.post(resetPasswordUrl, reqdata);
-				setResponse("success: ", 'success');
-				setResponse(() => { navigate("/UserLogin") });
+
+				if (responseData.data.statusCode === 200) {
+
+					setResponse("success: ", 'success');
+					setResponse(() => { navigate("/UserLogin") });
+				}
+				else {
+					toast.error(responseData.data.message);
+
+				}
 			}
 		}
 		catch (error) {
@@ -79,6 +89,7 @@ export const UserResetPassword = () => {
 	}
 	return (
 		<div>
+			<ToastContainer position='top-right' />
 			<div className="msg">
 				{response && <div>{response.message}</div>}
 			</div>

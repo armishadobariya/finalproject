@@ -6,7 +6,6 @@ import { PostDetails } from './PostDetails';
 import jsonData from './Cityname.json';
 import "./PropertyList.css";
 
-
 export const AddProperty = () => {
 
 
@@ -61,14 +60,14 @@ export const AddProperty = () => {
 			<PropertyList />
 			<PostDetails />
 			<div>
-				<div className=' tw-h-full  tw-pb-20 lg:tw-m-16 rounded-3' style={{ backgroundColor: '#f7f7f7' }}>
+				<div className=' tw-h-full  tw-pb-20 lg:tw-m-16 tw-rounded-3' style={{ backgroundColor: '#f7f7f7' }}>
 					<div className=' tw-mb-10 tw-p-5'>
-						<h1 className=' text-3xl tw-font-bold tw-pl-12 mt-10'>Add New Property</h1>
-						<p className=' tw-pl-12 mt-3'>We are glad to see you again!</p>
+						<h1 className=' tw-text-3xl tw-font-bold tw-pl-12 tw-mt-10'>Add New Property</h1>
+						<p className=' tw-pl-12 tw-mt-3'>We are glad to see you again!</p>
 					</div>
-					<div className=' flex place-content-center'>
-						<div className="col-lg-8 shadow-lg rounded-3 p-4 h-full lg:tw-w-[1270px] md:tw-w-full" style={{ backgroundColor: "#fff" }}>
-							<div className="col-md-12 mb-4">
+					<div className=' tw-flex tw-place-content-center'>
+						<div className="col-lg-8 tw-shadow-lg tw-rounded-3 tw-p-4 tw-h-full lg:tw-w-[1270px] md:tw-w-full" style={{ backgroundColor: "#fff" }}>
+							<div className="col-md-12 tw-mb-4">
 								<nav>
 									<div className="nav nav-tabs" id="nav-tab2" role="tablist">
 										<button className={`nav-link tw-text-black ms-3 ${activeTab === 'description' ? 'active' : ''}`} onClick={() => handleTabClick('description')} type="button" data-bs-toggle="tab" data-bs-target="#nav-item1">1. Description</button>
@@ -80,16 +79,16 @@ export const AddProperty = () => {
 								{activeTab === 'description' && (
 									<div >
 										<div>
-											<h1 className=' mt-8 tw-text-lg tw-font-semibold'>Property For</h1>
+											<h1 className=' tw-mt-8 tw-text-lg tw-font-semibold'>Property For</h1>
 
-											<div className="row mt-3 flex gap-5 tw-p-3">
-												<div className=" col-2 border-2 p-2 rounded-2 ">
+											<div className="row tw-mt-3 tw-flex tw-gap-5 tw-p-3">
+												<div className=" col-2 tw-border-2 tw-p-2 tw-rounded-2 ">
 													<input class="form-check-input" type="radio" name="why" id="exampleRadios1" value="option1" />
-													<label class="form-check-label mr-6" for="exampleRadios1">
+													<label class="form-check-label tw-mr-6" for="exampleRadios1">
 														Sell
 													</label>
 												</div>
-												<div class=" col-2 border-2 tw-p-2 rounded-2">
+												<div class=" col-2 tw-border-2 tw-p-2 tw-rounded-2">
 													<input class="form-check-input" type="radio" name="why" id="exampleRadios2" value="option2" />
 													<label class="form-check-label" for="exampleRadios2">
 														Buy
@@ -98,13 +97,13 @@ export const AddProperty = () => {
 											</div>
 										</div>
 
-										<h1 className=' mt-4 tw-text-lg tw-font-semibold'>Property Description</h1>
+										<h1 className=' tw-mt-4 tw-text-lg tw-font-semibold'>Property Description</h1>
 										<div className=' tw-grid'>
 											<label className=' tw-mt-8 tw-font-semibold '>Description</label>
-											<textarea className='border-2 rounded-2  mt-2 p-2 h-56' placeholder='There are many variations of passages.' />
+											<textarea className='tw-border-2 tw-rounded-2  tw-mt-2 tw-p-2 tw-h-56' placeholder='There are many variations of passages.' />
 										</div>
 										<div className=' tw-flex tw-justify-end tw-mt-10'>
-											<button className=' tw-font-bold bg-black text-white p-2 tw-w-40 col-2 tw-h-11 tw-text-lg rounded-1'>Next</button>
+											<button className=' tw-font-bold tw-bg-black tw-text-white tw-p-2 tw-tw-w-40 tw-col-2 tw-h-11 tw-text-lg tw-rounded-1'>Next</button>
 										</div>
 									</div>
 								)}
@@ -115,16 +114,16 @@ export const AddProperty = () => {
 											<h1 className=' tw-mt-8 tw-text-lg tw-font-semibold'>Upload photos of your property </h1>
 											<input type="file" id='file' style={{ display: "none" }} />
 											<label htmlFor="file" className=' tw-place-content-center grid p-5 tw-h-full tw-w-full tw-mt-4 rounded-3' style={{ color: "#de0611", border: "1px dashed #de0611" }}>
-												<h1 className=' place-content-center grid'>  <FileUploadIcon style={{ height: "90px", width: "100px", color: "#ddd" }} className=' border-2 rounded-3' /></h1>
-												<h1 className=' tw-font-bold tw-text-lg mt-3  place-content-center grid tw-text-black'>Upload your Images Here</h1>
-												<h1 className='  place-content-center grid tw-font-semibold tw-mt-4' style={{ color: "#aaa" }}>Photos must be JPEG or PNG format and at least 2048x768</h1>
-												<div className=' place-content-center grid tw-mt-8'>
-													<h1 className=' tw-font-bold border-1 p-2 tw-w-40 col-2 tw-h-11 tw-text-lg rounded-2 tw-text-black place-content-center grid'>Browse Files</h1>
+												<h1 className=' tw-place-content-center tw-grid'>  <FileUploadIcon style={{ height: "90px", width: "100px", color: "#ddd" }} className=' border-2 rounded-3' /></h1>
+												<h1 className=' tw-font-bold tw-text-lg tw-mt-3  tw-place-content-center tw-grid tw-text-black'>Upload your Images Here</h1>
+												<h1 className='  tw-place-content-center tw-grid tw-font-semibold tw-mt-4' style={{ color: "#aaa" }}>Photos must be JPEG or PNG format and at least 2048x768</h1>
+												<div className=' tw-place-content-center tw-grid tw-mt-8'>
+													<h1 className=' tw-font-bold tw-border-1 tw-p-2 tw-w-40 col-2 tw-h-11 tw-text-lg tw-rounded-2 tw-text-black tw-place-content-center tw-grid'>Browse Files</h1>
 												</div>
 											</label>
-											<div className=' tw-flex tw-justify-end tw-mt-10 gap-3'>
-												<button className=' tw-font-semibold bg-black text-white p-2 tw-w-40 col-2 tw-h-11 tw-text-lg rounded-1'>Previous</button>
-												<button className=' tw-font-semibold bg-black text-white p-2 tw-w-40 col-2 tw-h-11 tw-text-lg rounded-1'>Next</button>
+											<div className=' tw-flex tw-justify-end tw-mt-10 tw-gap-3'>
+												<button className=' tw-font-semibold tw-bg-black tw-text-white tw-p-2 tw-w-40 col-2 tw-h-11 tw-text-lg tw-rounded-1'>Previous</button>
+												<button className=' tw-font-semibold tw-bg-black tw-text-white tw-p-2 tw-w-40 col-2 tw-h-11 tw-text-lg tw-rounded-1'>Next</button>
 											</div>
 										</div>
 									</div>
@@ -136,12 +135,12 @@ export const AddProperty = () => {
 											<h1 className=' tw-mt-8 tw-text-lg tw-font-semibold'>Listing Location </h1>
 											<div className=' tw-grid row'>
 												<label htmlFor="address" className=' tw-mt-5 tw-font-semibold' >Address</label>
-												<input type="text" id="address" className='border-2 rounded-2  mt-2 h-12 col-md-12' placeholder='Address of your proprerty' />
+												<input type="text" id="address" className='tw-border-2 tw-rounded-2  tw-mt-2 tw-h-12 col-md-12' placeholder='Address of your proprerty' />
 											</div>
 											<div className=' row'>
-												<div className=' col-md-6 grid'>
+												<div className=' col-md-6 tw-grid'>
 													<label htmlFor="address" className=' tw-mt-5 tw-font-semibold' >Address</label>
-													<select value={selectedState} onChange={handleStateChange} className=' tw-h-12 border-2 rounded-2 p-2 mt-2'>
+													<select value={selectedState} onChange={handleStateChange} className=' tw-h-12 tw-border-2 tw-rounded-2 tw-p-2 tw-mt-2'>
 														<option value="">Select a state</option>
 														{states.map((state) => (
 															<option key={state.name} value={state.name}>
@@ -150,9 +149,9 @@ export const AddProperty = () => {
 														))}
 													</select>
 												</div>
-												<div className=' col-md-6 grid'>
+												<div className=' col-md-6 tw-grid'>
 													<label htmlFor="address" className=' tw-mt-5 tw-font-semibold' >City</label>
-													<select value={selectedCity} onChange={handleCityChange} className=' tw-h-12 border-2 rounded-2 p-2 mt-2'>
+													<select value={selectedCity} onChange={handleCityChange} className=' tw-h-12 tw-border-2 tw-rounded-2 tw-p-2 tw-mt-2'>
 														<option value="">Select a city</option>
 														{cities.map((city) => (
 															<option key={city} value={city}>
@@ -161,12 +160,12 @@ export const AddProperty = () => {
 														))}
 													</select>
 												</div>
-												<div className=' mt-8'>
+												<div className=' tw-mt-8'>
 													<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d238133.18800756568!2d72.65748445425247!3d21.159120355995483!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be04e59411d1563%3A0xfe4558290938b042!2sSurat%2C%20Gujarat!5e0!3m2!1sen!2sin!4v1705687115050!5m2!1sen!2sin" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" className=' tw-w-full' style={{ height: '300px' }}></iframe>
 												</div>
-												<div className=' tw-flex tw-justify-end tw-mt-10 gap-3'>
-													<button className=' tw-font-semibold bg-black text-white p-2 tw-w-40 col-2 tw-h-11 tw-text-lg rounded-1'>Previous</button>
-													<button className=' tw-font-semibold bg-black text-white p-2 tw-w-40 col-2 tw-h-11 tw-text-lg rounded-1'>Next</button>
+												<div className=' tw-flex tw-justify-end tw-mt-10 tw-gap-3'>
+													<button className=' tw-font-semibold tw-bg-black tw-text-white tw-p-2 tw-w-40 col-2 tw-h-11 tw-text-lg tw-rounded-1'>Previous</button>
+													<button className=' tw-font-semibold tw-bg-black tw-text-white tw-p-2 tw-w-40 col-2 tw-h-11 tw-text-lg tw-rounded-1'>Next</button>
 												</div>
 											</div>
 
@@ -182,27 +181,24 @@ export const AddProperty = () => {
 										<div className="row tw-mt-5">
 											<div className=' col-lg-4 tw-grid'>
 												<label htmlFor="sqft" className=' tw-font-semibold' >Square feet</label>
-												<input type="text" id="sqft" className=' border-2 rounded-2 tw-h-11 tw-p-2 tw-mt-2' placeholder='Size in ft.' />
+												<input type="text" id="sqft" className=' tw-border-2 tw-rounded-2 tw-h-11 tw-p-2 tw-mt-2' placeholder='Size in ft.' />
 											</div>
 											<div className=' col-lg-4 tw-grid'>
 												<label htmlFor="sqft" className=' tw-font-semibold'  >Price</label>
-												<input type="text" id="sqft" className=' border-2 rounded-2 tw-h-11 tw-p-2 tw-mt-2' placeholder='Price' />
+												<input type="text" id="sqft" className=' tw-border-2 tw-rounded-2 tw-h-11 tw-p-2 tw-mt-2' placeholder='Price' />
 											</div> <div className=' col-lg-4 tw-grid'>
 												<label htmlFor="sqft" className=' tw-font-semibold'  >Property Age</label>
-												<input type="text" id="sqft" className=' border-2 rounded-2 tw-h-11 tw-p-2 tw-mt-2' placeholder='Proprerty age (In year)' />
+												<input type="text" id="sqft" className=' tw-border-2 tw-rounded-2 tw-h-11 tw-p-2 tw-mt-2' placeholder='Proprerty age (In year)' />
 											</div>
 										</div>
 
 										<div className="row tw-mt-5">
-											<div className=' col-lg-4 tw-grid'>
-												<label htmlFor="sqft" className=' tw-font-semibold' >Floors or Floor No.</label>
-												<input type="text" id="sqft" className=' border-2 rounded-2 tw-h-11 tw-p-2 tw-mt-2' placeholder='Enter Floor No.' />
-											</div>
+
 											<div className='col-lg-4 tw-grid'>
 												<label htmlFor="propertyType" className='tw-font-semibold'>Property Type</label>
 												<select
 													id="propertyType"
-													className='border-2 rounded-2 tw-h-11 tw-p-2 tw-mt-2 w-full'
+													className='tw-border-2 tw-rounded-2 tw-h-11 tw-p-2 tw-mt-2 tw-w-full'
 													required=""
 													data-error="Please select property type"
 												>
@@ -217,7 +213,7 @@ export const AddProperty = () => {
 												<label htmlFor="facing" className='tw-font-semibold'>Facing</label>
 												<select
 													id="facing"
-													className='border-2 rounded-2 tw-h-11 tw-p-2 tw-mt-2 w-full'
+													className='tw-border-2 tw-rounded-2 tw-h-11 tw-p-2 tw-mt-2 tw-w-full'
 													required=""
 													data-error="Please select property type"
 												>
@@ -228,14 +224,11 @@ export const AddProperty = () => {
 													<option value="south">South</option>
 												</select>
 											</div>
-
-										</div>
-										<div className="row tw-mt-5">
 											<div className='col-lg-4 tw-grid'>
 												<label htmlFor="bhk_type" className='tw-font-semibold'>BHK_Type</label>
 												<select
 													id="bhk_type"
-													className='border-2 rounded-2 tw-h-11 tw-p-2 tw-mt-2 w-full'
+													className='tw-border-2 tw-rounded-2 tw-h-11 tw-p-2 tw-mt-2 tw-w-full'
 													required=""
 													data-error="Please select property type"
 												>
@@ -246,24 +239,26 @@ export const AddProperty = () => {
 													<option value="south">3+ BHK</option>
 												</select>
 											</div>
+
 										</div>
+
 										<div className="row tw-mt-10">
 											<h1 className=' tw-font-semibold'>Facilities</h1>
 										</div>
 										<div className="row tw-grid  md:tw-flex tw-space-y-5 tw-p-3 tw-justify-evenly  ">
-											<div className="border-2 p-2 rounded-2 col-md-2 tw-pl-7 md:tw-mt-5">
+											<div className="tw-border-2 tw-p-2 tw-rounded-2 col-md-2 tw-pl-7 md:tw-mt-5">
 												<input className="form-check-input" type="checkbox" name='parking' id='parking' />
 												<label className="form-check-label tw-pl-3" htmlFor="exampleCheckbox1">
 													Parking
 												</label>
 											</div>
-											<div className="border-2 p-2 rounded-2 col-md-2  tw-pl-7 ">
+											<div className="tw-border-2 tw-p-2 tw-rounded-2 col-md-2  tw-pl-7 ">
 												<input className="form-check-input" type="checkbox" name='lift' id='lift' />
 												<label className="form-check-label tw-pl-3" htmlFor="exampleCheckbox2">
 													Lift
 												</label>
 											</div>
-											<div className="border-2 p-2 rounded-2 col-md-2  tw-pl-7">
+											<div className="tw-border-2 tw-p-2 tw-rounded-2 col-md-2  tw-pl-7">
 												<input className="form-check-input" type="checkbox" name='gas-pipeline' id='gas-pipeline' />
 												<label className="form-check-label tw-pl-3" htmlFor="exampleCheckbox3">
 													Gas Pipeline
@@ -271,19 +266,19 @@ export const AddProperty = () => {
 											</div>
 										</div>
 										<div className="row  tw-grid  md:tw-flex tw-space-y-5 tw-p-3 tw-justify-evenly">
-											<div className="border-2 p-2 rounded-2 col-md-2 tw-pl-7 md:tw-mt-5">
+											<div className="tw-border-2 tw-p-2 tw-rounded-2 col-md-2 tw-pl-7 md:tw-mt-5">
 												<input className="form-check-input" type="checkbox" name='parking' id='parking' />
 												<label className="form-check-label tw-pl-3" htmlFor="exampleCheckbox1">
 													Garden
 												</label>
 											</div>
-											<div className="border-2 p-2 rounded-2 col-md-2  tw-pl-7">
+											<div className="tw-border-2 tw-p-2 tw-rounded-2 col-md-2  tw-pl-7">
 												<input className="form-check-input" type="checkbox" name='lift' id='lift' />
 												<label className="form-check-label tw-pl-3" htmlFor="exampleCheckbox2">
 													24x7 Security
 												</label>
 											</div>
-											<div className="border-2 p-2 rounded-2 col-md-2  tw-pl-7">
+											<div className="tw-border-2 tw-p-2 tw-rounded-2 col-md-2  tw-pl-7">
 												<input className="form-check-input" type="checkbox" name='gas-pipeline' id='gas-pipeline' />
 												<label className="form-check-label tw-pl-3" htmlFor="exampleCheckbox3">
 													Inverter
@@ -295,19 +290,19 @@ export const AddProperty = () => {
 											<h1 className=' tw-font-semibold'>Facilities</h1>
 										</div>
 										<div className="row  tw-grid  md:tw-flex tw-space-y-4 tw-p-3 tw-justify-evenly  ">
-											<div className="border-2 p-2 rounded-2 col-md-2 tw-pl-5 md:tw-mt-5">
+											<div className="tw-border-2 tw-p-2 tw-rounded-2 col-md-2 tw-pl-5 md:tw-mt-5">
 												<input className="form-check-input" type="radio" name="amenity" id="parking" />
 												<label className="form-check-label tw-pl-2" htmlFor="parking">
 													Un-Furnished
 												</label>
 											</div>
-											<div className="border-2 p-2 rounded-2 col-md-2 tw-pl-5">
+											<div className="tw-border-2 tw-p-2 tw-rounded-2 col-md-2 tw-pl-5">
 												<input className="form-check-input" type="radio" name="amenity" id="lift" />
 												<label className="form-check-label tw-pl-2" htmlFor="lift">
 													Semi-Furnished
 												</label>
 											</div>
-											<div className="border-2 p-2 rounded-2 col-md-2 tw-pl-5">
+											<div className="tw-border-2 tw-p-2 tw-rounded-2 col-md-2 tw-pl-5">
 												<input className="form-check-input" type="radio" name="amenity" id="gas-pipeline" />
 												<label className="form-check-label tw-pl-2" htmlFor="gas-pipeline">
 													Full-Furnished
@@ -317,18 +312,18 @@ export const AddProperty = () => {
 										</div>
 
 										<div className="row tw-mt-3">
-											<div className="col-md-6 grid">
+											<div className="col-md-6 tw-grid">
 												<label htmlFor="contact" className=' tw-font-semibold' >Contact No.</label>
-												<input type="text" id="contact" className=' border-2 rounded-2 tw-h-11 tw-p-2 tw-mt-2' placeholder='Contact No.' />
+												<input type="text" id="contact" className=' tw-border-2 tw-rounded-2 tw-h-11 tw-p-2 tw-mt-2' placeholder='Contact No.' />
 											</div>
-											<div className="col-md-6 grid">
+											<div className="col-md-6 tw-grid">
 												<label htmlFor="email" className=' tw-font-semibold' >Email</label>
-												<input type="text" id="email" className=' border-2 rounded-2 tw-h-11 tw-p-2 tw-mt-2' placeholder='Enter Email' />
+												<input type="text" id="email" className=' tw-border-2 tw-rounded-2 tw-h-11 tw-p-2 tw-mt-2' placeholder='Enter Email' />
 											</div>
 										</div>
 										<div className=' tw-flex tw-justify-end tw-mt-10 gap-3'>
-											<button className=' tw-font-semibold bg-black text-white p-2 tw-w-40 col-2 tw-h-11 tw-text-lg rounded-1'>Previous</button>
-											<button className=' tw-font-semibold bg-black text-white p-2 tw-w-40 col-2 tw-h-11 tw-text-lg rounded-1'>Add</button>
+											<button className=' tw-font-semibold tw-bg-black tw-text-white tw-p-2 tw-tw-w-40 col-2 tw-h-11 tw-text-lg tw-rounded-1'>Previous</button>
+											<button className=' tw-font-semibold tw-bg-black tw-text-white tw-p-2 tw-tw-w-40 col-2 tw-h-11 tw-text-lg tw-rounded-1'>Add</button>
 										</div>
 
 

@@ -68,22 +68,22 @@ const Admin_Sidebar = () => {
 							<div className={`collapse navbar-collapse ${isSidebar ? 'show' : ''}`} id="showNavbar">
 								<ul className='nav nav-pills flex-column mt-2'>
 									<li className='nav-link text-white fs-4 my-1'>
-										<NavLink to="/Admin" className='text-white fs-5' aria-current='page'>
+										<NavLink to="/admin" className='text-white fs-5' aria-current='page'>
 											<span className='ms-3'>Dashboard</span>
 										</NavLink>
 									</li>
 									<li className='nav-link text-white fs-4 my-1'>
-										<NavLink to="/Admin/Seller" className=' text-white fs-5' aria-current='page'>
+										<NavLink to="/admin/seller" className=' text-white fs-5' aria-current='page'>
 											<span className='ms-3'>Seller</span>
 										</NavLink>
 									</li>
 									<li className='nav-link  text-white fs-4 my-1'>
-										<NavLink to="/Admin/Buyer" className=' text-white fs-5' aria-current='page'>
-											<span className='ms-3'>Buyer</span>
+										<NavLink to="/admin/status" className=' text-white fs-5' aria-current='page'>
+											<span className='ms-3'>Status</span>
 										</NavLink>
 									</li>
 									<li className='nav-link text-white fs-4 my-1'>
-										<NavLink to="/Admin/UserQueries" className='text-white fs-5' aria-current='page'>
+										<NavLink to="/admin/userqueries" className='text-white fs-5' aria-current='page'>
 											<span className='ms-3'>User Queries</span>
 										</NavLink>
 									</li>

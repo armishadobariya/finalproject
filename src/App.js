@@ -30,6 +30,8 @@ import VerifyEmail from './User/Auth/VerifyEmail'
 import { PropertyHistory } from './User/Status/PropertyHistory'
 import UserEmail from './User/Auth/UserEmail'
 import { AgentRegister } from './Agent/AgentRegister'
+import Rent from './User/Rent/Rent'
+import AdminStatus from './Admin/Admin_Components/AdminStatus'
 // 
 
 
@@ -41,6 +43,8 @@ const App = () => {
 			<Routes>
 				<Route exact path='/' element={<Home name="Home" />}></Route>
 				<Route exact path='/Buy' element={<Buy name="Buy" />} />
+				<Route exact path='/Rent' element={<Rent name="Rent" />} />
+				<Route exact path='/AddProperty' element={<AddProperty name="AddProperty" />} />
 				<Route exact path='/Buy/ReadMoreDetails' element={<ReadMoreDetails name="ReadMoreDetails" />} />
 				<Route exact path='/PropertyHistory' element={<PropertyHistory name="PropertyHistory" />}></Route>
 				<Route exact path='/Contact' element={<Contact name="Contact" />}></Route>
@@ -58,6 +62,7 @@ const App = () => {
 				<Route exact path='/Admin/' element={<Dashboard name="Dashboard" />}></Route>
 				<Route exact path='/Admin/AdminLogin' element={<AdminLogin name="AdminLogin" />}></Route>
 				<Route exact path='/Admin/Seller' element={<Seller name="Seller" />}></Route>
+				<Route exact path='/Admin/Status' element={<AdminStatus name="AdminStatus" />}></Route>
 				<Route exact path='/Admin/Buyer' element={<Buyer name="Buyer" />}></Route>
 				<Route exact path='/Admin/UserQueries' element={<User_Queries name="UserQueries" />}></Route>
 				<Route exact path='/Admin/TotalProperty' element={<TotalProperty name="TotalProperty" />}></Route>

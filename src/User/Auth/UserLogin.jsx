@@ -10,6 +10,8 @@ import { GoogleOAuthProvider } from '@react-oauth/google';
 import axios from 'axios';
 import { signInUrl, googleLoginUrl } from '../Components/Api';
 import { jwtDecode } from 'jwt-decode';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 
@@ -41,10 +43,13 @@ const UserLogin = () => {
 				console.log('token: ', token);
 				localStorage.setItem("token", token);
 				navigate("/", { state: email });
-				// console.log('responseData: ', responseData);
-				// setResponse("success", 'success ...');
-			}
 
+			}
+			else {
+				console.log(responseData.data.message);
+				toast.error(responseData.data.message);
+
+			}
 
 		}
 		catch (error) {
@@ -67,6 +72,8 @@ const UserLogin = () => {
 	return (
 
 		<div>
+
+			<ToastContainer position='top-right' />
 			<div className='msg'>
 				{response && <div>{response}</div>}
 			</div>

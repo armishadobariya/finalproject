@@ -12,6 +12,8 @@ import { GoogleOAuthProvider } from "@react-oauth/google";
 import { Link, Navigate, useNavigate, useLocation } from "react-router-dom";
 import axios from "axios";
 import { signUpUrl } from "../Components/Api";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const UserRegister = () => {
 	// const [isHovered, setHovered] = useState(false);
@@ -74,14 +76,24 @@ const UserRegister = () => {
 				const responseData = await axios.post(signUpUrl, reqdata);
 
 				if (responseData.data.statusCode === 201) {
+
+					const { token } = responseData.data;
+					console.log('token: ', token);
+					localStorage.setItem("token", token);
 					console.log('responseData: ', responseData);
 					setResponse("success", "success ...");
-					navigate('/UserLogin');
+					navigate('/');
 					console.log("register email: ", email);
+
+				}
+				else {
+					console.log(responseData.data.message);
+					toast.error(responseData.data.message);
 				}
 			}
 		} catch (error) {
 			setResponse("error", "error...");
+
 			// setResponse(alert(error.response.message))
 		}
 	};
@@ -104,6 +116,7 @@ const UserRegister = () => {
 
 	return (
 		<>
+			<ToastContainer position='top-right' />
 			<div className="msg">{response && <div> {response}</div>}</div>
 			<div className="relative">
 				<div style={{ position: "relative", marginTop: "-80px" }}>
