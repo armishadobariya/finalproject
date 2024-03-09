@@ -4,7 +4,7 @@ import Stepper from '@mui/material/Stepper';
 import Step from '@mui/material/Step';
 import StepLabel from '@mui/material/StepLabel';
 import './AgentRegister.css';
-import img from '../Assests/Image/About/about_2.jpg'
+import img from '../Assests/Image/person.avif'
 // import person from '../Assets/Image/agent/person.jpg';
 import FileUploadIcon from '@mui/icons-material/FileUpload';
 
@@ -106,7 +106,7 @@ export const AgentRegister = () => {
                                     </div> */}
 									{/* <div className=" tw-grid tw-col-span-1 sm:tw-col-span-2 md:tw-col-span-1 ">
                                         <label htmlFor="age" className=' tw-font-semibold' >Gender</label>
-                                        <input type="radio" id="male" className=' tw-border-2 tw-rounded-2 tw-h-11 tw-p-2 tw-mt-2' required />
+                                        <input type="radio" id="male" className=' tw-border-2 rounded-2 tw-h-11 tw-p-2 tw-mt-2' required />
                                     </div>
                                     <div className=" tw-grid tw-col-span-1 sm:tw-col-span-2 md:tw-col-span-1 ">
                                         <input type="text" id="age" className=' border-2 rounded-2 tw-h-11 tw-p-2 tw-mt-10' required />
