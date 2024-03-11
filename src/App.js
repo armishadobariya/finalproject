@@ -23,7 +23,6 @@ import { PostDetails } from './User/AddProperty/PostDetails'
 import { AddProperty } from './User/AddProperty/AddProperty'
 import ReadMoreDetails from './User/Buy/ReadMoreDetails'
 import Buy from './User/Buy/Buy';
-// import PostProperty from './User/Components/PostProperty'
 import AdminLogin from './Admin/Auth/AdminLogin'
 import Demo from './User/Components/Demo'
 import VerifyEmail from './User/Auth/VerifyEmail'
@@ -32,13 +31,12 @@ import UserEmail from './User/Auth/UserEmail'
 import { AgentRegister } from './Agent/AgentRegister'
 import Rent from './User/Rent/Rent'
 import AdminStatus from './Admin/Admin_Components/AdminStatus'
-// 
+
 
 
 const App = () => {
 	return (
 		<div>
-			{/* <Nav /> */}
 
 			<Routes>
 				<Route exact path='/' element={<Home name="Home" />}></Route>
@@ -49,7 +47,6 @@ const App = () => {
 				<Route exact path='/PropertyHistory' element={<PropertyHistory name="PropertyHistory" />}></Route>
 				<Route exact path='/Contact' element={<Contact name="Contact" />}></Route>
 				<Route exact path='/About' element={<About name="About" />}></Route>
-				{/* <Route exact path='/HomeSlide' element={<HomeSlide name="HomeSlide" />}></Route> */}
 				<Route exact path='/UserEmail' element={<UserEmail name="UserEmail" />}></Route>
 				<Route exact path='/UserRegister' element={<UserRegister
 					name="UserRegister" />}></Route>
@@ -71,23 +68,6 @@ const App = () => {
 				<Route exact path='/Agent/' element={<AgentRegister name="AgentRegister" />}></Route>
 
 			</Routes>
-
-			{/* <PostProperty /> */}
-
-
-			{/* <Buy /> */}
-
-			{/* <Footer /> */}
-
-			{/* <PropertyList /> */}
-
-			{/* <PostDetails /> */}
-
-			{/* <AddProperty /> */}
-
-			{/* <ReadMoreDetails /> */}
-
-			{/* <Demo /> */}
 
 
 

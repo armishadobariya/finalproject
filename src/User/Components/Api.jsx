@@ -6,3 +6,5 @@ export const signInUrl = `${baseUrl}/auth/sign-in`;
 export const forgetPasswordUrl = `${baseUrl}/auth/forgot-password`;
 export const resetPasswordUrl = `${baseUrl}/auth/reset-password`;
 export const googleLoginUrl = `${baseUrl}/auth/google-login`;
+export const addPropertyUrl = `${baseUrl}/auth/add-property`;
+export const userProfileUrl = `${baseUrl}/auth/get-user`;
