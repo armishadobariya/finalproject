@@ -63,11 +63,8 @@ const Admin_Nav = () => {
 
 	return (
 		<>
-			
-
-
 			<div className="container-fluid navbar navbar-expand-lg shadow-sm px-lg-3 py-lg-2 text-light justify-content-between sticky-top" style={{ background: '#191919', marginTop: '-80px' }}>
-				<a className="navbar-brand  tw-ml-[28px] fw-bold fs-3 h-font custom-margin-left">
+				<a className="navbar-brand  tw-ml-[28px] fw-bold fs-3 h-font custom-margin-left"  >
 					<img src={logo} alt="" height="80px" width="180px" />
 				</a>
 

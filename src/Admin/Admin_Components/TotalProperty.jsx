@@ -42,8 +42,6 @@ const TotalProperty = () => {
 			<div>
 
 
-
-
 				<div className='sticky-sidebar'>
 					<Admin_Sidebar className="" />
 				</div>
@@ -54,7 +52,7 @@ const TotalProperty = () => {
 					</div>
 				) : (
 
-					<div className=' tw-flex tw-ml-[250px] '>
+					<div className=' tw-flex tw-ml-[250px] tw-mt-[100px] '>
 						<div className=' tw-mt-10'>
 							<div class=" tw-w-[360px] tw-ml-[55px] tw-h-[800px] mb-4 border-0 tw-shadow-2xl tw-rounded-md tw-me-10 ">
 								<div class="g-0 align-items-center">
