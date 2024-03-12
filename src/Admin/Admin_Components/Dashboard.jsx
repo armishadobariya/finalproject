@@ -8,10 +8,10 @@ import comment from "../../Assests/Image/Admin/comment.png";
 import view from "../../Assests/Image/Admin/eye.png";
 import book from "../../Assests/Image/Admin/heart.png";
 import close from "../../Assests/Image/Admin/down-arrow.png";
-import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
+// import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "./Dasboard.css";
-import StarIcon from '@mui/icons-material/Star';
+// import StarIcon from '@mui/icons-material/Star';
 import me from "../../Assests/Image/Home1/4me.jpeg";
 import armisha from "../../Assests/Image/Home1/armisha.jpeg";
 import p1 from "../../Assests/Image/Admin/Dashboard/01.jpg";
@@ -129,7 +129,7 @@ const Dashboard = () => {
 															Profile Overview
 														</Typography>
 														<div className='tw-mt-[15px] tw-cursor-pointer'>
-															<KeyboardArrowDownIcon style={{ cursor: 'pointer' }} onClick={toggleCard1} />
+															{/* <KeyboardArrowDownIcon style={{ cursor: 'pointer' }} onClick={toggleCard1} /> */}
 														</div>
 													</div>
 													{isCardOpen1 && (
@@ -193,7 +193,7 @@ const Dashboard = () => {
 															Recent Activity
 														</Typography>
 														<div className='tw-mt-[15px]'>
-															<KeyboardArrowDownIcon style={{ cursor: 'pointer' }} onClick={toggleCard2} />
+															{/* <KeyboardArrowDownIcon style={{ cursor: 'pointer' }} onClick={toggleCard2} /> */}
 														</div>
 													</div>
 													{isCardOpen2 && (
@@ -247,7 +247,7 @@ const Dashboard = () => {
 															Recent Properties
 														</Typography>
 														<div className='tw-mt-[15px]'>
-															<KeyboardArrowDownIcon className=' tw-cursor-pointer' onClick={toggleCard3} />
+															{/* <KeyboardArrowDownIcon className=' tw-cursor-pointer' onClick={toggleCard3} /> */}
 														</div>
 													</div>
 
@@ -341,7 +341,7 @@ const Dashboard = () => {
 															Recent Comment
 														</Typography>
 														<div className='tw-mt-[15px] tw-cursor-pointer tw-text-xs'>
-															<KeyboardArrowDownIcon onClick={toggleCard4} />
+															{/* <KeyboardArrowDownIcon onClick={toggleCard4} /> */}
 														</div>
 
 													</div>
@@ -360,12 +360,12 @@ const Dashboard = () => {
 																<div className=' md:tw-mt-[-40px] tw-mt-[-10px] tw-ml-[122px]'>
 																	<div>
 																		{[1, 2, 3, 4, 5].map((value) => (
-																			<StarIcon
+																			{/* <StarIcon
 																				key={value}
 																				className=''
 																				style={{ height: "20px", width: "20px", color: "#d3a478", marginRight: '-3px' }}
 
-																			/>
+																			/> */}
 																		))}
 																	</div>
 																</div>
@@ -402,12 +402,12 @@ const Dashboard = () => {
 																<div className=' md:tw-mt-[-40px] tw-mt-[-10px] tw-ml-[115px]'>
 																	<div>
 																		{[1, 2, 3, 4, 5].map((value) => (
-																			<StarIcon
+																			{/* <StarIcon
 																				key={value}
 																				className=''
 																				style={{ height: "20px", width: "20px", color: "#d3a478", marginRight: '-3px' }}
 
-																			/>
+																			/> */}
 																		))}
 																	</div>
 																</div>
@@ -444,12 +444,12 @@ const Dashboard = () => {
 																<div className=' md:tw-mt-[-40px] tw-mt-[-10px] tw-ml-[122px]'>
 																	<div>
 																		{[1, 2, 3, 4, 5].map((value) => (
-																			<StarIcon
+																			{/* <StarIcon
 																				key={value}
 																				className=''
 																				style={{ height: "20px", width: "20px", color: "#d3a478", marginRight: '-3px' }}
 
-																			/>
+																			/> */}
 																		))}
 																	</div>
 																</div>
@@ -486,12 +486,12 @@ const Dashboard = () => {
 																<div className=' md:tw-mt-[-40px] tw-mt-[-10px] tw-ml-[115px]'>
 																	<div>
 																		{[1, 2, 3, 4, 5].map((value) => (
-																			<StarIcon
+																			{/* <StarIcon
 																				key={value}
 																				className=''
 																				style={{ height: "20px", width: "20px", color: "#d3a478", marginRight: '-3px' }}
 
-																			/>
+																			/> */}
 																		))}
 																	</div>
 																</div>

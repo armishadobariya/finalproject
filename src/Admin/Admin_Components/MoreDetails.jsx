@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import Admin_Nav from '../Admin_Nav/Admin_Nav'
 import './MoreDetails.css';
 import { useNavigate } from 'react-router-dom';
-import h1 from "../../Assests/Image/Admin/Dashboard/TotalProperty/home1.jpg"
+// import h1 from "../../Assests/Image/Admin/Dashboard/TotalProperty/home1.jpg"
 import h5 from "../../Assests/Image/Admin/Dashboard/TotalProperty/h5.png";
 import Admin_Sidebar from '../Admin_Nav/Admin_Sidebar';
 import "./Common.css";

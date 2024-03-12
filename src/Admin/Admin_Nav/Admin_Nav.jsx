@@ -8,9 +8,9 @@ import "./Admin_Navbar.css";
 import Swal from "sweetalert2";
 import React, { useState } from 'react';
 import PopupState, { bindTrigger, bindMenu } from 'material-ui-popup-state';
-import AccountCircleIcon from '@material-ui/icons/AccountCircle';
-import Menu from '@material-ui/core/Menu';
-import MenuItem from '@material-ui/core/MenuItem';
+// import AccountCircleIcon from '@material-ui/icons/AccountCircle';
+// import Menu from '@material-ui/core/Menu';
+// import MenuItem from '@material-ui/core/MenuItem';
 import createSvgIcon from '@material-ui/core/utils/createSvgIcon';
 
 
@@ -71,16 +71,16 @@ const Admin_Nav = () => {
 				<PopupState variant="popover" popupId="demo-popup-menu">
 					{(popupState) => (
 						<>
-							<AccountCircleIcon
+							{/* <AccountCircleIcon
 								style={{ color: "#d3a478", height: "36px", width: "36px", marginRight: "20px", marginTop: '5px', cursor: 'pointer', overflowY: 'auto' }}
 								variant="contained"
 								{...bindTrigger(popupState)}
 							>
-							</AccountCircleIcon>
-							<Menu {...bindMenu(popupState)} style={{ marginTop: '50px' }}>
+							</AccountCircleIcon> */}
+							{/* <Menu {...bindMenu(popupState)} style={{ marginTop: '50px' }}>
 								<MenuItem onClick={() => handleShowProfile(popupState)}>Profile</MenuItem>
 								<MenuItem onClick={() => logOut(popupState)}>Logout</MenuItem>
-							</Menu>
+							</Menu> */}
 						</>
 					)}
 				</PopupState>

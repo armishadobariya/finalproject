@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "./VerifyEmail.css";
 import img2 from "../../Assests/Image/home5.jpg";
 import "../../../node_modules/bootstrap/dist/css/bootstrap.min.css";
-import PersonIcon from "@mui/icons-material/Person";
+// import PersonIcon from "@mui/icons-material/Person";
 import { useNavigate, useLocation } from "react-router-dom";
 
 const UserEmail = () => {
@@ -40,7 +40,7 @@ const UserEmail = () => {
 										<div>
 											<div className="tw-flex">
 												<label className='tw-border-2 tw-mr-[2px] tw-text-black tw-p-2 tw-mb-4'>
-													<PersonIcon />
+													{/* <PersonIcon /> */}
 												</label>
 												<input
 													type="email"

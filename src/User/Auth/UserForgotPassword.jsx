@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import "./UserForgotPassword.css";
 import backgroundImage from '../../Assests/Image/home3.avif';
 import '../../../node_modules/bootstrap/dist/css/bootstrap.min.css';
-import PersonIcon from '@mui/icons-material/Person';
+// import PersonIcon from '@mui/icons-material/Person';
 // import LockIcon from '@mui/icons-material/Lock';
 // import { Link } from 'react-router-dom';
 import 'animate.css';
@@ -116,7 +116,7 @@ const UserForgotPassword = () => {
 										<div>
 											<div className="tw-flex">
 												<label className='tw-border-2 tw-mr-[2px] tw-text-black tw-p-2 tw-mb-4'>
-													<PersonIcon />
+													{/* <PersonIcon /> */}
 												</label>
 												<input
 													type="email"

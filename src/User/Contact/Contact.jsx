@@ -5,13 +5,13 @@ import 'swiper/css/pagination';
 import 'swiper/css/navigation';
 // import './Swiper.css';
 import { Autoplay, Pagination, Navigation } from 'swiper/modules';
-import WhatsAppIcon from '@mui/icons-material/WhatsApp';
-import InstagramIcon from '@mui/icons-material/Instagram';
-import LinkedInIcon from '@mui/icons-material/LinkedIn';
+// import WhatsAppIcon from '@mui/icons-material/WhatsApp';
+// import InstagramIcon from '@mui/icons-material/Instagram';
+// import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import ContactImg from '../../Assests/Image/Contact/contact.jpg';
 import '../../../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import './Contact.css';
-import GitHubIcon from '@mui/icons-material/GitHub';
+// import GitHubIcon from '@mui/icons-material/GitHub';
 import { Footer } from '../Footer/Footer';
 import Nav from '../Nav/Nav';
 import { useNavigate } from 'react-router-dom';
@@ -68,17 +68,17 @@ const Contact = () => {
 										<ul className=' tw-flex'>
 											<li className='tw-p-2'>
 												<a href="https://web.whatsapp.com/">
-													<WhatsAppIcon />
+													{/* <WhatsAppIcon /> */}
 												</a>
 											</li>
 											<li className='tw-p-2'>
 												<a href="https://web.whatsapp.com/">
-													<WhatsAppIcon />
+													{/* <WhatsAppIcon /> */}
 												</a>
 											</li>
 											<li className='tw-p-2'>
 												<a href="https://web.whatsapp.com/">
-													<WhatsAppIcon />
+													{/* <WhatsAppIcon /> */}
 												</a>
 											</li>
 
@@ -104,17 +104,17 @@ const Contact = () => {
 											<ul className=' tw-flex'>
 												<li className='tw-p-2'>
 													<a href="https://web.whatsapp.com/">
-														<WhatsAppIcon />
+														{/* <WhatsAppIcon /> */}
 													</a>
 												</li>
 												<li className='tw-p-2'>
 													<a href="https://web.whatsapp.com/">
-														<WhatsAppIcon />
+														{/* <WhatsAppIcon /> */}
 													</a>
 												</li>
 												<li className='tw-p-2'>
 													<a href="https://web.whatsapp.com/">
-														<WhatsAppIcon />
+														{/* <WhatsAppIcon /> */}
 													</a>
 												</li>
 
@@ -139,17 +139,17 @@ const Contact = () => {
 										<ul className=' tw-flex'>
 											<li className='tw-p-2'>
 												<a href="https://web.whatsapp.com/">
-													<WhatsAppIcon />
+													{/* <WhatsAppIcon /> */}
 												</a>
 											</li>
 											<li className='tw-p-2'>
 												<a href="https://web.whatsapp.com/">
-													<WhatsAppIcon />
+													{/* <WhatsAppIcon /> */}
 												</a>
 											</li>
 											<li className='tw-p-2'>
 												<a href="https://web.whatsapp.com/">
-													<WhatsAppIcon />
+													{/* <WhatsAppIcon /> */}
 												</a>
 											</li>
 
@@ -174,17 +174,17 @@ const Contact = () => {
 										<ul className=' tw-flex'>
 											<li className='tw-p-2'>
 												<a href="https://web.whatsapp.com/">
-													<WhatsAppIcon />
+													{/* <WhatsAppIcon /> */}
 												</a>
 											</li>
 											<li className='tw-p-2'>
 												<a href="https://web.whatsapp.com/">
-													<WhatsAppIcon />
+													{/* <WhatsAppIcon /> */}
 												</a>
 											</li>
 											<li className='tw-p-2'>
 												<a href="https://web.whatsapp.com/">
-													<WhatsAppIcon />
+													{/* <WhatsAppIcon /> */}
 												</a>
 											</li>
 
@@ -210,17 +210,17 @@ const Contact = () => {
 											<ul className=' tw-flex'>
 												<li className='tw-p-2'>
 													<a href="https://github.com/">
-														<GitHubIcon />
+														{/* <GitHubIcon /> */}
 													</a>
 												</li>
 												<li className='tw-p-2'>
 													<a href="https://web.whatsapp.com/">
-														<InstagramIcon />
+														{/* <InstagramIcon /> */}
 													</a>
 												</li>
 												<li className='tw-p-2'>
 													<a href="https://web.whatsapp.com/">
-														<LinkedInIcon />
+														{/* <LinkedInIcon /> */}
 													</a>
 												</li>
 
@@ -247,17 +247,17 @@ const Contact = () => {
 											<ul className=' tw-flex'>
 												<li className='tw-p-2'>
 													<a href="https://github.com/">
-														<GitHubIcon />
+														{/* <GitHubIcon /> */}
 													</a>
 												</li>
 												<li className='tw-p-2'>
 													<a href="https://web.whatsapp.com/">
-														<InstagramIcon />
+														{/* <InstagramIcon /> */}
 													</a>
 												</li>
 												<li className='tw-p-2'>
 													<a href="https://web.whatsapp.com/">
-														<LinkedInIcon />
+														{/* <LinkedInIcon /> */}
 													</a>
 												</li>
 

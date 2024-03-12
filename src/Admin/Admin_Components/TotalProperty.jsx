@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import img from "../../Assests/Image/Home1/reg_bg.jpeg";
-import h1 from "../../Assests/Image/Admin/Dashboard/TotalProperty/home1.jpg";
+// import h1 from "../../Assests/Image/Admin/Dashboard/TotalProperty/home1.jpg";
 import h2 from "../../Assests/Image/Admin/Dashboard/TotalProperty/h2.jpeg";
-import h3 from "../../Assests/Image/Admin/Dashboard/TotalProperty/h3.jpg";
-import h4 from "../../Assests/Image/Admin/Dashboard/TotalProperty/h4.jpg";
+// import h3 from "../../Assests/Image/Admin/Dashboard/TotalProperty/h3.jpg";
+// import h4 from "../../Assests/Image/Admin/Dashboard/TotalProperty/h4.jpg";
 import h5 from "../../Assests/Image/Admin/Dashboard/TotalProperty/h5.png";
 import Admin_Nav from '../Admin_Nav/Admin_Nav';
 import "./TotalProperty.css";

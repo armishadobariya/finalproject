@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import PropertyList from "./PropertyList"
 import './radio.css';
-import FileUploadIcon from '@mui/icons-material/FileUpload';
+// import FileUploadIcon from '@mui/icons-material/FileUpload';
 import { PostDetails } from './PostDetails';
 import jsonData from './Cityname.json';
 import "./PropertyList.css";
@@ -191,7 +191,9 @@ export const AddProperty = () => {
 												<h1 className=' tw-mt-8 tw-text-lg tw-font-semibold'>Upload photos of your property </h1>
 												<input type="file" id='file' style={{ display: "none" }} onChange={handleImage} />
 												<label htmlFor="file" className=' tw-place-content-center grid p-5 tw-h-full tw-w-full tw-mt-4 rounded-3' style={{ color: "#de0611", border: "1px dashed #de0611" }}>
-													<h1 className=' tw-place-content-center tw-grid'>  <FileUploadIcon style={{ height: "90px", width: "100px", color: "#ddd" }} className=' border-2 rounded-3' /></h1>
+													<h1 className=' tw-place-content-center tw-grid'>
+														{/* <FileUploadIcon style={{ height: "90px", width: "100px", color: "#ddd" }} className=' border-2 rounded-3' /> */}
+													</h1>
 													<h1 className=' tw-font-bold tw-text-lg tw-mt-3  tw-place-content-center tw-grid tw-text-black'>Upload your Images Here</h1>
 													<h1 className='  tw-place-content-center tw-grid tw-font-semibold tw-mt-4' style={{ color: "#aaa" }}>Photos must be JPEG or PNG format and at least 2048x768</h1>
 													<div className=' tw-place-content-center tw-grid tw-mt-8'>

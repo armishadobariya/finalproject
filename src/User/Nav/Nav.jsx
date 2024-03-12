@@ -477,11 +477,11 @@ import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import Swal from "sweetalert2";
 import PopupState, { bindTrigger, bindMenu } from 'material-ui-popup-state';
-import AccountCircleIcon from '@material-ui/icons/AccountCircle';
+// import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
-import IconButton from '@mui/material/IconButton';
-import EditIcon from '@mui/icons-material/Edit';
+// import IconButton from '@mui/material/IconButton';
+// import EditIcon from '@mui/icons-material/Edit';
 import { userPofileUrl, userProfileUrl } from '../Components/Api';
 import axios from 'axios';
 
@@ -697,21 +697,16 @@ const Nav = () => {
 								<PopupState variant="popover" popupId="demo-popup-menu">
 									{(popupState) => (
 										<>
-											<IconButton
+											{/* <IconButton
 												style={{ color: "#d3a478", marginRight: "20px", marginTop: '5px', cursor: 'pointer' }}
 												{...bindTrigger(popupState)}
-											>
-												<AccountCircleIcon />
-											</IconButton>
+											> */}
+											{/* <AccountCircleIcon /> */}
+											{/* </IconButton> */}
 											<Menu {...bindMenu(popupState)} style={{ marginTop: '50px' }}>
 												<MenuItem onClick={() => handleShowProfile(popupState)}>Profile</MenuItem>
 												<MenuItem onClick={() => logOut(popupState)}>Logout</MenuItem>
-												{/* <MenuItem onClick={() => handleEditProfile(popupState)}>
-													<IconButton>
-														<EditIcon fontSize="small" />
-													</IconButton>
-													Edit Profile
-												</MenuItem> */}
+
 
 											</Menu>
 										</>

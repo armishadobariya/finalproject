@@ -1,10 +1,10 @@
 import React from 'react';
 import "./Buy.css";
 import img from '../../Assests/Image/Buy/reg_bg.avif';
-import LocationOnIcon from '@mui/icons-material/LocationOn';
-import SquareFootIcon from '@mui/icons-material/SquareFoot';
-import LivingIcon from '@mui/icons-material/Living';
-import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
+// import LocationOnIcon from '@mui/icons-material/LocationOn';
+// import SquareFootIcon from '@mui/icons-material/SquareFoot';
+// import LivingIcon from '@mui/icons-material/Living';
+// import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import liftt from "../../Assests/Image/Buy/liftt.png";
 import pipeline from "../../Assests/Image/Buy/pipeline.png";
 import garden from "../../Assests/Image/Buy/garden.png";
@@ -55,7 +55,7 @@ const ReadMoreDetails = () => {
 								</div>
 								<div className="row tw-mt-4">
 									<div className='tw-flex'>
-										<LocationOnIcon style={{ color: "gray", height: "30px", width: "40px" }} />
+										{/* <LocationOnIcon style={{ color: "gray", height: "30px", width: "40px" }} /> */}
 										<div className='tw-font-semibold tw-text-lg tw-ml-2'>123 Main Street, Anytown, CA 12345, United States Surat</div>
 									</div>
 									<div className='row tw-mt-6 tw-ml-[1px] tw-justify-evenly'>

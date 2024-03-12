@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import './PropertyHistory.css';
 import img from '../../Assests/Image/Home1/reg_bg.jpeg';
-import EditIcon from '@mui/icons-material/Edit';
-import DeleteIcon from '@mui/icons-material/Delete';
+// import EditIcon from '@mui/icons-material/Edit';
+// import DeleteIcon from '@mui/icons-material/Delete';
 import Nav from '../Nav/Nav';
 import { Footer } from '../Footer/Footer';
 export const PropertyHistory = () => {
@@ -138,8 +138,8 @@ export const PropertyHistory = () => {
 												</div>
 											</div>
 											<div className='ml-auto flex'>
-												<p className='mr-3'><EditIcon></EditIcon></p>
-												<p className='ml-3'><DeleteIcon /></p>
+												{/* <p className='mr-3'><EditIcon></EditIcon></p>
+												<p className='ml-3'><DeleteIcon /></p> */}
 											</div>
 
 
@@ -219,8 +219,8 @@ export const PropertyHistory = () => {
 
 
 											<div className='ml-auto flex'>
-												<p className='mr-3'><EditIcon></EditIcon></p>
-												<p className='ml-3'><DeleteIcon /></p>
+												{/* <p className='mr-3'><EditIcon></EditIcon></p>
+												<p className='ml-3'><DeleteIcon /></p> */}
 											</div>
 										</div>
 									</div>
@@ -296,8 +296,8 @@ export const PropertyHistory = () => {
 												</div>
 											</div>
 											<div className='ml-auto flex'>
-												<p className='mr-3'><EditIcon></EditIcon></p>
-												<p className='ml-3'><DeleteIcon /></p>
+												{/* <p className='mr-3'><EditIcon></EditIcon></p>
+												<p className='ml-3'><DeleteIcon /></p> */}
 												{/* <button type="submit" className='p-2 bg-black text-white font-semibold mb-3'>
                                                     Cancle
                                                 </button> */}

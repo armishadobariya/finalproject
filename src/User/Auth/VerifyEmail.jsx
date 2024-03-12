@@ -2,8 +2,8 @@ import React, { useState, useEffect } from "react";
 import "./UserForgotPassword.css";
 import backgroundImage from "../../Assests/Image/home3.avif";
 import "../../../node_modules/bootstrap/dist/css/bootstrap.min.css";
-import PersonIcon from "@mui/icons-material/Person";
-import LockIcon from "@mui/icons-material/Lock";
+// import PersonIcon from "@mui/icons-material/Person";
+// import LockIcon from "@mui/icons-material/Lock";
 import { Link, useNavigate } from "react-router-dom";
 import "animate.css";
 import PasswordIcon from "@mui/icons-material/Password";
@@ -132,7 +132,7 @@ const VerifyEmail = () => {
 													className="tw-border-2 tw-mr-[2px] tw-text-black tw-p-2 tw-mb-4"
 													htmlFor="email"
 												>
-													<PersonIcon />
+													{/* <PersonIcon /> */}
 												</label>
 												<input
 													id="email"

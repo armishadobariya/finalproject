@@ -5,8 +5,8 @@ import villa from "../../Assests/Image/Home1/ihouse.jpg"
 import lux from "../../Assests/Image/Home1/luxury.avif"
 import apar from "../../Assests/Image/Home1/apar.jpeg"
 import aroom from "../../Assests/Image/Home1/room2.jpg";
-import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
-import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+// import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
+// import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 
 
 export const HomeSlide = () => {
@@ -53,7 +53,7 @@ export const HomeSlide = () => {
 
 								}}
 							>
-								<ArrowBackIcon style={{ height: '30px', width: '30px' }} className=' tw-font-light' />
+								{/* <ArrowBackIcon style={{ height: '30px', width: '30px' }} className=' tw-font-light' /> */}
 
 							</div>
 
@@ -76,7 +76,7 @@ export const HomeSlide = () => {
 									transition: 'background 0.3s',
 								}}
 							>
-								<ArrowForwardIcon style={{ height: '30px', width: '30px' }} className=' tw-font-light' />
+								{/* <ArrowForwardIcon style={{ height: '30px', width: '30px' }} className=' tw-font-light' /> */}
 
 							</div>
 

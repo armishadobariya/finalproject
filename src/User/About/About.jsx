@@ -369,14 +369,14 @@ import about from "../../Assests/Image/About/about (1).jpg";
 // import about2 from "../../Assets/Image/about/about_2.jpg";
 import about2 from "../../Assests/Image/About/about_2.jpg"
 import 'animate.css';
-import HolidayVillageOutlinedIcon from '@mui/icons-material/HolidayVillageOutlined';
-import CreditScoreOutlinedIcon from '@mui/icons-material/CreditScoreOutlined';
-import VpnKeyOutlinedIcon from '@mui/icons-material/VpnKeyOutlined';
-import CurrencyExchangeOutlinedIcon from '@mui/icons-material/CurrencyExchangeOutlined';
-import GppGoodOutlinedIcon from '@mui/icons-material/GppGoodOutlined';
-import EmailOutlinedIcon from '@mui/icons-material/EmailOutlined';
-import NorthEastIcon from '@mui/icons-material/NorthEast';
-import PhoneOutlinedIcon from '@mui/icons-material/PhoneOutlined';
+// import HolidayVillageOutlinedIcon from '@mui/icons-material/HolidayVillageOutlined';
+// import CreditScoreOutlinedIcon from '@mui/icons-material/CreditScoreOutlined';
+// import VpnKeyOutlinedIcon from '@mui/icons-material/VpnKeyOutlined';
+// import CurrencyExchangeOutlinedIcon from '@mui/icons-material/CurrencyExchangeOutlined';
+// import GppGoodOutlinedIcon from '@mui/icons-material/GppGoodOutlined';
+// import EmailOutlinedIcon from '@mui/icons-material/EmailOutlined';
+// import NorthEastIcon from '@mui/icons-material/NorthEast';
+// import PhoneOutlinedIcon from '@mui/icons-material/PhoneOutlined';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
 import 'swiper/css/pagination';
@@ -437,7 +437,7 @@ const About = () => {
 							<div className='tw-mb-7'>
 
 								<div className="tw-mb-4">
-									<HolidayVillageOutlinedIcon className=" tw-rounded-full tw-p-[18px] tw-w-[70px] tw-h-[70px] tw-shadow-lg tw-text-gray-600 tw-bg-gray-100 hover:tw-bg-[#d3a478] hover:tw-text-white" />
+									{/* <HolidayVillageOutlinedIcon className=" tw-rounded-full tw-p-[18px] tw-w-[70px] tw-h-[70px] tw-shadow-lg tw-text-gray-600 tw-bg-gray-100 hover:tw-bg-[#d3a478] hover:tw-text-white" /> */}
 								</div>
 								<p className='tw-font-semibold tw-text-[19px] '>Modern Villa</p>
 								<p className='tw-text-[16px] '>Luxurious Amenities</p>
@@ -445,7 +445,7 @@ const About = () => {
 							</div>
 							<div>
 								<div className="tw-mb-4 ">
-									<CreditScoreOutlinedIcon className=" tw-rounded-full tw-p-[19px] tw-w-[70px] tw-h-[70px] tw-shadow-lg  tw-text-gray-600 tw-bg-gray-100 hover:tw-bg-[#d3a478] hover:tw-text-white" />
+									{/* <CreditScoreOutlinedIcon className=" tw-rounded-full tw-p-[19px] tw-w-[70px] tw-h-[70px] tw-shadow-lg  tw-text-gray-600 tw-bg-gray-100 hover:tw-bg-[#d3a478] hover:tw-text-white" /> */}
 								</div>
 								<p className='tw-font-semibold tw-text-[19px]'>Secure Payment</p>
 								<p className='tw-text-[16px]'>Payment Gateways</p>
@@ -491,7 +491,7 @@ const About = () => {
 						</h1>
 						<div className='tw-flex tw-pt-9 tw-pb-9'>
 							<div>
-								<GppGoodOutlinedIcon className=" tw-rounded-full tw-p-[18px] tw-w-[70px] tw-h-[70px] tw-shadow-lg  tw-text-black-600 tw-bg-[#f8ecdf] hover:tw-bg-[#d3a478] hover:tw-text-white" />
+								{/* <GppGoodOutlinedIcon className=" tw-rounded-full tw-p-[18px] tw-w-[70px] tw-h-[70px] tw-shadow-lg  tw-text-black-600 tw-bg-[#f8ecdf] hover:tw-bg-[#d3a478] hover:tw-text-white" /> */}
 							</div>
 							<div className='tw-pl-5'>
 								<p className='tw-font-[650] tw-tracking-wide tw-text-[17px] tw-mb-1'>Property Management</p>
@@ -502,7 +502,7 @@ const About = () => {
 
 						<div className='tw-flex tw-pb-9 '>
 							<div>
-								<VpnKeyOutlinedIcon className=" tw-rounded-full tw-p-[18px] tw-w-[70px] tw-h-[70px] tw-shadow-lg  tw-text-black tw-bg-[#f8ecdf] hover:tw-bg-[#d3a478] hover:tw-text-white" />
+								{/* <VpnKeyOutlinedIcon className=" tw-rounded-full tw-p-[18px] tw-w-[70px] tw-h-[70px] tw-shadow-lg  tw-text-black tw-bg-[#f8ecdf] hover:tw-bg-[#d3a478] hover:tw-text-white" /> */}
 							</div>
 							<div className='tw-pl-5'>
 								<p className='tw-font-[650] tw-tracking-wide tw-text-[17px] tw-mb-1'>Mortgage Services</p>
@@ -513,7 +513,7 @@ const About = () => {
 
 						<div className='tw-flex'>
 							<div>
-								<CurrencyExchangeOutlinedIcon className="tw-rounded-full  tw-p-[19px] tw-w-[70px] tw-h-[70px] tw-shadow-lg  tw-text-black tw-bg-[#f8ecdf] hover:tw-bg-[#d3a478] hover:tw-text-white" />
+								{/* <CurrencyExchangeOutlinedIcon className="tw-rounded-full  tw-p-[19px] tw-w-[70px] tw-h-[70px] tw-shadow-lg  tw-text-black tw-bg-[#f8ecdf] hover:tw-bg-[#d3a478] hover:tw-text-white" /> */}
 							</div>
 							<div className='tw-pl-5 '>
 								<p className='tw-font-[650] tw-tracking-wide tw-text-[17px] tw-mb-1'>Currency Services</p>
@@ -559,7 +559,7 @@ const About = () => {
                     tw-w-full
                     tw-tracking-wide tw-text-[17px] tw-font-[650] hover:tw-border-none hover:tw-bg-[#d3a478] hover:tw-text-white'>
 							Contact Us
-							<NorthEastIcon className='tw-w-8 ' />
+							{/* <NorthEastIcon className='tw-w-8 ' /> */}
 						</button>
 
 						<button className='tw-text-wrap tw-rounded-xl tw-mt-6 lg:tw-ml-6 max-md:tw-ml-6 md:tw-ml-6 max-sm:tw-ml-0 
@@ -572,7 +572,7 @@ const About = () => {
                      tw-bg-black tw-text-white  tw-tracking-wide tw-text-[17px] tw-font-[650]  hover:tw-bg-[#d3a478]'>
 							{/* <EmailOutlinedIcon className='tw-pr-2 tw-w-8' />
                         royalux@gmail.com royalux@gmail.com */}
-							<PhoneOutlinedIcon className='tw-pr-2 tw-w-8' />
+							{/* <PhoneOutlinedIcon className='tw-pr-2 tw-w-8' /> */}
 							910 879 7682
 						</button>
 

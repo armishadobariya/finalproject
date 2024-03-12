@@ -2,11 +2,11 @@ import React, { useState, useEffect } from "react";
 import "./UserRegister.css";
 import img2 from "../../Assests/Image/home6.jpg";
 import "../../../node_modules/bootstrap/dist/css/bootstrap.min.css";
-import ReadMoreIcon from "@mui/icons-material/ReadMore";
-import PersonIcon from "@mui/icons-material/Person";
-import EmailIcon from "@mui/icons-material/Email";
-import LockIcon from "@mui/icons-material/Lock";
-import PhoneIcon from "@mui/icons-material/Phone";
+// import ReadMoreIcon from "@mui/icons-material/ReadMore";
+// import PersonIcon from "@mui/icons-material/Person";
+// import EmailIcon from "@mui/icons-material/Email";
+// import LockIcon from "@mui/icons-material/Lock";
+// import PhoneIcon from "@mui/icons-material/Phone";
 import { GoogleLogin } from "@react-oauth/google";
 import { GoogleOAuthProvider } from "@react-oauth/google";
 import { Link, Navigate, useNavigate, useLocation } from "react-router-dom";
@@ -162,7 +162,7 @@ const UserRegister = () => {
 														className="tw-border-2 tw-mr-[2px]  tw-text-black tw-p-2 tw-mb-1"
 														htmlFor="email"
 													>
-														<EmailIcon />
+														{/* <EmailIcon /> */}
 													</label>
 													<input
 														id="email"
@@ -186,7 +186,7 @@ const UserRegister = () => {
 														className="tw-border-2 tw-mr-[2px]  tw-text-black tw-p-2 tw-mb-1"
 														htmlFor="name"
 													>
-														<PersonIcon />
+														{/* <PersonIcon /> */}
 													</label>
 													<input
 														id="name"
@@ -211,7 +211,7 @@ const UserRegister = () => {
 														className="tw-border-2 tw-mr-[2px]  tw-text-black tw-p-2 tw-mb-1 "
 														htmlFor="password"
 													>
-														<LockIcon />
+														{/* <LockIcon /> */}
 													</label>
 													<input
 														id="password"
@@ -239,7 +239,7 @@ const UserRegister = () => {
 														className="tw-border-2 tw-mr-[2px]  tw-text-black tw-p-2 tw-mb-1 "
 														htmlFor="phn"
 													>
-														<PhoneIcon />
+														{/* <PhoneIcon /> */}
 													</label>
 													<input
 														id="phn"
@@ -296,7 +296,8 @@ const UserRegister = () => {
 												</button>
 												<br /> <br />
 												<div className="col-lg-12 tw-bg-white tw-h-12 tw-text-green-700  tw-font-semibold tw-text-lg   tw-p-2">
-													<ReadMoreIcon /> Returning Customer?
+													{/* <ReadMoreIcon /> */}
+													Returning Customer?
 													<a
 														href="/UserLogin"
 														className=" tw-text-sm tw-text-black  tw-text-center"

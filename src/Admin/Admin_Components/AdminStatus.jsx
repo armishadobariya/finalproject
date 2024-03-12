@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './AdminStatus.css';
 import img from '../../Assests/Image/Home1/reg_bg.jpeg';
-import EditIcon from '@mui/icons-material/Edit';
-import DeleteIcon from '@mui/icons-material/Delete';
+// import EditIcon from '@mui/icons-material/Edit';
+// import DeleteIcon from '@mui/icons-material/Delete';
 import Admin_Sidebar from '../Admin_Nav/Admin_Sidebar';
 import Admin_Nav from '../Admin_Nav/Admin_Nav';
 

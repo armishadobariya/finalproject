@@ -11,18 +11,18 @@ import aroom from "../../Assests/Image/Home1/room2.jpg"
 import test from "../../Assests/Image/Home1/back.png"
 import done from "../../Assests/Image/Home1/h19.jpg"
 import fed from "../../Assests/Image/Home1/fed.png"
-import PlayArrowIcon from '@mui/icons-material/PlayArrow';
+// import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import me from "../../Assests/Image/Home1/4me.jpeg";
 import armisha from "../../Assests/Image/Home1/armisha.jpeg"
-import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
-import ArrowBackIcon from '@mui/icons-material/ArrowBack';
-import StarIcon from '@mui/icons-material/Star';
+// import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
+// import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+// import StarIcon from '@mui/icons-material/Star';
 import s1 from "../../Assests/Image/Home1/s1.svg";
 import s2 from "../../Assests/Image/Home1/s2.svg";
 import s3 from "../../Assests/Image/Home1/s3.svg";
 // import serviceback from "../../Assests/Image/Home1/sback.svg"
 import serviceback from "../../Assests/Image/Home1/serviceback.png"
-import CloseIcon from '@mui/icons-material/Close';
+// import CloseIcon from '@mui/icons-material/Close';
 import { useNavigate } from 'react-router-dom';
 import { BiUpArrow } from "react-icons/bi";
 import Nav from '../Nav/Nav';
@@ -343,7 +343,7 @@ const Home = () => {
 											onClick={showModal}
 										>
 											<div>
-												<PlayArrowIcon
+												{/* <PlayArrowIcon
 													id='play-arrow'
 													className='tw-h-10 tw-w-10'
 													style={{
@@ -352,7 +352,7 @@ const Home = () => {
 														cursor: 'pointer',
 
 													}}
-												/>
+												/> */}
 											</div>
 										</div>
 										<div className=''>
@@ -374,7 +374,7 @@ const Home = () => {
 																cursor: 'pointer',
 															}}
 														>
-															<CloseIcon className='tw-text-white tw-mt-[-82px] ' />
+															{/* <CloseIcon className='tw-text-white tw-mt-[-82px] ' /> */}
 														</button>
 													</div>
 												</div>
@@ -432,11 +432,11 @@ const Home = () => {
 																<div className=' tw-mt-5 tw-ml-14'>
 																	<div>
 																		{[...Array(slide.rating)].map((value) => (
-																			<StarIcon
+																			{/* <StarIcon
 																				key={value}
 																				className=''
 																				style={{ height: "25px", width: "25px", color: "#d3a478", marginRight: '-3px' }}
-																			/>
+																			/> */}
 																		))}
 																	</div>
 																</div>
@@ -482,13 +482,13 @@ const Home = () => {
 
 													onMouseEnter={handleBackArrowEnter}
 													onMouseLeave={handleBackArrowLeave}>
-													<ArrowBackIcon
+													{/* <ArrowBackIcon
 														id='back-arrow'
 														onClick={handleBackArrowClick}
 														style={{
 															cursor: 'pointer',
 														}}
-													/>
+													/> */}
 												</div>
 
 												<div className=' tw-flex tw-justify-center tw-items-center tw-h-16 tw-w-16 tw-border-2 '
@@ -496,13 +496,13 @@ const Home = () => {
 
 													onMouseEnter={handleForwardArrowEnter}
 													onMouseLeave={handleForwardArrowLeave}>
-													<ArrowForwardIcon
+													{/* <ArrowForwardIcon
 														id='forword-arrow'
 														onClick={handleForwardArrowClick}
 														style={{
 															cursor: 'pointer',
 														}}
-													/>
+													/> */}
 												</div>
 											</div>
 										</div>

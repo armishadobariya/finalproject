@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import "./UserResetPassword.css";
 import backgroundImage from '../../Assests/Image/home8.jpg';
 import '../../../node_modules/bootstrap/dist/css/bootstrap.min.css';
-import LockIcon from '@mui/icons-material/Lock';
+// import LockIcon from '@mui/icons-material/Lock';
 import { Link } from 'react-router-dom';
 import { useNavigate, useLocation, Navigate } from 'react-router-dom';
 import { resetPasswordUrl } from '../Components/Api';
@@ -111,7 +111,7 @@ export const UserResetPassword = () => {
 
 										<div className="tw-flex tw-mb-4">
 											<label className='tw-border-2 tw-mr-[2px]  tw-text-black tw-p-2 tw-mb-1 ' htmlFor='password'>
-												<LockIcon />
+												{/* <LockIcon /> */}
 											</label>
 											<input
 												id='password'
@@ -144,7 +144,7 @@ export const UserResetPassword = () => {
 
 											<div className="tw-flex tw-mb-4">
 												<label className='tw-border-2 tw-mr-[2px]  tw-text-black tw-p-2 tw-mb-1 ' htmlFor='cpassword'>
-													<LockIcon />
+													{/* <LockIcon /> */}
 												</label>
 												<input
 													id='cpassword'

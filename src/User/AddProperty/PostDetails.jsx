@@ -1,7 +1,7 @@
 import React from 'react';
-import AddAPhotoIcon from '@mui/icons-material/AddAPhoto';
-import DescriptionIcon from '@mui/icons-material/Description';
-import HouseIcon from '@mui/icons-material/House';
+// import AddAPhotoIcon from '@mui/icons-material/AddAPhoto';
+// import DescriptionIcon from '@mui/icons-material/Description';
+// import HouseIcon from '@mui/icons-material/House';
 import "./PropertyList.css";
 
 
@@ -76,7 +76,7 @@ export const PostDetails = () => {
 						onMouseLeave={descLeave}
 					>
 						<div>
-							<DescriptionIcon
+							{/* <DescriptionIcon
 								id='description'
 								className='tw-h-12 tw-w-10'
 								style={{
@@ -84,7 +84,7 @@ export const PostDetails = () => {
 									transition: 'color 0.3s',
 									cursor: 'pointer',
 								}}
-							/>
+							/> */}
 						</div>
 					</div>
 					<h1 className='tw-mt-[30px] tw-mb-[20px] tw-font-semibold tw-text-2xl tw-text-center'>01.Add Details of your property</h1>
@@ -109,7 +109,7 @@ export const PostDetails = () => {
 						onMouseLeave={photoLeave}
 					>
 						<div>
-							<AddAPhotoIcon
+							{/* <AddAPhotoIcon
 								id='photo'
 								className='tw-h-12 tw-w-10'
 								style={{
@@ -119,7 +119,7 @@ export const PostDetails = () => {
 
 
 								}}
-							/>
+							/> */}
 						</div>
 					</div>
 
@@ -144,7 +144,7 @@ export const PostDetails = () => {
 						onMouseLeave={homeLeave}
 					>
 						<div>
-							<HouseIcon
+							{/* <HouseIcon
 								id='house'
 								className='tw-h-12 tw-w-10'
 								style={{
@@ -152,7 +152,7 @@ export const PostDetails = () => {
 									transition: 'color 0.3s',
 									cursor: 'pointer',
 								}}
-							/>
+							/> */}
 						</div>
 					</div>
 					<h1 className='tw-mt-[30px] tw-mb-[20px] tw-font-semibold tw-text-2xl tw-text-center'>03.Add Pricing & Ownership</h1>

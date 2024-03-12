@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 // import "./UserLogin.css";
 import backgroundImage from '../../Assests/Image/home7.jpg';
 import '../../../node_modules/bootstrap/dist/css/bootstrap.min.css';
-import PersonIcon from '@mui/icons-material/Person';
-import LockIcon from '@mui/icons-material/Lock';
+// import PersonIcon from '@mui/icons-material/Person';
+// import LockIcon from '@mui/icons-material/Lock';
 import { Link, useNavigate } from 'react-router-dom';
 import { GoogleLogin } from '@react-oauth/google';
 import { GoogleOAuthProvider } from '@react-oauth/google';
@@ -93,7 +93,7 @@ const UserLogin = () => {
 										</h3>
 										<div className="tw-flex">
 											<label className='tw-border-2 tw-mr-[2px] tw-text-black tw-p-2 tw-mb-4 tw-mt-4' htmlFor='email'>
-												<PersonIcon />
+												{/* <PersonIcon /> */}
 											</label>
 											<input
 												id='email'
@@ -109,7 +109,7 @@ const UserLogin = () => {
 										<h1>{verificationResult}</h1>
 										<div className="tw-flex tw-mb-5">
 											<label className='tw-border-2 tw-mr-[2px]  tw-text-black tw-p-2 tw-mb-1 ' htmlFor='password'>
-												<LockIcon />
+												{/* <LockIcon /> */}
 											</label>
 											<input
 												id='password'
