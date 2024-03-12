@@ -29,10 +29,6 @@ import Demo from './User/Components/Demo'
 import VerifyEmail from './User/Auth/VerifyEmail'
 import { PropertyHistory } from './User/Status/PropertyHistory'
 import { AgentRegister } from './Agent/AgentRegister'
-
-// 
-
-
 const App = () => {
 	return (
 		<div>
@@ -67,22 +63,7 @@ const App = () => {
 
 			</Routes>
 
-			{/* <PostProperty /> */}
-
-
-			{/* <Buy /> */}
-
-			{/* <Footer /> */}
-
-			{/* <PropertyList /> */}
-
-			{/* <PostDetails /> */}
-
-			{/* <AddProperty /> */}
-
-			{/* <ReadMoreDetails /> */}
-
-			{/* <Demo /> */}
+			
 
 
 

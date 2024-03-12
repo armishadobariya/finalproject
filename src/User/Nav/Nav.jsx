@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import '../../../node_modules/bootstrap/dist/css/bootstrap.min.css';
-// import text from '../../Assests/Image/nest.jpg';
 import logo from '../../Assests/Image/nav2.svg';
 // import DensityMediumIcon from '@mui/icons-material/DensityMedium';
 import { NavLink, useNavigate } from 'react-router-dom';
