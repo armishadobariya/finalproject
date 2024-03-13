@@ -29,6 +29,8 @@ import Demo from './User/Components/Demo'
 import VerifyEmail from './User/Auth/VerifyEmail'
 import { PropertyHistory } from './User/Status/PropertyHistory'
 import { AgentRegister } from './Agent/AgentRegister'
+import Property from './Agent/Property/Property'
+import { ReadMore } from '@mui/icons-material'
 const App = () => {
 	return (
 		<div>
@@ -60,10 +62,12 @@ const App = () => {
 
 
 				<Route exact path='/Agent/' element={<AgentRegister name="AgentRegister" />}></Route>
+				<Route exact path='/Agent/Property' element={<Property name="Property" />}></Route>
+				<Route exact path='/Agent/ReadMore' element={<ReadMore name="ReadMoreDetails" />} />
 
 			</Routes>
 
-			
+
 
 
 

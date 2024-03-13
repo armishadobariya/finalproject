@@ -4,3 +4,4 @@ export const verifyOtpUrl = `${baseUrl}/auth/verify-otp`;
 export const signUpUrl = `${baseUrl}/auth/sign-up`;
 export const signInUrl = `${baseUrl}/auth/sign-in`;
 export const forgetPasswordUrl = `${baseUrl}/auth/forget-password`;
+export const userPofileUrl = `${baseUrl}/auth/get-user`;
