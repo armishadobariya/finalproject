@@ -25,8 +25,6 @@ export const AddProperty = () => {
 	const [description, setDescription] = useState('');
 	const [image, setImage] = useState('');
 	const [address, setAddress] = useState('');
-	// const [state, setState] = useState('');
-	// const [city, setCity] = useState('');
 	const [size, setSize] = useState('');
 	const [price, setPrice] = useState('');
 	const [age, setAge] = useState('');
@@ -52,10 +50,20 @@ export const AddProperty = () => {
 		setSelectedState(stateName);
 		const selectedStateData = jsonData.states.find((state) => state.name === stateName);
 		setCities(selectedStateData ? selectedStateData.cities : []);
+		// setSelectedState(e.target.value);
 	};
 
 	const handleCityChange = (e) => {
 		setSelectedCity(e.target.value);
+	};
+
+	const handleCheckboxChange = (event) => {
+		const { name, checked } = event.target;
+		if (checked) {
+			setFacilities([...facilities, name]);
+		} else {
+			setFacilities(facilities.filter(item => item !== name));
+		}
 	};
 
 	const handleFileChange = (event) => {
@@ -72,8 +80,8 @@ export const AddProperty = () => {
 			formData.append('description', description);
 			formData.append('propertyImage', image);
 			formData.append('address', address);
-			formData.append('state', states);
-			formData.append('city', cities);
+			formData.append('state', selectedState);
+			formData.append('city', selectedCity);
 			formData.append('size', size);
 			formData.append('price', price);
 			formData.append('propertyAge', age);
@@ -129,6 +137,14 @@ export const AddProperty = () => {
 	const handleRadioChange = (e) => {
 		setType(e.target.value);
 	}
+
+	const handleFurnisherType = (e) => {
+		setFurnishing(e.target.value);
+	}
+
+	const handlePropertyTypeChange = (event) => {
+		setPropertyType(event.target.value);
+	};
 	return (
 		<>
 			<Nav />
@@ -159,13 +175,13 @@ export const AddProperty = () => {
 
 												<div className="row tw-mt-3 tw-flex tw-gap-5 tw-p-3">
 													<div className=" col-2 tw-border-2 tw-p-2 tw-rounded-2 ">
-														<input class="form-check-input" type="radio" name="why" id="exampleRadios1" value="option1" checked={type === 'option1'} onChange={handleRadioChange} />
+														<input class="form-check-input" type="radio" name="why" id="exampleRadios1" value="sell" checked={type === 'sell'} onChange={handleRadioChange} />
 														<label class="form-check-label tw-mr-6" for="exampleRadios1">
 															Sell
 														</label>
 													</div>
 													<div class=" col-2 tw-border-2 tw-p-2 tw-rounded-2">
-														<input class="form-check-input" type="radio" name="why" id="exampleRadios2" value="option2" checked={type === 'option2'} onChange={handleRadioChange} />
+														<input class="form-check-input" type="radio" name="why" id="exampleRadios2" value="buy" checked={type === 'buy'} onChange={handleRadioChange} />
 														<label class="form-check-label" for="exampleRadios2">
 															Buy
 														</label>
@@ -260,18 +276,20 @@ export const AddProperty = () => {
 											<div className="row tw-mt-5">
 												<div className=' col-lg-4 tw-grid'>
 													<label htmlFor="sqft" className=' tw-font-semibold' >Square feet</label>
-													<input type="text" id="sqft" className=' tw-border-2 tw-rounded-2 tw-h-11 tw-p-2 tw-mt-2' placeholder='Size in ft.' onClick={(e) => { setSize(e.target.value) }} />
+													<input type="text" id="sqft" className=' tw-border-2 tw-rounded-2 tw-h-11 tw-p-2 tw-mt-2' placeholder='Size in ft.' onChange={(e) => { setSize(e.target.value) }} />
 												</div>
 												<div className=' col-lg-4 tw-grid'>
 													<label htmlFor="sqft" className=' tw-font-semibold'  >Price</label>
-													<input type="text" id="sqft" className=' tw-border-2 tw-rounded-2 tw-h-11 tw-p-2 tw-mt-2' placeholder='Price' onClick={(e) => { setPrice(e.target.value) }} />
+													<input type="text" id="sqft" className=' tw-border-2 tw-rounded-2 tw-h-11 tw-p-2 tw-mt-2' placeholder='Price' onChange={(e) => { setPrice(e.target.value) }} />
 												</div> <div className=' col-lg-4 tw-grid'>
 													<label htmlFor="sqft" className=' tw-font-semibold'  >Property Age</label>
-													<input type="text" id="sqft" className=' tw-border-2 tw-rounded-2 tw-h-11 tw-p-2 tw-mt-2' placeholder='Proprerty age (In year)' onClick={(e) => { setAge(e.target.value) }} />
+													<input type="text" id="sqft" className=' tw-border-2 tw-rounded-2 tw-h-11 tw-p-2 tw-mt-2' placeholder='Proprerty age (In year)' onChange={(e) => { setAge(e.target.value) }} />
 												</div>
 											</div>
 
 											<div className="row tw-mt-5">
+
+
 
 												<div className='col-lg-4 tw-grid'>
 													<label htmlFor="propertyType" className='tw-font-semibold'>Property Type</label>
@@ -280,8 +298,10 @@ export const AddProperty = () => {
 														className='tw-border-2 tw-rounded-2 tw-h-11 tw-p-2 tw-mt-2 tw-w-full'
 														required=""
 														data-error="Please select property type"
+														value={propertyType}
+														onChange={handlePropertyTypeChange}
 													>
-														<option value="" selected disabled>Select Property Type</option>
+														<option value="" disabled>Select Property Type</option>
 														<option value="independent-house">Independent House</option>
 														<option value="villa">Villa</option>
 														<option value="apartment">Apartment</option>
@@ -295,6 +315,8 @@ export const AddProperty = () => {
 														className='tw-border-2 tw-rounded-2 tw-h-11 tw-p-2 tw-mt-2 tw-w-full'
 														required=""
 														data-error="Please select property type"
+														value={face}
+														onChange={(e) => { setFace(e.target.value) }}
 													>
 														<option value="" selected disabled>Select Property Facing</option>
 														<option value="east">East</option>
@@ -310,18 +332,20 @@ export const AddProperty = () => {
 														className='tw-border-2 tw-rounded-2 tw-h-11 tw-p-2 tw-mt-2 tw-w-full'
 														required=""
 														data-error="Please select property type"
+														value={houseType}
+														onChange={(e) => { setHouseType(e.target.value) }}
 													>
 														<option value="" selected disabled>Select BHK_Type</option>
-														<option value="east">1 BHK</option>
-														<option value="wast">2 BHK</option>
-														<option value="north">3 BHK</option>
-														<option value="south">3+ BHK</option>
+														<option value="1 BHK">1 BHK</option>
+														<option value="2 BHK">2 BHK</option>
+														<option value="3 BHK">3 BHK</option>
+														<option value="3+ BHK">3+ BHK</option>
 													</select>
 												</div>
 
 											</div>
 
-											<div className="row tw-mt-10">
+											{/* <div className="row tw-mt-10">
 												<h1 className=' tw-font-semibold'>Facilities</h1>
 											</div>
 											<div className="row tw-grid  md:tw-flex tw-space-y-5 tw-p-3 tw-justify-evenly  ">
@@ -363,6 +387,51 @@ export const AddProperty = () => {
 														Inverter
 													</label>
 												</div>
+											</div> */}
+
+
+											<div className="row tw-mt-10">
+												<h1 className='tw-font-semibold'>Facilities</h1>
+											</div>
+											<div className="row tw-grid  md:tw-flex tw-space-y-5 tw-p-3 tw-justify-evenly">
+												<div className="tw-border-2 tw-p-2 tw-rounded-2 col-md-2 tw-pl-7 md:tw-mt-5">
+													<input className="form-check-input" type="checkbox" name='parking' id='parking' onChange={handleCheckboxChange} />
+													<label className="form-check-label tw-pl-3" htmlFor="parking">
+														Parking
+													</label>
+												</div>
+												<div className="tw-border-2 tw-p-2 tw-rounded-2 col-md-2  tw-pl-7 ">
+													<input className="form-check-input" type="checkbox" name='lift' id='lift' onChange={handleCheckboxChange} />
+													<label className="form-check-label tw-pl-3" htmlFor="lift">
+														Lift
+													</label>
+												</div>
+												<div className="tw-border-2 tw-p-2 tw-rounded-2 col-md-2  tw-pl-7">
+													<input className="form-check-input" type="checkbox" name='gas-pipeline' id='gas-pipeline' onChange={handleCheckboxChange} />
+													<label className="form-check-label tw-pl-3" htmlFor="gas-pipeline">
+														Gas Pipeline
+													</label>
+												</div>
+											</div>
+											<div className="row  tw-grid  md:tw-flex tw-space-y-5 tw-p-3 tw-justify-evenly">
+												<div className="tw-border-2 tw-p-2 tw-rounded-2 col-md-2 tw-pl-7 md:tw-mt-5">
+													<input className="form-check-input" type="checkbox" name='garden' id='garden' onChange={handleCheckboxChange} />
+													<label className="form-check-label tw-pl-3" htmlFor="garden">
+														Garden
+													</label>
+												</div>
+												<div className="tw-border-2 tw-p-2 tw-rounded-2 col-md-2  tw-pl-7">
+													<input className="form-check-input" type="checkbox" name='security' id='security' onChange={handleCheckboxChange} />
+													<label className="form-check-label tw-pl-3" htmlFor="security">
+														24x7 Security
+													</label>
+												</div>
+												<div className="tw-border-2 tw-p-2 tw-rounded-2 col-md-2  tw-pl-7">
+													<input className="form-check-input" type="checkbox" name='inverter' id='inverter' onChange={handleCheckboxChange} />
+													<label className="form-check-label tw-pl-3" htmlFor="inverter">
+														Inverter
+													</label>
+												</div>
 											</div>
 
 											<div className="row tw-mt-10">
@@ -370,23 +439,27 @@ export const AddProperty = () => {
 											</div>
 											<div className="row  tw-grid  md:tw-flex tw-space-y-4 tw-p-3 tw-justify-evenly  ">
 												<div className="tw-border-2 tw-p-2 tw-rounded-2 col-md-2 tw-pl-5 md:tw-mt-5">
-													<input className="form-check-input" type="radio" name="amenity" id="parking" />
+													<input className="form-check-input" type="radio" name="amenity" id="parking" value='Un-Furnished' checked={furnishing === 'Un-Furnished'} onChange={handleFurnisherType} />
+
 													<label className="form-check-label tw-pl-2" htmlFor="parking">
 														Un-Furnished
 													</label>
 												</div>
 												<div className="tw-border-2 tw-p-2 tw-rounded-2 col-md-2 tw-pl-5">
-													<input className="form-check-input" type="radio" name="amenity" id="lift" />
+													<input className="form-check-input" type="radio" name="amenity" id="lift" value='Semi-Furnished' checked={furnishing === 'Semi-Furnished'} onChange={handleFurnisherType} />
 													<label className="form-check-label tw-pl-2" htmlFor="lift">
 														Semi-Furnished
 													</label>
 												</div>
 												<div className="tw-border-2 tw-p-2 tw-rounded-2 col-md-2 tw-pl-5">
-													<input className="form-check-input" type="radio" name="amenity" id="gas-pipeline" />
+													<input className="form-check-input" type="radio" name="amenity" id="gas-pipeline" value='Full-Furnished' checked={furnishing === 'Full-Furnished'} onChange={handleFurnisherType} />
 													<label className="form-check-label tw-pl-2" htmlFor="gas-pipeline">
 														Full-Furnished
 													</label>
 												</div>
+
+
+
 
 											</div>
 

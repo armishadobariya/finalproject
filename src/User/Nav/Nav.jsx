@@ -550,6 +550,7 @@ const Nav = () => {
 		navigate("/UserRegister");
 	}
 
+
 	const showLogin = () => {
 		navigate("/UserLogin");
 	}
@@ -576,30 +577,81 @@ const Nav = () => {
 			cancelButtonText: "Close",
 		});
 	};
+
+	// function profile() {
+	// 	console.log('hello');
+	// }
+
+
+
+
+
+
+	// const handleShowProfile = async (popupState) => {
+	// 	popupState.close();
+	// 	getUserData();
+
+
+
+	// 	Swal.fire({
+	// 		title: "Profile",
+	// 		html: `
+	//     <div class="profile-container">
+	//       <div class="avatar-container" style="display: flex; justify-content: center;">
+	//         <img alt="Admin Image" onclick="profile()" src="https://cdn.vectorstock.com/i/preview-1x/34/96/flat-business-man-user-profile-avatar-in-suit-vector-4333496.jpg" />
+	//       </div>
+	//       <div class="profile-details">
+	//         <p style="font-weight: bold">Name: ${userName}</p>
+	//         <p style="font-weight: bold">Email: ${userEmail}</p>
+	//         <p style="font-weight: bold">Role: User</p>
+
+	// 		</div>
+	//     </div>
+	//   `,
+	// 		showCancelButton: true,
+	// 		showConfirmButton: false,
+	// 		cancelButtonText: "Close",
+	// 	});
+	// };
+
+
 	const handleShowProfile = async (popupState) => {
 		popupState.close();
 		getUserData();
 
+		// Define profile function globally or attach it to the window object
+		window.profile = () => {
+			Swal.fire({
+				title: "Hello!",
+				text: "You clicked the profile image!",
+				icon: "info",
+			});
+			console.log('hello');
+
+		};
+
 		Swal.fire({
 			title: "Profile",
 			html: `
-        <div class="profile-container">
-          <div class="avatar-container" style="display: flex; justify-content: center;">
-            <img alt="Admin Image" src="https://cdn.vectorstock.com/i/preview-1x/34/96/flat-business-man-user-profile-avatar-in-suit-vector-4333496.jpg" />
-          </div>
-          <div class="profile-details">
-            <p style="font-weight: bold">Name: ${userName}</p>
-            <p style="font-weight: bold">Email: ${userEmail}</p>
-            <p style="font-weight: bold">Role: User</p>
-
-			</div>
-        </div>
-      `,
+				<div class="profile-container">
+					<div class="avatar-container" style="display: flex; justify-content: center;">
+						<img alt="Admin Image" style="cursor: pointer" onclick="profile()" src="https://cdn.vectorstock.com/i/preview-1x/34/96/flat-business-man-user-profile-avatar-in-suit-vector-4333496.jpg" />
+					</div>
+					<div class="profile-details">
+						<p style="font-weight: bold">Name: ${userName}</p>
+						<p style="font-weight: bold">Email: ${userEmail}</p>
+						<p style="font-weight: bold">Role: User</p>
+					</div>
+				</div>
+			`,
 			showCancelButton: true,
 			showConfirmButton: false,
 			cancelButtonText: "Close",
 		});
 	};
+
+
+
 
 	const logOut = () => {
 		navigate('/UserLogin');
@@ -694,7 +746,7 @@ const Nav = () => {
 									Login
 								</button>
 
-								<PopupState variant="popover" popupId="demo-popup-menu">
+								{/* <PopupState variant="popover" popupId="demo-popup-menu">
 									{(popupState) => (
 										<>
 											<IconButton
@@ -706,13 +758,24 @@ const Nav = () => {
 											<Menu {...bindMenu(popupState)} style={{ marginTop: '50px' }}>
 												<MenuItem onClick={() => handleShowProfile(popupState)}>Profile</MenuItem>
 												<MenuItem onClick={() => logOut(popupState)}>Logout</MenuItem>
-												{/* <MenuItem onClick={() => handleEditProfile(popupState)}>
-													<IconButton>
-														<EditIcon fontSize="small" />
-													</IconButton>
-													Edit Profile
-												</MenuItem> */}
 
+											</Menu>
+										</>
+									)}
+								</PopupState> */}
+
+								<PopupState variant="popover" popupId="demo-popup-menu">
+									{(popupState) => (
+										<>
+											<AccountCircleIcon
+												style={{ color: "#d3a478", height: "36px", width: "36px", marginRight: "10px", marginTop: '5px', cursor: 'pointer', overflowY: 'auto' }}
+												variant="contained"
+												{...bindTrigger(popupState)}
+											>
+											</AccountCircleIcon>
+											<Menu {...bindMenu(popupState)} style={{ marginTop: '50px' }}>
+												<MenuItem onClick={() => handleShowProfile(popupState)}>Profile</MenuItem>
+												<MenuItem onClick={() => logOut(popupState)}>Logout</MenuItem>
 											</Menu>
 										</>
 									)}
