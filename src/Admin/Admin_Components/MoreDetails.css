@@ -592,7 +592,7 @@
 }
 
 .tw-mr-\[\] {
-  margin-right:  !important
+  margin-right:  important
 }
 
 .tw-mr-\[5px\] {
@@ -620,7 +620,7 @@
 }
 
 .tw-ml-\[\] {
-  margin-left:  !important
+  margin-left:  important
 }
 
 .tw-ml-\[500px\] {
@@ -652,7 +652,7 @@
 }
 
 .tw-me-\[\] {
-  margin-inline-end:  !important
+  margin-inline-end:  important
 }
 
 .tw-mr-4 {
@@ -756,7 +756,7 @@
 }
 
 .tw-h-\[\] {
-  height:  !important
+  height:  important
 }
 
 .tw-h-\[400px\] {
@@ -880,7 +880,7 @@
 }
 
 .tw-w-\[\] {
-  width:  !important
+  width:  important
 }
 
 .tw-w-\[150px\] {
@@ -1097,7 +1097,7 @@
 }
 
 .tw-border-\[\] {
-  border-color:  !important
+  border-color:  important
 }
 
 .tw-bg-black {

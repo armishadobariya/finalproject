@@ -66,8 +66,12 @@ const Home = () => {
 	};
 
 	const handleSellClick = () => {
-		navigate('/sell');
+		navigate('/AddProperty');
 	};
+
+	const handleRentClick = () => {
+		navigate('/Rent');
+	}
 
 	const toggleVideo = () => {
 		setModalVisible(!modalVisible);
@@ -224,6 +228,7 @@ const Home = () => {
 										border: '2px solid #d3a478',
 										transition: 'background-color 0.3s ease',
 									}}
+									onClick={handleRentClick}
 									onMouseOver={(e) => (e.target.style.backgroundColor = '#d3a478')}
 									onMouseOut={(e) => (e.target.style.backgroundColor = 'transparent')}
 								>RENT</button>

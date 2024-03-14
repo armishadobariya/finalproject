@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import Admin_Nav from '../Admin_Nav/Admin_Nav';
 import Admin_Sidebar from '../Admin_Nav/Admin_Sidebar';
-import './Dash.css';
+// import '../../Dash.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import "./Dasboard.css";
+// import "./Dasboard.css";
 
 
 const Buyer = () => {

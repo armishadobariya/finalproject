@@ -10,13 +10,16 @@ import 'animate.css';
 import OtpInput from 'react-otp-input';
 import axios from 'axios';
 import { forgetPasswordUrl, verifyOtpUrl } from '../Components/Api';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const UserForgotPassword = () => {
 
 	const [email, setEmail] = useState('');
 	const [otp, setOtp] = useState('');
 	const [response, setResponse] = useState(null);
+	const location = useLocation();
 	const [showOtp, setShowOtp] = useState(false);
 	const navigate = useNavigate();
 
@@ -28,7 +31,14 @@ const UserForgotPassword = () => {
 			};
 
 			const responseData = await axios.post(forgetPasswordUrl, reqdata);
-			toggleForm();
+			if (responseData.data.statusCode === 200) {
+
+				toggleForm();
+			}
+			else {
+				toast.error(responseData.data.message);
+
+			}
 		}
 		catch (error) {
 			if (error.response && error.response.status === 404) {
@@ -47,6 +57,7 @@ const UserForgotPassword = () => {
 
 	}
 
+
 	const handleOtp = async (e) => {
 		try {
 			e.preventDefault();
@@ -58,19 +69,22 @@ const UserForgotPassword = () => {
 
 			const responseData = await axios.post(verifyOtpUrl, reqdata);
 
-			if (responseData.status === 200) {
-				const { token } = responseData.data;
-				localStorage.setItem("token", token);
+			if (responseData.data.statusCode === 200) {
+				// const { token } = responseData.data;
+				// localStorage.setItem("token", token);
+				// console.log('token: ', token);
 
 				setResponse("success: ", responseData.data);
-				navigate('/UserRegister', { state: email })
+				navigate("/UserResetPassword", { state: { email: email } });
+				console.log('verify email: ', email);
 			}
+			else {
+				toast.error(responseData.data.message);
 
-
-		}
-		catch (error) {
+			}
+		} catch (error) {
 			setResponse("error :", response.data.message);
-
+			console.log('hello');
 		}
 	}
 
@@ -78,6 +92,7 @@ const UserForgotPassword = () => {
 
 	return (
 		<div>
+			<ToastContainer position='top-right' />
 			<div className='msg'>
 				{response && <div>{response.message}</div>}
 			</div>
@@ -135,7 +150,7 @@ const UserForgotPassword = () => {
 
 														<OtpInput
 															value={otp}
-															onChange={(e) => { setOtp(e.target.value) }}
+															onChange={setOtp}
 															numInputs={4}
 
 															renderSeparator={

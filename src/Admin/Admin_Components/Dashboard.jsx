@@ -77,7 +77,8 @@ const Dashboard = () => {
 				) : (
 
 
-					<div className=' tw-ml-[250px] md:tw-mt-[-1100px] tw-mt-[-500px] p-3 '>
+					<div className=' tw-ml-[250px] md:tw-mt-[-600px] tw-mt-[-500px] p-3 '>
+						{/* <div className=' tw-ml-[250px] md:tw-mt-[-1000px] tw-mt-[-500px] p-3 '> */}
 						<div className="cart-content">
 							<Grid container spacing={3}>
 								<Grid item xs={12} sm={6} md={6}>
