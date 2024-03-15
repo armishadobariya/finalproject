@@ -2,15 +2,11 @@ import React, { useState, useEffect } from 'react';
 import img from "../../Assests/Image/Home1/reg_bg.jpeg";
 import h1 from "../../Assests/Image/Admin/Dashboard/TotalProperty/home1.jpg";
 import h2 from "../../Assests/Image/Admin/Dashboard/TotalProperty/h2.jpeg";
-import h3 from "../../Assests/Image/Admin/Dashboard/TotalProperty/h3.jpg";
-import h4 from "../../Assests/Image/Admin/Dashboard/TotalProperty/h4.jpg";
+// import h3 from "../../Assests/Image/Admin/Dashboard/TotalProperty/h3.jpg";
+// import h4 from "../../Assests/Image/Admin/Dashboard/TotalProperty/h4.jpg";
 import h5 from "../../Assests/Image/Admin/Dashboard/TotalProperty/h5.png";
 
 import { useNavigate } from 'react-router-dom';
-
-
-
-
 
 const PropertyList = () => {
 
@@ -169,7 +165,7 @@ const PropertyList = () => {
 								</div>
 								<div className='tw-flex tw-ml-2'>
 
-									<div className=" tw-me-[10px] tw-bg-gray-100  tw-pl-[6px] tw-pr-[8px] tw-pt-[2px] tw-pb-[2px] tw-rounded-2xl tw-text-sm tw-mb-3 tw-mt-4 tw-w-[140px]">
+									<div className=" tw-me-[10px] tw-bg-gray-100  tw-pl-[6px] tw-pr-[8px] tw-pt-[2px] tw-pb-[2px] tw-rounded-2xl tw-text-sm tw-mb-3 tw-mt-4 tw-w-[145px]">
 										<h5 className='tw-text-sm'><span className='tw-font-semibold tw-text-sm'>Square.Ft</span> - 900 sq.ft</h5>
 
 									</div>
@@ -259,7 +255,7 @@ const PropertyList = () => {
 								</div>
 								<div className='tw-flex tw-ml-2'>
 
-									<div className=" tw-me-[10px] tw-bg-gray-100  tw-pl-[6px] tw-pr-[8px] tw-pt-[2px] tw-pb-[2px] tw-rounded-2xl tw-text-sm tw-mb-3 tw-mt-4 tw-w-[140px]">
+									<div className=" tw-me-[10px] tw-bg-gray-100  tw-pl-[6px] tw-pr-[8px] tw-pt-[2px] tw-pb-[2px] tw-rounded-2xl tw-text-sm tw-mb-3 tw-mt-4 tw-w-[145px]">
 										<h5 className='tw-text-sm'><span className='tw-font-semibold tw-text-sm'>Square.Ft</span> - 800 sq.ft</h5>
 
 									</div>

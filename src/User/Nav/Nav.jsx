@@ -469,7 +469,7 @@ import '../../../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import logo from '../../Assests/Image/nav2.svg';
 import { NavLink, useNavigate } from 'react-router-dom';
 import Button from '@mui/material/Button';
-import TextField from '@mui/material/TextField';
+// import TextField from '@mui/material/TextField';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
@@ -480,10 +480,9 @@ import PopupState, { bindTrigger, bindMenu } from 'material-ui-popup-state';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
-import IconButton from '@mui/material/IconButton';
-import EditIcon from '@mui/icons-material/Edit';
-import { userPofileUrl, userProfileUrl } from '../Components/Api';
+import { userProfileUrl } from '../Components/Api';
 import axios from 'axios';
+import "./menu.css";
 
 const style = {
 	position: 'absolute',
@@ -498,8 +497,8 @@ const style = {
 
 const Nav = () => {
 	const [userName, setUserName] = useState('');
-	const [userEmail, setUserEmail] = useState(false);
-	const [userRole, setUserRole] = useState(false);
+	const [userEmail, setUserEmail] = useState('');
+	const [userRole, setUserRole] = useState('');
 	const [userImage, setUserImage] = useState({ image: null, isSet: false });
 	const [isLogin, setIsLogin] = useState(false);
 	const [open, setOpen] = React.useState(false);
@@ -522,6 +521,7 @@ const Nav = () => {
 				setUserName(data.userData.name);
 				setUserImage((pre) => ({ image: data.image, isSet: false }));
 				setUserEmail(data.userData.email);
+				setUserRole(data.userData.userRole);
 				setIsLogin(data.isLogin);
 			}
 		} catch (error) {
@@ -546,37 +546,38 @@ const Nav = () => {
 		getUserData();
 	}, []);
 
-	const showRegister = () => {
-		navigate("/UserRegister");
-	}
+	// const showRegister = () => {
+	// 	navigate("/UserRegister");
+	// }
 
 
 	const showLogin = () => {
 		navigate("/UserLogin");
 	}
-	const handleEditProfile = async (popupState) => {
-		console.log('Edit profile clicked');
-		popupState.close();
 
-		Swal.fire({
-			title: "Profile",
-			html: `
-        <div class="profile-container">
-          <div class="avatar-container">
-            <img alt="Admin Image" src="https://cdn.vectorstock.com/i/preview-1x/34/96/flat-business-man-user-profile-avatar-in-suit-vector-4333496.jpg" />
-          </div>
-          <div class="profile-details">
-            <p style="font-weight: bold">Name: 123</p>
-            <p style="font-weight: bold">Email: 123@gmail.com/p>
-            <p style="font-weight: bold">Role: User</p>
-          </div>
-        </div>
-      `,
-			showCancelButton: true,
-			showConfirmButton: false,
-			cancelButtonText: "Close",
-		});
-	};
+	// const handleEditProfile = async (popupState) => {
+	// 	console.log('Edit profile clicked');
+	// 	popupState.close();
+
+	// 	Swal.fire({
+	// 		title: "Profile",
+	// 		html: `
+	//     <div class="profile-container">
+	//       <div class="avatar-container">
+	//         <img alt="Admin Image" src="https://cdn.vectorstock.com/i/preview-1x/34/96/flat-business-man-user-profile-avatar-in-suit-vector-4333496.jpg" />
+	//       </div>
+	//       <div class="profile-details">
+	//         <p style="font-weight: bold">Name: 123</p>
+	//         <p style="font-weight: bold">Email: 123@gmail.com/p>
+	//         <p style="font-weight: bold">Role: User</p>
+	//       </div>
+	//     </div>
+	//   `,
+	// 		showCancelButton: true,
+	// 		showConfirmButton: false,
+	// 		cancelButtonText: "Close",
+	// 	});
+	// };
 
 	// function profile() {
 	// 	console.log('hello');
@@ -619,7 +620,6 @@ const Nav = () => {
 		popupState.close();
 		getUserData();
 
-		// Define profile function globally or attach it to the window object
 		window.profile = () => {
 			Swal.fire({
 				title: "Hello!",
@@ -640,7 +640,7 @@ const Nav = () => {
 					<div class="profile-details">
 						<p style="font-weight: bold">Name: ${userName}</p>
 						<p style="font-weight: bold">Email: ${userEmail}</p>
-						<p style="font-weight: bold">Role: User</p>
+						<p style="font-weight: bold">Role: ${userRole}</p>
 					</div>
 				</div>
 			`,
@@ -663,7 +663,8 @@ const Nav = () => {
 		<div>
 			<nav
 				id="nav-bar"
-				className="navbar navbar-expand-lg px-lg-3 py-lg-2 shadow-sm sticky_nav"
+				// className="navbar navbar-expand-lg px-lg-3 py-lg-2 shadow-sm sticky_nav"
+				className="sticky_nav navbar navbar-expand-lg px-lg-3 py-lg-2 shadow-sm "
 				style={{ background: '#191919' }}
 			>
 				<div className="container-fluid">

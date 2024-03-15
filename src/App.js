@@ -39,13 +39,13 @@ const App = () => {
 		<div>
 
 			<Routes>
-				<Route exact path='/' element={<Home name="Home" />}></Route>
-				<Route exact path='/Buy' element={<Buy name="Buy" />} />
-				<Route exact path='/Rent' element={<Rent name="Rent" />} />
-				<Route exact path='/AddProperty' element={<AddProperty name="AddProperty" />} />
-				<Route exact path='/Buy/ReadMoreDetails' element={<ReadMoreDetails name="ReadMoreDetails" />} />
-				<Route exact path='/PropertyHistory' element={<PropertyHistory name="PropertyHistory" />}></Route>
-				<Route exact path='/Contact' element={<Contact name="Contact" />}></Route>
+				<Route exact path='/' element={<Home />}></Route>
+				<Route exact path='/Buy' element={<Buy />} />
+				<Route exact path='/Rent' element={<Rent />} />
+				<Route exact path='/AddProperty' element={<AddProperty />} />
+				<Route exact path='/Buy/ReadMoreDetails' element={<ReadMoreDetails />} />
+				<Route exact path='/PropertyHistory' element={<PropertyHistory />}></Route>
+				<Route exact path='/Contact' element={<Contact />}></Route>
 				<Route exact path='/About' element={<About name="About" />}></Route>
 				<Route exact path='/UserEmail' element={<UserEmail name="UserEmail" />}></Route>
 				<Route exact path='/UserRegister' element={<UserRegister

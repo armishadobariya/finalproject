@@ -52,7 +52,7 @@ const TotalProperty = () => {
 					</div>
 				) : (
 
-					<div className=' tw-flex tw-ml-[250px] tw-mt-[100px] '>
+					<div className=' tw-flex tw-ml-[260px] '>
 						<div className=' tw-mt-10'>
 							<div class=" tw-w-[360px] tw-ml-[55px] tw-h-[800px] mb-4 border-0 tw-shadow-2xl tw-rounded-md tw-me-10 ">
 								<div class="g-0 align-items-center">
@@ -173,7 +173,7 @@ const TotalProperty = () => {
 									</div>
 									<div className='tw-flex tw-ml-2'>
 
-										<div className=" tw-me-[10px] tw-bg-gray-100  tw-pl-[6px] tw-pr-[8px] tw-pt-[2px] tw-pb-[2px] tw-rounded-2xl tw-text-sm tw-mb-3 tw-mt-4 tw-w-[140px]">
+										<div className=" tw-me-[10px] tw-bg-gray-100  tw-pl-[6px] tw-pr-[8px] tw-pt-[2px] tw-pb-[2px] tw-rounded-2xl tw-text-sm tw-mb-3 tw-mt-4 tw-w-[145px]">
 											<h5 className='tw-text-sm'><span className='tw-font-semibold tw-text-sm'>Square.Ft</span> - 900 sq.ft</h5>
 
 										</div>
@@ -263,7 +263,7 @@ const TotalProperty = () => {
 									</div>
 									<div className='tw-flex tw-ml-2'>
 
-										<div className=" tw-me-[10px] tw-bg-gray-100  tw-pl-[6px] tw-pr-[8px] tw-pt-[2px] tw-pb-[2px] tw-rounded-2xl tw-text-sm tw-mb-3 tw-mt-4 tw-w-[140px]">
+										<div className=" tw-me-[10px] tw-bg-gray-100  tw-pl-[6px] tw-pr-[8px] tw-pt-[2px] tw-pb-[2px] tw-rounded-2xl tw-text-sm tw-mb-3 tw-mt-4 tw-w-[145px]">
 											<h5 className='tw-text-sm'><span className='tw-font-semibold tw-text-sm'>Square.Ft</span> - 800 sq.ft</h5>
 
 										</div>

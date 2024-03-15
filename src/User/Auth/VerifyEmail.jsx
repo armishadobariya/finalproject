@@ -29,6 +29,26 @@ const VerifyEmail = () => {
 		}
 	}, [location.state]);
 
+	const handleEmail = (event) => {
+		console.log("clicked");
+
+		if (event.key === 'Enter') {
+			console.log("enter clicked");
+			handleVerifyEmail(event);
+		};
+	}
+
+
+	// const handleOtp = (event) => {
+	// 	console.log("clicked");
+
+	// 	if (event.key === 'Enter') {
+	// 		console.log("enter clicked");
+	// 		verifyOtp(event);
+	// 	};
+	// }
+
+
 
 
 
@@ -142,6 +162,7 @@ const VerifyEmail = () => {
 													placeholder="Email"
 													value={email}
 													readOnly
+													onKeyDown={handleEmail}
 													onChange={(e) => {
 														setEmail(e.target.value);
 													}}
@@ -160,6 +181,7 @@ const VerifyEmail = () => {
 											<div className="tw-grid tw-place-content-center">
 												<OtpInput
 													value={otp}
+													// onKeyDown={handleOtp}
 													onChange={setOtp}
 													numInputs={4}
 													renderSeparator={
@@ -167,6 +189,7 @@ const VerifyEmail = () => {
 															-
 														</span>
 													}
+
 													renderInput={(props) => (
 														<input
 															{...props}

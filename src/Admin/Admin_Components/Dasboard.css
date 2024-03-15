@@ -559,6 +559,10 @@
   margin-top: -4px !important
 }
 
+.tw-mt-\[-500px\] {
+  margin-top: -500px !important
+}
+
 .tw-mt-\[-54px\] {
   margin-top: -54px !important
 }
@@ -643,8 +647,28 @@
   margin-top: 80px !important
 }
 
-.tw-mt-\[-500px\] {
-  margin-top: -500px !important
+.tw-mt-\[-520px\] {
+  margin-top: -520px !important
+}
+
+.tw-ml-\[260px\] {
+  margin-left: 260px !important
+}
+
+.tw-mb-\[8px\] {
+  margin-bottom: 8px !important
+}
+
+.tw-mb-\[4px\] {
+  margin-bottom: 4px !important
+}
+
+.tw-mb-\[3px\] {
+  margin-bottom: 3px !important
+}
+
+.tw-mb-\[2px\] {
+  margin-bottom: 2px !important
 }
 
 .tw-flex {
@@ -919,6 +943,10 @@
   width: 100% !important
 }
 
+.tw-w-\[145px\] {
+  width: 145px !important
+}
+
 .tw-cursor-not-allowed {
   cursor: not-allowed !important
 }
@@ -1085,11 +1113,6 @@
 .tw-border-yellow-500 {
   --tw-border-opacity: 1 !important;
   border-color: rgb(234 179 8 / var(--tw-border-opacity)) !important
-}
-
-.tw-border-gray-400 {
-  --tw-border-opacity: 1 !important;
-  border-color: rgb(156 163 175 / var(--tw-border-opacity)) !important
 }
 
 .tw-bg-\[\#f7f7f7\] {
@@ -1752,6 +1775,10 @@
     margin-left: 200px !important
   }
 
+  .md\:tw-ml-\[20px\] {
+    margin-left: 20px !important
+  }
+
   .md\:tw-ml-\[40px\] {
     margin-left: 40px !important
   }
@@ -1766,10 +1793,6 @@
 
   .md\:tw-ml-\[610px\] {
     margin-left: 610px !important
-  }
-
-  .md\:tw-ml-\[70px\] {
-    margin-left: 70px !important
   }
 
   .md\:tw-mr-14 {
@@ -1828,8 +1851,16 @@
     margin-top: 1.25rem !important
   }
 
+  .md\:tw-mt-\[-1000px\] {
+    margin-top: -1000px !important
+  }
+
   .md\:tw-mt-\[-1100px\] {
     margin-top: -1100px !important
+  }
+
+  .md\:tw-mt-\[-1200px\] {
+    margin-top: -1200px !important
   }
 
   .md\:tw-mt-\[-30px\] {
@@ -1860,44 +1891,16 @@
     margin-top: 70px !important
   }
 
-  .md\:tw-mt-\[-100px\] {
-    margin-top: -100px !important
+  .md\:tw-mt-\[-120px\] {
+    margin-top: -120px !important
   }
 
-  .md\:tw-mt-\[200px\] {
-    margin-top: 200px !important
+  .md\:tw-mt-\[-150px\] {
+    margin-top: -150px !important
   }
 
-  .md\:tw-mt-\[400px\] {
-    margin-top: 400px !important
-  }
-
-  .md\:tw-mt-\[-200px\] {
-    margin-top: -200px !important
-  }
-
-  .md\:tw-mt-\[-1000px\] {
-    margin-top: -1000px !important
-  }
-
-  .md\:tw-mt-\[-10px\] {
-    margin-top: -10px !important
-  }
-
-  .md\:tw-mt-\[-20px\] {
-    margin-top: -20px !important
-  }
-
-  .md\:tw-mt-\[30px\] {
-    margin-top: 30px !important
-  }
-
-  .md\:tw-mt-\[50px\] {
-    margin-top: 50px !important
-  }
-
-  .md\:tw-mt-\[100px\] {
-    margin-top: 100px !important
+  .md\:tw-mt-\[150px\] {
+    margin-top: 150px !important
   }
 
   .md\:tw-flex {

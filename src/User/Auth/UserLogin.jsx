@@ -23,10 +23,7 @@ const UserLogin = () => {
 	const [response, setResponse] = useState(null);
 	const [verificationResult, setVerificationResult] = useState('');
 
-
 	const navigate = useNavigate();
-
-
 
 	const userLogin = async (e) => {
 		try {
@@ -50,14 +47,23 @@ const UserLogin = () => {
 				toast.error(responseData.data.message);
 
 			}
-
 		}
 		catch (error) {
 			setResponse("error", 'error ...');
 			console.log('error');
-			// setResponse(alert(response.data.message));
 			setResponse(alert(response.data.message));
 		}
+	}
+
+
+
+	const handleKeyDown = (event) => {
+		console.log("clicked");
+
+		if (event.key === 'Enter') {
+			console.log("enter clicked");
+			userLogin(event);
+		};
 	}
 
 	const handleSubmit = (e) => {
@@ -118,6 +124,7 @@ const UserLogin = () => {
 												className="tw-w-full tw-border-2 tw-h-12 tw-p-3 tw-mb-1 tw-text-black"
 												placeholder="Password"
 												value={password}
+												onKeyDown={handleKeyDown}
 												onChange={e => setPassword(e.target.value)}
 											/>
 										</div>

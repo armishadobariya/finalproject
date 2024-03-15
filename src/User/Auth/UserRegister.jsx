@@ -58,6 +58,15 @@ const UserRegister = () => {
 		return true;
 	}
 
+	const handleKeyDown = (event) => {
+		console.log("clicked");
+
+		if (event.key === 'Enter') {
+			console.log("enter clicked");
+			UserRegister(event);
+		};
+	}
+
 	const UserRegister = async (e) => {
 		try {
 			e.preventDefault();
@@ -249,6 +258,8 @@ const UserRegister = () => {
 														placeholder="Phone"
 														required
 														value={mobileNo}
+														onKeyDown={handleKeyDown}
+
 														onChange={(e) => setMobileNo(e.target.value)}
 													/>
 												</div>

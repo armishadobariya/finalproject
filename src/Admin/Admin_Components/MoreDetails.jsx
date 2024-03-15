@@ -37,7 +37,8 @@ const MoreDetails = () => {
 				) : (
 
 
-					<div class=" tw-my-5 tw-mb-4 tw-px-4 tw-ml-[250px] tw-mt-[100px]">
+					<div class=" tw-my-5 tw-mb-4 tw-px-4 tw-ml-[250px]">
+						{/* <div class=" tw-my-5 tw-mb-4 tw-px-4 tw-ml-[250px] tw-mt-[100px]"> */}
 						<h1 className='tw-text-3xl tw-font-bold tw-mt-14 tw-ml-[40px]'>Anandam Bungalows</h1>
 						<div className=' tw-mt-4'>
 							<h5 class=" tw-text-gray-500 tw-ml-[40px] tw-flex"><h4 className='tw-cursor-pointer' onClick={() => navigate('/Admin/')}>Dashboard </h4>

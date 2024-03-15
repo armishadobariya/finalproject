@@ -19,6 +19,17 @@ const UserEmail = () => {
 
 	};
 
+
+	const handleKeyDown = (event) => {
+		console.log("clicked");
+
+		if (event.key === 'Enter') {
+			console.log("enter clicked");
+			handleSubmit(event);
+		};
+	}
+
+
 	return (
 		<div>
 
@@ -48,6 +59,7 @@ const UserEmail = () => {
 													class="tw-w-full tw-border-2 tw-h-12 tw-p-3 tw-mb-4 tw-text-black"
 													placeholder="Email"
 													value={email}
+													onKeyDown={handleKeyDown}
 													onChange={(e) => { setEmail(e.target.value) }}
 
 												/>

@@ -63,7 +63,7 @@ export const Footer = () => {
 								<h2 className=' tw-text-2xl tw-mt-4'>Newsletter</h2>
 								<div className=' tw-mt-8'>
 
-									<input type="text" placeholder='Enter Your Email' className=' tw-h-11  tw-p-2 tw-w-[160px]  tw-md:w-40' style={{ backgroundColor: "#191919", border: "2px solid #d3a478" }} /><EmailIcon className=' tw-mb-[6px] tw-text-black' style={{ height: "44px", width: "42px", backgroundColor: "#d3a478" }} />
+									<input type="text" placeholder='Enter Your Email' className=' tw-h-11  tw-p-2 tw-w-[160px]  tw-md:w-40' style={{ backgroundColor: "#191919", border: "2px solid #d3a478" }} /><EmailIcon className=' tw-mb-[2px] tw-text-black' style={{ height: "44px", width: "42px", backgroundColor: "#d3a478" }} />
 								</div>
 							</div>
 

@@ -532,7 +532,7 @@ const Home = () => {
 							<p className='tw-text-center tw-text-6xl-text-6xl' style={{ fontFamily: 'Cormorant Garamond, serif', fontSize: '40px' }}>Our Services
 							</p>
 							<div className='md:tw-flex tw-mt-[80px] md:tw-items-center md:tw-justify-center'>
-								<div className='md:tw-h-[360px] md:tw-w-[290px] tw-h-[300px] tw-w-[250px] tw-border-white tw-shadow-2xl md:tw-shadow-2xl tw-m-auto md:tw-ml-[70px]  tw-mb-[40px]'>
+								<div className='md:tw-h-[360px] md:tw-w-[290px] tw-h-[300px] tw-w-[250px] tw-border-white tw-shadow-2xl md:tw-shadow-2xl tw-m-auto md:tw-ml-[20px]  tw-mb-[40px]'>
 									<img src={s1} alt="" className='tw-h-[190px] tw-w-[190px] tw-mb-2 md:tw-ml-10 tw-mt-10 tw-ml-[30px] ' />
 									<h2 className='tw-text-center tw-font-semibold tw-text-lg '>India's Insights derived from
 										<br />over 10 lakh listings
