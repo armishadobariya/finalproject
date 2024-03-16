@@ -16,6 +16,8 @@ export const AddProperty = () => {
 	const [selectedFiles, setSelectedFiles] = useState([]);
 	const [selectedState, setSelectedState] = useState('');
 	const [selectedCity, setSelectedCity] = useState('');
+	const [selectedFileName, setSelectedFileName] = useState('');
+
 	const [states, setStates] = useState([]);
 	const [cities, setCities] = useState([]);
 	const [response, setResponse] = useState('');
@@ -50,7 +52,6 @@ export const AddProperty = () => {
 		setSelectedState(stateName);
 		const selectedStateData = jsonData.states.find((state) => state.name === stateName);
 		setCities(selectedStateData ? selectedStateData.cities : []);
-		// setSelectedState(e.target.value);
 	};
 
 	const handleCityChange = (e) => {
@@ -66,19 +67,79 @@ export const AddProperty = () => {
 		}
 	};
 
-	const handleFileChange = (event) => {
-		const files = event.target.files;
-		setSelectedFiles(files);
-	};
+	// const handleFileChange = (event) => {
+	// 	const files = event.target.files;
+	// 	setSelectedFiles(files);
+	// };
+
+	// const addPropertyData = async (e) => {
+	// 	try {
+
+	// 		const formData = new FormData();
+
+	// 		formData.append('type', type);
+	// 		formData.append('description', description);
+	// 		formData.append('propertyImage', image);
+	// 		formData.append('address', address);
+	// 		formData.append('state', selectedState);
+	// 		formData.append('city', selectedCity);
+	// 		formData.append('size', size);
+	// 		formData.append('price', price);
+	// 		formData.append('propertyAge', age);
+	// 		formData.append('propertyType', propertyType);
+	// 		formData.append('faching', face);
+	// 		formData.append('houseType', houseType);
+	// 		formData.append('facility', facilities);
+	// 		formData.append('furnishing', furnishing);
+	// 		formData.append('mobileNo', mobileNo);
+	// 		formData.append('email', email);
+
+
+	// 		// const reqData = {
+	// 		// 	type: type,
+	// 		// 	description: description,
+	// 		// 	propertyImage: image,
+	// 		// 	address: address,
+	// 		// 	state: states,
+	// 		// 	city: cities,
+	// 		// 	size: size,
+	// 		// 	price: price,
+	// 		// 	propertyAge: age,
+	// 		// 	propertyType: propertyType,
+	// 		// 	faching: face,
+	// 		// 	houseType: houseType,
+	// 		// 	facility: facilities,
+	// 		// 	furnishing: furnishing,
+	// 		// 	mobileNo: mobileNo,
+	// 		// 	email: email,
+	// 		// 	// status: "cancle"
+	// 		// }
+
+	// 		const token = localStorage.getItem("token");
+	// 		const responseData = await axios.post(addPropertyUrl, formData, {
+	// 			headers: {
+	// 				"Authorization": `Bearer ${token}`,
+	// 				"Content-Type": "application/json",
+	// 			}
+
+	// 		});
+	// 		console.log(responseData.data);
+	// 	} catch (error) {
+	// 		console.log(error);
+	// 		setResponse(error);
+	// 		setResponse("error:", 'error');
+	// 	}
+	// };
+
 
 	const addPropertyData = async (e) => {
 		try {
-
 			const formData = new FormData();
-
 			formData.append('type', type);
 			formData.append('description', description);
-			formData.append('propertyImage', image);
+			selectedFiles.forEach((fileName, index) => {
+				formData.append(`propertyImage_${index}`, fileName);
+			});
 			formData.append('address', address);
 			formData.append('state', selectedState);
 			formData.append('city', selectedCity);
@@ -86,53 +147,46 @@ export const AddProperty = () => {
 			formData.append('price', price);
 			formData.append('propertyAge', age);
 			formData.append('propertyType', propertyType);
-			formData.append('faching', face);
+			formData.append('facing', face);
 			formData.append('houseType', houseType);
 			formData.append('facility', facilities);
 			formData.append('furnishing', furnishing);
 			formData.append('mobileNo', mobileNo);
 			formData.append('email', email);
 
-
-			// const reqData = {
-			// 	type: type,
-			// 	description: description,
-			// 	propertyImage: image,
-			// 	address: address,
-			// 	state: states,
-			// 	city: cities,
-			// 	size: size,
-			// 	price: price,
-			// 	propertyAge: age,
-			// 	propertyType: propertyType,
-			// 	faching: face,
-			// 	houseType: houseType,
-			// 	facility: facilities,
-			// 	furnishing: furnishing,
-			// 	mobileNo: mobileNo,
-			// 	email: email,
-			// 	// status: "cancle"
-			// }
-
 			const token = localStorage.getItem("token");
 			const responseData = await axios.post(addPropertyUrl, formData, {
 				headers: {
 					"Authorization": `Bearer ${token}`,
-					"Content-Type": "application/json",
+					"Content-Type": "multipart/form-data",
 				}
-
 			});
 			console.log(responseData.data);
+			navigate('/');
 		} catch (error) {
 			console.log(error);
-			setResponse(error);
-			setResponse("error:", 'error');
+			// handle error
 		}
 	};
+	// const handleImage = (event) => {
+	// 	setImage(event.target.files[0]);
+	// 	// setSelectedFiles(event.target.files[0]);
+	// }
 
-	const handleImage = (event) => {
-		setImage(event.target.files[0]);
-	}
+
+	// const handleImage = (e) => {
+	// 	const file = e.target.files[0];
+	// 	setSelectedFileName(file.name);
+	// };
+
+	const handleImage = (e) => {
+		const files = e.target.files;
+		const fileNames = [];
+		for (let i = 0; i < files.length; i++) {
+			fileNames.push(files[i].name);
+		}
+		setSelectedFiles(fileNames);
+	};
 
 	const handleRadioChange = (e) => {
 		setType(e.target.value);
@@ -145,6 +199,8 @@ export const AddProperty = () => {
 	const handlePropertyTypeChange = (event) => {
 		setPropertyType(event.target.value);
 	};
+
+
 	return (
 		<>
 			<Nav />
@@ -200,7 +256,7 @@ export const AddProperty = () => {
 										</div>
 									</div>
 								)}
-								{activeTabIndex === 1 && (
+								{/* {activeTabIndex === 1 && (
 									<div >
 										<div >
 											<div>
@@ -208,7 +264,8 @@ export const AddProperty = () => {
 												<input type="file" id='file' style={{ display: "none" }} onChange={handleImage} />
 												<label htmlFor="file" className=' tw-place-content-center grid p-5 tw-h-full tw-w-full tw-mt-4 rounded-3' style={{ color: "#de0611", border: "1px dashed #de0611" }}>
 													<h1 className=' tw-place-content-center tw-grid'>  <FileUploadIcon style={{ height: "90px", width: "100px", color: "#ddd" }} className=' border-2 rounded-3' /></h1>
-													<h1 className=' tw-font-bold tw-text-lg tw-mt-3  tw-place-content-center tw-grid tw-text-black'>Upload your Images Here</h1>
+													<h1 className=' tw-font-bold tw-text-lg tw-mt-3 tw-place-content-center tw-grid tw-text-black'>Upload your Images Here</h1>{image[0]}
+
 													<h1 className='  tw-place-content-center tw-grid tw-font-semibold tw-mt-4' style={{ color: "#aaa" }}>Photos must be JPEG or PNG format and at least 2048x768</h1>
 													<div className=' tw-place-content-center tw-grid tw-mt-8'>
 														<h1 className=' tw-font-bold tw-border-1 tw-p-2 tw-w-40 col-2 tw-h-11 tw-text-lg tw-rounded-2 tw-text-black tw-place-content-center tw-grid'>Browse Files</h1>
@@ -219,7 +276,79 @@ export const AddProperty = () => {
 											</div>
 										</div>
 									</div>
+								)} */}
+
+
+								{/* {activeTabIndex === 1 && (
+									<div>
+										<div>
+											<div>
+												<h1 className='tw-mt-8 tw-text-lg tw-font-semibold'>Upload photos of your property</h1>
+												<input type="file" id='file' style={{ display: "none" }} onChange={handleImage} />
+												<label htmlFor="file" className='tw-place-content-center grid p-5 tw-h-full tw-w-full tw-mt-4 rounded-3' style={{ color: "#de0611", border: "1px dashed #de0611" }}>
+													<h1 className='tw-place-content-center tw-grid'>  <FileUploadIcon style={{ height: "90px", width: "100px", color: "#ddd" }} className='border-2 rounded-3' /></h1>
+													<h1 className='tw-font-bold tw-text-lg tw-mt-3 tw-place-content-center tw-grid tw-text-black'>Upload your Images Here</h1>
+													{selectedFile && <img src={URL.createObjectURL(selectedFile)} alt="Selected Image" />}
+													<h1 className='tw-place-content-center tw-grid tw-font-semibold tw-mt-4' style={{ color: "#aaa" }}>Photos must be JPEG or PNG format and at least 2048x768</h1>
+													<div className='tw-place-content-center tw-grid tw-mt-8'>
+														<h1 className='tw-font-bold tw-border-1 tw-p-2 tw-w-40 col-2 tw-h-11 tw-text-lg tw-rounded-2 tw-text-black tw-place-content-center tw-grid'>Browse Files</h1>
+													</div>
+												</label>
+												<div className='tw-flex tw-justify-end tw-mt-10 tw-gap-3'>
+												</div>
+											</div>
+										</div>
+									</div>
+								)} */}
+
+								{/* {activeTabIndex === 1 && (
+									<div>
+										<div>
+											<div>
+												<h1 className='tw-mt-8 tw-text-lg tw-font-semibold'>Upload photos of your property</h1>
+												<input type="file" id='file' style={{ display: "none" }} onChange={handleImage} />
+												<label htmlFor="file" className='tw-place-content-center grid p-5 tw-h-full tw-w-full tw-mt-4 rounded-3' style={{ color: "#de0611", border: "1px dashed #de0611" }}>
+													<h1 className='tw-place-content-center tw-grid'>  <FileUploadIcon style={{ height: "90px", width: "100px", color: "#ddd" }} className='border-2 rounded-3' /></h1>
+													<h1 className='tw-font-bold tw-text-lg tw-mt-3 tw-place-content-center tw-grid tw-text-black'>Upload your Images Here</h1>
+													<h1>{selectedFileName}</h1>
+													<h1 className='tw-place-content-center tw-grid tw-font-semibold tw-mt-4' style={{ color: "#aaa" }}>Photos must be JPEG or PNG format and at least 2048x768</h1>
+													<div className='tw-place-content-center tw-grid tw-mt-8'>
+														<h1 className='tw-font-bold tw-border-1 tw-p-2 tw-w-40 col-2 tw-h-11 tw-text-lg tw-rounded-2 tw-text-black tw-place-content-center tw-grid'>Browse Files</h1>
+													</div>
+												</label>
+												<div className='tw-flex tw-justify-end tw-mt-10 tw-gap-3'>
+												</div>
+											</div>
+										</div>
+									</div>
+								)} */}
+
+
+								{activeTabIndex === 1 && (
+									<div>
+										<div>
+											<div>
+												<h1 className='tw-mt-8 tw-text-lg tw-font-semibold'>Upload photos of your property</h1>
+												<input type="file" id='file' style={{ display: "none" }} onChange={handleImage} multiple />
+												<label htmlFor="file" className='tw-place-content-center grid p-5 tw-h-full tw-w-full tw-mt-4 rounded-3' style={{ color: "#de0611", border: "1px dashed #de0611" }}>
+													<h1 className='tw-place-content-center tw-grid'>  <FileUploadIcon style={{ height: "90px", width: "100px", color: "#ddd" }} className='border-2 rounded-3' /></h1>
+													<h1 className='tw-font-bold tw-text-lg tw-mt-3 tw-place-content-center tw-grid tw-text-black'>Upload your Images Here</h1>
+													{selectedFiles.map((fileName, index) => (
+														<h1 key={index} style={{ color: 'black', fontWeight: '600', marginLeft: '150px', marginTop: '5px' }}>{fileName}</h1>
+													))}
+													<h1 className='tw-place-content-center tw-grid tw-font-semibold tw-mt-4' style={{ color: "#aaa" }}>Photos must be JPEG or PNG format and at least 2048x768</h1>
+													<div className='tw-place-content-center tw-grid tw-mt-8'>
+														<h1 className='tw-font-bold tw-border-1 tw-p-2 tw-w-40 col-2 tw-h-11 tw-text-lg tw-rounded-2 tw-text-black tw-place-content-center tw-grid'>Browse Files</h1>
+													</div>
+												</label>
+												<div className='tw-flex tw-justify-end tw-mt-10 tw-gap-3'>
+												</div>
+											</div>
+										</div>
+									</div>
 								)}
+
+
 								{activeTabIndex === 2 && (
 									<div >
 										<div >
@@ -227,8 +356,8 @@ export const AddProperty = () => {
 												<h1 className=' tw-mt-8 tw-text-lg tw-font-semibold'>Listing Location </h1>
 												<div className=' tw-grid row'>
 													<div className=' col-md-12 tw-grid'>
-														<label htmlFor="address" className=' tw-mt-5 tw-font-semibold'  >Address</label>
-														<input type="text" id="address" className='tw-border-2 tw-p-3 tw-rounded-2  tw-mt-2 tw-h-12 tw-w-full ' onClick={(e) => { setAddress(e.target.value) }} placeholder='Address of your proprerty' />
+														<label htmlFor="address" className=' tw-mt-5 tw-font-semibold'>Address</label>
+														<input type="text" id="address" className='tw-border-2 tw-p-3 tw-rounded-2  tw-mt-2 tw-h-12 tw-w-full ' onChange={(e) => { setAddress(e.target.value) }} placeholder='Address of your proprerty' />
 													</div>
 												</div>
 												<div className=' row'>

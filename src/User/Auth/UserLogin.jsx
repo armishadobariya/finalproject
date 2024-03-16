@@ -25,6 +25,9 @@ const UserLogin = () => {
 
 	const navigate = useNavigate();
 
+
+
+
 	const userLogin = async (e) => {
 		try {
 			e.preventDefault();
@@ -33,13 +36,34 @@ const UserLogin = () => {
 				password: password,
 			};
 			const responseData = await axios.post(signInUrl, reqdata);
-
+			console.log(responseData.data.user.role);
 			if (responseData.data.statusCode === 201) {
 
-				const { token } = responseData.data;
-				console.log('token: ', token);
-				localStorage.setItem("token", token);
-				navigate("/", { state: email });
+
+				if (responseData.data.user.role === 'USER') {
+					const { token } = responseData.data;
+					console.log('token: ', token);
+					localStorage.setItem("token", token);
+					console.log(responseData.data.role);
+					navigate("/", { state: email });
+
+				}
+				else if (responseData.data.user.role === 'AGENT') {
+					const { token } = responseData.data;
+					console.log('token: ', token);
+					localStorage.setItem("token", token);
+					console.log(responseData.data.role);
+					navigate("/Agent", { state: email });
+				}
+				else {
+					const { token } = responseData.data;
+					console.log('token: ', token);
+					localStorage.setItem("token", token);
+					console.log(responseData.data.role);
+					navigate("/Admin", { state: email });
+
+				}
+
 
 			}
 			else {
@@ -47,10 +71,12 @@ const UserLogin = () => {
 				toast.error(responseData.data.message);
 
 			}
+
 		}
 		catch (error) {
 			setResponse("error", 'error ...');
 			console.log('error');
+			// setResponse(alert(response.data.message));
 			setResponse(alert(response.data.message));
 		}
 	}
