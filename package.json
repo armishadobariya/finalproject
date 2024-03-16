@@ -25,6 +25,7 @@
     "popper.js": "^1.16.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-form-stepper": "^2.0.3",
     "react-icons": "^4.12.0",
     "react-modal-video": "^2.0.1",
     "react-otp-input": "^3.1.1",
