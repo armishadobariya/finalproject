@@ -3,114 +3,177 @@ import "./UserForgotPassword.css";
 import backgroundImage from '../../Assests/Image/home3.avif';
 import '../../../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import PersonIcon from '@mui/icons-material/Person';
-import LockIcon from '@mui/icons-material/Lock';
-import { Link } from 'react-router-dom';
-
-import PasswordIcon from '@mui/icons-material/Password';
+// import LockIcon from '@mui/icons-material/Lock';
+// import { Link } from 'react-router-dom';
+import 'animate.css';
+// import PasswordIcon from '@mui/icons-material/Password';
+import OtpInput from 'react-otp-input';
+import axios from 'axios';
+import { forgetPasswordUrl, verifyOtpUrl } from '../Components/Api';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const UserForgotPassword = () => {
 
 	const [email, setEmail] = useState('');
-	const [password, setPassword] = useState('');
+	const [otp, setOtp] = useState('');
+	const [response, setResponse] = useState(null);
+	const location = useLocation();
+	const [showOtp, setShowOtp] = useState(false);
+	const navigate = useNavigate();
 
-	const handleSubmit = (e) => {
-		e.preventDefault();
-		setEmail('');
-		setPassword('');
+
+
+
+	const handleEmail = async () => {
+		try {
+			const reqdata = {
+				email: email,
+			};
+
+			const responseData = await axios.post(forgetPasswordUrl, reqdata);
+			if (responseData.data.statusCode === 200) {
+
+				toggleForm();
+			}
+			else {
+				toast.error(responseData.data.message);
+
+			}
+		}
+		catch (error) {
+			if (error.response && error.response.status === 404) {
+				setResponse('error', "Email not found");
+			} else {
+				// console.error("Error:", error);
+
+				setResponse('error', "An unexpected error occurred");
+			}
+		}
 	}
+
+	const toggleForm = () => {
+		setShowOtp(!showOtp);
+		console.log('hello');
+
+	}
+
+
+	const handleOtp = async (e) => {
+		try {
+			e.preventDefault();
+
+			const reqdata = {
+				email: email,
+				otp: otp,
+			};
+
+			const responseData = await axios.post(verifyOtpUrl, reqdata);
+
+			if (responseData.data.statusCode === 200) {
+				// const { token } = responseData.data;
+				// localStorage.setItem("token", token);
+				// console.log('token: ', token);
+
+				setResponse("success: ", responseData.data);
+				navigate("/UserResetPassword", { state: { email: email } });
+				console.log('verify email: ', email);
+			}
+			else {
+				toast.error(responseData.data.message);
+
+			}
+		} catch (error) {
+			setResponse("error :", response.data.message);
+			console.log('hello');
+		}
+	}
+
+
 
 	return (
 		<div>
+			<ToastContainer position='top-right' />
+			<div className='msg'>
+				{response && <div>{response.message}</div>}
+			</div>
 
 
-			<div style={{ position: 'relative' }}>
-				<img class="w-full md:h-[800px] h-[100vh] " src={backgroundImage} alt="background" srcset="" />
+			<div style={{ position: 'relative', marginTop: '-80px' }}>
+				<img class="tw-w-full md:tw-h-[800px] tw-h-[100vh] " src={backgroundImage} alt="background" srcset="" />
 				<div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', background: 'rgba(0, 0, 0, 0.5)' }}>
 				</div>
 				<div >
 					<div style={{ color: 'white', width: '100%', position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', textAlign: 'center' }}>
-						<div class="grid place-content-center">
-							<section className="grid content-center bg-white text-center rounded-sm border-2 md:w-[500px] h-auto p-2 m-3 shadow-md ">
+						<div class="tw-grid tw-place-content-center">
+							<section className="tw-grid tw-content-center tw-bg-white tw-text-center tw-border-2 md:tw-w-[500px] tw-h-auto tw-p-2 tw-m-3 tw-shadow-md ">
 
-								<div className=" md:p-10">
-									<h3 class="text-3xl font-bold  text-black mb-10">
+								<div className=" md:tw-p-[30px]">
+									<h3 class="tw-text-3xl tw-font-bold  tw-text-black tw-mb-10">
 										Forgot Password
 									</h3>
 
-									<form onSubmit={handleSubmit}>
+									<form>
 										<div>
-											<div className="flex">
-												<label className='border-2 mr-[2px] text-black p-2 mb-4' htmlFor='email'>
+											<div className="tw-flex">
+												<label className='tw-border-2 tw-mr-[2px] tw-text-black tw-p-2 tw-mb-4'>
 													<PersonIcon />
 												</label>
 												<input
-													id='email'
 													type="email"
 													name="email"
-													class="w-full border-2 h-12 p-3 mb-4 tw-text-black"
+													class="tw-w-full tw-border-2 tw-h-12 tw-p-3 tw-mb-4 tw-text-black"
 													placeholder="Email"
 													value={email}
-													onChange={e => setEmail(e.target.value)}
+													onChange={(e) => { setEmail(e.target.value) }}
 
 												/>
 											</div>
-											{/* <button type="button" class="bg-black mb-4 w-full text-center text-white text-lg font-semibold h-11" >
-												Get Otp
-											</button> */}
+											{
+												!showOtp &&
 
-											<button
-												disabled={!email}
-												type="submit"
-												className={`tw-w-full tw-text-center tw-text-lg tw-font-semibold tw-h-11 tw-mb-6
-    												${(!email) ? 'tw-bg-gray-300 tw-cursor-not-allowed tw-text-gray-600' : 'tw-bg-black tw-hover:bg-green-400 tw-text-white'}`}
-											>
-												Get Otp
-											</button>
+												<button type="button" class="tw-bg-black tw-mb-4 tw-w-full tw-text-center tw-text-white tw-text-lg tw-font-semibold tw-h-11"
+													onClick={handleEmail} >
+													Get Otp
+												</button>
+											}
 
 										</div>
+
 
 										<div>
-											<div className="flex">
-												<label className='border-2 mr-[2px] text-black p-2 mb-4' htmlFor='otp'>
-													<PasswordIcon />
-												</label>
-												<input
-													id='otp'
-													type="text"
-													name="otp"
-													class="w-full border-2 h-12 p-3 mb-4 tw-text-black"
-													placeholder="Enter Otp"
-													value={password}
-													onChange={e => setPassword(e.target.value)}
+											{
+												showOtp &&
+												<>
 
-												/>
-											</div>
-											{/* <button type="button" class="bg-black  w-full text-center text-white text-lg font-semibold h-11" >
-												Reset Password
-											</button> */}
+													<div className="tw-grid tw-place-content-center">
 
-											<button
-												disabled={!password}
-												type="submit"
-												className={`tw-w-full tw-text-center tw-text-lg tw-font-semibold tw-h-11
-    												${(!password) ? 'tw-bg-gray-300 tw-cursor-not-allowed tw-text-gray-600' : 'tw-bg-black tw-hover:bg-green-400 tw-text-white'}`}
-											>
-												Reset Password
-											</button>
+
+														<OtpInput
+															value={otp}
+															onChange={setOtp}
+															numInputs={4}
+
+															renderSeparator={
+																<span class="tw-text-black tw-mb-6 tw-p-2 tw-text-2xl">-</span>
+															}
+															renderInput={(props) =>
+																<input {...props}
+																	class=" tw-border-2 tw-h-[48px] tw-mb-4 tw-w-[48px] tw-text-black"
+
+																/>}
+														/>
+
+													</div>
+													<button type="button" class="tw-bg-black tw-w-full tw-text-center tw-text-white tw-text-lg tw-font-semibold tw-h-11"
+														onClick={handleOtp}>
+														Reset Password
+													</button>
+												</>
+											}
 
 										</div>
-
-
-
-
-
-
-
-
-
-
-
-
 
 									</form>
 								</div>

@@ -11,5 +11,17 @@ module.exports = {
 	},
 	important: true,
 
+	// tailwind.config.js
+
+	theme: {
+		extend: {
+			colors: {
+				'custom-color': '#2ec1ac',
+			},
+		},
+	},
+
+
+
 }
 
