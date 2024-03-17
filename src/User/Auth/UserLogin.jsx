@@ -37,7 +37,7 @@ const UserLogin = () => {
 			};
 			const responseData = await axios.post(signInUrl, reqdata);
 			console.log(responseData.data.user.role);
-			if (responseData.data.statusCode === 201) {
+			if (responseData.status === 200) {
 
 
 				if (responseData.data.user.role === 'USER') {

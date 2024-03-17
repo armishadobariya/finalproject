@@ -64,7 +64,7 @@ export const UserResetPassword = () => {
 				};
 				const responseData = await axios.post(resetPasswordUrl, reqdata);
 
-				if (responseData.data.statusCode === 200) {
+				if (responseData.status === 200) {
 
 					setResponse("success: ", 'success');
 					setResponse(() => { navigate("/UserLogin") });

@@ -39,15 +39,6 @@ const VerifyEmail = () => {
 	}
 
 
-	// const handleOtp = (event) => {
-	// 	console.log("clicked");
-
-	// 	if (event.key === 'Enter') {
-	// 		console.log("enter clicked");
-	// 		verifyOtp(event);
-	// 	};
-	// }
-
 
 
 
@@ -60,16 +51,11 @@ const VerifyEmail = () => {
 
 			const responseData = await axios.post(verifyEmailUrl, reqData);
 
-			if (responseData.status === 201) {
+			if (responseData.status === 200) {
 				setResponse('success', 'success..')
 			}
 		} catch (error) {
-			// if (error.response && error.response.status === 404) {
-			// 	setResponse("error", "Email not found");
-			// } else {
-			// 	console.error("Error:", error);
-			// 	setResponse("error", "An unexpected error occurred");
-			// }
+
 		}
 	};
 
@@ -84,7 +70,7 @@ const VerifyEmail = () => {
 
 			const responseData = await axios.post(verifyOtpUrl, reqdata);
 
-			if (responseData.data.statusCode === 200) {
+			if (responseData.status === 200) {
 				// toast.success('Email verified successfully!');
 				setResponse("success: ", responseData.data);
 				navigate("/UserRegister", { state: { email: email } });

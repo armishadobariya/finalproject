@@ -165,7 +165,6 @@ export const AddProperty = () => {
 			navigate('/');
 		} catch (error) {
 			console.log(error);
-			// handle error
 		}
 	};
 	// const handleImage = (event) => {

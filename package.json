@@ -20,6 +20,7 @@
     "axios": "^1.6.7",
     "bootstrap": "^5.3.2",
     "bootstrap-icons": "^1.11.3",
+    "console-browserify": "^1.2.0",
     "jwt-decode": "^4.0.0",
     "material-ui-popup-state": "^5.0.10",
     "popper.js": "^1.16.1",
@@ -45,6 +46,13 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
+
+  "resolve": {
+	"fallback": {
+	  "console": false
+	}
+  },
+  
   "eslintConfig": {
     "extends": [
       "react-app",

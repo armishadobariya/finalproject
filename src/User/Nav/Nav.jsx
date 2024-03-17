@@ -13,20 +13,13 @@ import PopupState, { bindTrigger, bindMenu } from 'material-ui-popup-state';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
-import { changeProfileUrl, userProfileUrl } from '../Components/Api';
+import { agentVerifyUrl, changeProfileUrl, deleteProfileUrl, userProfileUrl } from '../Components/Api';
 import axios from 'axios';
 import "./menu.css";
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
-const style = {
-	position: 'absolute',
-	top: '20%',
-	left: '20%',
-	transform: 'translate(-50%, -50%)',
-	width: 300,
-	bgcolor: 'background.paper',
-	border: '2px solid #000',
-	boxShadow: 24,
-};
+
 
 const Nav = () => {
 	const [userName, setUserName] = useState('');
@@ -35,9 +28,14 @@ const Nav = () => {
 	const [userMobile, setUserMobile] = useState('');
 	const [userImage, setUserImage] = useState({ image: null, isSet: false });
 	const [isLogin, setIsLogin] = useState(false);
-	const [open, setOpen] = React.useState(false);
+	const [open, setOpen] = useState(false);
 	const [isNavbarCollapsed, setIsNavbarCollapsed] = useState(true);
 	const [isNavbarActive, setIsNavbarActive] = useState(false);
+	const [email, setEmail] = useState('');
+	const [response, setResponse] = useState('');
+	const [newProfilePhoto, setNewProfilePhoto] = useState(null);
+	const [deletePassword, setDeletePassword] = useState("");
+
 
 
 	const navigate = useNavigate();
@@ -63,16 +61,12 @@ const Nav = () => {
 				});
 				setUserEmail(data.userData.email);
 				setUserMobile(data.userData.mobileNo);
-				// setUserRole(data.userData.role);
 				setIsLogin(data.isLogin);
 			}
 		} catch (error) {
 			console.error("fetch user data:", error.message);
 		}
 	}
-
-
-
 
 	const handleClickOpen = () => {
 		setOpen(true);
@@ -88,20 +82,167 @@ const Nav = () => {
 	};
 
 	useEffect(() => {
+
 		getUserData();
 	}, []);
 
-
-
-
 	const showLogin = () => {
 		navigate("/UserLogin");
+
 	}
 
 
+	const handleVerifyEmail = async (e) => {
+		try {
+
+			const reqData = {
+				email: email,
+			};
+			console.log(email, "email")
+
+			const responseData = await axios.post(agentVerifyUrl, { email: reqData.email });
+
+			if (responseData.data.statusCode === 201) {
+				console.log("done");
+				console.log(responseData.data.message);
+				setResponse('success', 'success..');
+				setEmail('');
+
+			}
+		} catch (error) {
+			toast.error("Error: " + error.message);
+		}
+	};
+
+
+	const handleSetting = async (popupState) => {
+		popupState.close();
+
+
+		window.confirmDelete = () => {
+
+			Swal.fire({
+				html: `
+					<div class="profile-container" style="font-family: Arial, sans-serif; margin-top: 8px; padding: 20px;">
+						<h1 style="color: #333; font-weight:bold; font-size:24px; color:grey;">Delete Account</h1>
+						<hr style="border-color: #333; margin-top:10px;" />
+						<div style="margin-top:20px;">
+						<lable style=" margin-left:-235px;">Enter Your Password : <br>
+						<input type="password" id="passwordInput" style="padding:8px;width:410px; margin-top:5px; " />
+						</lable></div>
+
+						
+						<div style="display: flex; justify-content: center; margin-top:30px">
+							<button id="deleteButton" style="margin-right: 10px; padding: 10px 20px; background-color: #FF0000; color: #fff; border: none; cursor: pointer; border-radius: 5px;">Delete</button>
+						</div>
+					</div>
+				`,
+				showConfirmButton: false,
+			});
+
+
+			document.getElementById('deleteButton').onclick = async () => {
+				const password = document.getElementById('passwordInput').value;
+				try {
+					const response = await axios.delete(deleteProfileUrl, {
+						headers: {
+							Authorization: `Bearer ${localStorage.getItem('token')}`,
+						},
+						data: { password },
+					});
+
+					if (response.status === 200) {
+						Swal.fire('Success!', 'Your account has been deleted.', 'success');
+						// navigate('/UserLogin');
+					} else {
+						Swal.fire('Error', 'Failed to delete your account.', 'error');
+					}
+				} catch (error) {
+					console.error('Error deleting account:', error);
+					Swal.fire('Error', 'Failed to delete your account.', 'error');
+				}
+
+			}
+
+		};
+
+		window.handleNoClick = () => {
+			Swal.close();
+		};
+
+
+		window.deleteAcc = () => {
+
+			Swal.fire({
+				html: `
+					<div class="profile-container" style="font-family: Arial, sans-serif; margin-top: 8px; padding: 20px;">
+						<h1 style="color: #333; font-weight:bold; font-size:24px; color:grey;">Delete Account</h1>
+						<hr style="border-color: #333; margin-top:10px;" />
+						<p style="color: #666; margin-top:10px; font-size:15px">Are You Sure, You Want To Delete Your Account?</p>
+
+						<div style="display: flex; justify-content: center; margin-top:30px">
+							<button style="padding: 10px 20px; margin-right: 10px; background-color: #808080; color: #fff; border: none; cursor: pointer; border-radius: 5px;" onclick="handleNoClick()">No</button>
+							<button id="editButton" style="margin-right: 10px; padding: 10px 20px; background-color: #007bff; color: #fff; border: none; cursor: pointer; border-radius: 5px;" onclick="confirmDelete()">Yes</button>
+						</div>
+					</div>
+				`,
+				showConfirmButton: false,
+			});
+		};
+
+		window.need = () => {
+
+			Swal.fire({
+				html: `
+					<div class="profile-container" style="font-family: Arial, sans-serif; margin-top: 8px; padding: 20px;">
+						<h1 style="color: #333; font-weight:bold; font-size:24px; color:grey;">How we can help?</h1>
+						<hr style="border-color: #333; margin-top:10px;" />
+						<p style="color: #666; margin-top:5px; font-size:15px">I delete my account.</p>
+						
+						
+						<div style=" justify-content: center; margin-top:30px">
+							<div style=" border: 2px solid white; padding: 8px; box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2); cursor:pointer;" onclick="deleteAcc()"><span style="font-size:18px;margin-left:-250px;">Delete My Account</span><p style="margin-left:380px; margin-top:-27px; font-size:15px; font-weight:bold;">></p></div>
+							</div>
+					</div>
+				`,
+				showCancelButton: true,
+				showConfirmButton: false,
+				cancelButtonText: "Close",
+			});
 
 
 
+		};
+
+
+		Swal.fire({
+			title: "Settings",
+			html: `
+			<hr style="border-color: #333; margin-top:5px; margin-bottom:15px" />
+
+				<div class="profile-container">
+					<div class="avatar-container" style="display: flex; justify-content: center;">
+						<img alt="Admin Image" id="profileImage" src=${userImage.isSet ? URL.createObjectURL(userImage.image) : userImage.image} style="cursor: pointer; margin-bottom:20px; height:150px; width:150px; border-radius: 50%;" onclick="profile()"  />
+
+					</div>
+					<div class="profile-details">
+						<div style="margin-top: 10px; border: 2px solid white; padding: 8px; box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);"><span style="margin-left:-350px;">Name : </span><p style="margin-left:370px; margin-top:-27px; font-size:15px">${userName}</p></div>
+						<div style="margin-top: 10px; border: 2px solid white; padding: 8px; box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);"><span style="margin-left:-350px;">Email : </span> <p style="margin-left:190px; margin-top:-27px; font-size:15px">${userEmail}</p></div>
+						<div style="margin-top: 10px; border: 2px solid white; padding: 8px; box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);"><span style="margin-left:-315px;">Mobile No : </span> <p style="margin-left:330px; margin-top:-27px; font-size:15px">${userMobile}</p></div>
+						<div style="margin-top: 10px; border: 2px solid white; padding: 8px; box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2); cursor:pointer;" onclick="need()"><span style="margin-left:-310px;">I Need Help</span><p style="margin-left:400px; margin-top:-27px; font-size:15px; font-weight:bold;">></p></div>
+						<hr style="border-color: gray; margin-bottom:15px" />
+
+					</div>
+
+				</div>
+			`,
+			showCancelButton: true,
+			showConfirmButton: false,
+			cancelButtonText: "Close",
+		});
+
+
+	}
 
 	const handleShowProfile = async (popupState) => {
 		popupState.close();
@@ -111,23 +252,48 @@ const Nav = () => {
 			Swal.close();
 		};
 
+		window.handleImageChange = (event) => {
+			const selectedFile = event.target.files[0];
+			if (selectedFile) {
+				console.log('Selected File:', selectedFile.name);
+			}
+		}
 
+		window.profile = () => {
 
-		// window.handleImageChange1 = (event) => {
-		// 	if (event.target.files.length > 0) {
-		// 		const file = event.target.files[0];
-		// 		console.log('Selected File:', file);
-		// 	}
-		// }
+			Swal.fire({
+				html: `
+					<div class="profile-container" style="font-family: Arial, sans-serif; margin-top: 8px; padding: 20px;">
+						<h1 style="color: #333; font-weight:bold; font-size:24px; color:grey;">Profile Picture</h1>
+						<hr style="border-color: #333; margin-top:10px;" />
+						<p style="color: #666; margin-top:5px; font-size:15px">A picture helps people recognize you and lets you know when you’re signed in to your account.</p>
+						<div class="avatar-container" style="display: flex; justify-content: center; margin-top: 20px;">
+							<img id="profileImage" src=${userImage.isSet ? URL.createObjectURL(userImage.image) : userImage.image} alt="User_Profile" style="height: 200px; width: 200px; border-radius: 50%;" />					
+						</div>
+						<div>
+							<input id="imageInput" type='file' style="margin-bottom: 20px; margin-top: 20px; margin-left: 100px; outline: none; font-size:16px;" />
+						</div>
+						<div style="display: flex; justify-content: center; margin-top:10px">
+							<button style="padding: 10px 20px; margin-right: 10px; background-color: #808080; color: #fff; border: none; cursor: pointer; border-radius: 5px;" onclick="handleCancelClick()">Cancel</button>
+							<button id="editButton" style="margin-right: 10px; padding: 10px 20px; background-color: #007bff; color: #fff; border: none; cursor: pointer; border-radius: 5px;">Edit</button>
+						</div>
+					</div>
+				`,
+				showConfirmButton: false,
+			});
+			document.getElementById('editButton').onclick = editImage;
+		};
 
-		window.editImage = async (e) => {
+		const editImage = async () => {
 			try {
-				console.log('hello');
-				e.preventDefault();
+				const selectedImage = document.getElementById('imageInput').files[0];
+				if (selectedImage) {
+					const imageURL = URL.createObjectURL(selectedImage);
+					document.getElementById('profileImage').src = imageURL;
+				}
+
 				const formData = new FormData();
-
-				formData.append('image', userImage.image);
-
+				formData.append('profilePic', selectedImage);
 
 				const token = localStorage.getItem('token');
 				const response = await axios.post(changeProfileUrl, formData, {
@@ -135,49 +301,22 @@ const Nav = () => {
 						'Content-Type': 'multipart/form-data',
 						Authorization: `Bearer ${token}`,
 					},
-
 				});
-				if (response.status === 200) {
-					console.log('success');
-					const data = response.data.data;
-					console.log(data);
-					setUserImage(pre => {
-						return {
-							image: data.image, isSet: false
-						}
-					});
 
+				if (response.status === 200) {
+					const data = response.data;
+					setUserImage({ image: data.image, isSet: false });
+					Swal.fire('Success!', 'Profile picture updated.', 'success');
+					// Swal.close();
+				} else {
+					throw new Error(`Failed to update profile picture: ${response.statusText}`);
 				}
 			} catch (error) {
-				console.error("fetch user data:", error.message);
+				console.error('Error updating profile picture:', error);
+				Swal.fire('Error', 'Failed to update profile picture.', 'error');
 			}
-		}
-
-		window.profile = () => {
-			Swal.fire({
-				html: `
-				  <div class="profile-container" style="font-family: Arial, sans-serif; margin-top: 8px; padding: 20px;">
-					<h1 style="color: #333; font-weight:bold; font-size:24px; color:grey;">Profile Picture</h1>
-					<hr style="border-color: #333; margin-top:10px;" />
-					<p style="color: #666; margin-top:5px; font-size:15px">A picture helps people recognize you and lets you know when you’re signed in to your account.</p>
-					<div class="avatar-container" style="display: flex; justify-content: center; margin-top: 20px;">
-					<img src=${userImage.isSet ? URL.createObjectURL(userImage.image) : userImage.image} alt="User_Profile" style="
-						height: 200px; width: 200px;" />					
-						</div>
-					<div>
-					<input type='file' style="margin-bottom: 20px; margin-top: 20px; margin-left: 100px; outline: none; font-size:16px;"  />
-					</div>
-					<div style="display: flex; justify-content: center; margin-top:10px" >
-					<button style="padding: 10px 20px; margin-right: 10px; background-color: #dc3545; color: #fff; border: none; cursor: pointer; border-radius: 5px;"  onclick="handleCancelClick()">Cancel</button>
-					<button style="margin-right: 10px; padding: 10px 20px; background-color: #007bff; color: #fff; border: none; cursor: pointer; border-radius: 5px;" onclick={editImage}>Edit</button>
-					</div>
-				  </div>
-				`,
-				showConfirmButton: false,
-			});
-
-
 		};
+
 
 		Swal.fire({
 			title: "Profile",
@@ -186,7 +325,7 @@ const Nav = () => {
 
 				<div class="profile-container">
 					<div class="avatar-container" style="display: flex; justify-content: center;">
-						<img alt="Admin Image" style="cursor: pointer; margin-bottom:20px; height:150px; width:150px;" onclick="profile()" src=${userImage.isSet ? URL.createObjectURL(userImage.image) : userImage.image} />
+						<img alt="Admin Image" id="profileImage" src=${userImage.isSet ? URL.createObjectURL(userImage.image) : userImage.image} style="cursor: pointer; margin-bottom:20px; height:150px; width:150px; border-radius: 50%; " onclick="profile()"  />
 
 					</div>
 					<div class="profile-details">
@@ -204,8 +343,6 @@ const Nav = () => {
 	};
 
 
-
-
 	const logOut = () => {
 		navigate('/UserLogin');
 	};
@@ -214,6 +351,8 @@ const Nav = () => {
 
 	return (
 		<div>
+			<div className="msg">{response && <div>{response.message}</div>}</div>
+
 			<nav
 				id="nav-bar"
 				// className="navbar navbar-expand-lg px-lg-3 py-lg-2 shadow-sm sticky_nav"
@@ -254,6 +393,7 @@ const Nav = () => {
 								Feedback
 							</NavLink>
 						</ul>
+
 						<form action="" method="post">
 							<div className="d-flex">
 								<Button variant="outlined" onClick={handleClickOpen} className='tw-text-white tw-border-2' style={{ border: "1px solid white" }}>
@@ -280,14 +420,13 @@ const Nav = () => {
 											To register as an agent on this website, please enter your email address here. We will send updates occasionally.
 										</DialogContentText>
 										<label htmlFor="email" className='tw-mt-4 tw-text-lg'>Enter Your Email</label>
-										<input type="email" name="email" id="email" className='tw-w-full tw-h-11 tw-border 2 tw-rounded-md tw-pl-3' style={{ cursor: "text", outline: "grey" }} />
+										<input type="email" value={email} onChange={(e) => setEmail(e.target.value)} name="email" id="email" className='tw-w-full tw-h-11 tw-border 2 tw-rounded-md tw-pl-3' style={{ cursor: "text", outline: "grey" }} />
 									</DialogContent>
 									<DialogActions>
 										<button onClick={handleClose} className='tw-font-semibold tw-mr-3 tw-p-2 tw-text-white tw-bg-black tw-rounded-md' style={{ width: "100px" }}>Cancel</button>
-										<button type="submit" className='tw-font-semibold tw-mr-4 tw-p-2  tw-text-white tw-bg-black tw-rounded-md' style={{ width: "100px" }}>Verify</button>
+										<button type="submit" className='tw-font-semibold tw-mr-4 tw-p-2  tw-text-white tw-bg-black tw-rounded-md' style={{ width: "100px" }} onClick={handleVerifyEmail}>Verify</button>
 									</DialogActions>
 								</Dialog>
-
 								<button
 									type="button"
 									className="btn shadow-none me-lg-3 me-3 ms-3"
@@ -314,10 +453,44 @@ const Nav = () => {
 											<Menu {...bindMenu(popupState)} style={{ marginTop: '50px' }}>
 												<MenuItem onClick={() => handleShowProfile(popupState)}>Profile</MenuItem>
 												<MenuItem onClick={() => logOut(popupState)}>Logout</MenuItem>
+												<MenuItem onClick={() => handleSetting(popupState)}>Settings</MenuItem>
 											</Menu>
 										</>
 									)}
 								</PopupState>
+
+
+
+								{/* {isLogin ? (
+									<PopupState variant="popover" popupId="demo-popup-menu">
+										{(popupState) => (
+											<>
+												<AccountCircleIcon
+													style={{ color: "#d3a478", height: "36px", width: "36px", marginRight: "10px", marginTop: '5px', cursor: 'pointer', overflowY: 'auto' }}
+													variant="contained"
+													{...bindTrigger(popupState)}
+												>
+												</AccountCircleIcon>
+												<Menu {...bindMenu(popupState)} style={{ marginTop: '50px' }}>
+													<MenuItem onClick={() => handleShowProfile(popupState)}>Profile</MenuItem>
+													<MenuItem onClick={showLogin}>Logout</MenuItem>
+												</Menu>
+											</>
+										)}
+									</PopupState>
+								) : (
+									<button
+										type="button"
+										className="btn shadow-none me-lg-3 me-3 ms-3"
+										data-bs-toggle="modal"
+										data-bs-target="#loginModal"
+										onClick={showLogin}
+										id='btnLogin'
+										style={{ background: '#d3a478' }}
+									>
+										Login
+									</button>
+								)} */}
 							</div>
 						</form>
 					</div>

@@ -9,3 +9,6 @@ export const googleLoginUrl = `${baseUrl}/auth/google-login`;
 export const addPropertyUrl = `${baseUrl}/property/add-property`;
 export const userProfileUrl = `${baseUrl}/auth/get-user`;
 export const changeProfileUrl = `${baseUrl}/auth/change-profilePic`;
+export const deleteProfileUrl = `${baseUrl}/auth/delete-profilePic`;
+export const agentVerifyUrl = `${baseUrl}/agent/verify-agent`;
+export const agentAddUrl = `${baseUrl}/agent/agent-add`;
