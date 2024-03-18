@@ -10,6 +10,8 @@ import "./TotalProperty.css";
 import { useNavigate } from 'react-router-dom';
 import Admin_Sidebar from '../Admin_Nav/Admin_Sidebar';
 import "./Common.css";
+import axios from 'axios';
+import { getPropertyUrl } from '../../User/Components/Api';
 
 
 
@@ -18,6 +20,8 @@ const TotalProperty = () => {
 
 	const [showMore, setShowMore] = useState(false);
 	const [loading, setLoading] = useState(true);
+	const [properties, setProperties] = useState([]);
+
 
 	const navigate = useNavigate();
 
@@ -30,11 +34,36 @@ const TotalProperty = () => {
 		setShowMore(!showMore);
 	};
 
+
+	const getProperty = async () => {
+		try {
+			const token = localStorage.getItem('token');
+			const response = await axios.get(getPropertyUrl, {
+				headers: {
+					Authorization: `Bearer ${token}`,
+				},
+			});
+
+			if (response.status === 200) {
+				const data = response.data.data;
+				setProperties(data);
+				setLoading(false);
+			}
+		} catch (error) {
+			console.error("fetch all property:", error.message);
+		}
+	};
+
+
+
+
 	useEffect(() => {
 		setTimeout(() => {
 			setLoading(false);
 		}, 500)
+		getProperty();
 	}, []);
+
 
 	return (
 		<>
@@ -46,11 +75,16 @@ const TotalProperty = () => {
 					<Admin_Sidebar className="" />
 				</div>
 
+
+
 				{loading ? (
 					<div className="loader">
 						<div class="spinner"></div>
 					</div>
 				) : (
+
+
+
 
 					<div className=' tw-flex tw-ml-[260px] '>
 						<div className=' tw-mt-10'>
@@ -62,7 +96,12 @@ const TotalProperty = () => {
 								</div >
 
 								<div class=" tw-ml-6 tw-mt-6 ">
-
+									{properties && properties.map((property) => (
+										<div key={property.id}>
+											<h2>{property.city}</h2>
+											<h2>{property.description}</h2>
+										</div>
+									))}
 									<h4 className=' tw-font-semibold tw-text-xl '>Anandam Bungalows</h4>
 									<h2 class=" tw-font-semibold tw-text-lg tw-mb-4 tw-mt-1">₹ 1.13 Cr - 3.20 Cr</h2>
 

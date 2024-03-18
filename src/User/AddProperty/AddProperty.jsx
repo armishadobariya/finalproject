@@ -147,7 +147,7 @@ export const AddProperty = () => {
 			formData.append('price', price);
 			formData.append('propertyAge', age);
 			formData.append('propertyType', propertyType);
-			formData.append('facing', face);
+			formData.append('faching', face);
 			formData.append('houseType', houseType);
 			formData.append('facility', facilities);
 			formData.append('furnishing', furnishing);
@@ -161,8 +161,11 @@ export const AddProperty = () => {
 					"Content-Type": "multipart/form-data",
 				}
 			});
-			console.log(responseData.data);
-			navigate('/');
+
+			if (responseData.status === 200) {
+				console.log(responseData.data);
+				navigate('/');
+			}
 		} catch (error) {
 			console.log(error);
 		}
@@ -230,15 +233,15 @@ export const AddProperty = () => {
 
 												<div className="row tw-mt-3 tw-flex tw-gap-5 tw-p-3">
 													<div className=" col-2 tw-border-2 tw-p-2 tw-rounded-2 ">
-														<input class="form-check-input" type="radio" name="why" id="exampleRadios1" value="sell" checked={type === 'sell'} onChange={handleRadioChange} />
+														<input class="form-check-input" type="radio" name="why" id="exampleRadios1" value="Sell" checked={type === 'Sell'} onChange={handleRadioChange} />
 														<label class="form-check-label tw-mr-6" for="exampleRadios1">
 															Sell
 														</label>
 													</div>
 													<div class=" col-2 tw-border-2 tw-p-2 tw-rounded-2">
-														<input class="form-check-input" type="radio" name="why" id="exampleRadios2" value="buy" checked={type === 'buy'} onChange={handleRadioChange} />
+														<input class="form-check-input" type="radio" name="why" id="exampleRadios2" value="Rent" checked={type === 'Rent'} onChange={handleRadioChange} />
 														<label class="form-check-label" for="exampleRadios2">
-															Buy
+															Rent
 														</label>
 													</div>
 												</div>
@@ -430,10 +433,10 @@ export const AddProperty = () => {
 														onChange={handlePropertyTypeChange}
 													>
 														<option value="" disabled>Select Property Type</option>
-														<option value="independent-house">Independent House</option>
-														<option value="villa">Villa</option>
-														<option value="apartment">Apartment</option>
-														<option value="affordable-house">Affordable House</option>
+														<option value="Independent House">Independent House</option>
+														<option value="Villa">Villa</option>
+														<option value="Appartment">Apartment</option>
+														<option value="Affordable House">Affordable House</option>
 													</select>
 												</div>
 												<div className='col-lg-4 tw-grid'>
@@ -447,10 +450,10 @@ export const AddProperty = () => {
 														onChange={(e) => { setFace(e.target.value) }}
 													>
 														<option value="" selected disabled>Select Property Facing</option>
-														<option value="east">East</option>
-														<option value="wast">Wast</option>
-														<option value="north">North</option>
-														<option value="south">South</option>
+														<option value="East">East</option>
+														<option value="West">West</option>
+														<option value="North">North</option>
+														<option value="South">South</option>
 													</select>
 												</div>
 												<div className='col-lg-4 tw-grid'>
@@ -563,24 +566,24 @@ export const AddProperty = () => {
 											</div>
 
 											<div className="row tw-mt-10">
-												<h1 className=' tw-font-semibold'>Facilities</h1>
+												<h1 className=' tw-font-semibold'>Furnishing</h1>
 											</div>
 											<div className="row  tw-grid  md:tw-flex tw-space-y-4 tw-p-3 tw-justify-evenly  ">
 												<div className="tw-border-2 tw-p-2 tw-rounded-2 col-md-2 tw-pl-5 md:tw-mt-5">
-													<input className="form-check-input" type="radio" name="amenity" id="parking" value='Un-Furnished' checked={furnishing === 'Un-Furnished'} onChange={handleFurnisherType} />
+													<input className="form-check-input" type="radio" name="amenity" id="parking" value='Unfurnished' checked={furnishing === 'Unfurnished'} onChange={handleFurnisherType} />
 
 													<label className="form-check-label tw-pl-2" htmlFor="parking">
 														Un-Furnished
 													</label>
 												</div>
 												<div className="tw-border-2 tw-p-2 tw-rounded-2 col-md-2 tw-pl-5">
-													<input className="form-check-input" type="radio" name="amenity" id="lift" value='Semi-Furnished' checked={furnishing === 'Semi-Furnished'} onChange={handleFurnisherType} />
+													<input className="form-check-input" type="radio" name="amenity" id="lift" value='Semi Furnished' checked={furnishing === 'Semi Furnished'} onChange={handleFurnisherType} />
 													<label className="form-check-label tw-pl-2" htmlFor="lift">
 														Semi-Furnished
 													</label>
 												</div>
 												<div className="tw-border-2 tw-p-2 tw-rounded-2 col-md-2 tw-pl-5">
-													<input className="form-check-input" type="radio" name="amenity" id="gas-pipeline" value='Full-Furnished' checked={furnishing === 'Full-Furnished'} onChange={handleFurnisherType} />
+													<input className="form-check-input" type="radio" name="amenity" id="gas-pipeline" value='Full Furnished' checked={furnishing === 'Full Furnished'} onChange={handleFurnisherType} />
 													<label className="form-check-label tw-pl-2" htmlFor="gas-pipeline">
 														Full-Furnished
 													</label>

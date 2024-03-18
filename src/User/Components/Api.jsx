@@ -12,3 +12,4 @@ export const changeProfileUrl = `${baseUrl}/auth/change-profilePic`;
 export const deleteProfileUrl = `${baseUrl}/auth/delete-profilePic`;
 export const agentVerifyUrl = `${baseUrl}/agent/verify-agent`;
 export const agentAddUrl = `${baseUrl}/agent/agent-add`;
+export const getPropertyUrl = `${baseUrl}/property/getall-property`;
