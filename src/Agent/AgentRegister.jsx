@@ -27,6 +27,13 @@ export const AgentRegister = () => {
 	const [agentBankName, setAgentBankName] = useState('');
 	const [agentBankAcc, setAgentBankAcc] = useState('');
 	const [agentIfscNo, setAgentIfscNo] = useState('');
+	const [selectedFiles, setSelectedFiles] = useState([]);
+
+	const [adharFront, setAdharFront] = useState('');
+	const [adharBack, setAdharBack] = useState('');
+	const [panFront, setPanFront] = useState('');
+	const [panBack, setPanBack] = useState('');
+
 
 	const addAgentData = async (e) => {
 		console.log('hello');
@@ -44,6 +51,10 @@ export const AgentRegister = () => {
 			formData.append('bankName', agentBankName);
 			formData.append('bankAccountNo', agentBankAcc);
 			formData.append('ifscCode', agentIfscNo);
+			formData.append('adharFront', adharFront);
+			formData.append('adharBack', adharBack);
+			formData.append('panFront', panFront);
+			formData.append('panBack', panBack);
 
 			const token = localStorage.getItem("token");
 
@@ -78,6 +89,35 @@ export const AgentRegister = () => {
 	const handleAgentGender = (e) => {
 		setAgentAge(e.target.value);
 	}
+
+	// const handleImage = (e) => {
+	// 	const files = e.target.files;
+	// 	const fileNames = [];
+	// 	for (let i = 0; i < files.length; i++) {
+	// 		fileNames.push(files[i].name);
+	// 	}
+	// 	setSelectedFiles(fileNames);
+	// };
+
+	const handleImage = (e, type) => {
+		const file = e.target.files[0];
+		switch (type) {
+			case 'adharFront':
+				setAdharFront(file);
+				break;
+			case 'adharBack':
+				setAdharBack(file);
+				break;
+			case 'panFront':
+				setPanFront(file);
+				break;
+			case 'panBack':
+				setPanBack(file);
+				break;
+			default:
+				break;
+		}
+	};
 
 	return (
 		<>
@@ -198,25 +238,38 @@ export const AgentRegister = () => {
 
 										<div >
 											<label htmlFor="card" className=' tw-font-semibold tw-mt-3'>Adhar card</label>
-											<div className=' tw-flex tw-gap-4 '>
-												<div className=' tw-w-full'>
+											<div className=' tw-flex tw-gap-2'>
+												{/* <div className=' tw-w-full'>
 
 													<input type="file" id='file' style={{ display: "none" }} />
 													<label htmlFor="file" className=' tw-place-content-center tw-flex tw-gap-3 tw-p-1 tw-h-full tw-w-full tw-mt-1 rounded-3' style={{ color: "#de0611", border: "1px dashed black" }}>
 														<h1 className=' tw-place-content-center tw-grid'>  <FileUploadIcon style={{ height: "28px", width: "28px", color: "#ddd" }} className=' border-2 rounded-3' /></h1>
-														{/* <h1 className=' tw-font-bold  place-content-center grid tw-text-black'>Front side</h1> */}
 														<h1 className='  tw-place-content-center tw-grid tw-pl-2' style={{ color: "#aaa" }}>Front side of Adhar</h1>
 
 													</label>
-												</div>
+												</div> */}
+
+												<input type="file" id='adharFrontFile' style={{ display: "none" }} onChange={(e) => handleImage(e, 'adharFront')} multiple />
+												<label htmlFor="adharFrontFile" className='tw-place-content-center tw-flex tw-gap-3 tw-p-1 tw-h-full tw-w-full tw-mt-1 rounded-3' style={{ color: "#de0611", border: "1px dashed black" }}>
+													<h1 className='tw-place-content-center tw-grid'>  <FileUploadIcon style={{ height: "28px", width: "28px", color: "#ddd" }} className='border-2 rounded-3' /></h1>
+													<h1 className='  tw-place-content-center tw-grid tw-pl-2' style={{ color: "#aaa" }}>Front side of Adhar</h1>
+													{adharFront && <h1 style={{ color: 'black', fontWeight: '500' }}>{adharFront.name}</h1>}
+												</label>
+
+
 
 												<div className=' tw-w-full'>
-													<input type="file" id='file' style={{ display: "none" }} />
+													{/* <input type="file" id='file' style={{ display: "none" }} />
 													<label htmlFor="file" className=' tw-place-content-center tw-flex tw-gap-3 tw-p-1 tw-h-full tw-w-full tw-mt-1 rounded-3' style={{ color: "#de0611", border: "1px dashed black" }}>
 														<h1 className=' tw-place-content-center tw-grid'>  <FileUploadIcon style={{ height: "28px", width: "28px", color: "#ddd" }} className=' tw-border-2 rounded-3' /></h1>
-														{/* <h1 className=' tw-font-bold  place-content-center grid tw-text-black'>Front side</h1> */}
 														<h1 className='  tw-place-content-center tw-grid tw-pl-2' style={{ color: "#aaa" }}>Back side of Adhar</h1>
 
+													</label> */}
+													<input type="file" id='adharBackFile' style={{ display: "none" }} onChange={(e) => handleImage(e, 'adharBack')} multiple />
+													<label htmlFor="adharBackFile" className='tw-place-content-center tw-flex tw-gap-3 tw-p-1 tw-h-full tw-w-full tw-mt-1 rounded-3' style={{ color: "#de0611", border: "1px dashed black" }}>
+														<h1 className='tw-place-content-center tw-grid'>  <FileUploadIcon style={{ height: "28px", width: "28px", color: "#ddd" }} className='border-2 rounded-3' /></h1>
+														<h1 className='  tw-place-content-center tw-grid tw-pl-2' style={{ color: "#aaa" }}>Back side of Adhar</h1>
+														{adharBack && <h1 style={{ color: 'black', fontWeight: '500' }}>{adharBack.name}</h1>}
 													</label>
 												</div>
 											</div>
@@ -225,21 +278,19 @@ export const AgentRegister = () => {
 											<label htmlFor="card" className=' tw-font-semibold tw-mt-3'>Pan card</label>
 											<div className=' tw-flex tw-gap-4 '>
 												<div className=' tw-w-full'>
-													<input type="file" id='file' style={{ display: "none" }} />
-													<label htmlFor="file" className=' tw-place-content-center tw-flex tw-gap-3 tw-p-1 tw-h-full tw-w-full tw-mt-1 rounded-3' style={{ color: "#de0611", border: "1px dashed black" }}>
-														<h1 className=' tw-place-content-center tw-grid'>  <FileUploadIcon style={{ height: "28px", width: "28px", color: "#ddd" }} className=' tw-border-2 rounded-3' /></h1>
-														{/* <h1 className=' tw-font-bold  place-content-center grid tw-text-black'>Front side</h1> */}
+													<input type="file" id='panFrontFile' style={{ display: "none" }} onChange={(e) => handleImage(e, 'panFront')} multiple />
+													<label htmlFor="panFrontFile" className='tw-place-content-center tw-flex tw-gap-3 tw-p-1 tw-h-full tw-w-full tw-mt-1 rounded-3' style={{ color: "#de0611", border: "1px dashed black" }}>
+														<h1 className='tw-place-content-center tw-grid'>  <FileUploadIcon style={{ height: "28px", width: "28px", color: "#ddd" }} className='border-2 rounded-3' /></h1>
 														<h1 className='  tw-place-content-center tw-grid tw-pl-2' style={{ color: "#aaa" }}>Front side of Pan</h1>
-
+														{panFront && <h1 style={{ color: 'black', fontWeight: '500' }}>{panFront.name}</h1>}
 													</label>
 												</div>
 												<div className=' tw-w-full'>
-													<input type="file" id='file' style={{ display: "none" }} />
-													<label htmlFor="file" className=' tw-place-content-center tw-flex tw-gap-3 tw-p-1 tw-h-full tw-w-full tw-mt-1 rounded-3' style={{ color: "#de0611", border: "1px dashed black" }}>
-														<h1 className=' tw-place-content-center tw-grid'>  <FileUploadIcon style={{ height: "28px", width: "28px", color: "#ddd" }} className=' tw-border-2 rounded-3' /></h1>
-														{/* <h1 className=' tw-font-bold  place-content-center grid tw-text-black'>Front side</h1> */}
+													<input type="file" id='panBackFile' style={{ display: "none" }} onChange={(e) => handleImage(e, 'panBack')} multiple />
+													<label htmlFor="panBackFile" className='tw-place-content-center tw-flex tw-gap-3 tw-p-1 tw-h-full tw-w-full tw-mt-1 rounded-3' style={{ color: "#de0611", border: "1px dashed black" }}>
+														<h1 className='tw-place-content-center tw-grid'>  <FileUploadIcon style={{ height: "28px", width: "28px", color: "#ddd" }} className='border-2 rounded-3' /></h1>
 														<h1 className='  tw-place-content-center tw-grid tw-pl-2' style={{ color: "#aaa" }}>Back side of Pan</h1>
-
+														{panBack && <h1 style={{ color: 'black', fontWeight: '500' }}>{panBack.name}</h1>}
 													</label>
 												</div>
 											</div>

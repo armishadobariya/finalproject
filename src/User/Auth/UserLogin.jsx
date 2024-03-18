@@ -155,7 +155,7 @@ const UserLogin = () => {
 											/>
 										</div>
 										<div>
-											<GoogleOAuthProvider>
+											{/* <GoogleOAuthProvider>
 												<GoogleLogin
 												// onSuccess={async (credentialResponse) => {
 												// 	console.log(credentialResponse);
@@ -166,10 +166,11 @@ const UserLogin = () => {
 												// 	console.log('Login Failed');
 												// }}
 												/>
-											</GoogleOAuthProvider>
+											</GoogleOAuthProvider> */}
 
-											{/* <GoogleOAuthProvider clientId="295805594505-sq8l6g2m1dlgnlepvim7h03gmo48gco3.apps.googleusercontent.com"> */}
-											{/* <GoogleLogin
+											<GoogleOAuthProvider clientId="295805594505-sq8l6g2m1dlgnlepvim7h03gmo48gco3.apps.googleusercontent.com">
+												{/* 476940860490-r2o45p41fj6g0jkq7ntkg84v2ssuv2fl.apps.googleusercontent.com */}
+												<GoogleLogin
 													onSuccess={async (credentialResponse) => {
 														try {
 															console.log(credentialResponse);
@@ -197,8 +198,8 @@ const UserLogin = () => {
 													onError={() => {
 														console.log('Login Failed');
 													}}
-												/> */}
-											{/* </GoogleOAuthProvider> */}
+												/>
+											</GoogleOAuthProvider>
 										</div>
 										<div className=''>
 											<input type="checkbox"
