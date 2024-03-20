@@ -11,7 +11,6 @@ import FileUploadIcon from '@mui/icons-material/FileUpload';
 const steps = ['Personal Information', 'Personal Information', 'Bank Related Information'];
 
 export const AgentRegister = () => {
-<<<<<<< HEAD
     const [step, setStep] = useState(1);
     const totalSteps = 3;
 
