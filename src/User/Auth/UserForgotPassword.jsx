@@ -33,7 +33,7 @@ const UserForgotPassword = () => {
 			};
 
 			const responseData = await axios.post(forgetPasswordUrl, reqdata);
-			if (responseData.data.statusCode === 200) {
+			if (responseData.status === 200) {
 
 				toggleForm();
 			}
@@ -71,7 +71,7 @@ const UserForgotPassword = () => {
 
 			const responseData = await axios.post(verifyOtpUrl, reqdata);
 
-			if (responseData.data.statusCode === 200) {
+			if (responseData.status === 200) {
 				// const { token } = responseData.data;
 				// localStorage.setItem("token", token);
 				// console.log('token: ', token);

@@ -60,7 +60,7 @@ const VerifyEmail = () => {
 
 			const responseData = await axios.post(verifyEmailUrl, reqData);
 
-			if (responseData.status === 201) {
+			if (responseData.status === 200) {
 				setResponse('success', 'success..')
 			}
 		} catch (error) {
@@ -84,7 +84,7 @@ const VerifyEmail = () => {
 
 			const responseData = await axios.post(verifyOtpUrl, reqdata);
 
-			if (responseData.data.statusCode === 200) {
+			if (responseData.status === 200) {
 				// toast.success('Email verified successfully!');
 				setResponse("success: ", responseData.data);
 				navigate("/UserRegister", { state: { email: email } });

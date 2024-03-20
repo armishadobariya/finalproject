@@ -32,6 +32,7 @@ const Nav = () => {
 	const [userName, setUserName] = useState('');
 	const [userEmail, setUserEmail] = useState('');
 	const [userRole, setUserRole] = useState('');
+	const [image, setImage] = useState();
 	const [userMobile, setUserMobile] = useState('');
 	const [userImage, setUserImage] = useState({ image: null, isSet: false });
 	const [isLogin, setIsLogin] = useState(false);
@@ -53,7 +54,7 @@ const Nav = () => {
 
 			if (response.status === 200) {
 				const data = response.data;
-				console.log('data: ', data);
+				// console.log('data: ', data);
 				setUserName(data.userData.name);
 				setUserImage((pre) => {
 					const image = {
@@ -113,21 +114,18 @@ const Nav = () => {
 
 
 
-		// window.handleImageChange1 = (event) => {
-		// 	if (event.target.files.length > 0) {
-		// 		const file = event.target.files[0];
-		// 		console.log('Selected File:', file);
-		// 	}
-		// }
+		window.handleImageChange1 = (event) => {
+			if (event.target.files.length > 0) {
+				const file = event.target.files[0];
+				console.log('Selected File:', file);
+			}
+		}
 
 		window.editImage = async (e) => {
 			try {
 				console.log('hello');
-				e.preventDefault();
 				const formData = new FormData();
-
 				formData.append('image', userImage.image);
-
 
 				const token = localStorage.getItem('token');
 				const response = await axios.post(changeProfileUrl, formData, {
@@ -137,14 +135,14 @@ const Nav = () => {
 					},
 
 				});
-				if (response.status === 200) {
+				console.log(response.status);
+				if (response.status == 200) {
 					console.log('success');
-					const data = response.data.data;
+					const data = response.data;
 					console.log(data);
-					setUserImage(pre => {
-						return {
-							image: data.image, isSet: false
-						}
+					setUserImage({
+						image: data.profilePic,
+						isSet: false,
 					});
 
 				}
@@ -169,15 +167,15 @@ const Nav = () => {
 					</div>
 					<div style="display: flex; justify-content: center; margin-top:10px" >
 					<button style="padding: 10px 20px; margin-right: 10px; background-color: #dc3545; color: #fff; border: none; cursor: pointer; border-radius: 5px;"  onclick="handleCancelClick()">Cancel</button>
-					<button style="margin-right: 10px; padding: 10px 20px; background-color: #007bff; color: #fff; border: none; cursor: pointer; border-radius: 5px;" onclick={editImage}>Edit</button>
+					<button  style="margin-right: 10px; padding: 10px 20px; background-color: #007bff; color: #fff; border: none; cursor: pointer; border-radius: 5px;" onclick="editImage()">Edit</button>
 					</div>
 				  </div>
 				`,
 				showConfirmButton: false,
 			});
-
-
 		};
+
+
 
 		Swal.fire({
 			title: "Profile",

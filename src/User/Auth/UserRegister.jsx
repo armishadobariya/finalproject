@@ -84,7 +84,7 @@ const UserRegister = () => {
 
 				const responseData = await axios.post(signUpUrl, reqdata);
 
-				if (responseData.data.statusCode === 201) {
+				if (responseData.status === 201) {
 
 					const { token } = responseData.data;
 					console.log('token: ', token);

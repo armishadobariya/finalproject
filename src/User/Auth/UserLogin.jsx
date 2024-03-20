@@ -20,7 +20,7 @@ const UserLogin = () => {
 
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
-	const [response, setResponse] = useState(null);
+	const [response, setResponse] = useState('');
 	const [verificationResult, setVerificationResult] = useState('');
 
 	const navigate = useNavigate();
@@ -36,48 +36,50 @@ const UserLogin = () => {
 				password: password,
 			};
 			const responseData = await axios.post(signInUrl, reqdata);
-			console.log(responseData.data.user.role);
-			if (responseData.data.statusCode === 201) {
+			console.log(responseData.data);
 
+			if (responseData.status === 200) {
 
-				if (responseData.data.user.role === 'USER') {
+				console.log(responseData.data.admin.role);
+				// if (responseData.data.user.role === 'USER') {
+				// 	const { token } = responseData.data;
+				// 	console.log('token: ', token);
+				// 	localStorage.setItem("token", token);
+				// 	console.log(responseData.data.role);
+				// 	navigate("/", { state: email });
+
+				// }
+				if (responseData.data.admin.role === 'ADMIN') {
 					const { token } = responseData.data;
 					console.log('token: ', token);
 					localStorage.setItem("token", token);
 					console.log(responseData.data.role);
-					navigate("/", { state: email });
-
-				}
-				else if (responseData.data.user.role === 'AGENT') {
-					const { token } = responseData.data;
-					console.log('token: ', token);
-					localStorage.setItem("token", token);
-					console.log(responseData.data.role);
-					navigate("/Agent", { state: email });
+					navigate("/admin", { state: email });
+					// navigate("/Agent", { state: email });
 				}
 				else {
 					const { token } = responseData.data;
 					console.log('token: ', token);
 					localStorage.setItem("token", token);
-					console.log(responseData.data.role);
-					navigate("/Admin", { state: email });
+					console.log(responseData.data.user.role);
+					navigate("/agent", { state: email });
 
 				}
 
 
 			}
-			else {
-				console.log(responseData.data.message);
-				toast.error(responseData.data.message);
+			// else {
+			// 	console.log(responseData.data.user.message);
+			// 	toast.error(responseData.data.user.message);
 
-			}
+			// }
 
 		}
 		catch (error) {
 			setResponse("error", 'error ...');
 			console.log('error');
 			// setResponse(alert(response.data.message));
-			setResponse(alert(response.data.message));
+			// setResponse(alert(responseData.data.user.message));
 		}
 	}
 

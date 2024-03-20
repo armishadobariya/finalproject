@@ -31,6 +31,7 @@ import UserEmail from './User/Auth/UserEmail'
 import { AgentRegister } from './Agent/AgentRegister'
 import Rent from './User/Rent/Rent'
 import AdminStatus from './Admin/Admin_Components/AdminStatus'
+import RentMoreDetails from './User/Rent/RentMoreDetails'
 
 
 
@@ -44,6 +45,7 @@ const App = () => {
 				<Route exact path='/Rent' element={<Rent />} />
 				<Route exact path='/AddProperty' element={<AddProperty />} />
 				<Route exact path='/Buy/ReadMoreDetails' element={<ReadMoreDetails />} />
+				<Route exact path='/Rent/RentMoreDetails' element={<RentMoreDetails />} />
 				<Route exact path='/PropertyHistory' element={<PropertyHistory />}></Route>
 				<Route exact path='/Contact' element={<Contact />}></Route>
 				<Route exact path='/About' element={<About />}></Route>
