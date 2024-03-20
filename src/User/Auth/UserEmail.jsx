@@ -61,6 +61,7 @@ const UserEmail = () => {
 													value={email}
 													onKeyDown={handleKeyDown}
 													onChange={(e) => { setEmail(e.target.value) }}
+													required
 
 												/>
 											</div>

@@ -70,7 +70,7 @@ export const UserResetPassword = () => {
 					setResponse(() => { navigate("/UserLogin") });
 				}
 				else {
-					toast.error(responseData.data.message);
+					// toast.error(responseData.data.message);
 
 				}
 			}
@@ -78,6 +78,8 @@ export const UserResetPassword = () => {
 		catch (error) {
 			setResponse(error);
 			setResponse("error:", 'error');
+			toast.error(error.response.data.message);
+
 
 		}
 	}

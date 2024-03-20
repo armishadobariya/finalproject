@@ -38,11 +38,6 @@ const VerifyEmail = () => {
 		};
 	}
 
-
-
-
-
-
 	const handleVerifyEmail = async () => {
 		try {
 			const reqData = {
@@ -59,6 +54,7 @@ const VerifyEmail = () => {
 		}
 	};
 
+
 	const verifyOtp = async (e) => {
 		try {
 			e.preventDefault();
@@ -70,21 +66,25 @@ const VerifyEmail = () => {
 
 			const responseData = await axios.post(verifyOtpUrl, reqdata);
 
+
 			if (responseData.status === 200) {
-				// toast.success('Email verified successfully!');
-				setResponse("success: ", responseData.data);
+				toast.success(responseData.data.message);
 				navigate("/UserRegister", { state: { email: email } });
 				console.log('verify email: ', email);
+				console.log(responseData.data.message);
 			}
 
 			else {
-				console.log(responseData.data.message);
-				toast.error(responseData.data.message);
+				// console.log("else", responseData);
+				// toast.error(responseData);
+				// console.log("error");
 
 			}
 		} catch (error) {
-			// setResponse("error :", response.data.message);
-			// console.log(responseData.data.message);
+			setResponse("error :", error.response.data);
+			toast.error(error.response.data.message);
+			console.log("catch", error.response.data.message);
+
 
 		}
 	};

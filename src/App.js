@@ -31,6 +31,7 @@ import UserEmail from './User/Auth/UserEmail'
 import { AgentRegister } from './Agent/AgentRegister'
 import Rent from './User/Rent/Rent'
 import AdminStatus from './Admin/Admin_Components/AdminStatus'
+import PrivateRoute from './User/Router/privateRoute'
 
 
 
@@ -39,7 +40,11 @@ const App = () => {
 		<div>
 
 			<Routes>
-				<Route exact path='/' element={<Home />}></Route>
+				<Route exact path='/' element={
+					// <PrivateRoute>
+					<Home />
+					// </PrivateRoute>
+				}></Route>
 				<Route exact path='/Buy' element={<Buy />} />
 				<Route exact path='/Rent' element={<Rent />} />
 				<Route exact path='/AddProperty' element={<AddProperty />} />

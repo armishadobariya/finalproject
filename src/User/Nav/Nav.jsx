@@ -38,6 +38,8 @@ const Nav = () => {
 
 
 
+
+
 	const navigate = useNavigate();
 
 	const getUserData = async () => {
@@ -83,12 +85,12 @@ const Nav = () => {
 
 	useEffect(() => {
 
+
 		getUserData();
 	}, []);
 
 	const showLogin = () => {
 		navigate("/UserLogin");
-
 	}
 
 
@@ -141,28 +143,7 @@ const Nav = () => {
 			});
 
 
-			document.getElementById('deleteButton').onclick = async () => {
-				const password = document.getElementById('passwordInput').value;
-				try {
-					const response = await axios.delete(deleteProfileUrl, {
-						headers: {
-							Authorization: `Bearer ${localStorage.getItem('token')}`,
-						},
-						data: { password },
-					});
 
-					if (response.status === 200) {
-						Swal.fire('Success!', 'Your account has been deleted.', 'success');
-						// navigate('/UserLogin');
-					} else {
-						Swal.fire('Error', 'Failed to delete your account.', 'error');
-					}
-				} catch (error) {
-					console.error('Error deleting account:', error);
-					Swal.fire('Error', 'Failed to delete your account.', 'error');
-				}
-
-			}
 
 		};
 
@@ -201,7 +182,7 @@ const Nav = () => {
 						
 						
 						<div style=" justify-content: center; margin-top:30px">
-							<div style=" border: 2px solid white; padding: 8px; box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2); cursor:pointer;" onclick="deleteAcc()"><span style="font-size:18px;margin-left:-250px;">Delete My Account</span><p style="margin-left:380px; margin-top:-27px; font-size:15px; font-weight:bold;">></p></div>
+							<div style=" border: 2px solid white; padding: 8px; box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2); cursor:pointer;"><span style="font-size:18px;margin-left:-250px;">Delete My Account</span><p style="margin-left:380px; margin-top:-27px; font-size:15px; font-weight:bold;">></p></div>
 							</div>
 					</div>
 				`,
@@ -259,12 +240,17 @@ const Nav = () => {
 			}
 		}
 
+
 		window.profile = () => {
 
 			Swal.fire({
 				html: `
+
+
 					<div class="profile-container" style="font-family: Arial, sans-serif; margin-top: 8px; padding: 20px;">
 						<h1 style="color: #333; font-weight:bold; font-size:24px; color:grey;">Profile Picture</h1>
+				<i style="float:right; margin-top:-30px;" class="fas fa-times"></i>   
+
 						<hr style="border-color: #333; margin-top:10px;" />
 						<p style="color: #666; margin-top:5px; font-size:15px">A picture helps people recognize you and lets you know when you’re signed in to your account.</p>
 						<div class="avatar-container" style="display: flex; justify-content: center; margin-top: 20px;">
@@ -276,11 +262,14 @@ const Nav = () => {
 						<div style="display: flex; justify-content: center; margin-top:10px">
 							<button style="padding: 10px 20px; margin-right: 10px; background-color: #808080; color: #fff; border: none; cursor: pointer; border-radius: 5px;" onclick="handleCancelClick()">Cancel</button>
 							<button id="editButton" style="margin-right: 10px; padding: 10px 20px; background-color: #007bff; color: #fff; border: none; cursor: pointer; border-radius: 5px;">Edit</button>
+							<button id="editButton" style="margin-right: 10px; padding: 10px 20px; background-color: #FF0000; color: #fff; border: none; cursor: pointer; border-radius: 5px;" onclick="deleteProfile()">Delete</button>
 						</div>
 					</div>
 				`,
 				showConfirmButton: false,
 			});
+
+
 			document.getElementById('editButton').onclick = editImage;
 		};
 
@@ -344,6 +333,8 @@ const Nav = () => {
 
 
 	const logOut = () => {
+		localStorage.removeItem('token');
+		console.log("remove", localStorage.removeItem('token'));
 		navigate('/UserLogin');
 	};
 
@@ -427,6 +418,8 @@ const Nav = () => {
 										<button type="submit" className='tw-font-semibold tw-mr-4 tw-p-2  tw-text-white tw-bg-black tw-rounded-md' style={{ width: "100px" }} onClick={handleVerifyEmail}>Verify</button>
 									</DialogActions>
 								</Dialog>
+
+
 								<button
 									type="button"
 									className="btn shadow-none me-lg-3 me-3 ms-3"
@@ -438,8 +431,6 @@ const Nav = () => {
 								>
 									Login
 								</button>
-
-
 
 								<PopupState variant="popover" popupId="demo-popup-menu">
 									{(popupState) => (
@@ -461,36 +452,8 @@ const Nav = () => {
 
 
 
-								{/* {isLogin ? (
-									<PopupState variant="popover" popupId="demo-popup-menu">
-										{(popupState) => (
-											<>
-												<AccountCircleIcon
-													style={{ color: "#d3a478", height: "36px", width: "36px", marginRight: "10px", marginTop: '5px', cursor: 'pointer', overflowY: 'auto' }}
-													variant="contained"
-													{...bindTrigger(popupState)}
-												>
-												</AccountCircleIcon>
-												<Menu {...bindMenu(popupState)} style={{ marginTop: '50px' }}>
-													<MenuItem onClick={() => handleShowProfile(popupState)}>Profile</MenuItem>
-													<MenuItem onClick={showLogin}>Logout</MenuItem>
-												</Menu>
-											</>
-										)}
-									</PopupState>
-								) : (
-									<button
-										type="button"
-										className="btn shadow-none me-lg-3 me-3 ms-3"
-										data-bs-toggle="modal"
-										data-bs-target="#loginModal"
-										onClick={showLogin}
-										id='btnLogin'
-										style={{ background: '#d3a478' }}
-									>
-										Login
-									</button>
-								)} */}
+
+
 							</div>
 						</form>
 					</div>
