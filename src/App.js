@@ -32,6 +32,8 @@ import { AgentRegister } from './Agent/AgentRegister'
 import Rent from './User/Rent/Rent'
 import AdminStatus from './Admin/Admin_Components/AdminStatus'
 import RentMoreDetails from './User/Rent/RentMoreDetails'
+import TotalRentProperty from './Admin/Admin_Components/TotalRentProperty'
+import TotalSellProperty from './Admin/Admin_Components/TotalSellProperty'
 
 
 
@@ -65,6 +67,8 @@ const App = () => {
 				<Route exact path='/Admin/Buyer' element={<Buyer />}></Route>
 				<Route exact path='/Admin/UserQueries' element={<User_Queries />}></Route>
 				<Route exact path='/Admin/TotalProperty' element={<TotalProperty />}></Route>
+				<Route exact path='/Admin/TotalRentProperty' element={<TotalRentProperty />}></Route>
+				<Route exact path='/Admin/TotalSellProperty' element={<TotalSellProperty />}></Route>
 				<Route exact path='/Admin/MoreDetails' element={<MoreDetails />}></Route>
 
 				<Route exact path='/Agent/' element={<AgentRegister />}></Route>

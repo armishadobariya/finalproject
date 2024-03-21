@@ -56,8 +56,15 @@ const Dashboard = () => {
 		setIsCardOpen4(!isCardOpen4);
 	}
 
-	const handleProperty = () => {
+	const handleTotalProperty = () => {
 		navigate('/Admin/TotalProperty');
+	}
+	const handleRentProperty = () => {
+		navigate('/Admin/TotalRentProperty');
+	}
+
+	const handleSellProperty = () => {
+		navigate('/Admin/TotalSellProperty');
 	}
 
 
@@ -199,7 +206,7 @@ const Dashboard = () => {
 							<Grid container spacing={3}>
 								<Grid item xs={12} sm={6} md={6}>
 									<Card className="cancleCard">
-										<CardContent className=' tw-cursor-pointer' onClick={handleProperty}>
+										<CardContent className=' tw-cursor-pointer' onClick={handleTotalProperty}>
 											<Typography variant="h6 dashCardText" >Available Property</Typography>
 											<Typography variant="h4">{totalProCount}</Typography>
 										</CardContent>
@@ -207,7 +214,7 @@ const Dashboard = () => {
 								</Grid>
 								<Grid item xs={12} sm={6} md={6}>
 									<Card className="penddingPayment">
-										<CardContent>
+										<CardContent className=' tw-cursor-pointer' onClick={handleRentProperty}>
 											<Typography variant="h6 dashCardText">Property For Rent</Typography>
 											<Typography variant="h4">{totalReCount}</Typography>
 										</CardContent>
@@ -215,7 +222,7 @@ const Dashboard = () => {
 								</Grid>
 								<Grid item xs={12} sm={6} md={6}>
 									<Card className="completePayment">
-										<CardContent>
+										<CardContent className=' tw-cursor-pointer' onClick={handleSellProperty}>
 											<Typography variant="h6 dashCardText">Property For Sale</Typography>
 											<Typography variant="h4">{totalSeCount}</Typography>
 										</CardContent>
