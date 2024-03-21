@@ -464,11 +464,7 @@ const TotalProperty = () => {
 										<div class="">
 											<img src={property.propertyImage[0]} height='200px' width='380px' className=' tw-shadow-sm' />
 										</div>
-<<<<<<< HEAD
 										{/* <img src={property.propertyImage[0]} alt={`Property Image`} /> */}
-=======
-										{/* <img src={property.propertyImage[0]} alt={Property Image} /> */}
->>>>>>> 8f7ba0438050537e7b041ad1cf20c2bdd691c221
 									</div >
 									<div class=" tw-ml-6 tw-mt-6 ">
 
@@ -479,21 +475,12 @@ const TotalProperty = () => {
 
 										</div>
 										<div >
-<<<<<<< HEAD
 											<h2 className='tw-font-semibold tw-text-base tw-mt-5 tw-mb-1'>Facilities</h2>
 										</div>
 
 										<div className='tw-ml-2 tw-grid tw-grid-cols-3  '>
 											{property.facility.map((feature, index) => (
 												<h1 key={index} className='tw-mr-[20px] tw-text-sm tw-mt-2 tw-bg-gray-100 tw-rounded-xl tw-pl-[7px] tw-pr-[5px] tw-pt-[2px] tw-pb-[4px]'>{feature}</h1>
-=======
-											<h2 className='tw-font-semibold tw-text-base tw-mt-5 tw-mb-3'>Facilities</h2>
-										</div>
-
-										<div className='tw-flex tw-ml-2'>
-											{property.facility.map((feature, index) => (
-												<h1 key={index} className='tw-mr-[20px] tw-text-sm tw-bg-gray-100 tw-rounded-xl tw-pl-[7px] tw-pr-[5px] tw-pt-[2px] tw-pb-[4px]'>{feature}</h1>
->>>>>>> 8f7ba0438050537e7b041ad1cf20c2bdd691c221
 											))}
 
 										</div>
@@ -533,44 +520,29 @@ const TotalProperty = () => {
 
 										<div className='flex-grow-1'>
 											<div className="facilities tw-ml-1">
-<<<<<<< HEAD
 												<h6 className="tw-mb-3 tw-mt-5 tw-font-semibold">Owner Name</h6>
 											</div>
 										</div>
 
 										<div className='tw-flex tw-mt-6'>
-=======
-												<h6 className="tw-mb-3 tw-mt-8 tw-font-semibold">Owner Name</h6>
-											</div>
-										</div>
-
-										<div className='tw-flex tw-mt-8'>
->>>>>>> 8f7ba0438050537e7b041ad1cf20c2bdd691c221
 											<div className=' '>
 												<button type="submit" class="tw-p-2 tw-bg-custom-color tw-me-8 tw-ml-6  tw-text-white tw-font-semibold tw-mb-3 tw-rounded-md">
 													Contact Seller</button>
 
 											</div>
 											<div className=' '>
-<<<<<<< HEAD
 												<button type="submit"
 													className='tw-pl-2 tw-pr-2 tw-pt-[6px] tw-pb-[6px] tw-bg-white tw-text-black tw-border-2 hover:tw-bg-black hover:tw-text-white tw-border-black tw-font-semibold tw-mb-3 tw-rounded-md'
 													onClick={() => handleMoreDetail(property)}>
-=======
-												<button type="submit" className='tw-pl-2 tw-pr-2 tw-pt-[6px] tw-pb-[6px] tw-bg-white tw-text-black tw-border-2 hover:tw-bg-black hover:tw-text-white tw-border-black tw-font-semibold tw-mb-3 tw-rounded-md' onClick={moreDetail}>
->>>>>>> 8f7ba0438050537e7b041ad1cf20c2bdd691c221
 													More Details
 												</button>
 											</div>
 										</div>
 
-<<<<<<< HEAD
 
 
 
 
-=======
->>>>>>> 8f7ba0438050537e7b041ad1cf20c2bdd691c221
 									</div>
 
 								</div >

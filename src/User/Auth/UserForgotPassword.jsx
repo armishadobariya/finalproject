@@ -74,13 +74,9 @@ const UserForgotPassword = () => {
 			const responseData = await axios.post(verifyOtpUrl, reqdata);
 
 			if (responseData.status === 200) {
-<<<<<<< HEAD
 				// const { token } = responseData.data;
 				// localStorage.setItem("token", token);
 				// console.log('token: ', token);
-=======
-
->>>>>>> 8f7ba0438050537e7b041ad1cf20c2bdd691c221
 
 				setResponse("success: ", responseData.data);
 				navigate("/UserResetPassword", { state: { email: email } });
