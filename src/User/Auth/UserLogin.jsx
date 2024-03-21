@@ -24,7 +24,7 @@ const UserLogin = () => {
 
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
-	const [response, setResponse] = useState(null);
+	const [response, setResponse] = useState('');
 	const [verificationResult, setVerificationResult] = useState('');
 	const [value, setValue] = useState('');
 
@@ -41,43 +41,52 @@ const UserLogin = () => {
 				password: password,
 			};
 			const responseData = await axios.post(signInUrl, reqdata);
+<<<<<<< HEAD
+			console.log(responseData.data.data.role);
+
+=======
 			console.log(responseData.data.user.role);
+>>>>>>> 8f7ba0438050537e7b041ad1cf20c2bdd691c221
 			if (responseData.status === 200) {
 
 
-				if (responseData.data.user.role === 'USER') {
+				if (responseData.data.data.role === 'USER') {
 					const { token } = responseData.data;
-					console.log('token: ', token);
 					localStorage.setItem("token", token);
-					console.log(responseData.data.role);
 					navigate("/", { state: email });
-
 				}
-				else if (responseData.data.user.role === 'AGENT') {
+				else if (responseData.data.data.role === 'ADMIN') {
 					const { token } = responseData.data;
-					console.log('token: ', token);
 					localStorage.setItem("token", token);
-					console.log(responseData.data.role);
-					navigate("/Agent", { state: email });
+					navigate("/admin", { state: email });
 				}
 				else {
 					const { token } = responseData.data;
-					console.log('token: ', token);
 					localStorage.setItem("token", token);
+<<<<<<< HEAD
+					navigate("/Agent", { state: email });
+=======
 					console.log(responseData.data.role);
 					navigate("/Admin", { state: email });
 					toast.success(responseData.data.message);
 
+>>>>>>> 8f7ba0438050537e7b041ad1cf20c2bdd691c221
 
 				}
 
 
 			}
+<<<<<<< HEAD
+			// else {
+			// 	console.log(responseData.data.user.message);
+			// 	toast.error(responseData.data.user.message);
+=======
 			else {
 				// console.log(responseData.data.message);
 				// toast.error(responseData.data.message);
+>>>>>>> 8f7ba0438050537e7b041ad1cf20c2bdd691c221
 
-			}
+			// }
 
 		}
 		catch (error) {
@@ -86,8 +95,12 @@ const UserLogin = () => {
 			toast.error(error.response.data.message);
 
 			// setResponse(alert(response.data.message));
+<<<<<<< HEAD
+			// setResponse(alert(responseData.data.user.message));
+=======
 			// setResponse(alert(response.data.message));
 
+>>>>>>> 8f7ba0438050537e7b041ad1cf20c2bdd691c221
 		}
 	}
 

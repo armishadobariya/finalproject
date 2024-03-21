@@ -66,9 +66,15 @@ const VerifyEmail = () => {
 
 			const responseData = await axios.post(verifyOtpUrl, reqdata);
 
+<<<<<<< HEAD
+			if (responseData.status === 200) {
+				// toast.success('Email verified successfully!');
+				setResponse("success: ", responseData.data);
+=======
 
 			if (responseData.status === 200) {
 				toast.success(responseData.data.message);
+>>>>>>> 8f7ba0438050537e7b041ad1cf20c2bdd691c221
 				navigate("/UserRegister", { state: { email: email } });
 				console.log('verify email: ', email);
 				console.log(responseData.data.message);

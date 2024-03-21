@@ -495,6 +495,7 @@ const Nav = () => {
 	const [userName, setUserName] = useState('');
 	const [userEmail, setUserEmail] = useState('');
 	const [userRole, setUserRole] = useState('');
+	const [image, setImage] = useState();
 	const [userMobile, setUserMobile] = useState('');
 	const [userImage, setUserImage] = useState({ image: null, isSet: false });
 	const [isLogin, setIsLogin] = useState(false);
@@ -523,7 +524,7 @@ const Nav = () => {
 
 			if (response.status === 200) {
 				const data = response.data;
-				console.log('data: ', data);
+				// console.log('data: ', data);
 				setUserName(data.userData.name);
 				setUserImage((pre) => {
 					const image = {
@@ -777,7 +778,16 @@ const Nav = () => {
 		};
 
 
+<<<<<<< HEAD
+		window.handleImageChange1 = (event) => {
+			if (event.target.files.length > 0) {
+				const file = event.target.files[0];
+				console.log('Selected File:', file);
+			}
+		}
+=======
 		window.profile = () => {
+>>>>>>> 8f7ba0438050537e7b041ad1cf20c2bdd691c221
 
 			Swal.fire({
 				html: `
@@ -811,6 +821,11 @@ const Nav = () => {
 
 		const editImage = async () => {
 			try {
+<<<<<<< HEAD
+				console.log('hello');
+				const formData = new FormData();
+				formData.append('image', userImage.image);
+=======
 				const selectedImage = document.getElementById('imageInput').files[0];
 				if (selectedImage) {
 					const imageURL = URL.createObjectURL(selectedImage);
@@ -819,6 +834,7 @@ const Nav = () => {
 
 				const formData = new FormData();
 				formData.append('profilePic', selectedImage);
+>>>>>>> 8f7ba0438050537e7b041ad1cf20c2bdd691c221
 
 				const token = localStorage.getItem('token');
 				const response = await axios.post(changeProfileUrl, formData, {
@@ -827,6 +843,18 @@ const Nav = () => {
 						Authorization: `Bearer ${token}`,
 					},
 				});
+<<<<<<< HEAD
+				console.log(response.status);
+				if (response.status == 200) {
+					console.log('success');
+					const data = response.data;
+					console.log(data);
+					setUserImage({
+						image: data.profilePic,
+						isSet: false,
+					});
+=======
+>>>>>>> 8f7ba0438050537e7b041ad1cf20c2bdd691c221
 
 				if (response.status === 200) {
 					const data = response.data;
@@ -840,9 +868,40 @@ const Nav = () => {
 				console.error('Error updating profile picture:', error);
 				Swal.fire('Error', 'Failed to update profile picture.', 'error');
 			}
+<<<<<<< HEAD
+		}
+
+		window.profile = () => {
+			Swal.fire({
+				html: `
+				  <div class="profile-container" style="font-family: Arial, sans-serif; margin-top: 8px; padding: 20px;">
+					<h1 style="color: #333; font-weight:bold; font-size:24px; color:grey;">Profile Picture</h1>
+					<hr style="border-color: #333; margin-top:10px;" />
+					<p style="color: #666; margin-top:5px; font-size:15px">A picture helps people recognize you and lets you know when you’re signed in to your account.</p>
+					<div class="avatar-container" style="display: flex; justify-content: center; margin-top: 20px;">
+					<img src=${userImage.isSet ? URL.createObjectURL(userImage.image) : userImage.image} alt="User_Profile" style="
+						height: 200px; width: 200px;" />					
+						</div>
+					<div>
+					<input type='file' style="margin-bottom: 20px; margin-top: 20px; margin-left: 100px; outline: none; font-size:16px;"  />
+					</div>
+					<div style="display: flex; justify-content: center; margin-top:10px" >
+					<button style="padding: 10px 20px; margin-right: 10px; background-color: #dc3545; color: #fff; border: none; cursor: pointer; border-radius: 5px;"  onclick="handleCancelClick()">Cancel</button>
+					<button  style="margin-right: 10px; padding: 10px 20px; background-color: #007bff; color: #fff; border: none; cursor: pointer; border-radius: 5px;" onclick="editImage()">Edit</button>
+					</div>
+				  </div>
+				`,
+				showConfirmButton: false,
+			});
 		};
 
 
+
+=======
+		};
+
+
+>>>>>>> 8f7ba0438050537e7b041ad1cf20c2bdd691c221
 		Swal.fire({
 			title: "Profile",
 			html: `
