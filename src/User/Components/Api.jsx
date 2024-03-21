@@ -10,6 +10,7 @@ export const addPropertyUrl = `${baseUrl}/property/add-property`;
 export const userProfileUrl = `${baseUrl}/auth/get-user`;
 export const changeProfileUrl = `${baseUrl}/auth/change-profilePic`;
 export const deleteProfileUrl = `${baseUrl}/auth/delete-profilePic`;
+// export const deleteProfileUrl = `${baseUrl}/auth/delete-profilePic`;
 export const getPropertyUrl = `${baseUrl}/property/getall-property`;
 export const setApproveUrl = `${baseUrl}/property/set-approveproperty`;
 export const setRejectUrl = `${baseUrl}/property/set-cancelproperty`;
@@ -22,5 +23,7 @@ export const totalSellCountUrl = `${baseUrl}/admin/total-sellproperty-count`;
 export const totalUserCountUrl = `${baseUrl}/admin/total-user-count`;
 export const totalAgentCountUrl = `${baseUrl}/admin/total-agent-count`;
 export const agentVerifyUrl = `${baseUrl}/agent/verify-agent`;
+export const agentAddUrl = `${baseUrl}/agent/add-agent`;
 export const pendingStatusUrl = `${baseUrl}/property/getuserpending-property`;
+
 
