@@ -12,6 +12,10 @@ import { signInUrl, googleLoginUrl } from '../Components/Api';
 import { jwtDecode } from 'jwt-decode';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { auth, provider } from "./config";
+import { signInWithPopup } from "firebase/auth";
+import { FcGoogle } from "react-icons/fc";
+
 
 
 
@@ -22,6 +26,7 @@ const UserLogin = () => {
 	const [password, setPassword] = useState('');
 	const [response, setResponse] = useState('');
 	const [verificationResult, setVerificationResult] = useState('');
+	const [value, setValue] = useState('');
 
 	const navigate = useNavigate();
 
@@ -36,8 +41,12 @@ const UserLogin = () => {
 				password: password,
 			};
 			const responseData = await axios.post(signInUrl, reqdata);
+<<<<<<< HEAD
 			console.log(responseData.data.data.role);
 
+=======
+			console.log(responseData.data.user.role);
+>>>>>>> 8f7ba0438050537e7b041ad1cf20c2bdd691c221
 			if (responseData.status === 200) {
 
 
@@ -54,15 +63,28 @@ const UserLogin = () => {
 				else {
 					const { token } = responseData.data;
 					localStorage.setItem("token", token);
+<<<<<<< HEAD
 					navigate("/Agent", { state: email });
+=======
+					console.log(responseData.data.role);
+					navigate("/Admin", { state: email });
+					toast.success(responseData.data.message);
+
+>>>>>>> 8f7ba0438050537e7b041ad1cf20c2bdd691c221
 
 				}
 
 
 			}
+<<<<<<< HEAD
 			// else {
 			// 	console.log(responseData.data.user.message);
 			// 	toast.error(responseData.data.user.message);
+=======
+			else {
+				// console.log(responseData.data.message);
+				// toast.error(responseData.data.message);
+>>>>>>> 8f7ba0438050537e7b041ad1cf20c2bdd691c221
 
 			// }
 
@@ -70,8 +92,15 @@ const UserLogin = () => {
 		catch (error) {
 			setResponse("error", 'error ...');
 			console.log('error');
+			toast.error(error.response.data.message);
+
 			// setResponse(alert(response.data.message));
+<<<<<<< HEAD
 			// setResponse(alert(responseData.data.user.message));
+=======
+			// setResponse(alert(response.data.message));
+
+>>>>>>> 8f7ba0438050537e7b041ad1cf20c2bdd691c221
 		}
 	}
 
@@ -94,6 +123,15 @@ const UserLogin = () => {
 	}
 
 
+	const handleClick = () => {
+		signInWithPopup(auth, provider).then((data) => {
+			console.log(data.user);
+			setValue(data.user);
+			console.log(data.user.uid);
+			navigate("/");
+		})
+	}
+
 
 	return (
 
@@ -101,7 +139,7 @@ const UserLogin = () => {
 
 			<ToastContainer position='top-right' />
 			<div className='msg'>
-				{response && <div>{response}</div>}
+				{response && <div>{response.message}</div>}
 			</div>
 			<div style={{ position: 'relative', marginTop: '-80px' }}>
 				<img className="tw-w-full md:tw-h-[800px] tw-h-[100vh] " src={backgroundImage} alt="background" srcset="" />
@@ -149,7 +187,7 @@ const UserLogin = () => {
 											/>
 										</div>
 										<div>
-											<GoogleOAuthProvider>
+											{/* <GoogleOAuthProvider>
 												<GoogleLogin
 												// onSuccess={async (credentialResponse) => {
 												// 	console.log(credentialResponse);
@@ -160,15 +198,29 @@ const UserLogin = () => {
 												// 	console.log('Login Failed');
 												// }}
 												/>
-											</GoogleOAuthProvider>
+											</GoogleOAuthProvider> */}
 
-											{/* <GoogleOAuthProvider clientId="295805594505-sq8l6g2m1dlgnlepvim7h03gmo48gco3.apps.googleusercontent.com"> */}
-											{/* <GoogleLogin
+
+
+											<button
+												id='password'
+												type="password"
+												name="password"
+												className="tw-w-full tw-border-2 tw-h-12 tw-p-3 tw-mb-1 tw-text-black"
+												placeholder="Password"
+												onClick={handleClick}
+
+											><FcGoogle className=' tw-text-2xl tw-mt-[-1px] tw-ml-[90px]' /><p className=' tw-mt-[-24px] tw-ml-[40px]'>Continue With Google</p>
+											</button>
+
+											{/* <GoogleOAuthProvider clientId="295805594505-sq8l6g2m1dlgnlepvim7h03gmo48gco3.apps.googleusercontent.com">
+												476940860490-r2o45p41fj6g0jkq7ntkg84v2ssuv2fl.apps.googleusercontent.com
+												<GoogleLogin
 													onSuccess={async (credentialResponse) => {
 														try {
 															console.log(credentialResponse);
 															const data = jwtDecode(credentialResponse.credential)
-															console.log(data)
+															console.log(data);
 
 															const token = credentialResponse.credential;
 															const response = await axios.post(googleLoginUrl, {
@@ -191,8 +243,9 @@ const UserLogin = () => {
 													onError={() => {
 														console.log('Login Failed');
 													}}
-												/> */}
-											{/* </GoogleOAuthProvider> */}
+												/>
+											</GoogleOAuthProvider> */}
+
 										</div>
 										<div className=''>
 											<input type="checkbox"
@@ -208,14 +261,7 @@ const UserLogin = () => {
 										</div>
 
 
-										{/* <button
-											disabled={!email || !password}
-											type="submit"
-											className={`w-full text-center text-lg font-semibold h-11
-    										${(!email || !password) ? 'bg-gray-400 cursor-not-allowed text-gray-600' : 'bg-black hover:bg-green-400'}`}
-										>
-											Login
-										</button> */}
+
 										<button
 											disabled={!email || !password}
 											type="submit"
@@ -228,7 +274,7 @@ const UserLogin = () => {
 
 										<div className=' tw-text-gray-400 tw-mt-4 '>
 											{/* Don't have an Account? Create New Account */}
-											<p>Don't have an account? <a href="/UserEmail" className=' tw-cursor-pointer '><u>Create New Account</u></a></p>
+											<p>Don't have an account?  <a href="/UserEmail" className=' tw-cursor-pointer '><u> Create New Account</u></a></p>
 										</div>
 
 									</div>

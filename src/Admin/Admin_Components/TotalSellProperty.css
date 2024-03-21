@@ -663,6 +663,14 @@
   margin-top: 80px !important
 }
 
+.tw-mt-\[-1px\] {
+  margin-top: -1px !important
+}
+
+.tw-mt-\[-24px\] {
+  margin-top: -24px !important
+}
+
 .tw-flex {
   display: flex !important
 }
@@ -1009,6 +1017,10 @@
 
 .tw-gap-5 {
   gap: 1.25rem !important
+}
+
+.tw-gap-2 {
+  gap: 0.5rem !important
 }
 
 .tw-space-x-3 > :not([hidden]) ~ :not([hidden]) {

@@ -31,9 +31,13 @@ import UserEmail from './User/Auth/UserEmail'
 import { AgentRegister } from './Agent/AgentRegister'
 import Rent from './User/Rent/Rent'
 import AdminStatus from './Admin/Admin_Components/AdminStatus'
+<<<<<<< HEAD
 import RentMoreDetails from './User/Rent/RentMoreDetails'
 import TotalRentProperty from './Admin/Admin_Components/TotalRentProperty'
 import TotalSellProperty from './Admin/Admin_Components/TotalSellProperty'
+=======
+import PrivateRoute from './User/Router/privateRoute'
+>>>>>>> 8f7ba0438050537e7b041ad1cf20c2bdd691c221
 
 
 
@@ -42,7 +46,11 @@ const App = () => {
 		<div>
 
 			<Routes>
-				<Route exact path='/' element={<Home />}></Route>
+				<Route exact path='/' element={
+					// <PrivateRoute>
+					<Home />
+					// </PrivateRoute>
+				}></Route>
 				<Route exact path='/Buy' element={<Buy />} />
 				<Route exact path='/Rent' element={<Rent />} />
 				<Route exact path='/AddProperty' element={<AddProperty />} />

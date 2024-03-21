@@ -38,20 +38,6 @@ const VerifyEmail = () => {
 		};
 	}
 
-
-	// const handleOtp = (event) => {
-	// 	console.log("clicked");
-
-	// 	if (event.key === 'Enter') {
-	// 		console.log("enter clicked");
-	// 		verifyOtp(event);
-	// 	};
-	// }
-
-
-
-
-
 	const handleVerifyEmail = async () => {
 		try {
 			const reqData = {
@@ -64,14 +50,10 @@ const VerifyEmail = () => {
 				setResponse('success', 'success..')
 			}
 		} catch (error) {
-			// if (error.response && error.response.status === 404) {
-			// 	setResponse("error", "Email not found");
-			// } else {
-			// 	console.error("Error:", error);
-			// 	setResponse("error", "An unexpected error occurred");
-			// }
+
 		}
 	};
+
 
 	const verifyOtp = async (e) => {
 		try {
@@ -84,21 +66,31 @@ const VerifyEmail = () => {
 
 			const responseData = await axios.post(verifyOtpUrl, reqdata);
 
+<<<<<<< HEAD
 			if (responseData.status === 200) {
 				// toast.success('Email verified successfully!');
 				setResponse("success: ", responseData.data);
+=======
+
+			if (responseData.status === 200) {
+				toast.success(responseData.data.message);
+>>>>>>> 8f7ba0438050537e7b041ad1cf20c2bdd691c221
 				navigate("/UserRegister", { state: { email: email } });
 				console.log('verify email: ', email);
+				console.log(responseData.data.message);
 			}
 
 			else {
-				console.log(responseData.data.message);
-				toast.error(responseData.data.message);
+				// console.log("else", responseData);
+				// toast.error(responseData);
+				// console.log("error");
 
 			}
 		} catch (error) {
-			// setResponse("error :", response.data.message);
-			// console.log(responseData.data.message);
+			setResponse("error :", error.response.data);
+			toast.error(error.response.data.message);
+			console.log("catch", error.response.data.message);
+
 
 		}
 	};
