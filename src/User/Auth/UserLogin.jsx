@@ -41,12 +41,8 @@ const UserLogin = () => {
 				password: password,
 			};
 			const responseData = await axios.post(signInUrl, reqdata);
-<<<<<<< HEAD
 			console.log(responseData.data.data.role);
 
-=======
-			console.log(responseData.data.user.role);
->>>>>>> 8f7ba0438050537e7b041ad1cf20c2bdd691c221
 			if (responseData.status === 200) {
 
 
@@ -63,28 +59,15 @@ const UserLogin = () => {
 				else {
 					const { token } = responseData.data;
 					localStorage.setItem("token", token);
-<<<<<<< HEAD
 					navigate("/Agent", { state: email });
-=======
-					console.log(responseData.data.role);
-					navigate("/Admin", { state: email });
-					toast.success(responseData.data.message);
-
->>>>>>> 8f7ba0438050537e7b041ad1cf20c2bdd691c221
 
 				}
 
 
 			}
-<<<<<<< HEAD
 			// else {
 			// 	console.log(responseData.data.user.message);
 			// 	toast.error(responseData.data.user.message);
-=======
-			else {
-				// console.log(responseData.data.message);
-				// toast.error(responseData.data.message);
->>>>>>> 8f7ba0438050537e7b041ad1cf20c2bdd691c221
 
 			// }
 
@@ -95,12 +78,7 @@ const UserLogin = () => {
 			toast.error(error.response.data.message);
 
 			// setResponse(alert(response.data.message));
-<<<<<<< HEAD
 			// setResponse(alert(responseData.data.user.message));
-=======
-			// setResponse(alert(response.data.message));
-
->>>>>>> 8f7ba0438050537e7b041ad1cf20c2bdd691c221
 		}
 	}
 

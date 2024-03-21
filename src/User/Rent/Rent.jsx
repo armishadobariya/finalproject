@@ -8,10 +8,7 @@ import Box from '@mui/material/Box';
 import Slider from '@mui/material/Slider';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-<<<<<<< HEAD
 import { getRentPropertyUrl } from '../Components/Api';
-=======
->>>>>>> 8f7ba0438050537e7b041ad1cf20c2bdd691c221
 
 
 const Rent = () => {
@@ -75,26 +72,6 @@ const Rent = () => {
 	}
 
 
-<<<<<<< HEAD
-=======
-	const getSellAllPropert = async () => {
-		try {
-			// setLoad(true)
-			const response = await axios.get();
-			console.log(response.data["allProperty"]);
-			// setLoad(false)
-			// ------------------------------------- note ------------------------------------------
-			// tamne loko ne data array na from ma malse teni ander thi key no use kari value access kari le jo
-			// badho data chhe e -----> response.data["allProperty"] <----- ani ander hase
-			// setLoad e loader mate banavu chhe data avta var lagse aetale
-		} catch (error) {
-			console.log(error)
-		}
-	}
-
-
-
->>>>>>> 8f7ba0438050537e7b041ad1cf20c2bdd691c221
 	return (
 		<>
 			<Nav />
