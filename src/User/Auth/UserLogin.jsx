@@ -36,33 +36,25 @@ const UserLogin = () => {
 				password: password,
 			};
 			const responseData = await axios.post(signInUrl, reqdata);
-			console.log(responseData.data);
+			console.log(responseData.data.data.role);
 
 			if (responseData.status === 200) {
 
-				console.log(responseData.data.admin.role);
-				// if (responseData.data.user.role === 'USER') {
-				// 	const { token } = responseData.data;
-				// 	console.log('token: ', token);
-				// 	localStorage.setItem("token", token);
-				// 	console.log(responseData.data.role);
-				// 	navigate("/", { state: email });
 
-				// }
-				if (responseData.data.admin.role === 'ADMIN') {
+				if (responseData.data.data.role === 'USER') {
 					const { token } = responseData.data;
-					console.log('token: ', token);
 					localStorage.setItem("token", token);
-					console.log(responseData.data.role);
+					navigate("/", { state: email });
+				}
+				else if (responseData.data.data.role === 'ADMIN') {
+					const { token } = responseData.data;
+					localStorage.setItem("token", token);
 					navigate("/admin", { state: email });
-					// navigate("/Agent", { state: email });
 				}
 				else {
 					const { token } = responseData.data;
-					console.log('token: ', token);
 					localStorage.setItem("token", token);
-					console.log(responseData.data.user.role);
-					navigate("/agent", { state: email });
+					navigate("/Agent", { state: email });
 
 				}
 
