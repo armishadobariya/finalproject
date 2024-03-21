@@ -311,10 +311,11 @@ const Nav = () => {
 				} else {
 					throw new Error(`Failed to update profile picture: ${response.statusText}`);
 				}
-			} catch (error) {
-				console.error('Error updating profile picture:', error);
-				Swal.fire('Error', 'Failed to update profile picture.', 'error');
 			}
+		}
+		catch (error) {
+			console.error('Error updating profile picture:', error);
+			Swal.fire('Error', 'Failed to update profile picture.', 'error');
 		}
 
 		window.profile = () => {
