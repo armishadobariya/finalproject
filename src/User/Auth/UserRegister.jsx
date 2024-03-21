@@ -281,6 +281,7 @@ const UserRegister = () => {
 														style={{
 															backgroundColor: 'black',
 															color: 'white',
+															width: '700px',
 															padding: '10px',
 															borderRadius: '5px',
 															cursor: 'pointer',

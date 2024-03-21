@@ -61,8 +61,9 @@ const Nav = () => {
 					};
 					return image;
 				});
+				console.log(data.userData.role);
 				setUserEmail(data.userData.email);
-				setUserMobile(data.userData.mobileNo);
+				// setUserMobile(data.userData.mobileNo);
 				setIsLogin(data.isLogin);
 			}
 		} catch (error) {

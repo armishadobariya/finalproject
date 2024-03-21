@@ -34,8 +34,16 @@ export const AgentRegister = () => {
 	const [panFront, setPanFront] = useState('');
 	const [panBack, setPanBack] = useState('');
 
+	const [adharPics, setAdharPics] = useState([]);
+	const [panPics, setPanPics] = useState([]);
+
+
+
+
 
 	const addAgentData = async (e) => {
+		// debugger;
+		e.preventDefault();
 		console.log('hello');
 		try {
 			const formData = new FormData();
@@ -58,19 +66,27 @@ export const AgentRegister = () => {
 
 			const token = localStorage.getItem("token");
 
-			const responseData = await axios.post(agentAddUrl, formData)
+			const responseData = await axios.post(agentAddUrl, formData, {
+
+				headers: {
+					"Authorization": `Bearer ${token}`,
+					"Content-Type": "multipart/form-data",
+				}
+			});
 
 			if (responseData.status === 201) {
 
-				console.log(responseData);
+				console.log(responseData.data);
 			}
 		}
 		catch (error) {
-			console.log(error);
+			console.log(error, "err")
 		}
 	}
 
-
+	// const handleRadioChange = (e) => {
+	// 	setType(e.target.value);
+	// }
 
 
 	const nextStep = () => {
@@ -86,8 +102,9 @@ export const AgentRegister = () => {
 	};
 
 
+
 	const handleAgentGender = (e) => {
-		setAgentAge(e.target.value);
+		setAgentGender(e.target.value);
 	}
 
 	// const handleImage = (e) => {
@@ -99,25 +116,68 @@ export const AgentRegister = () => {
 	// 	setSelectedFiles(fileNames);
 	// };
 
-	const handleImage = (e, type) => {
-		const file = e.target.files[0];
+	// const handleImage = (e, type) => {
+	// 	const file = e.target.files[0];
+	// 	switch (type) {
+	// 		case 'adharFront':
+	// 			setAdharFront(file);
+	// 			break;
+	// 		case 'adharBack':
+	// 			setAdharBack(file);
+	// 			break;
+	// 		case 'panFront':
+	// 			setPanFront(file);
+	// 			break;
+	// 		case 'panBack':
+	// 			setPanBack(file);
+	// 			break;
+	// 		default:
+	// 			break;
+	// 	}
+
+
+	// const handleImage = (event, type) => {
+	// 	const files = event.target.files;
+	// 	const images = [];
+	// 	for (let i = 0; i < files.length; i++) {
+	// 		images.push(files[i]);
+	// 	}
+	// 	if (type === 'panFront') {
+	// 		setPanFront(images);
+	// 	} else if (type === 'panBack') {
+	// 		setPanBack(images);
+	// 	} else if (type === 'adharFront') {
+	// 		setAdharFront(images);
+	// 	} else if (type === 'adharBack') {
+	// 		setAdharBack(images);
+	// 	}
+	// };
+
+	const handleImage = (event, type) => {
+		const files = event.target.files;
+		const images = [];
+		for (let i = 0; i < files.length; i++) {
+			images.push(files[i]);
+		}
 		switch (type) {
 			case 'adharFront':
-				setAdharFront(file);
+				setAdharFront(prevState => [...prevState, ...images]);
 				break;
 			case 'adharBack':
-				setAdharBack(file);
+				setAdharBack(prevState => [...prevState, ...images]);
 				break;
 			case 'panFront':
-				setPanFront(file);
+				setPanFront(prevState => [...prevState, ...images]);
 				break;
 			case 'panBack':
-				setPanBack(file);
+				setPanBack(prevState => [...prevState, ...images]);
 				break;
 			default:
 				break;
 		}
 	};
+
+
 
 	return (
 		<>
@@ -177,13 +237,13 @@ export const AgentRegister = () => {
 										<label htmlFor="gender" className=' tw-font-semibold tw-mt-2'>Gender</label>
 										<div className=' flex gap-3'>
 											<div className=" tw-flex tw-border-2 tw-p-2 rounded-2 tw-w-full ">
-												<input className="form-check-input" type="radio" name="amenity" id="parking" value="male" checked={agentAge === 'male'} onChange={handleAgentGender} />
-												<label className="form-check-label tw-pl-1" htmlFor="parking">
+												<input className="form-check-input" type="radio" name="amenity" id="gender" value="male" checked={agentGender === 'male'} onChange={handleAgentGender} />
+												<label className="form-check-label tw-pl-1" htmlFor="parking" >
 													Male
 												</label>
 											</div>
 											<div className=" tw-flex  tw-border-2 tw-p-2 rounded-2 tw-w-full">
-												<input className="form-check-input" type="radio" name="amenity" id="lift" value="female" checked={agentAge === 'female'} onChange={handleAgentGender} />
+												<input className="form-check-input" type="radio" name="amenity" id="gender" value="female" checked={agentGender === 'female'} onChange={handleAgentGender} />
 												<label className="form-check-label tw-pl-2" htmlFor="lift">
 													Female
 												</label>
@@ -253,7 +313,9 @@ export const AgentRegister = () => {
 												<label htmlFor="adharFrontFile" className='tw-place-content-center tw-flex tw-gap-3 tw-p-1 tw-h-full tw-w-full tw-mt-1 rounded-3' style={{ color: "#de0611", border: "1px dashed black" }}>
 													<h1 className='tw-place-content-center tw-grid'>  <FileUploadIcon style={{ height: "28px", width: "28px", color: "#ddd" }} className='border-2 rounded-3' /></h1>
 													<h1 className='  tw-place-content-center tw-grid tw-pl-2' style={{ color: "#aaa" }}>Front side of Adhar</h1>
-													{adharFront && <h1 style={{ color: 'black', fontWeight: '500' }}>{adharFront.name}</h1>}
+													{adharFront && adharFront.map((image, index) => (
+														<h1 key={index} style={{ color: 'black', fontWeight: '500' }}>{image.name}</h1>
+													))}
 												</label>
 
 
@@ -269,7 +331,9 @@ export const AgentRegister = () => {
 													<label htmlFor="adharBackFile" className='tw-place-content-center tw-flex tw-gap-3 tw-p-1 tw-h-full tw-w-full tw-mt-1 rounded-3' style={{ color: "#de0611", border: "1px dashed black" }}>
 														<h1 className='tw-place-content-center tw-grid'>  <FileUploadIcon style={{ height: "28px", width: "28px", color: "#ddd" }} className='border-2 rounded-3' /></h1>
 														<h1 className='  tw-place-content-center tw-grid tw-pl-2' style={{ color: "#aaa" }}>Back side of Adhar</h1>
-														{adharBack && <h1 style={{ color: 'black', fontWeight: '500' }}>{adharBack.name}</h1>}
+														{adharBack && adharBack.map((image, index) => (
+															<h1 key={index} style={{ color: 'black', fontWeight: '500' }}>{image.name}</h1>
+														))}
 													</label>
 												</div>
 											</div>
@@ -282,7 +346,9 @@ export const AgentRegister = () => {
 													<label htmlFor="panFrontFile" className='tw-place-content-center tw-flex tw-gap-3 tw-p-1 tw-h-full tw-w-full tw-mt-1 rounded-3' style={{ color: "#de0611", border: "1px dashed black" }}>
 														<h1 className='tw-place-content-center tw-grid'>  <FileUploadIcon style={{ height: "28px", width: "28px", color: "#ddd" }} className='border-2 rounded-3' /></h1>
 														<h1 className='  tw-place-content-center tw-grid tw-pl-2' style={{ color: "#aaa" }}>Front side of Pan</h1>
-														{panFront && <h1 style={{ color: 'black', fontWeight: '500' }}>{panFront.name}</h1>}
+														{panFront && panFront.map((image, index) => (
+															<h1 key={index} style={{ color: 'black', fontWeight: '500' }}>{image.name}</h1>
+														))}
 													</label>
 												</div>
 												<div className=' tw-w-full'>
@@ -290,7 +356,9 @@ export const AgentRegister = () => {
 													<label htmlFor="panBackFile" className='tw-place-content-center tw-flex tw-gap-3 tw-p-1 tw-h-full tw-w-full tw-mt-1 rounded-3' style={{ color: "#de0611", border: "1px dashed black" }}>
 														<h1 className='tw-place-content-center tw-grid'>  <FileUploadIcon style={{ height: "28px", width: "28px", color: "#ddd" }} className='border-2 rounded-3' /></h1>
 														<h1 className='  tw-place-content-center tw-grid tw-pl-2' style={{ color: "#aaa" }}>Back side of Pan</h1>
-														{panBack && <h1 style={{ color: 'black', fontWeight: '500' }}>{panBack.name}</h1>}
+														{panBack && panBack.map((image, index) => (
+															<h1 key={index} style={{ color: 'black', fontWeight: '500' }}>{image.name}</h1>
+														))}
 													</label>
 												</div>
 											</div>
