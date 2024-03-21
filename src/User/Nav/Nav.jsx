@@ -243,19 +243,15 @@ const Nav = () => {
 		}
 
 
-<<<<<<< HEAD
 		window.handleImageChange1 = (event) => {
 			if (event.target.files.length > 0) {
 				const file = event.target.files[0];
 				console.log('Selected File:', file);
 			}
 		}
-=======
-		window.profile = () => {
->>>>>>> 8f7ba0438050537e7b041ad1cf20c2bdd691c221
 
-			Swal.fire({
-				html: `
+		Swal.fire({
+			html: `
 
 
 					<div class="profile-container" style="font-family: Arial, sans-serif; margin-top: 8px; padding: 20px;">
@@ -277,49 +273,35 @@ const Nav = () => {
 						</div>
 					</div>
 				`,
-				showConfirmButton: false,
+			showConfirmButton: false,
+		});
+
+
+		document.getElementById('editButton').onclick = editImage;
+	};
+
+	const editImage = async () => {
+		try {
+			console.log('hello');
+			const formData = new FormData();
+			formData.append('image', userImage.image);
+
+			const token = localStorage.getItem('token');
+			const response = await axios.post(changeProfileUrl, formData, {
+				headers: {
+					'Content-Type': 'multipart/form-data',
+					Authorization: `Bearer ${token}`,
+				},
 			});
-
-
-			document.getElementById('editButton').onclick = editImage;
-		};
-
-		const editImage = async () => {
-			try {
-<<<<<<< HEAD
-				console.log('hello');
-				const formData = new FormData();
-				formData.append('image', userImage.image);
-=======
-				const selectedImage = document.getElementById('imageInput').files[0];
-				if (selectedImage) {
-					const imageURL = URL.createObjectURL(selectedImage);
-					document.getElementById('profileImage').src = imageURL;
-				}
-
-				const formData = new FormData();
-				formData.append('profilePic', selectedImage);
->>>>>>> 8f7ba0438050537e7b041ad1cf20c2bdd691c221
-
-				const token = localStorage.getItem('token');
-				const response = await axios.post(changeProfileUrl, formData, {
-					headers: {
-						'Content-Type': 'multipart/form-data',
-						Authorization: `Bearer ${token}`,
-					},
+			console.log(response.status);
+			if (response.status == 200) {
+				console.log('success');
+				const data = response.data;
+				console.log(data);
+				setUserImage({
+					image: data.profilePic,
+					isSet: false,
 				});
-<<<<<<< HEAD
-				console.log(response.status);
-				if (response.status == 200) {
-					console.log('success');
-					const data = response.data;
-					console.log(data);
-					setUserImage({
-						image: data.profilePic,
-						isSet: false,
-					});
-=======
->>>>>>> 8f7ba0438050537e7b041ad1cf20c2bdd691c221
 
 				if (response.status === 200) {
 					const data = response.data;
@@ -333,7 +315,6 @@ const Nav = () => {
 				console.error('Error updating profile picture:', error);
 				Swal.fire('Error', 'Failed to update profile picture.', 'error');
 			}
-<<<<<<< HEAD
 		}
 
 		window.profile = () => {
@@ -362,11 +343,6 @@ const Nav = () => {
 
 
 
-=======
-		};
-
-
->>>>>>> 8f7ba0438050537e7b041ad1cf20c2bdd691c221
 		Swal.fire({
 			title: "Profile",
 			html: `
@@ -509,10 +485,6 @@ const Nav = () => {
 										</>
 									)}
 								</PopupState>
-
-
-
-
 
 							</div>
 						</form>
