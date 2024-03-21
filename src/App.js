@@ -23,6 +23,7 @@ import { PostDetails } from './User/AddProperty/PostDetails'
 import { AddProperty } from './User/AddProperty/AddProperty'
 import ReadMoreDetails from './User/Buy/ReadMoreDetails'
 import Buy from './User/Buy/Buy';
+import Feedback from './User/Feedback/Feedback';
 import AdminLogin from './Admin/Auth/AdminLogin'
 import Demo from './User/Components/Demo'
 import VerifyEmail from './User/Auth/VerifyEmail'
@@ -55,6 +56,7 @@ const App = () => {
 				<Route exact path='/PropertyHistory' element={<PropertyHistory />}></Route>
 				<Route exact path='/Contact' element={<Contact />}></Route>
 				<Route exact path='/About' element={<About />}></Route>
+				<Route exact path='/Feedback' element={<Feedback />}></Route>
 				<Route exact path='/UserEmail' element={<UserEmail />}></Route>
 				<Route exact path='/UserRegister' element={<UserRegister
 				/>}></Route>

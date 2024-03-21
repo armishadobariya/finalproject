@@ -22,5 +22,6 @@ export const totalSellCountUrl = `${baseUrl}/admin/total-sellproperty-count`;
 export const totalUserCountUrl = `${baseUrl}/admin/total-user-count`;
 export const totalAgentCountUrl = `${baseUrl}/admin/total-agent-count`;
 export const agentVerifyUrl = `${baseUrl}/agent/verify-agent`;
+export const agentAddUrl = `${baseUrl}/agent/add-agent`;
 export const pendingStatusUrl = `${baseUrl}/property/getuserpending-property`;
 
