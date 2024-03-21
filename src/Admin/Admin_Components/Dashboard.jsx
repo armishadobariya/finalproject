@@ -21,13 +21,16 @@ import p4 from "../../Assests/Image/Admin/Dashboard/04.jpg";
 import map from "../../Assests/Image/Admin/map.png";
 import { useNavigate } from 'react-router-dom';
 import "./Common.css";
+import { totalAgentCountUrl, totalPropertyCountUrl, totalRentCountUrl, totalSellCountUrl, totalUserCountUrl } from '../../User/Components/Api';
+import axios from 'axios';
 
 const Dashboard = () => {
 
-	const [totalRevenue, setTotalRevenue] = useState(0);
-	const [totalUsers, setTotalUsers] = useState(0);
-	const [totalShippedOrders, setTotalShippedOrders] = useState(0);
-	const [totalTotalReview, setTotalTotalReview] = useState(0);
+	const [totalSeCount, setTotalSeCount] = useState(0);
+	const [totalAgeCount, setTotalAgeCount] = useState(0);
+	const [totalUseCount, setTotalUseCount] = useState(0);
+	const [totalReCount, setTotalReCount] = useState(0);
+	const [totalProCount, setTotalProCount] = useState(0);
 	const [isCardOpen1, setIsCardOpen1] = useState(true);
 	const [isCardOpen2, setIsCardOpen2] = useState(true);
 	const [isCardOpen3, setIsCardOpen3] = useState(true);
@@ -57,9 +60,122 @@ const Dashboard = () => {
 		navigate('/Admin/TotalProperty');
 	}
 
+
+	const totalPropertyCount = async () => {
+		try {
+			const token = localStorage.getItem('token');
+
+			const response = await axios.get(totalPropertyCountUrl, {
+				headers: {
+					Authorization: `Bearer ${token}`,
+				},
+			});
+			console.log("response:", response.data.property);
+
+			if (response.status === 200) {
+				const data = response.data.property;
+				console.log('data: ', data);
+				setTotalProCount(data);
+			}
+		} catch (error) {
+			console.error("fetch all property:", error.message);
+		}
+	}
+
+	const totalRentCount = async () => {
+		try {
+			const token = localStorage.getItem('token');
+
+			const response = await axios.get(totalRentCountUrl, {
+				headers: {
+					Authorization: `Bearer ${token}`,
+				},
+			});
+			console.log("response:", response.data.property);
+
+			if (response.status === 200) {
+				const data = response.data.property;
+				console.log('data: ', data);
+				setTotalReCount(data);
+			}
+		} catch (error) {
+			console.error("fetch all property:", error.message);
+		}
+	}
+	const totalSellCount = async () => {
+		try {
+			const token = localStorage.getItem('token');
+
+			const response = await axios.get(totalSellCountUrl, {
+				headers: {
+					Authorization: `Bearer ${token}`,
+				},
+			});
+			console.log("response:", response.data.property);
+
+			if (response.status === 200) {
+				const data = response.data.property;
+				console.log('data: ', data);
+				setTotalSeCount(data);
+			}
+		} catch (error) {
+			console.error("fetch all property:", error.message);
+		}
+	}
+
+	const totalUserCount = async () => {
+		try {
+			const token = localStorage.getItem('token');
+
+			const response = await axios.get(totalUserCountUrl, {
+				headers: {
+					Authorization: `Bearer ${token}`,
+				},
+			});
+			console.log("response:", response.data.users);
+
+			if (response.status === 200) {
+				const data = response.data.users;
+				console.log('data: ', data);
+				setTotalUseCount(data);
+			}
+		} catch (error) {
+			console.error("fetch all property:", error.message);
+		}
+	}
+
+	const totalAgentCount = async () => {
+		try {
+			const token = localStorage.getItem('token');
+
+			const response = await axios.get(totalAgentCountUrl, {
+				headers: {
+					Authorization: `Bearer ${token}`,
+				},
+			});
+			console.log("response:", response.data.agents);
+
+			if (response.status === 200) {
+				const data = response.data.agents;
+				console.log('data: ', data);
+				setTotalAgeCount(data);
+			}
+		} catch (error) {
+			console.error("fetch all property:", error.message);
+		}
+	}
+
+
+
+
 	useEffect(() => {
 		setTimeout(() => {
 			setLoading(false);
+			totalPropertyCount();
+			totalRentCount();
+			totalSellCount();
+			totalUserCount();
+			totalAgentCount();
 		}, 500)
 	}, []);
 
@@ -85,7 +201,7 @@ const Dashboard = () => {
 									<Card className="cancleCard">
 										<CardContent className=' tw-cursor-pointer' onClick={handleProperty}>
 											<Typography variant="h6 dashCardText" >Available Property</Typography>
-											<Typography variant="h4">{totalTotalReview}</Typography>
+											<Typography variant="h4">{totalProCount}</Typography>
 										</CardContent>
 									</Card>
 								</Grid>
@@ -93,7 +209,7 @@ const Dashboard = () => {
 									<Card className="penddingPayment">
 										<CardContent>
 											<Typography variant="h6 dashCardText">Property For Rent</Typography>
-											<Typography variant="h4">{totalShippedOrders}</Typography>
+											<Typography variant="h4">{totalReCount}</Typography>
 										</CardContent>
 									</Card>
 								</Grid>
@@ -101,7 +217,7 @@ const Dashboard = () => {
 									<Card className="completePayment">
 										<CardContent>
 											<Typography variant="h6 dashCardText">Property For Sale</Typography>
-											<Typography variant="h4">{totalRevenue}</Typography>
+											<Typography variant="h4">{totalSeCount}</Typography>
 										</CardContent>
 									</Card>
 								</Grid>
@@ -109,7 +225,24 @@ const Dashboard = () => {
 									<Card className="users">
 										<CardContent>
 											<Typography variant="h6 dashCardText">Total Earning</Typography>
-											<Typography variant="h4">{totalUsers}/-</Typography>
+											<Typography variant="h4">{ }/-</Typography>
+										</CardContent>
+									</Card>
+								</Grid>
+								<Grid item xs={12} sm={6} md={6}>
+									<Card className="cancleCard">
+										<CardContent >
+											<Typography variant="h6 dashCardText" >Total User</Typography>
+											<Typography variant="h4">{totalUseCount}</Typography>
+										</CardContent>
+									</Card>
+								</Grid>
+
+								<Grid item xs={12} sm={6} md={6}>
+									<Card className="users">
+										<CardContent>
+											<Typography variant="h6 dashCardText">Total Agent</Typography>
+											<Typography variant="h4">{totalAgeCount}</Typography>
 										</CardContent>
 									</Card>
 								</Grid>

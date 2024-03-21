@@ -14,3 +14,10 @@ export const setApproveUrl = `${baseUrl}/property/set-approveproperty`;
 export const setRejectUrl = `${baseUrl}/property/set-cancelproperty`;
 export const getRentPropertyUrl = `${baseUrl}/property/getall-rentproperty`;
 export const getSellPropertyUrl = `${baseUrl}/property/getall-sellproperty`;
+export const getAdminSelectedPropertyUrl = `${baseUrl}/admin/get-selected-property`;
+export const totalPropertyCountUrl = `${baseUrl}/admin/total-property-count`;
+export const totalRentCountUrl = `${baseUrl}/admin/total-rentproperty-count`;
+export const totalSellCountUrl = `${baseUrl}/admin/total-sellproperty-count`;
+export const totalUserCountUrl = `${baseUrl}/admin/total-user-count`;
+export const totalAgentCountUrl = `${baseUrl}/admin/total-agent-count`;
+

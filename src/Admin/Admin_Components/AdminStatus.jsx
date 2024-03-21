@@ -6,7 +6,7 @@ import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import Admin_Sidebar from '../Admin_Nav/Admin_Sidebar';
 import Admin_Nav from '../Admin_Nav/Admin_Nav';
-import { getPropertyUrl, setApproveUrl, setRejectUrl } from '../../User/Components/Api';
+import { getAdminSelectedPropertyUrl, getPropertyUrl, setApproveUrl, setRejectUrl } from '../../User/Components/Api';
 import axios from 'axios';
 
 const AdminStatus = () => {
@@ -15,7 +15,7 @@ const AdminStatus = () => {
 	const [loading, setLoading] = useState(true);
 
 	const [showMore, setShowMore] = useState(false);
-
+	const [selectedStatus, setSelectedStatus] = useState('All');
 	const [propertyData, setPropertyData] = useState([]);
 
 
@@ -41,7 +41,7 @@ const AdminStatus = () => {
 					Authorization: `Bearer ${token}`,
 				},
 			});
-			console.log("response:", response.data.data);
+
 
 			if (response.status === 200) {
 				const data = response.data.allProperty;
@@ -73,6 +73,7 @@ const AdminStatus = () => {
 			if (response.status === 200) {
 				getProperty();
 				// console.log("success....!")
+
 			}
 		} catch (error) {
 			console.error("Error:", error.message);
@@ -101,10 +102,41 @@ const AdminStatus = () => {
 			console.log("response", response);
 			if (response.status === 200) {
 				getProperty();
+
 				console.log("success....!")
 			}
 		} catch (error) {
 			console.error("Error:", error.message);
+		}
+	}
+
+
+
+
+	const handleStatusChange = async (event) => {
+
+		try {
+
+			const selectedValue = event.target.value;
+			setSelectedStatus(selectedValue);
+			console.log(selectedValue);
+			const token = localStorage.getItem("token");
+			console.log(token);
+			const response = await axios.get(`${getAdminSelectedPropertyUrl}/${selectedValue}`, {
+				headers: {
+					Authorization: `Bearer ${token}`,
+				},
+			});
+			console.log(response);
+			if (response.status === 200) {
+				console.log("successfully call");
+				const data = response.data.allProperty;
+				console.log('data: ', data);
+				setPropertyData(data);
+
+			}
+		} catch (error) {
+			console.error("Error deleting user:", error.message);
 		}
 	}
 
@@ -141,11 +173,11 @@ const AdminStatus = () => {
 									<div className=' tw-flex  tw-justify-end '>
 										<label htmlFor="status" className="tw-font-semibold tw-mr-2">Select Status:</label>
 
-										<select name="status" id="status" style={{ outline: 'none' }}>Select status
+										<select name="status" id="status" style={{ outline: 'none' }} value={selectedStatus} onChange={handleStatusChange}>Select status
 											<option value="All">All</option>
-											<option value="verified">Approved</option>
-											<option value="pending">Pending</option>
-											<option value="rejected">Rejected</option>
+											<option value="Approved">Approved</option>
+											<option value="Pending">Pending</option>
+											<option value="Rejected">Rejected</option>
 										</select>
 									</div>
 								</div>
