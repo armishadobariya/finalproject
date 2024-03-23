@@ -1,12 +1,7 @@
 import React, { useRef } from 'react';
 import './AboutSlide.css';
 import { Swiper, SwiperSlide } from 'swiper/react';
-// import a1 from "../../Assests/Image/About/a1.jpg"
-// import a2 from "../../Assests/Image/About/a2.jpg"
-// import a3 from "../../Assests/Image/About/a3.jpg"
-// import a4 from "../../Assests/Image/About/a4.jpg"
-// import a5 from "../../Assests/Image/About/a5.jpg"
-// import a6 from "../../Assests/Image/About/a6.jpg"
+
 
 
 import a1 from "../../Assests/Image/About/about_2.jpg"
@@ -24,17 +19,7 @@ export const AboutSlide = () => {
 	const swiperRef = useRef(null);
 
 
-	// const goPrev = () => {
-	// 	if (swiperRef.current) {
-	// 		swiperRef.current.swiper.slidePrev();
-	// 	}
-	// };
 
-	// const goNext = () => {
-	// 	if (swiperRef.current) {
-	// 		swiperRef.current.swiper.slideNext();
-	// 	}
-	// };
 	return (
 		<>
 			<div className='tw-flex tw-justify-center'>
@@ -163,9 +148,6 @@ export const AboutSlide = () => {
 					</SwiperSlide>
 				</Swiper>
 			</div>
-
-
-
 		</>
 	)
 }

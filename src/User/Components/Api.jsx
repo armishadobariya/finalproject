@@ -24,4 +24,6 @@ export const totalAgentCountUrl = `${baseUrl}/admin/total-agent-count`;
 export const agentVerifyUrl = `${baseUrl}/agent/verify-agent`;
 export const agentAddUrl = `${baseUrl}/agent/add-agent`;
 export const pendingStatusUrl = `${baseUrl}/property/getuserpending-property`;
+export const addFeedbackUrl = `${baseUrl}/feedback/add-feedback`;
+export const getFeedbackUrl = `${baseUrl}/feedback/get-feedbacks`;
 

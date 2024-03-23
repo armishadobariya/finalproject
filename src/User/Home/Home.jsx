@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './Home.css';
 import hotel from '../../Assests/Image/Home1/b1.svg';
 import './style.css';
@@ -28,6 +28,8 @@ import { BiUpArrow } from "react-icons/bi";
 import Nav from '../Nav/Nav';
 import { Footer } from '../Footer/Footer';
 import HomeSlide from './HomeSlide';
+import axios from 'axios';
+import { getFeedbackUrl } from '../Components/Api';
 
 const Home = () => {
 
@@ -36,6 +38,39 @@ const Home = () => {
 	const navigate = useNavigate();
 	const [visible, setVisible] = useState(false);
 	const [modalVisible, setModalVisible] = useState(false);
+
+
+	//  api
+
+	const [getFeedback, setGetFeedback] = useState([]);
+
+	const getFeedbacks = async () => {
+		try {
+			const token = localStorage.getItem('token');
+
+			const response = await axios.get(getFeedbackUrl, {
+				headers: {
+					Authorization: `Bearer ${token}`,
+				},
+			});
+			console.log("response:", response.data.data);
+
+			if (response.status === 200) {
+				const data = response.data.allProperty;
+				console.log('data: ', data);
+				setGetFeedback(data);
+			}
+		} catch (error) {
+			console.error("fetch all property:", error.message);
+		}
+	}
+
+	useEffect(() => {
+		getFeedbacks()
+	}, [])
+
+
+
 
 	const toggleVisible = () => {
 		const scrolled = document.documentElement.scrollTop;
@@ -118,13 +153,7 @@ const Home = () => {
 		}
 	};
 
-	// const handleBackArrowClick = () => {
-	// 	if (currentFeedback > 0) {
-	// 		setCurrentFeedback((prevSlide) => prevSlide - 1);
-	// 	} else {
-	// 		setCurrentFeedback(totalFeedbacks.length - 1);
-	// 	}
-	// };
+
 
 	const handleBackArrowClick = () => {
 		if (currentFeedback > 0) {
@@ -250,57 +279,6 @@ const Home = () => {
 
 				{/* Feacture Collections */}
 
-				{/* <div class='flex justify-center'>
-					<div class='tw-border-2 tw-border-white tw-mt-16 text-center slider-container '>
-
-
-						<div className='tw-flex tw-items-center tw-justify-center'>
-
-							<div className='lg:tw-w-[200px] tw-w-20 tw-border-b-2' style={{ border: '0px solid #d3a478' }}></div>
-
-							<h2 class='tw-text-lg tw-mb-3 tw-mr-8 tw-ml-8'>FEATURED <span class='tw-font-bold'>COLLECTIONS</span></h2>
-							<div className='lg:tw-w-[200px] tw-w-20 tw-border-b-2' style={{ border: '0px solid #d3a478' }}></div>
-						</div>
-
-						<p class='tw-mb-10' style={{ fontFamily: 'Cormorant Garamond, serif', fontSize: '40px' }}>Handpicked projects for you</p>
-
-						<div class='tw-border-2 tw-border-white md:tw-flex flex-col '>
-							<div class='tw-mr-8 tw-mb-10 tw-ml-8'>
-								<img src={apar} alt="" width='330px' class='tw-rounded-2xl md:tw-items-center' />
-								<div className="tw-grid tw-place-content-center tw-mt-[-60px] ">
-									<div className=' tw-text-white  tw-font-bold'>
-										<h2 className='tw-text-2xl'>Townships</h2>
-										<p className=' tw-font-light'>Redefining community living</p>
-									</div>
-
-								</div>
-							</div>
-							<div class='tw-mr-8 tw-ml-8 tw-mb-10 '>
-								<img src={villa} alt="" width='348px' class='tw-rounded-2xl' />
-								<div className="tw-grid tw-place-content-center tw-mt-[-60px] ">
-									<div className=' tw-text-white  tw-font-bold'>
-										<h2 className='tw-text-2xl'>Independent House</h2>
-										<p className=' tw-font-light'>Comfortable homes available for immediate use</p>
-									</div>
-
-								</div>
-							</div>
-							<div class='tw-mr-8 tw-ml-8 tw-mb-10'>
-								<img src={lux} alt="" width='328px' class='tw-rounded-2xl' />
-								<div className="tw-grid tw-place-content-center tw-mt-[-60px] ">
-									<div className=' tw-text-white  tw-font-bold'>
-										<h2 className='tw-text-2xl'>Luxury</h2>
-										<p className=' tw-font-light'>Premium housing for the lifestyle-conscious</p>
-									</div>
-
-								</div>
-							</div>
-							<div className=''>
-								<img src={aroom} alt="" width='348px' class='tw-rounded-2xl' />
-							</div>
-						</div>
-					</div>
-				</div> */}
 
 
 				<HomeSlide />

@@ -5,16 +5,15 @@ import 'swiper/css/pagination';
 import 'swiper/css/navigation';
 // import './Swiper.css';
 import { Autoplay, Pagination, Navigation } from 'swiper/modules';
-import WhatsAppIcon from '@mui/icons-material/WhatsApp';
-import InstagramIcon from '@mui/icons-material/Instagram';
-import LinkedInIcon from '@mui/icons-material/LinkedIn';
+
 import ContactImg from '../../Assests/Image/Contact/contact.jpg';
 import '../../../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import './Contact.css';
-import GitHubIcon from '@mui/icons-material/GitHub';
 import { Footer } from '../Footer/Footer';
 import Nav from '../Nav/Nav';
 import { useNavigate } from 'react-router-dom';
+import ContactSlide from './ContactSlide';
+
 
 const Contact = () => {
 
@@ -39,238 +38,9 @@ const Contact = () => {
 					<h3 className=' tw-font-semibold tw-text-3xl  tw-flex tw-justify-center tw-mt-1'>Meet Our Team</h3>
 				</div>
 				<div className=' tw-mt-4'>
-					<Swiper
-						slidesPerView={3}
-						centeredSlides={true}
-						spaceBetween={10}
-						// grabCursor={true}
-						autoplay={{
-							delay: 2500,
-							disableOnInteraction: false,
-						}}
-						// pagination={{
-						//     clickable: true,
-						// }}
-						navigation={true}
-						modules={[Autoplay, Pagination, Navigation]}
-						className="mySwiper"
-					>
-						<SwiperSlide><div className="col-lg-8 col-md-8  tw-flex tw-place-content-center">
-							<div className="container">
-								<img
-									src="https://images.unsplash.com/photo-1554080353-a576cf803bda?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8cGhvdG98ZW58MHx8MHx8fDA%3D"
-									alt="Avatar"
-									className="image"
 
-								/>
-								<div className="middle">
-									<div className="text">
-										<ul className=' tw-flex'>
-											<li className='tw-p-2'>
-												<a href="https://web.whatsapp.com/">
-													<WhatsAppIcon />
-												</a>
-											</li>
-											<li className='tw-p-2'>
-												<a href="https://web.whatsapp.com/">
-													<WhatsAppIcon />
-												</a>
-											</li>
-											<li className='tw-p-2'>
-												<a href="https://web.whatsapp.com/">
-													<WhatsAppIcon />
-												</a>
-											</li>
+					<ContactSlide />
 
-										</ul>
-										<h3 className=' tw-font-bold tw-text-2xl'> Demo</h3>
-										<span className=' tw-text-lg tw-font-semibold'>Founder</span>
-									</div>
-								</div>
-							</div>
-						</div>
-						</SwiperSlide>
-						<SwiperSlide>
-							<div className="col-lg-8 col-md-8  tw-flex tw-place-content-center">
-								<div className="container">
-									<img
-										src="https://images.unsplash.com/photo-1554080353-a576cf803bda?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8cGhvdG98ZW58MHx8MHx8fDA%3D"
-										alt="Avatar"
-										className="image"
-
-									/>
-									<div className="middle">
-										<div className="text">
-											<ul className=' tw-flex'>
-												<li className='tw-p-2'>
-													<a href="https://web.whatsapp.com/">
-														<WhatsAppIcon />
-													</a>
-												</li>
-												<li className='tw-p-2'>
-													<a href="https://web.whatsapp.com/">
-														<WhatsAppIcon />
-													</a>
-												</li>
-												<li className='tw-p-2'>
-													<a href="https://web.whatsapp.com/">
-														<WhatsAppIcon />
-													</a>
-												</li>
-
-											</ul>
-											<h3 className=' tw-font-bold tw-text-2xl'> Demo</h3>
-											<span className=' tw-text-lg tw-font-semibold'>Founder</span>
-										</div>
-									</div>
-								</div>
-							</div>
-						</SwiperSlide>
-						<SwiperSlide><div className="col-lg-8 col-md-8 tw-flex tw-place-content-center">
-							<div className="container">
-								<img
-									src="https://images.unsplash.com/photo-1554080353-a576cf803bda?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8cGhvdG98ZW58MHx8MHx8fDA%3D"
-									alt="Avatar"
-									className="image"
-
-								/>
-								<div className="middle">
-									<div className="text">
-										<ul className=' tw-flex'>
-											<li className='tw-p-2'>
-												<a href="https://web.whatsapp.com/">
-													<WhatsAppIcon />
-												</a>
-											</li>
-											<li className='tw-p-2'>
-												<a href="https://web.whatsapp.com/">
-													<WhatsAppIcon />
-												</a>
-											</li>
-											<li className='tw-p-2'>
-												<a href="https://web.whatsapp.com/">
-													<WhatsAppIcon />
-												</a>
-											</li>
-
-										</ul>
-										<h3 className=' tw-font-bold tw-text-2xl'> Demo</h3>
-										<span className=' tw-text-lg tw-font-semibold'>Founder</span>
-									</div>
-								</div>
-							</div>
-						</div>
-						</SwiperSlide>
-						<SwiperSlide><div className="col-lg-8 col-md-8  tw-flex tw-place-content-center">
-							<div className="container">
-								<img
-									src="https://images.unsplash.com/photo-1554080353-a576cf803bda?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8cGhvdG98ZW58MHx8MHx8fDA%3D"
-									alt="Avatar"
-									className="image"
-
-								/>
-								<div className="middle">
-									<div className="text">
-										<ul className=' tw-flex'>
-											<li className='tw-p-2'>
-												<a href="https://web.whatsapp.com/">
-													<WhatsAppIcon />
-												</a>
-											</li>
-											<li className='tw-p-2'>
-												<a href="https://web.whatsapp.com/">
-													<WhatsAppIcon />
-												</a>
-											</li>
-											<li className='tw-p-2'>
-												<a href="https://web.whatsapp.com/">
-													<WhatsAppIcon />
-												</a>
-											</li>
-
-										</ul>
-										<h3 className=' tw-font-bold tw-text-2xl'> Demo</h3>
-										<span className=' tw-text-lg tw-font-semibold'>Founder</span>
-									</div>
-								</div>
-							</div>
-						</div>
-						</SwiperSlide>
-						<SwiperSlide>
-							<div className="col-lg-8 col-md-8  ">
-								<div className="container">
-									<img
-										src="https://images.unsplash.com/photo-1554080353-a576cf803bda?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8cGhvdG98ZW58MHx8MHx8fDA%3D"
-										alt="Avatar"
-										className="image"
-
-									/>
-									<div className="middle">
-										<div className="text">
-											<ul className=' tw-flex'>
-												<li className='tw-p-2'>
-													<a href="https://github.com/">
-														<GitHubIcon />
-													</a>
-												</li>
-												<li className='tw-p-2'>
-													<a href="https://web.whatsapp.com/">
-														<InstagramIcon />
-													</a>
-												</li>
-												<li className='tw-p-2'>
-													<a href="https://web.whatsapp.com/">
-														<LinkedInIcon />
-													</a>
-												</li>
-
-											</ul>
-											<h3 className=' tw-font-bold tw-text-2xl'> Demo</h3>
-											<span className=' tw-text-lg tw-font-semibold'>Founder</span>
-										</div>
-									</div>
-								</div>
-
-							</div>
-						</SwiperSlide>
-						<SwiperSlide>
-							<div className="col-lg-8 col-md-8  ">
-								<div className="container">
-									<img
-										src="https://images.unsplash.com/photo-1554080353-a576cf803bda?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8cGhvdG98ZW58MHx8MHx8fDA%3D"
-										alt="Avatar"
-										className="image"
-
-									/>
-									<div className="middle">
-										<div className="text">
-											<ul className=' tw-flex'>
-												<li className='tw-p-2'>
-													<a href="https://github.com/">
-														<GitHubIcon />
-													</a>
-												</li>
-												<li className='tw-p-2'>
-													<a href="https://web.whatsapp.com/">
-														<InstagramIcon />
-													</a>
-												</li>
-												<li className='tw-p-2'>
-													<a href="https://web.whatsapp.com/">
-														<LinkedInIcon />
-													</a>
-												</li>
-
-											</ul>
-											<h3 className=' tw-font-bold tw-text-2xl'> Demo</h3>
-											<span className=' tw-text-lg tw-font-semibold'>Founder</span>
-										</div>
-									</div>
-								</div>
-
-							</div>
-						</SwiperSlide>
-					</Swiper>
 				</div>
 			</div>
 

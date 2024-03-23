@@ -43,6 +43,9 @@ const UserLogin = () => {
 			const responseData = await axios.post(signInUrl, reqdata);
 			console.log(responseData.data.data.role);
 
+
+			console.log('login email: ', email);
+
 			if (responseData.status === 200) {
 
 

@@ -21,7 +21,7 @@ import p4 from "../../Assests/Image/Admin/Dashboard/04.jpg";
 import map from "../../Assests/Image/Admin/map.png";
 import { useNavigate } from 'react-router-dom';
 import "./Common.css";
-import { totalAgentCountUrl, totalPropertyCountUrl, totalRentCountUrl, totalSellCountUrl, totalUserCountUrl } from '../../User/Components/Api';
+import { getFeedbackUrl, totalAgentCountUrl, totalPropertyCountUrl, totalRentCountUrl, totalSellCountUrl, totalUserCountUrl } from '../../User/Components/Api';
 import axios from 'axios';
 
 const Dashboard = () => {
@@ -36,6 +36,31 @@ const Dashboard = () => {
 	const [isCardOpen3, setIsCardOpen3] = useState(true);
 	const [isCardOpen4, setIsCardOpen4] = useState(true);
 	const [loading, setLoading] = useState(true);
+
+	const [getFeedback, setGetFeedback] = useState([]);
+
+	const getFeedbacks = async () => {
+		try {
+			const token = localStorage.getItem('token');
+
+			const response = await axios.get(getFeedbackUrl, {
+				headers: {
+					Authorization: `Bearer ${token}`,
+				},
+			});
+			console.log("response:", response.data.data);
+
+			if (response.status === 200) {
+				const data = response.data.allProperty;
+				console.log('data: ', data);
+				setGetFeedback(data);
+			}
+		} catch (error) {
+			console.error("fetch all property:", error.message);
+		}
+	}
+
+
 	const navigate = useNavigate();
 
 	const toggleCard1 = () => {
@@ -183,6 +208,7 @@ const Dashboard = () => {
 			totalSellCount();
 			totalUserCount();
 			totalAgentCount();
+			getFeedbacks();
 		}, 500)
 	}, []);
 

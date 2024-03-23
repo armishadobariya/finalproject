@@ -269,13 +269,13 @@ const UserRegister = () => {
 													/>
 												</div>
 											</div>
-											<div>
+											<div className="" style={{ maxWidth: '100%' }}>
 												{/* <GoogleOAuthProvider>
 													<GoogleLogin />
 												</GoogleOAuthProvider> */}
 
 
-												<GoogleOAuthProvider clientId="295805594505-sq8l6g2m1dlgnlepvim7h03gmo48gco3.apps.googleusercontent.com">
+												<GoogleOAuthProvider clientId="295805594505-sq8l6g2m1dlgnlepvim7h03gmo48gco3.apps.googleusercontent.com" >
 													<GoogleLogin
 
 														style={{

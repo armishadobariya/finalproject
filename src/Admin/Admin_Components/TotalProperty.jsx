@@ -425,10 +425,6 @@ const TotalProperty = () => {
 		}
 	}
 
-
-
-
-
 	useEffect(() => {
 		setTimeout(() => {
 			setLoading(false);
