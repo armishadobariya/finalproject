@@ -441,9 +441,7 @@ const Home = () => {
 																	</div>
 																</div>
 															</div>
-
 														</div>
-
 													))}
 												</div>
 											</div>
@@ -477,31 +475,33 @@ const Home = () => {
 										<div className='md:tw-flex md:tw-ml-[-460px] md:tw-mt-[560px] '>
 											<div className='tw-flex tw-ml-[120px] tw-mt-[50px]'>
 
-												<div className=' tw-flex tw-justify-center tw-items-center tw-h-16 tw-w-16 tw-border-2 tw-me-4 '
+												<div className=' tw-flex tw-justify-center tw-items-center tw-h-16 tw-w-16 tw-border-2 tw-me-4 tw-cursor-pointer '
 													id='back-container'
+													onClick={handleBackArrowClick}
 
 													onMouseEnter={handleBackArrowEnter}
 													onMouseLeave={handleBackArrowLeave}>
 													<ArrowBackIcon
 														id='back-arrow'
-														onClick={handleBackArrowClick}
-														style={{
-															cursor: 'pointer',
-														}}
+
+													// style={{
+													// 	cursor: 'pointer',
+													// }}
 													/>
 												</div>
 
-												<div className=' tw-flex tw-justify-center tw-items-center tw-h-16 tw-w-16 tw-border-2 '
+												<div className=' tw-flex tw-justify-center tw-items-center tw-h-16 tw-w-16 tw-border-2 tw-cursor-pointer '
 													id='forword-container'
+													onClick={handleForwardArrowClick}
 
 													onMouseEnter={handleForwardArrowEnter}
 													onMouseLeave={handleForwardArrowLeave}>
 													<ArrowForwardIcon
 														id='forword-arrow'
-														onClick={handleForwardArrowClick}
-														style={{
-															cursor: 'pointer',
-														}}
+
+													// style={{
+													// 	cursor: 'pointer',
+													// }}
 													/>
 												</div>
 											</div>

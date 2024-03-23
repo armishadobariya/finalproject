@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import '../../../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import img from "../../Assests/Image/Home1/reg_bg.jpeg";
 import './Rent.css';
@@ -7,6 +7,8 @@ import { Footer } from '../Footer/Footer';
 import Box from '@mui/material/Box';
 import Slider from '@mui/material/Slider';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
+import { getRentPropertyUrl } from '../Components/Api';
 
 
 const Rent = () => {
@@ -14,8 +16,15 @@ const Rent = () => {
 	const [showMore, setShowMore] = useState(false);
 	const [isNavbarCollapsed, setIsNavbarCollapsed] = useState(false);
 	const [value, setValue] = React.useState([0, 100]);
+	const [propertyData, setPropertyData] = useState([]);
 
 	const navigate = useNavigate();
+
+	const handleMoreDetail = (property) => {
+
+		navigate('/Rent/RentMoreDetails', { state: { propertyData: property } });
+	};
+
 
 
 	const handleNavbarToggle = () => {
@@ -34,9 +43,34 @@ const Rent = () => {
 		setValue(newValue);
 	};
 
-	const handleMoreDetail = () => {
-		navigate('/Buy/ReadMoreDetails')
+
+
+	useEffect(() => {
+		getRentProperty();
+
+	}, []);
+
+	const getRentProperty = async () => {
+		try {
+			const token = localStorage.getItem('token');
+
+			const response = await axios.get(getRentPropertyUrl, {
+				headers: {
+					Authorization: `Bearer ${token}`,
+				},
+			});
+
+
+			if (response.status === 200) {
+				const data = response.data.allProperty;
+				console.log('data: ', data);
+				setPropertyData(data);
+			}
+		} catch (error) {
+			console.error("fetch all property:", error.message);
+		}
 	}
+
 
 	return (
 		<>
@@ -46,11 +80,7 @@ const Rent = () => {
 					<nav className="navbar navbar-expand-lg navbar-light bg-white rounded shadow">
 						<div className="container-fluid flex-lg-column align-items-stretch">
 							<h4 className="mt-2">FILTERS</h4>
-							{/* <button className="navbar-toggler shadow-none" type="button" data-bs-toggle="collapse"
-								data-bs-target="#filterDropDown" aria-controls="navbarNav" aria-expanded="false"
-								aria-label="Toggle navigation">
-								<span className="navbar-toggler-icon"></span>
-							</button> */}
+
 							<button
 								className="navbar-toggler shadow-none"
 								type='button'
@@ -92,19 +122,7 @@ const Rent = () => {
 											}}
 										/>
 									</Box>
-									{/* <div>
-										<div className="d-flex">
-											<div className='me-2'>
-												<input type="number" className="form-control shadow-none" />
-											</div>
-											<div>
-												<h1> to </h1>
-											</div>
-											<div className='ms-2'>
-												<input type="number" className="form-control shadow-none" />
-											</div>
-										</div>
-									</div> */}
+
 								</div>
 								<div className="border bg-light p-3 rounded mb-3">
 									<label htmlFor="cityDropdown" className="form-label">SQUARE FEET</label>
@@ -164,150 +182,104 @@ const Rent = () => {
 					</nav>
 				</div>
 				<div class="col-lg-9 col-md-12 px-4">
-					<div class="card mb-4 border-0 shadow">
-						<div class="row g-0 p-3 align-items-center">
-							<div class="col-md-4 mb-lg-0 mb-md-0 mb-3">
-								<img src={img} class="img-fluid rounded" />
-							</div>
 
-							<div class="col-md-8 px-lg-3 px-md-3 px-0">
-								<h2 class=" font-semibold text-xl">₹ 85.42 L - 1.13 Cr</h2>
-								<h4 className=' font-semibold mb-4'>Green Green City - Gold</h4>
-								<div className="border bg-light p-3 rounded mb-3">
-									{/* <div class="features ">
-                                        <div className='container '>
-                                            <div className='row mb-3'>
-                                                <div className='col-md-4'>
-                                                    <h5 className=' font-semibold tw-mt-2'>Square.Ft</h5>
-                                                    800 sq.ft
-                                                </div>
-                                                <div className='col-md-4'>
-                                                    <h5 className=' font-semibold tw-mt-2'>Main Entrance Facing</h5>
-                                                    East
-                                                </div>
-                                                <div className='col-md-4'>
-                                                    <h5 className=' font-semibold tw-mt-2'>Locality</h5>
-                                                    Surat
-                                                </div>
+					{propertyData.map((property, index) => (
+						<div class="card mb-4 border-0 shadow" key={index}>
+							<div class="row g-0 p-3 align-items-center">
+								<div class="col-md-4 mb-lg-0 mb-md-0 mb-3">
+									<img src={property.propertyImage[0]} class="img-fluid rounded" />
+								</div>
 
-                                            </div>
-                                            <div className='row mb-3'>
-                                                <div className='col-md-4'>
-                                                    <h5 className=' font-semibold tw-mt-2'>BHK</h5>
-                                                    2-BHK
-                                                </div>
-                                                <div className='col-md-4'>
-                                                    <h5 className=' font-semibold tw-mt-2'>Type</h5>
-                                                    Independent House
-                                                </div>
-                                                <div className='col-md-4'>
-                                                    <h5 className=' font-semibold tw-mt-2'>Corner Plot</h5>
-                                                    Yes
-                                                </div>
-                                            </div>
-                                            <div className='row'>
+								<div class="col-md-8 px-lg-3 px-md-3 px-0">
+									<h2 class=" font-semibold text-xl">₹ {property.price}</h2>
+									<h4 className=' font-semibold mb-4'>{property.address}</h4>
+									<div className="border bg-light p-3 rounded mb-3">
 
-                                                <div className='col-md-4'>
-                                                    <h5 className=' font-semibold'>Boundary Hall</h5>
-                                                    No
-                                                </div>
-                                                <div className='col-md-4'>
-                                                    <h5 className=' font-semibold'>Parking</h5>
-                                                    Yes
-                                                </div>
-                                            </div>
 
-                                        </div>
-
-                                    </div> */}
-
-									<div className="features">
-										<div className='container '>
-											<div className='row mb-3'>
-												<div className='col-md-4'>
-													<h5 className='font-semibold tw-mt-2'>Square.Ft</h5>
-													800 sq.ft
+										<div className="features">
+											<div className='container '>
+												<div className='row mb-3'>
+													<div className='col-md-4'>
+														<h5 className='font-semibold tw-mt-2'>Square.Ft</h5>
+														{property.size} sq.ft
+													</div>
+													<div className='col-md-4'>
+														<h5 className='font-semibold tw-mt-2'>Main Entrance Facing</h5>
+														{property.faching}
+													</div>
+													<div className='col-md-4'>
+														<h5 className='font-semibold tw-mt-2'>Locality</h5>
+														{property.city}
+													</div>
 												</div>
-												<div className='col-md-4'>
-													<h5 className='font-semibold tw-mt-2'>Main Entrance Facing</h5>
-													East
-												</div>
-												<div className='col-md-4'>
-													<h5 className='font-semibold tw-mt-2'>Locality</h5>
-													Surat
-												</div>
+
+												{showMore && (
+													<>
+														<div className='row mb-3'>
+															<div className='col-md-4'>
+																<h5 className='font-semibold tw-mt-2'>BHK</h5>
+																{property.houseType}
+															</div>
+															<div className='col-md-4'>
+																<h5 className='font-semibold tw-mt-2'>Type</h5>
+																{property.propertyType}
+															</div>
+															<div className='col-md-4'>
+																<h5 className='font-semibold tw-mt-2'>Furnishing</h5>
+																{property.furnishing}
+															</div>
+														</div>
+														<div className='row mb-3'>
+															<div className='col-md-4'>
+																<h5 className='font-semibold'>Facility</h5>
+																<div className='tw-flex tw-mt-3'>
+																	{property.facility.map((feature, index) => (
+																		<h1 key={index} className='tw-mr-4 tw-border-2 tw-p-3'>{feature} </h1>
+																	))}
+																</div>
+
+															</div>
+
+														</div>
+													</>
+												)}
+
+												<button onClick={handleShowMore} className="show-more-button  tw-font-thin tw-bg-gray-200 tw-p-1 rounded-4">
+													{showMore ? 'Show Less' : 'Show More'}
+												</button>
+
+
 											</div>
-
-											{showMore && (
-												<>
-													<div className='row mb-3'>
-														<div className='col-md-4'>
-															<h5 className='font-semibold tw-mt-2'>BHK</h5>
-															2-BHK
-														</div>
-														<div className='col-md-4'>
-															<h5 className='font-semibold tw-mt-2'>Type</h5>
-															Independent House
-														</div>
-														<div className='col-md-4'>
-															<h5 className='font-semibold tw-mt-2'>Corner Plot</h5>
-															Yes
-														</div>
-													</div>
-													<div className='row mb-3'>
-														<div className='col-md-4'>
-															<h5 className='font-semibold'>Boundary Hall</h5>
-															No
-														</div>
-														<div className='col-md-4'>
-															<h5 className='font-semibold'>Parking</h5>
-															Yes
-														</div>
-													</div>
-												</>
-											)}
-
-											<button onClick={handleShowMore} className="show-more-button  tw-font-thin tw-bg-gray-200 tw-p-1 rounded-4">
-												{showMore ? 'Show Less' : 'Show More'}
-											</button>
-
-
 										</div>
+
 									</div>
-
-								</div>
-								<div className='d-flex'>
-									<div className='flex-grow-1'>
-										<div className="facilities tw-ml-1">
-											<h6 className="mb-3">Owner Name</h6>
+									<div className='d-flex'>
+										<div className='flex-grow-1'>
+											<div className="facilities tw-ml-1 tw-mt-4">
+												<h6 className="mb-3 tw-text-lg tw-font-semibold">Available For : <span className='tw-text-sm tw-font-normal'>{property.type}</span></h6>
+											</div>
 										</div>
-									</div>
-									{/* <div className='ml-auto'>
-										<button type="submit" className='p-2 bg-black text-white font-semibold mb-3 tw-mr-4'>
-											More Details
-										</button>
-										<button type="submit" className='p-2 bg-black text-white font-semibold mb-3'>
-											Contact Seller
-										</button>
-									</div> */}
 
 
-									<div className='tw-flex tw-mt-8'>
-										<div className=' '>
-											<button type="submit" class="tw-p-2 tw-bg-custom-color tw-me-2 tw-ml-6  tw-text-white tw-font-semibold tw-mb-3 tw-rounded-md">
-												Contact Seller</button>
 
-										</div>
-										<div className=' '>
-											<button type="submit" className='tw-pl-2 tw-pr-2 tw-pt-[6px] tw-pb-[6px] tw-bg-white tw-text-black tw-border-2 hover:tw-bg-black hover:tw-text-white tw-border-black tw-font-semibold tw-mb-3 tw-rounded-md' onClick={handleMoreDetail}>
-												More Details
-											</button>
+										<div className='tw-flex tw-mt-4'>
+											<div className=' '>
+												<button type="submit" class="tw-p-2 tw-bg-custom-color tw-me-2 tw-ml-6  tw-text-white tw-font-semibold tw-mb-3 tw-rounded-md">
+													Contact Seller</button>
+
+											</div>
+											<div className=' '>
+												<button type="submit"
+													className='tw-pl-2 tw-pr-2 tw-pt-[6px] tw-pb-[6px] tw-bg-white tw-text-black tw-border-2 hover:tw-bg-black hover:tw-text-white tw-border-black tw-font-semibold tw-mb-3 tw-rounded-md'
+													onClick={() => handleMoreDetail(property)}>
+													More Details
+												</button>
+											</div>
 										</div>
 									</div>
 								</div>
-							</div>
-						</div >
-					</div >
+							</div >
+						</div >))}
 				</div >
 			</div >
 
