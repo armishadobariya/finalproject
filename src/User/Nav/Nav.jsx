@@ -438,7 +438,7 @@ const Nav = () => {
 
 					<div className={`collapse navbar-collapse ${isNavbarCollapsed ? '' : 'show'}`} id="showNavbar">
 						<ul className="navbar-nav ms-3 me-auto mb-2 mb-lg-0">
-							<NavLink className="nav-link me-4 text-white " to="/">
+							<NavLink className="nav-link me-4 text-white " to="/dashboard">
 								Home
 							</NavLink>
 							<NavLink className="nav-link me-4 text-white" to="/contact">

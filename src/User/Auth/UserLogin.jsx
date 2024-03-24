@@ -42,7 +42,7 @@ const UserLogin = () => {
 			};
 			const responseData = await axios.post(signInUrl, reqdata);
 
-			console.log(responseData.data.data.role);
+			console.log("login data :", responseData.data.data.role);
 			if (responseData.status === 200) {
 
 
@@ -54,7 +54,7 @@ const UserLogin = () => {
 				else if (responseData.data.data.role === 'ADMIN') {
 					const { token } = responseData.data;
 					localStorage.setItem("token", token);
-					navigate("/admin", { state: email });
+					navigate("/admin/Dashboard", { state: email });
 				}
 				else {
 					const { token } = responseData.data;

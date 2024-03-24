@@ -14,7 +14,7 @@ import "./TotalProperty.css";
 import { useNavigate } from 'react-router-dom';
 import Admin_Sidebar from '../Admin_Nav/Admin_Sidebar';
 import "./Common.css";
-import { getAdminAllPropertyUrl} from '../../User/Components/Api';
+import { getAdminAllPropertyUrl } from '../../User/Components/Api';
 import axios from 'axios';
 
 
@@ -284,4 +284,4 @@ const TotalProperty = () => {
 	)
 }
 
-export default TotalProperty
+export default TotalProperty;

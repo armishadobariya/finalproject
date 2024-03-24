@@ -230,7 +230,7 @@ const Dashboard = () => {
 						{/* <div className=' tw-ml-[250px] md:tw-mt-[-1000px] tw-mt-[-500px] p-3 '> */}
 						<div className="cart-content">
 							<Grid container spacing={3}>
-								<Grid item xs={12} sm={6} md={6}>
+								<Grid item xs={12} sm={12} md={6}>
 									<Card className="cancleCard">
 										<CardContent className=' tw-cursor-pointer' onClick={handleTotalProperty}>
 											<Typography variant="h6 dashCardText" >Available Property</Typography>
@@ -238,7 +238,7 @@ const Dashboard = () => {
 										</CardContent>
 									</Card>
 								</Grid>
-								<Grid item xs={12} sm={6} md={6}>
+								<Grid item xs={12} sm={12} md={6}>
 									<Card className="penddingPayment">
 										<CardContent className=' tw-cursor-pointer' onClick={handleRentProperty}>
 											<Typography variant="h6 dashCardText">Property For Rent</Typography>
