@@ -24,8 +24,11 @@ export const totalSellCountUrl = `${baseUrl}/admin/total-sellproperty-count`;
 export const totalUserCountUrl = `${baseUrl}/admin/total-user-count`;
 export const totalAgentCountUrl = `${baseUrl}/admin/total-agent-count`;
 export const agentVerifyUrl = `${baseUrl}/agent/verify-agent`;
-export const pendingStatusUrl = `${baseUrl}/property/getuserpending-property`;
+export const agentAddUrl = `${baseUrl}/agent/add-agent`;
+
 export const getUserAllPropertyUrl = `${baseUrl}/property/getuserall-property`;
+export const getUserSelectedPropertyUrl = `${baseUrl}/property/get-selected-property-user`;
 export const getUserUrl = `${baseUrl}/admin/getall-user`;
 export const getAgentUrl = `${baseUrl}/admin/getall-agent`;
+export const addFeedbackUrl = `${baseUrl}/feedback/add-feedback`;
 export const getFeedbackUrl = `${baseUrl}/feedback/get-feedbacks`;
