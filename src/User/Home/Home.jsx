@@ -29,7 +29,7 @@ import Nav from '../Nav/Nav';
 import { Footer } from '../Footer/Footer';
 import HomeSlide from './HomeSlide';
 import axios from 'axios';
-import { getFeedbackUrl } from '../Components/Api';
+import { getFeedbackUrl, deleteProfileUrl } from '../Components/Api';
 
 const Home = () => {
 

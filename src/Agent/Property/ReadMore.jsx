@@ -1,5 +1,5 @@
 import React from 'react';
-import "./Buy.css";
+import '../AgentRegister.css';
 import img from '../../Assests/Image/Buy/reg_bg.avif';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import SquareFootIcon from '@mui/icons-material/SquareFoot';
@@ -14,7 +14,6 @@ import parking from "../../Assests/Image/Buy/parking.png";
 // import Nav from '../Nav/Nav';
 // import { Footer } from '../Footer/Footer';
 import { useNavigate } from 'react-router-dom';
-import Demo from '../Components/Demo';
 
 
 
@@ -41,10 +40,7 @@ const ReadMore = () => {
                     </div>
 
                     <div className='row tw-mt-10 '>
-                        <div className="col-lg-7">
-                            {/* <img src={img} alt="" className='tw-w-[700px] tw-h-[400px] tw-rounded-sm' /> */}
-                            <Demo className="" />
-                        </div>
+
 
 
                         <div className="col-lg-5 md:w-full shadow-lg tw-p-6 tw-flex  tw-place-content-center tw-rounded-sm">

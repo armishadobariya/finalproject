@@ -23,6 +23,7 @@ import { PostDetails } from './User/AddProperty/PostDetails'
 import { AddProperty } from './User/AddProperty/AddProperty'
 import ReadMoreDetails from './User/Buy/ReadMoreDetails'
 import Buy from './User/Buy/Buy';
+import Feedback from './User/Feedback/Feedback';
 import AdminLogin from './Admin/Auth/AdminLogin'
 import Demo from './User/Components/Demo'
 import VerifyEmail from './User/Auth/VerifyEmail'
@@ -31,7 +32,15 @@ import UserEmail from './User/Auth/UserEmail'
 import { AgentRegister } from './Agent/AgentRegister'
 import Rent from './User/Rent/Rent'
 import AdminStatus from './Admin/Admin_Components/AdminStatus'
-
+import PrivateRoute from './User/Router/privateRoute'
+// import { TotalUser } from './Admin/Admin_Components/TotalUser'
+// import { TotalAgent } from './Admin/Admin_Components/TotalAgent'
+import Property from './Agent/Property/Property'
+import MoreDetail from './Agent/Property/ReadMore'
+import ReadMore from './Agent/Property/ReadMore'
+// import { RentMoreDetails } from './User/Rent/RentMoreDetails'
+// import { TotalRentProperty } from './Admin/Admin_Components/TotalRentProperty'
+// import { TotalSellProperty } from "./Admin/Admin_Components/TotalSellProperty"
 
 
 const App = () => {
@@ -39,33 +48,45 @@ const App = () => {
 		<div>
 
 			<Routes>
-				<Route exact path='/' element={<Home name="Home" />}></Route>
-				<Route exact path='/Buy' element={<Buy name="Buy" />} />
-				<Route exact path='/Rent' element={<Rent name="Rent" />} />
-				<Route exact path='/AddProperty' element={<AddProperty name="AddProperty" />} />
-				<Route exact path='/Buy/ReadMoreDetails' element={<ReadMoreDetails name="ReadMoreDetails" />} />
-				<Route exact path='/PropertyHistory' element={<PropertyHistory name="PropertyHistory" />}></Route>
-				<Route exact path='/Contact' element={<Contact name="Contact" />}></Route>
-				<Route exact path='/About' element={<About name="About" />}></Route>
-				<Route exact path='/UserEmail' element={<UserEmail name="UserEmail" />}></Route>
+				<Route exact path='/' element={
+					// <PrivateRoute>
+					<Home />
+					// </PrivateRoute>
+				}></Route>
+				<Route exact path='/Buy' element={<Buy />} />
+				<Route exact path='/Rent' element={<Rent />} />
+				<Route exact path='/AddProperty' element={<AddProperty />} />
+				<Route exact path='/Buy/ReadMoreDetails' element={<ReadMoreDetails />} />
+				{/* <Route exact path='/Rent/RentMoreDetails' element={<RentMoreDetails />} /> */}
+				<Route exact path='/PropertyHistory' element={<PropertyHistory />}></Route>
+				<Route exact path='/Contact' element={<Contact />}></Route>
+				<Route exact path='/About' element={<About />}></Route>
+				<Route exact path='/Feedback' element={<Feedback />}></Route>
+				<Route exact path='/UserEmail' element={<UserEmail />}></Route>
 				<Route exact path='/UserRegister' element={<UserRegister
-					name="UserRegister" />}></Route>
+				/>}></Route>
 				<Route exact path='/VerifyEmail' element={<VerifyEmail
-					name="VerifyEmail" />}></Route>
-				<Route exact path='/UserLogin' element={<UserLogin name="UserLogin" />}></Route>
-				<Route exact path='/UserForgotPassword' element={<UserForgotPassword name="UserForgotPassword" />}></Route>
-				<Route exact path='/UserResetPassword' element={<UserResetPassword name="UserResetPassword" />}></Route>
+				/>}></Route>
+				<Route exact path='/UserLogin' element={<UserLogin />}></Route>
+				<Route exact path='/UserForgotPassword' element={<UserForgotPassword />}></Route>
+				<Route exact path='/UserResetPassword' element={<UserResetPassword />}></Route>
 
-				<Route exact path='/Admin/' element={<Dashboard name="Dashboard" />}></Route>
-				<Route exact path='/Admin/AdminLogin' element={<AdminLogin name="AdminLogin" />}></Route>
-				<Route exact path='/Admin/Seller' element={<Seller name="Seller" />}></Route>
-				<Route exact path='/Admin/Status' element={<AdminStatus name="AdminStatus" />}></Route>
-				<Route exact path='/Admin/Buyer' element={<Buyer name="Buyer" />}></Route>
-				<Route exact path='/Admin/UserQueries' element={<User_Queries name="UserQueries" />}></Route>
-				<Route exact path='/Admin/TotalProperty' element={<TotalProperty name="TotalProperty" />}></Route>
-				<Route exact path='/Admin/MoreDetails' element={<MoreDetails name="MoreDetails" />}></Route>
+				<Route exact path='/admin/' element={<Dashboard />}></Route>
+				<Route exact path='/Admin/AdminLogin' element={<AdminLogin />}></Route>
+				<Route exact path='/Admin/Seller' element={<Seller />}></Route>
+				<Route exact path='/Admin/Status' element={<AdminStatus />}></Route>
+				<Route exact path='/Admin/Buyer' element={<Buyer />}></Route>
+				<Route exact path='/Admin/UserQueries' element={<User_Queries />}></Route>
+				{/* <Route exact path='/Admin/TotalProperty' element={<TotalProperty />}></Route>
+				<Route exact path='/Admin/TotalUser' element={<TotalUser />}></Route>
+				<Route exact path='/Admin/TotalAgent' element={<TotalAgent />}></Route> */}
+				{/* <Route exact path='/Admin/TotalRentProperty' element={<TotalRentProperty />}></Route>
+				<Route exact path='/Admin/TotalSellProperty' element={<TotalSellProperty />}></Route> */}
+				{/* <Route exact path='/Admin/MoreDetails' element={<MoreDetails />}></Route> */}
 
-				<Route exact path='/Agent/' element={<AgentRegister name="AgentRegister" />}></Route>
+				<Route exact path='/Agent' element={<AgentRegister />}></Route>
+				<Route exact path='/Agent/Property' element={<Property />}></Route>
+				<Route exact path='/agent/Property/ReadMore' element={<ReadMore />} />
 
 			</Routes>
 

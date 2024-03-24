@@ -37,7 +37,11 @@ export const AddProperty = () => {
 	const [furnishing, setFurnishing] = useState('');
 	const [mobileNo, setMobileNo] = useState('');
 	const [email, setEmail] = useState('');
-
+	// const [size, setSize] = useState('');
+	const [sizeError, setSizeError] = useState('');
+	const [priceError, setPriceError] = useState('');
+	const [ageError, setAgeError] = useState('');
+	const [mobileNoError, setMobileNoError] = useState('');
 
 	useEffect(() => {
 		setStates(jsonData.states);
@@ -150,6 +154,59 @@ export const AddProperty = () => {
 	};
 
 
+	const handleSizeChange = (e) => {
+		const newSize = e.target.value;
+		setSize(newSize);
+
+		// Validate the input
+		if (!newSize.trim()) {
+			setSizeError('Size is required');
+		} else if (!/^\d+$/.test(newSize)) {
+			setSizeError('Size must be a number');
+		} else {
+			setSizeError('');
+		}
+	};
+
+	const handlePriceChange = (e) => {
+		const newPrice = e.target.value;
+		setPrice(newPrice);
+
+		// Validate the input
+		if (!newPrice.trim()) {
+			setPriceError('Price is required');
+		} else if (!/^\d+(\.\d{1,2})?$/.test(newPrice)) {
+			setPriceError('Price must be a valid number');
+		} else {
+			setPriceError('');
+		}
+	};
+	const handleAgeChange = (e) => {
+		const newAge = e.target.value;
+		setAge(newAge);
+
+		// Validate the input
+		if (!newAge.trim()) {
+			setAgeError('Age is required');
+		} else if (!/^\d+(\.\d{1,2})?$/.test(newAge)) {
+			setAgeError('Age must be a in  number');
+		} else {
+			setAgeError('');
+		}
+	};
+	const handleMobileNoChange = (e) => {
+		const newMobileNo = e.target.value;
+		setMobileNo(newMobileNo);
+
+		// Validate the input
+		if (!newMobileNo.trim()) {
+			setMobileNoError('Contact No. is required');
+		} else if (!/^\d{10}$/.test(newMobileNo)) {
+			setMobileNoError('Contact No. must be a 10-digit number');
+		} else {
+			setMobileNoError('');
+		}
+	};
 	return (
 		<>
 			<Nav />
@@ -205,9 +262,6 @@ export const AddProperty = () => {
 										</div>
 									</div>
 								)}
-
-
-
 								{activeTabIndex === 1 && (
 									<div>
 										<div>
@@ -231,8 +285,6 @@ export const AddProperty = () => {
 										</div>
 									</div>
 								)}
-
-
 								{activeTabIndex === 2 && (
 									<div >
 										<div >
@@ -287,16 +339,42 @@ export const AddProperty = () => {
 												<h1 className=' tw-mt-8 tw-text-lg tw-font-semibold'>Listing details</h1>
 											</div>
 											<div className="row tw-mt-5">
-												<div className=' col-lg-4 tw-grid'>
-													<label htmlFor="sqft" className=' tw-font-semibold' >Square feet</label>
-													<input type="text" id="sqft" className=' tw-border-2 tw-rounded-2 tw-h-11 tw-p-2 tw-mt-2' placeholder='Size in ft.' onChange={(e) => { setSize(e.target.value) }} />
+												<div className="col-lg-4 tw-grid">
+													<label htmlFor="sqft" className="tw-font-semibold">Square feet</label>
+													<input
+														type="text"
+														id="sqft"
+														className="tw-border-2 tw-rounded-2 tw-h-11 tw-p-2 tw-mt-2"
+														placeholder="Size in ft. ex:370"
+														value={size}
+														onChange={handleSizeChange}
+													/>
+													{sizeError && <p className="text-red-500">{sizeError}</p>}
 												</div>
-												<div className=' col-lg-4 tw-grid'>
-													<label htmlFor="sqft" className=' tw-font-semibold'  >Price</label>
-													<input type="text" id="sqft" className=' tw-border-2 tw-rounded-2 tw-h-11 tw-p-2 tw-mt-2' placeholder='Price' onChange={(e) => { setPrice(e.target.value) }} />
-												</div> <div className=' col-lg-4 tw-grid'>
-													<label htmlFor="sqft" className=' tw-font-semibold'  >Property Age</label>
-													<input type="text" id="sqft" className=' tw-border-2 tw-rounded-2 tw-h-11 tw-p-2 tw-mt-2' placeholder='Proprerty age (In year)' onChange={(e) => { setAge(e.target.value) }} />
+												<div className="col-lg-4 tw-grid">
+													<label htmlFor="price" className="tw-font-semibold">Price</label>
+													<input
+														type="text"
+														id="price"
+														className="tw-border-2 tw-rounded-2 tw-h-11 tw-p-2 tw-mt-2"
+														placeholder="Enter the price"
+														value={price}
+														onChange={handlePriceChange}
+													/>
+													{priceError && <p className="text-red-500">{priceError}</p>}
+												</div>
+
+												<div className="col-lg-4 tw-grid">
+													<label htmlFor="age" className="tw-font-semibold">Age</label>
+													<input
+														type="text"
+														id="age"
+														className="tw-border-2 tw-rounded-2 tw-h-11 tw-p-2 tw-mt-2"
+														placeholder="Enter the price"
+														value={age}
+														onChange={handleAgeChange}
+													/>
+													{ageError && <p className="text-red-500">{ageError}</p>}
 												</div>
 											</div>
 
@@ -432,8 +510,16 @@ export const AddProperty = () => {
 
 											<div className="row tw-mt-3">
 												<div className="col-md-6 tw-grid">
-													<label htmlFor="contact" className=' tw-font-semibold' >Contact No.</label>
-													<input type="text" id="contact" className=' tw-border-2 tw-rounded-2 tw-h-11 tw-p-2 tw-mt-2' placeholder='Contact No.' onChange={(e) => { setMobileNo(e.target.value) }} />
+													<label htmlFor="contact" className="tw-font-semibold">Contact No.</label>
+													<input
+														type="text"
+														id="contact"
+														className="tw-border-2 tw-rounded-2 tw-h-11 tw-p-2 tw-mt-2"
+														placeholder="Contact No."
+														value={mobileNo}
+														onChange={handleMobileNoChange}
+													/>
+													{mobileNoError && <p className="text-red-500">{mobileNoError}</p>}
 												</div>
 												<div className="col-md-6 tw-grid">
 													<label htmlFor="email" className=' tw-font-semibold' >Email</label>

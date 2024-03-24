@@ -18,11 +18,8 @@ const Property = () => {
     };
 
 
-
-
-
     const handleMoreDetail = () => {
-        navigate('/Agent/ReadMore')
+        navigate('/Agent/Property/ReadMore')
     }
 
     return (
