@@ -285,4 +285,3 @@ const TotalSellProperty = () => {
 }
 
 export default TotalSellProperty
-

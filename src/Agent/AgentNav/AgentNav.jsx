@@ -20,70 +20,70 @@ import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import createSvgIcon from '@material-ui/core/utils/createSvgIcon';
 
-// import { userPofileUrl } from '../Components/Api';
-// import axios from 'axios';
+import { userProfileUrl } from '../../User/Components/Api';
+import axios from 'axios';
 
-// const style = {
-//     position: 'absolute',
-//     top: '20%',
-//     left: '20%',
-//     transform: 'translate(-50%, -50%)',
-//     width: 300,
-//     bgcolor: 'background.paper',
-//     border: '2px solid #000',
-//     boxShadow: 24,
-// };
+const style = {
+    position: 'absolute',
+    top: '20%',
+    left: '20%',
+    transform: 'translate(-50%, -50%)',
+    width: 300,
+    bgcolor: 'background.paper',
+    border: '2px solid #000',
+    boxShadow: 24,
+};
 
 const AgentNav = () => {
 
 
 
-    // const [userName, setUserName] = useState('');
-    // const [userEmail, setUserEmail] = useState(false);
-    // const [userRole, setUserRole] = useState(false);
-    // const [userImage, setUserImage] = useState({ image: null, isSet: false });
-    // const [isLogin, setIsLogin] = useState(false);
+    const [userName, setUserName] = useState('');
+    const [userEmail, setUserEmail] = useState(false);
+    const [userRole, setUserRole] = useState(false);
+    const [userImage, setUserImage] = useState({ image: null, isSet: false });
+    const [isLogin, setIsLogin] = useState(false);
 
 
-    // const getUserData = async () => {
-    //     try {
-    //         const token = localStorage.getItem('token');
-    //         const response = await axios.get(userPofileUrl, {
-    //             headers: {
-    //                 Authorization: `Bearer ${token}`,
-    //             },
+    const getUserData = async () => {
+        try {
+            const token = localStorage.getItem('token');
+            const response = await axios.get(userProfileUrl, {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
 
-    //         });
-    //         if (response.status === 200) {
-    //             console.log('success');
-    //             const data = response.data;
-    //             console.log("data", data);
-    //             setUserName(data.userData.name);
-    //             console.log(data.userData.name);
-    //             console.log(setUserName(data.userData.name));
+            });
+            if (response.status === 200) {
+                console.log('success');
+                const data = response.data;
+                console.log("data", data);
+                setUserName(data.userData.name);
+                console.log(data.userData.name);
+                console.log(setUserName(data.userData.name));
 
-    //             setUserImage((pre) => {
-    //                 const image = {
-    //                     image: data.image, isSet: false,
-    //                 };
-    //                 return image
-    //             });
+                setUserImage((pre) => {
+                    const image = {
+                        image: data.image, isSet: false,
+                    };
+                    return image
+                });
 
-    //             console.log(data.userData.email);
-    //             console.log(data.userData.role);
+                console.log(data.userData.email);
+                console.log(data.userData.role);
 
-    //             setUserEmail(data.userData.email);
-    //             setIsLogin(data.isLogin);
-    //             // setUserRole(data.role);
+                setUserEmail(data.userData.email);
+                setIsLogin(data.isLogin);
+                setUserRole(data.role);
 
 
-    //             console.log(data.isLogin);
-    //             console.log(data);
-    //         }
-    //     } catch (error) {
-    //         console.error("fetch user data:", error.message);
-    //     }
-    // }
+                console.log(data.isLogin);
+                console.log(data);
+            }
+        } catch (error) {
+            console.error("fetch user data:", error.message);
+        }
+    }
 
 
     const [open, setOpen] = React.useState(false);
@@ -120,33 +120,33 @@ const AgentNav = () => {
     const showLogin = () => {
         navigate("/UserLogin");
     }
-    // const handleShowProfile = async (popupState) => {
-    //     popupState.close();
-    //     getUserData();
+    const handleShowProfile = async (popupState) => {
+        popupState.close();
+        getUserData();
 
-    //     Swal.fire({
-    //         title: "Profile",
-    //         html: `
-    // 			<div class="profile-container">
-    // 				<div class="avatar-container" style="display: flex; justify-content: center;">
-    // 					<img alt="Admin Image" src="https://cdn.vectorstock.com/i/preview-1x/34/96/flat-business-man-user-profile-avatar-in-suit-vector-4333496.jpg" />
-    // 				</div>
-    // 				<div class="profile-details">
-    // 					<p style="font-weight: bold">Name: ${userName}</p>
-    // 					<p style="font-weight: bold">Email: ${userEmail}</p>
-    // 					<p style="font-weight: bold">Role: User</p>
-    // 					<button class="edit-button" onclick="handleEditProfile()">Edit</button>
-    // 				</div>
-    // 			</div>
-    // 		`,
-    //         showCancelButton: true,
-    //         showConfirmButton: false,
-    //         cancelButtonText: "Close",
-    //     })
+        Swal.fire({
+            title: "Profile",
+            html: `
+    			<div class="profile-container">
+    				<div class="avatar-container" style="display: flex; justify-content: center;">
+    					<img alt="Admin Image" src="https://cdn.vectorstock.com/i/preview-1x/34/96/flat-business-man-user-profile-avatar-in-suit-vector-4333496.jpg" />
+    				</div>
+    				<div class="profile-details">
+    					<p style="font-weight: bold">Name: ${userName}</p>
+    					<p style="font-weight: bold">Email: ${userEmail}</p>
+    					<p style="font-weight: bold">Role: User</p>
+    					<button class="edit-button" onclick="handleEditProfile()">Edit</button>
+    				</div>
+    			</div>
+    		`,
+            showCancelButton: true,
+            showConfirmButton: false,
+            cancelButtonText: "Close",
+        })
 
-    //         .then((result) => {
-    //         });
-    // };
+            .then((result) => {
+            });
+    };
 
     const logOut = () => {
         navigate('/UserLogin');
@@ -180,57 +180,15 @@ const AgentNav = () => {
                     <div className={`collapse navbar-collapse ${isNavbarCollapsed ? '' : 'show'}`} id="showNavbar" >
                         <ul className="navbar-nav ms-3 me-auto mb-2 mb-lg-0">
                             <NavLink className="nav-link me-4 text-white " to="/">
-                                Home
+                                Property
                             </NavLink>
-                            <NavLink className="nav-link me-4 text-white" to="/contact">
-                                Contact
-                            </NavLink>
-                            <NavLink className="nav-link me-4 text-white" to="/about">
-                                About
-                            </NavLink>
-                            <NavLink className="nav-link me-4 text-white" to="/propertyHistory">
-                                Status
-                            </NavLink>
-                            <NavLink className="nav-link text-white" to="/feedback">
-                                Feedback
-                            </NavLink>
+
                         </ul>
                         <form action="" method="post">
                             <div className="d-flex">
 
-                                <Button variant="outlined" onClick={handleClickOpen} className=' tw-text-white tw-border-2 ' style={{ border: "1px solid white" }}>
-                                    Request as an agent
-                                </Button>
-                                <Dialog
-                                    open={open}
-                                    onClose={handleClose}
-                                    PaperProps={{
-                                        component: 'form',
-                                        onSubmit: (event) => {
-                                            event.preventDefault();
-                                            const formData = new FormData(event.currentTarget);
-                                            const formJson = Object.fromEntries(formData.entries());
-                                            const email = formJson.email;
-                                            console.log(email);
-                                            handleClose();
-                                        },
-                                    }}
-                                >
-                                    <DialogTitle>Verify Your Email</DialogTitle>
-                                    <DialogContent>
-                                        <DialogContentText>
-                                            To register as an anagent to this website, please enter your email address here. We
-                                            will send updates occasionally.
-                                        </DialogContentText>
 
-                                        <label htmlFor="email" className='  tw-mt-4 tw-text-lg '>Enter Your Email</label>
-                                        <input type="email" name="email" id="email" className=' tw-w-full tw-h-11 tw-border 2 tw-rounded-md tw-pl-3' style={{ cursor: "text", outline: "grey" }} />
-                                    </DialogContent>
-                                    <DialogActions>
-                                        <button onClick={handleClose} className=' tw-font-semibold tw-mr-3 tw-p-2 tw-text-white tw-bg-black tw-rounded-md ' style={{ width: "100px" }}>Cancel</button>
-                                        <button type="submit" className=' tw-font-semibold tw-mr-4 tw-p-2  tw-text-white tw-bg-black tw-rounded-md ' style={{ width: "100px" }}>Verify</button>
-                                    </DialogActions>
-                                </Dialog>
+
                                 <button
                                     type="button"
                                     className="btn shadow-none me-lg-3 me-3 ms-3"
@@ -253,7 +211,7 @@ const AgentNav = () => {
                                             >
                                             </AccountCircleIcon>
                                             <Menu {...bindMenu(popupState)} style={{ marginTop: '50px' }}>
-                                                {/* <MenuItem onClick={() => handleShowProfile(popupState)}>Profile</MenuItem> */}
+                                                <MenuItem onClick={() => handleShowProfile(popupState)}>Profile</MenuItem>
                                                 <MenuItem onClick={() => logOut(popupState)}>Logout</MenuItem>
                                             </Menu>
                                         </>

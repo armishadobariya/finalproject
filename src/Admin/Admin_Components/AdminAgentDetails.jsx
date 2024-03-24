@@ -241,4 +241,3 @@ const AdminAgentDetails = () => {
 }
 
 export default AdminAgentDetails;
-
