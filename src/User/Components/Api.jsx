@@ -33,3 +33,5 @@ export const getUserAllPropertyUrl = `${baseUrl}/property/getuserall-property`;
 export const getUserSelectedPropertyUrl = `${baseUrl}/property/get-selected-property-user`;
 
 
+export const getUserUrl = `${baseUrl}/admin/getall-user`;
+export const getAgentUrl = `${baseUrl}/admin/getall-agent`;

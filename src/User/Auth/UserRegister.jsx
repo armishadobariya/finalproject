@@ -146,8 +146,13 @@ const UserRegister = () => {
 						}}
 					></div>
 				</div>
+<<<<<<< HEAD
+				<div className="absolute tw-top-0 tw-left-0 tw-w-full tw-h-full tw-bg-cover  tw-grid tw-items-center tw-justify-center">
+					<h5 className=' tw-text-center tw-text-white tw-text-2xl tw-font-semibold'>
+=======
 				<div className="absolute tw-top-0 tw-left-0 tw-w-full tw-h-full tw-bg-cover tw-flex tw-grid tw-items-center tw-justify-center">
 					<h5 className=" tw-text-center tw-text-white tw-text-2xl tw-font-semibold">
+>>>>>>> b0280027273868ab506dff49c3aea9868ab4ec1d
 						<Link to="/">{`Home >> Register`}</Link>
 					</h5>
 					<div
