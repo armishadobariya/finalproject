@@ -4,10 +4,10 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import a1 from "../../Assests/Image/About/about_2.jpg"
 
 import ayushi from "../../Assests/Image/Contact/ayushi.jpg";
-import armisha from "../../Assests/Image/Contact/armisha.jpeg";
+import armisha from "../../Assests/Image/Contact/armisha2.jpeg";
 import pandu from "../../Assests/Image/Contact/pandu.jpg";
 import karan from "../../Assests/Image/Contact/karan.jpg";
-import pradip from "../../Assests/Image/Contact/pradip.jpeg";
+import pradip from "../../Assests/Image/Contact/pradip2.jpeg";
 import kenil from "../../Assests/Image/Contact/kenil.jpg";
 
 import WhatsAppIcon from '@mui/icons-material/WhatsApp';
@@ -67,15 +67,14 @@ export const ContactSlide = () => {
 						disableOnInteraction: false,
 					}}
 
-
 					modules={[Autoplay]}
-
 				>
+
+
 					<SwiperSlide className='md:tw-me-[2px] relative'>
-						<img src={pradip} alt="instructor" style={{ height: "600px", width: '330px', marginBottom: '20px' }} />
+						<img src={pradip} alt="instructor" style={{ height: "500px", width: '350px', marginBottom: '10px' }} />
 						<div className="tw-absolute tw-mt-[-80px] tw-flex tw-flex-col tw-justify-center tw-items-center tw-text-center">
 							<div className=' tw-bg-white tw-text-black tw-mt-30  tw-w-[280px] tw-ml-7 tw-mr-6 tw-p-20 tw-shadow-2xl'>
-
 								<h3 className='tw-mt-[-50px] tw-mb-2 tw-justify-center'>
 									Pradip Timbadiya
 								</h3>
@@ -99,9 +98,12 @@ export const ContactSlide = () => {
 						</div>
 					</SwiperSlide>
 
+
+
+
 					<SwiperSlide className='md:tw-me-[2px] relative'>
 						<div>
-							<img src={karan} style={{ width: "330px", height: "500px", marginBottom: "10px" }} className='' alt="" />
+							<img src={karan} style={{ width: "350px", height: "500px", marginBottom: "10px" }} className='' alt="" />
 							<div className="tw-absolute tw-mt-[-80px] tw-flex tw-flex-col tw-justify-center tw-items-center tw-text-center">
 								<div className=' tw-bg-white tw-text-black tw-mt-30  tw-w-[280px] tw-ml-7 tw-mr-6 tw-p-20 tw-shadow-2xl'>
 
@@ -131,7 +133,7 @@ export const ContactSlide = () => {
 
 					<SwiperSlide className='md:tw-me-[2px] relative'>
 						<div>
-							<img src={kenil} style={{ width: "330px", height: "500px", marginBottom: "10px" }} className='' alt="" />
+							<img src={kenil} style={{ width: "350px", height: "500px", marginBottom: "10px" }} className='' alt="" />
 							<div className="tw-absolute tw-mt-[-80px] tw-flex tw-flex-col tw-justify-center tw-items-center tw-text-center">
 								<div className=' tw-bg-white tw-text-black tw-mt-30  tw-w-[280px] tw-ml-7 tw-mr-6 tw-p-20 tw-shadow-2xl'>
 
@@ -161,7 +163,7 @@ export const ContactSlide = () => {
 
 					<SwiperSlide className='md:tw-me-[2px] relative'>
 						<div>
-							<img src={armisha} style={{ width: "330px", height: "500px", marginBottom: "10px" }} className='' alt="" />
+							<img src={armisha} style={{ width: "350px", height: "500px", marginBottom: "10px" }} className='' alt="" />
 							<div className="tw-absolute tw-mt-[-80px] tw-flex tw-flex-col tw-justify-center tw-items-center tw-text-center">
 								<div className=' tw-bg-white tw-text-black tw-mt-30  tw-w-[280px] tw-ml-7 tw-mr-6 tw-p-20 tw-shadow-2xl'>
 
@@ -189,10 +191,9 @@ export const ContactSlide = () => {
 						</div>
 					</SwiperSlide>
 
-
 					<SwiperSlide className='md:tw-me-[2px] relative'>
 						<div>
-							<img src={ayushi} style={{ width: "330px", height: "500px", marginBottom: "10px" }} className='' alt="" />
+							<img src={ayushi} style={{ width: "350px", height: "500px", marginBottom: "10px" }} className='' alt="" />
 							<div className="tw-absolute tw-mt-[-80px] tw-flex tw-flex-col tw-justify-center tw-items-center tw-text-center">
 								<div className=' tw-bg-white tw-text-black tw-mt-30  tw-w-[280px] tw-ml-7 tw-mr-6 tw-p-20 tw-shadow-2xl'>
 
@@ -221,7 +222,7 @@ export const ContactSlide = () => {
 
 					<SwiperSlide className='md:tw-me-[2px] relative'>
 						<div>
-							<img src={pandu} style={{ width: "330px", height: "500px", marginBottom: "10px" }} className='' alt="" />
+							<img src={pandu} style={{ width: "350px", height: "500px", marginBottom: "10px" }} className='' alt="" />
 							<div className="tw-absolute tw-mt-[-80px] tw-flex tw-flex-col tw-justify-center tw-items-center tw-text-center">
 								<div className=' tw-bg-white tw-text-black tw-mt-30  tw-w-[280px] tw-ml-7 tw-mr-6 tw-p-20 tw-shadow-2xl'>
 
