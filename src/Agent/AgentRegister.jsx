@@ -56,7 +56,6 @@ export const AgentRegister = () => {
 			formData.append('bankAccountNo', agentBankAcc);
 			formData.append('ifscCode', agentIfscNo);
 
-
 			adharCardFront.forEach((image) => formData.append(`adharCardFront`, image, image.name));
 			adharCardBack.forEach((image) => formData.append(`adharCardBack`, image, image.name));
 			panCard.forEach((image) => formData.append(`panCard`, image, image.name));

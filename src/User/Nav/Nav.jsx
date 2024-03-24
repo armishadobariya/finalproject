@@ -18,6 +18,7 @@ import axios from 'axios';
 import "./menu.css";
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { NearbyError } from '@mui/icons-material';
 
 
 
@@ -338,6 +339,9 @@ const Nav = () => {
 
 			document.getElementById('editButton').onclick = editImage;
 		};
+
+
+
 
 		const editImage = async () => {
 			try {

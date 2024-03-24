@@ -114,10 +114,6 @@
   top: 0px !important
 }
 
-.tw-col-span-1 {
-  grid-column: span 1 / span 1 !important
-}
-
 .tw-float-right {
   float: right !important
 }
@@ -295,10 +291,6 @@
   margin-left: -320px !important
 }
 
-.tw-ml-\[-45px\] {
-  margin-left: -45px !important
-}
-
 .tw-ml-\[-980px\] {
   margin-left: -980px !important
 }
@@ -313,14 +305,6 @@
 
 .tw-ml-\[105px\] {
   margin-left: 105px !important
-}
-
-.tw-ml-\[10px\] {
-  margin-left: 10px !important
-}
-
-.tw-ml-\[115px\] {
-  margin-left: 115px !important
 }
 
 .tw-ml-\[120px\] {
@@ -403,16 +387,16 @@
   margin-left: 5px !important
 }
 
-.tw-ml-\[60px\] {
-  margin-left: 60px !important
-}
-
 .tw-ml-\[65px\] {
   margin-left: 65px !important
 }
 
 .tw-ml-\[90px\] {
   margin-left: 90px !important
+}
+
+.tw-ml-auto {
+  margin-left: auto !important
 }
 
 .tw-mr-10 {
@@ -469,10 +453,6 @@
 
 .tw-mt-1 {
   margin-top: 0.25rem !important
-}
-
-.tw-mt-1\.5 {
-  margin-top: 0.375rem !important
 }
 
 .tw-mt-10 {
@@ -565,10 +545,6 @@
 
 .tw-mt-\[-2px\] {
   margin-top: -2px !important
-}
-
-.tw-mt-\[-3px\] {
-  margin-top: -3px !important
 }
 
 .tw-mt-\[-48px\] {
@@ -1365,6 +1341,10 @@
   line-height: 1rem !important
 }
 
+.tw-font-\[300\] {
+  font-weight: 300 !important
+}
+
 .tw-font-\[550\] {
   font-weight: 550 !important
 }
@@ -1492,11 +1472,6 @@
   border-style: none !important
 }
 
-.hover\:tw-border-red-500:hover {
-  --tw-border-opacity: 1 !important;
-  border-color: rgb(239 68 68 / var(--tw-border-opacity)) !important
-}
-
 .hover\:tw-bg-\[\#d3a478\]:hover {
   --tw-bg-opacity: 1 !important;
   background-color: rgb(211 164 120 / var(--tw-bg-opacity)) !important
@@ -1520,11 +1495,6 @@
 .hover\:tw-text-blue-600:hover {
   --tw-text-opacity: 1 !important;
   color: rgb(37 99 235 / var(--tw-text-opacity)) !important
-}
-
-.hover\:tw-text-red-500:hover {
-  --tw-text-opacity: 1 !important;
-  color: rgb(239 68 68 / var(--tw-text-opacity)) !important
 }
 
 .hover\:tw-text-white:hover {
@@ -1631,10 +1601,6 @@
     visibility: visible !important
   }
 
-  .md\:tw-col-span-1 {
-    grid-column: span 1 / span 1 !important
-  }
-
   .md\:tw-col-span-2 {
     grid-column: span 2 / span 2 !important
   }
@@ -1729,10 +1695,6 @@
 
   .md\:tw-ml-\[110px\] {
     margin-left: 110px !important
-  }
-
-  .md\:tw-ml-\[115px\] {
-    margin-left: 115px !important
   }
 
   .md\:tw-ml-\[150px\] {
@@ -2119,6 +2081,10 @@
 
   .lg\:tw-mt-16 {
     margin-top: 4rem !important
+  }
+
+  .lg\:tw-mt-4 {
+    margin-top: 1rem !important
   }
 
   .lg\:tw-mt-\[-358px\] {

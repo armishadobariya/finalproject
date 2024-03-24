@@ -10,7 +10,7 @@ import "./TotalRentProperty.css";
 import { useNavigate } from 'react-router-dom';
 import Admin_Sidebar from '../Admin_Nav/Admin_Sidebar';
 import "./Common.css";
-import { getPropertyUrl } from '../../User/Components/Api';
+import { getAdminAllRentPropertyUrl } from '../../User/Components/Api';
 import axios from 'axios';
 
 
@@ -43,7 +43,7 @@ const TotalRentProperty = () => {
         try {
             const token = localStorage.getItem('token');
 
-            const response = await axios.get(getPropertyUrl, {
+            const response = await axios.get(getAdminAllRentPropertyUrl, {
                 headers: {
                     Authorization: `Bearer ${token}`,
                 },

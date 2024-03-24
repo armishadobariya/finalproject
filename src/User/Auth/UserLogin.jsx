@@ -12,8 +12,8 @@ import { signInUrl, googleLoginUrl } from '../Components/Api';
 import { jwtDecode } from 'jwt-decode';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { auth, provider } from "./config";
-import { signInWithPopup } from "firebase/auth";
+// import { auth, provider } from "./config";
+// import { signInWithPopup } from "firebase/auth";
 import { FcGoogle } from "react-icons/fc";
 
 
@@ -41,11 +41,8 @@ const UserLogin = () => {
 				password: password,
 			};
 			const responseData = await axios.post(signInUrl, reqdata);
+
 			console.log(responseData.data.data.role);
-
-
-			console.log('login email: ', email);
-
 			if (responseData.status === 200) {
 
 
@@ -105,12 +102,12 @@ const UserLogin = () => {
 
 
 	const handleClick = () => {
-		signInWithPopup(auth, provider).then((data) => {
-			console.log(data.user);
-			setValue(data.user);
-			console.log(data.user.uid);
-			navigate("/");
-		})
+		// signInWithPopup(auth, provider).then((data) => {
+		// 	console.log(data.user);
+		// 	setValue(data.user);
+		// 	console.log(data.user.uid);
+		// 	navigate("/");
+		// })
 	}
 
 

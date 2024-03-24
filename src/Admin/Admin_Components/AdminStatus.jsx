@@ -167,7 +167,7 @@ const AdminStatus = () => {
 						<div className='tw-grid  shadow-lg lg:tw-p-5 tw-rounded-md '>
 							<div>
 								<div >
-									<div className=' tw-flex tw-place-center tw-font-bold tw-text-xl'>
+									<div className=' tw-flex tw-place-center tw-font-semibold tw-text-xl'>
 										<h1>Property Status</h1>
 									</div>
 									<div className=' tw-flex  tw-justify-end '>
@@ -243,7 +243,7 @@ const AdminStatus = () => {
 															<div className="facilities tw-ml-1 flex">
 																<p className='tw-mt-1 tw-font-semibold tw-text-lg'>Status :</p>
 																<div className='tw-ml-2'>
-																	<h6 className="tw-mb-3 tw-p-2 tw-ml-1 tw-mt-[-4px] tw-rounded-md  tw-bg-white tw-text-black tw-font-[550] tw-text-lg" >{property.status}</h6>
+																	<h6 className="tw-mb-3 tw-p-2 tw-ml-1 tw-mt-[-4px] tw-rounded-md  tw-bg-white tw-text-lg" >{property.status}</h6>
 																</div>
 															</div>
 														</div>
