@@ -64,13 +64,13 @@ export const UserResetPassword = () => {
 				};
 				const responseData = await axios.post(resetPasswordUrl, reqdata);
 
-				if (responseData.data.statusCode === 200) {
+				if (responseData.status === 200) {
 
 					setResponse("success: ", 'success');
 					setResponse(() => { navigate("/UserLogin") });
 				}
 				else {
-					toast.error(responseData.data.message);
+					// toast.error(responseData.data.message);
 
 				}
 			}
@@ -78,8 +78,19 @@ export const UserResetPassword = () => {
 		catch (error) {
 			setResponse(error);
 			setResponse("error:", 'error');
+			toast.error(error.response.data.message);
+
 
 		}
+	}
+
+	const handleKeyDown = (event) => {
+		console.log("clicked");
+
+		if (event.key === 'Enter') {
+			console.log("enter clicked");
+			resetPassword(event);
+		};
 	}
 
 	const handleSubmit = (e) => {
@@ -115,62 +126,33 @@ export const UserResetPassword = () => {
 											</label>
 											<input
 												id='password'
-												// type="password"
-
 												name="password"
 												class="tw-w-full tw-border-2 tw-h-12 tw-p-3 tw-mb-1 tw-text-black "
 												placeholder="Password"
 												value={password}
 												onChange={(e) => setPassword(e.target.value)}
 												type={showPassword ? 'text' : 'password'}
-											// endAdornment={
-											// 	<InputAdornment position="end">
-											// 		<IconButton
-											// 			aria-label="toggle password visibility"
-											// 			onClick={() => setShowPassword((pre) => !pre)}
-											// 			edge="end"
-											// 		>
-											// 			{showPassword ? <VisibilityOff /> : <Visibility />}
-											// 		</IconButton>
-											// 	</InputAdornment>
-											// }
+
 											/>
 										</div>
 										<p style={{ color: 'red' }}>{passwordError}</p>
 
-
 										<div>
-
-
 											<div className="tw-flex tw-mb-4">
 												<label className='tw-border-2 tw-mr-[2px]  tw-text-black tw-p-2 tw-mb-1 ' htmlFor='cpassword'>
 													<LockIcon />
 												</label>
 												<input
 													id='cpassword'
-													// type="password"
 													name="password"
 													class="tw-w-full tw-border-2 tw-h-12 tw-p-3 tw-mb-1 tw-text-black"
 													placeholder="Confirm Password"
 													value={cpassword}
+													onKeyDown={handleKeyDown}
 													onChange={(e) => setCpassword(e.target.value)}
 													type={showConfirmPassword ? 'text' : 'password'}
-												// endAdornment={
-												// 	<InputAdornment position="end">
-												// 		<IconButton
-												// 			aria-label="toggle password visibility"
-												// 			onClick={() => setConfirmShowPassword((pre) => !pre)}
-												// 			edge="end"
-												// 		>
-												// 			{showConfirmPassword ? <VisibilityOff /> : <Visibility />}
-												// 		</IconButton>
-												// 	</InputAdornment>
-												// }
 												/>
 											</div>
-											{/* <button type="button" class="tw-bg-black  tw-w-full tw-text-center tw-text-white tw-text-lg tw-font-semibold tw-h-11 tw-mb-3 tw-mt-2 tw-rounded-sm " >
-												Reset My Password
-											</button> */}
 											<button
 												disabled={!password || !cpassword}
 												type="submit"

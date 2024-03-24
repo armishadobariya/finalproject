@@ -183,18 +183,32 @@ export const AgentRegister = () => {
 		<>
 			<div className="tw-grid tw-place-content-center tw-h-screen ">
 				<div className=" tw-p-10 tw-w-full tw-rounded-2xl" style={{ backgroundColor: '#f7f7f7' }}>
+
+					<div className="modal" tabIndex="-1" style={{ display: showModal ? 'block' : 'none' }}>
+						<div className="modal-dialog tw-bg-slate-200 max-w-[550px]" style={{ backgroundColor: "#ffffff" }}>
+							<div className="modal-content" style={{ backgroundColor: "#ffffff", "width": "550px" }}>
+								<div className="modal-header">
+									<h5 className="modal-title tw-text-xl tw-font-semibold">Message</h5>
+									<button type="button" className="btn-close" onClick={() => setShowModal(false)}></button>
+								</div>
+								<div className="modal-body tw-mt-14 " style={{ margin: "auto", "textAlign": "center" }}>
+									<p className='tw-text-xl tw-font-semibold tw-text-gray-500'>Thank you for register Your self as an Agent to our website!</p>
+									<p className='tw-text-xl  tw-font-semibold tw-text-gray-500  tw-mt-4'>For further Process we will send you mail on your registerd email address..</p>
+								</div>
+								<div className="modal-footer">
+									<button type="button" className="btn btn-primary " style={{ backgroundColor: "black", "border": "none" }} onClick={() => setShowModal(false)}>Close</button>
+								</div>
+							</div>
+						</div>
+					</div>
 					<div className=' tw-mb-2 tw-p-2'>
 						<h1 className=' tw-text-3xl tw-font-bold '>Register Your self as an Agent</h1>
 						<p className='  tw-mt-3'>complete your profile to following steps!</p>
 					</div>
 					<div className=" p-4 tw-border rounded-md tw-shadow-md tw-overflow-hidden tw-text-black" style={{ backgroundColor: "white" }}>
-						{/* <div className="tw-col-span-1 sm:tw-col-span-2 md:tw-col-span-1">
-                        <img src={img} alt="Agent Image" className="w-full  rounded" />
-                    </div> */}
+
 						<div className="sm:tw-col-span-2 md:tw-col-span-2">
-							{/* <div className=' tw-place-content-center tw-flex tw-mb-5 tw-mt-3'>
-                                <img src={logo} alt="" height="100px" width="230px" className=' tw-place-content-center' />
-                            </div> */}
+
 							<Box sx={{ width: '100%' }}>
 								<Stepper activeStep={step - 1} alternativeLabel>
 									{steps.map((label) => (
@@ -229,7 +243,6 @@ export const AgentRegister = () => {
 								)}
 								{step === 2 && (
 									<div>
-										{/* ... Step 2 content */}
 										<div className='tw-grid'>
 											<label htmlFor="age" className='tw-font-semibold'>Age</label>
 											<input type="text" id="age" className='tw-border-2 rounded-2 tw-h-11 ' value={agentAge} onChange={(e) => { setAgentAge(e.target.value) }} style={{ width: "49%" }} />
@@ -269,7 +282,6 @@ export const AgentRegister = () => {
 								)}
 								{step === 3 && (
 									<div>
-										{/* ... Step 3 content */}
 										<div className=" tw-grid tw-mt-3 ">
 											<label htmlFor="email" className=' tw-font-semibold' >Bank Name</label>
 											<input type="text" id="email" className=' tw-border-2 rounded-2 tw-h-10 tw-p-2 tw-mt-1' value={agentBankName} onChange={(e) => { setAgentBankName(e.target.value) }} />
@@ -287,14 +299,7 @@ export const AgentRegister = () => {
 												<input type="text" id="email" className='tw-border-2 rounded-2 tw-h-10 tw-p-2 tw-mt-1' value={agentIfscNo} onChange={(e) => { setAgentIfscNo(e.target.value) }} required />
 											</div>
 										</div>
-										{/* <div className=" tw-grid tw-mt-2 ">
-                                            <label htmlFor="email" className=' tw-font-semibold' >Bank A/c No.</label>
-                                            <input type="text" id="email" className=' tw-border-2 rounded-2 tw-h-11 tw-p-2 tw-mt-1' />
-                                        </div>
-                                        <div className=" tw-grid tw-mt-2">
-                                            <label htmlFor="name" className=' tw-font-semibold' >IFSC No.</label>
-                                            <input type="text" id="name" className=' tw-border-2 rounded-2 tw-h-11 tw-p-2' required />
-                                        </div> */}
+
 
 										<div >
 											<label htmlFor="card" className=' tw-font-semibold tw-mt-3'>Adhar card</label>

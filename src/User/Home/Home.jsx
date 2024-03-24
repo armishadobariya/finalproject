@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './Home.css';
 import hotel from '../../Assests/Image/Home1/b1.svg';
 import './style.css';
@@ -28,6 +28,8 @@ import { BiUpArrow } from "react-icons/bi";
 import Nav from '../Nav/Nav';
 import { Footer } from '../Footer/Footer';
 import HomeSlide from './HomeSlide';
+import axios from 'axios';
+import { getFeedbackUrl } from '../Components/Api';
 
 const Home = () => {
 
@@ -36,6 +38,35 @@ const Home = () => {
 	const navigate = useNavigate();
 	const [visible, setVisible] = useState(false);
 	const [modalVisible, setModalVisible] = useState(false);
+	const [feedback, setFeedback] = useState([]);
+
+	const getFeedbacks = async () => {
+		try {
+			const token = localStorage.getItem('token');
+
+			const response = await axios.get(getFeedbackUrl, {
+				headers: {
+					Authorization: `Bearer ${token}`,
+				},
+			});
+			if (response.status === 200) {
+				console.log("response:", response.data.data);
+				const data = response.data.data;
+				console.log('data: ', data);
+				setFeedback(data);
+			}
+
+		} catch (error) {
+			console.error("fetch all property:", error.message);
+		}
+	}
+
+	useEffect(() => {
+		getFeedbacks()
+	}, [])
+
+
+
 
 	const toggleVisible = () => {
 		const scrolled = document.documentElement.scrollTop;
@@ -77,54 +108,46 @@ const Home = () => {
 		setModalVisible(!modalVisible);
 	}
 
-	const totalFeedbacks = [
-		{
-			id: 1,
-			name: 'Ayushi Dobariya',
-			role: 'Broker',
-			feedback: 'Inquire about the neighborhood\'s safety, convenience, and overall satisfaction. Seek input on the rental agreement\'s clarity, value for money, and any maintenance concerns.',
-			rating: 5,
-			avatar: me,
-		},
-		{
-			id: 2,
-			name: 'Armisha Dobariya',
-			role: 'Manager',
-			feedback: 'I like it here, especially my favorite room with a terrace overlooking the park. Hot coffee, a blanket, and a foggy October morning are something. I recommend this hotel to all my friends.',
-			rating: 4,
-			avatar: armisha,
-		},
-		{
-			id: 3,
-			name: 'Ayushi Dobariya',
-			role: 'Broker',
-			feedback: 'Inquire about the neighborhood\'s safety, convenience, and overall satisfaction. Seek input on the rental agreement\'s clarity, value for money, and any maintenance concerns.',
-			rating: 5,
-			avatar: me,
-		},
-		{
-			id: 4,
-			name: 'Armisha Dobariya',
-			role: 'Manager',
-			feedback: 'I like it here, especially my favorite room with a terrace overlooking the park. Hot coffee, a blanket, and a foggy October morning are something. I recommend this hotel to all my friends.',
-			rating: 4,
-			avatar: armisha,
-		},
-	];
+	// const totalFeedbacks = [
+	// 	{
+	// 		id: 1,
+	// 		name: 'Ayushi Dobariya',
+	// 		role: 'Broker',
+	// 		feedback: 'Inquire about the neighborhood\'s safety, convenience, and overall satisfaction. Seek input on the rental agreement\'s clarity, value for money, and any maintenance concerns.',
+	// 		rating: 5,
+	// 		avatar: me,
+	// 	},
+	// 	{
+	// 		id: 2,
+	// 		name: 'Armisha Dobariya',
+	// 		role: 'Manager',
+	// 		feedback: 'I like it here, especially my favorite room with a terrace overlooking the park. Hot coffee, a blanket, and a foggy October morning are something. I recommend this hotel to all my friends.',
+	// 		rating: 4,
+	// 		avatar: armisha,
+	// 	},
+	// 	{
+	// 		id: 3,
+	// 		name: 'Ayushi Dobariya',
+	// 		role: 'Broker',
+	// 		feedback: 'Inquire about the neighborhood\'s safety, convenience, and overall satisfaction. Seek input on the rental agreement\'s clarity, value for money, and any maintenance concerns.',
+	// 		rating: 5,
+	// 		avatar: me,
+	// 	},
+	// 	{
+	// 		id: 4,
+	// 		name: 'Armisha Dobariya',
+	// 		role: 'Manager',
+	// 		feedback: 'I like it here, especially my favorite room with a terrace overlooking the park. Hot coffee, a blanket, and a foggy October morning are something. I recommend this hotel to all my friends.',
+	// 		rating: 4,
+	// 		avatar: armisha,
+	// 	},
+	// ];
 
 	const handleForwardArrowClick = () => {
-		if (currentFeedback < totalFeedbacks.length - 1) {
+		if (currentFeedback < feedback.length - 1) {
 			setCurrentFeedback((prevSlide) => prevSlide + 1);
 		}
 	};
-
-	// const handleBackArrowClick = () => {
-	// 	if (currentFeedback > 0) {
-	// 		setCurrentFeedback((prevSlide) => prevSlide - 1);
-	// 	} else {
-	// 		setCurrentFeedback(totalFeedbacks.length - 1);
-	// 	}
-	// };
 
 	const handleBackArrowClick = () => {
 		if (currentFeedback > 0) {
@@ -251,57 +274,6 @@ const Home = () => {
 
 				{/* Feacture Collections */}
 
-				{/* <div class='flex justify-center'>
-					<div class='tw-border-2 tw-border-white tw-mt-16 text-center slider-container '>
-
-
-						<div className='tw-flex tw-items-center tw-justify-center'>
-
-							<div className='lg:tw-w-[200px] tw-w-20 tw-border-b-2' style={{ border: '0px solid #d3a478' }}></div>
-
-							<h2 class='tw-text-lg tw-mb-3 tw-mr-8 tw-ml-8'>FEATURED <span class='tw-font-bold'>COLLECTIONS</span></h2>
-							<div className='lg:tw-w-[200px] tw-w-20 tw-border-b-2' style={{ border: '0px solid #d3a478' }}></div>
-						</div>
-
-						<p class='tw-mb-10' style={{ fontFamily: 'Cormorant Garamond, serif', fontSize: '40px' }}>Handpicked projects for you</p>
-
-						<div class='tw-border-2 tw-border-white md:tw-flex flex-col '>
-							<div class='tw-mr-8 tw-mb-10 tw-ml-8'>
-								<img src={apar} alt="" width='330px' class='tw-rounded-2xl md:tw-items-center' />
-								<div className="tw-grid tw-place-content-center tw-mt-[-60px] ">
-									<div className=' tw-text-white  tw-font-bold'>
-										<h2 className='tw-text-2xl'>Townships</h2>
-										<p className=' tw-font-light'>Redefining community living</p>
-									</div>
-
-								</div>
-							</div>
-							<div class='tw-mr-8 tw-ml-8 tw-mb-10 '>
-								<img src={villa} alt="" width='348px' class='tw-rounded-2xl' />
-								<div className="tw-grid tw-place-content-center tw-mt-[-60px] ">
-									<div className=' tw-text-white  tw-font-bold'>
-										<h2 className='tw-text-2xl'>Independent House</h2>
-										<p className=' tw-font-light'>Comfortable homes available for immediate use</p>
-									</div>
-
-								</div>
-							</div>
-							<div class='tw-mr-8 tw-ml-8 tw-mb-10'>
-								<img src={lux} alt="" width='328px' class='tw-rounded-2xl' />
-								<div className="tw-grid tw-place-content-center tw-mt-[-60px] ">
-									<div className=' tw-text-white  tw-font-bold'>
-										<h2 className='tw-text-2xl'>Luxury</h2>
-										<p className=' tw-font-light'>Premium housing for the lifestyle-conscious</p>
-									</div>
-
-								</div>
-							</div>
-							<div className=''>
-								<img src={aroom} alt="" width='348px' class='tw-rounded-2xl' />
-							</div>
-						</div>
-					</div>
-				</div> */}
 
 
 				<HomeSlide />
@@ -418,91 +390,71 @@ const Home = () => {
 														transition: 'transform 0.3s ease-in-out',
 													}}
 												>
-													{totalFeedbacks.map((slide, index) => (
+													{feedback.map((slide, index) => (
 														<div className='slider-item' key={index}>
 															<div className='tw-flex tw-ml-[65px] tw-mt-[70px] '>
-																<img src={slide.avatar} alt="" style={{ height: '100px', width: "100px", borderRadius: '50%' }} />
+																<img src={slide.profilePic} alt="" style={{ height: '100px', width: "100px", borderRadius: '50%' }} />
 																<div className='tw-mt-4 tw-ml-6 tw-font-semibold'>
 																	<h2 style={{ fontFamily: 'Cormorant Garamond, serif', fontSize: '35px' }} >{slide.name}</h2>
-																	<p>{slide.role}</p>
+																	<p>{slide.message}</p>
 																</div>
-															</div>															<div className='slider-caption'>
+															</div>
+															<div className='slider-caption'>
 																<div className='tw-ml-16 tw-mt-10 md:tw-mr-14 tw-mr-10'>
 																	<p style={{ color: 'gray' }}>{slide.feedback}</p>
-																</div>																<p className='tw-mt-[-2px] tw-mb-[5px] tw-text-white tw-ml-[-980px]'>{slide.role}</p>
+																</div>
+																<p className='tw-mt-[-2px] tw-mb-[5px] tw-text-white tw-ml-[-980px]'>{slide.date}</p>
 																<div className=' tw-mt-5 tw-ml-14'>
 																	<div>
 																		{[...Array(slide.rating)].map((value) => (
 																			<StarIcon
 																				key={value}
 																				className=''
-																				style={{ height: "25px", width: "25px", color: "#d3a478", marginRight: '-3px' }}
+																				style={{ height: "35px", width: "35px", color: "#d3a478", marginRight: '-3px' }}
 																			/>
 																		))}
 																	</div>
 																</div>
 															</div>
-
 														</div>
-
 													))}
 												</div>
 											</div>
-
-
-											{/* <div className='tw-flex tw-ml-[65px] tw-mt-[70px] '>
-												<img src={me} alt="" style={{ height: '100px', width: "100px", borderRadius: '50%' }} />
-												<div className='tw-mt-4 tw-ml-6 tw-font-semibold'>
-													<h2 style={{ fontFamily: 'Cormorant Garamond, serif', fontSize: '35px' }} >Ayushi Dobariya</h2>
-													<p>Broker</p>
-												</div>
-											</div>
-											<div className='tw-ml-16 tw-mt-10 md:tw-mr-14 tw-mr-10'>
-												<p style={{ color: 'gray' }}>Inquire about the neighborhood's safety, convenience, and overall satisfaction. Seek input on the rental agreement's clarity, value for money, and any maintenance concerns.</p>
-											</div>
-											<div className=' tw-mt-5 tw-ml-14'>
-												<div>
-													{[1, 2, 3, 4, 5].map((value) => (
-														<StarIcon
-															key={value}
-															className=''
-															style={{ height: "25px", width: "25px", color: "#d3a478", marginRight: '-3px' }}
-
-														/>
-													))}
-												</div>
-											</div> */}
 										</div>
 									</div>
+
+
 									<div className=''>
 										<div className='md:tw-flex md:tw-ml-[-460px] md:tw-mt-[560px] '>
 											<div className='tw-flex tw-ml-[120px] tw-mt-[50px]'>
 
-												<div className=' tw-flex tw-justify-center tw-items-center tw-h-16 tw-w-16 tw-border-2 tw-me-4 '
+												<div className=' tw-flex tw-justify-center tw-items-center tw-h-16 tw-w-16 tw-border-2 tw-me-4 tw-cursor-pointer '
 													id='back-container'
+													onClick={handleBackArrowClick}
 
 													onMouseEnter={handleBackArrowEnter}
 													onMouseLeave={handleBackArrowLeave}>
 													<ArrowBackIcon
 														id='back-arrow'
-														onClick={handleBackArrowClick}
-														style={{
-															cursor: 'pointer',
-														}}
+
+													// style={{
+													// 	cursor: 'pointer',
+													// }}
 													/>
 												</div>
 
-												<div className=' tw-flex tw-justify-center tw-items-center tw-h-16 tw-w-16 tw-border-2 '
+												<div className=' tw-flex tw-justify-center tw-items-center tw-h-16 tw-w-16 tw-border-2 tw-cursor-pointer '
 													id='forword-container'
+													onClick={handleForwardArrowClick}
 
 													onMouseEnter={handleForwardArrowEnter}
 													onMouseLeave={handleForwardArrowLeave}>
 													<ArrowForwardIcon
 														id='forword-arrow'
-														onClick={handleForwardArrowClick}
-														style={{
-															cursor: 'pointer',
-														}}
+
+													// style={{
+													// 	cursor: 'pointer',
+													// }}
 													/>
 												</div>
 											</div>
@@ -533,7 +485,7 @@ const Home = () => {
 							<p className='tw-text-center tw-text-6xl-text-6xl' style={{ fontFamily: 'Cormorant Garamond, serif', fontSize: '40px' }}>Our Services
 							</p>
 							<div className='md:tw-flex tw-mt-[80px] md:tw-items-center md:tw-justify-center'>
-								<div className='md:tw-h-[360px] md:tw-w-[290px] tw-h-[300px] tw-w-[250px] tw-border-white tw-shadow-2xl md:tw-shadow-2xl tw-m-auto md:tw-ml-[70px]  tw-mb-[40px]'>
+								<div className='md:tw-h-[360px] md:tw-w-[290px] tw-h-[300px] tw-w-[250px] tw-border-white tw-shadow-2xl md:tw-shadow-2xl tw-m-auto md:tw-ml-[20px]  tw-mb-[40px]'>
 									<img src={s1} alt="" className='tw-h-[190px] tw-w-[190px] tw-mb-2 md:tw-ml-10 tw-mt-10 tw-ml-[30px] ' />
 									<h2 className='tw-text-center tw-font-semibold tw-text-lg '>India's Insights derived from
 										<br />over 10 lakh listings
@@ -611,7 +563,6 @@ const Home = () => {
 
 
 export default Home;
-
 
 
 

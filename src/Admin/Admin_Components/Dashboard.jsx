@@ -21,19 +21,24 @@ import p4 from "../../Assests/Image/Admin/Dashboard/04.jpg";
 import map from "../../Assests/Image/Admin/map.png";
 import { useNavigate } from 'react-router-dom';
 import "./Common.css";
+import { getFeedbackUrl, totalAgentCountUrl, totalPropertyCountUrl, totalRentCountUrl, totalSellCountUrl, totalUserCountUrl } from '../../User/Components/Api';
+import axios from 'axios';
 
 const Dashboard = () => {
 
-	const [totalRevenue, setTotalRevenue] = useState(0);
-	const [totalUsers, setTotalUsers] = useState(0);
-	const [totalShippedOrders, setTotalShippedOrders] = useState(0);
-	const [totalTotalReview, setTotalTotalReview] = useState(0);
+	const [totalSeCount, setTotalSeCount] = useState(0);
+	const [totalAgeCount, setTotalAgeCount] = useState(0);
+	const [totalUseCount, setTotalUseCount] = useState(0);
+	const [totalReCount, setTotalReCount] = useState(0);
+	const [totalProCount, setTotalProCount] = useState(0);
 	const [isCardOpen1, setIsCardOpen1] = useState(true);
 	const [isCardOpen2, setIsCardOpen2] = useState(true);
 	const [isCardOpen3, setIsCardOpen3] = useState(true);
 	const [isCardOpen4, setIsCardOpen4] = useState(true);
 	const [loading, setLoading] = useState(true);
 	const navigate = useNavigate();
+	const [currentFeedback, setCurrentFeedback] = useState(0);
+	const [feedback, setFeedback] = useState([])
 
 	const toggleCard1 = () => {
 		console.log("hello");
@@ -53,13 +58,163 @@ const Dashboard = () => {
 		setIsCardOpen4(!isCardOpen4);
 	}
 
-	const handleProperty = () => {
+	const handleTotalProperty = () => {
 		navigate('/Admin/TotalProperty');
 	}
+	const handleRentProperty = () => {
+		navigate('/Admin/TotalRentProperty');
+	}
+
+	const handleSellProperty = () => {
+		navigate('/Admin/TotalSellProperty');
+	}
+	const handleUserDetails = () => {
+		navigate('/Admin/AdminUserDetails');
+	}
+	const handleAgentDetails = () => {
+		navigate('/Admin/AdminAgentDetails');
+	}
+
+
+	const totalPropertyCount = async () => {
+		try {
+			const token = localStorage.getItem('token');
+
+			const response = await axios.get(totalPropertyCountUrl, {
+				headers: {
+					Authorization: `Bearer ${token}`,
+				},
+			});
+			console.log("response:", response.data.property);
+
+			if (response.status === 200) {
+				const data = response.data.property;
+				console.log('data: ', data);
+				setTotalProCount(data);
+			}
+		} catch (error) {
+			console.error("fetch all property:", error.message);
+		}
+	}
+
+	const totalRentCount = async () => {
+		try {
+			const token = localStorage.getItem('token');
+
+			const response = await axios.get(totalRentCountUrl, {
+				headers: {
+					Authorization: `Bearer ${token}`,
+				},
+			});
+			console.log("response:", response.data.property);
+
+			if (response.status === 200) {
+				const data = response.data.property;
+				console.log('data: ', data);
+				setTotalReCount(data);
+			}
+		} catch (error) {
+			console.error("fetch all property:", error.message);
+		}
+	}
+	const totalSellCount = async () => {
+		try {
+			const token = localStorage.getItem('token');
+
+			const response = await axios.get(totalSellCountUrl, {
+				headers: {
+					Authorization: `Bearer ${token}`,
+				},
+			});
+			console.log("response:", response.data.property);
+
+			if (response.status === 200) {
+				const data = response.data.property;
+				console.log('data: ', data);
+				setTotalSeCount(data);
+			}
+		} catch (error) {
+			console.error("fetch all property:", error.message);
+		}
+	}
+
+	const totalUserCount = async () => {
+		try {
+			const token = localStorage.getItem('token');
+
+			const response = await axios.get(totalUserCountUrl, {
+				headers: {
+					Authorization: `Bearer ${token}`,
+				},
+			});
+			console.log("response:", response.data.users);
+
+			if (response.status === 200) {
+				const data = response.data.users;
+				console.log('data: ', data);
+				setTotalUseCount(data);
+			}
+		} catch (error) {
+			console.error("fetch all property:", error.message);
+		}
+	}
+
+	const totalAgentCount = async () => {
+		try {
+			const token = localStorage.getItem('token');
+
+			const response = await axios.get(totalAgentCountUrl, {
+				headers: {
+					Authorization: `Bearer ${token}`,
+				},
+			});
+			console.log("response:", response.data.agents);
+
+			if (response.status === 200) {
+				const data = response.data.agents;
+				console.log('data: ', data);
+				setTotalAgeCount(data);
+			}
+		} catch (error) {
+			console.error("fetch all property:", error.message);
+		}
+	}
+	const getFeedbacks = async () => {
+		try {
+			const token = localStorage.getItem('token');
+
+			const response = await axios.get(getFeedbackUrl, {
+				headers: {
+					Authorization: `Bearer ${token}`,
+				},
+			});
+			if (response.status === 200) {
+				console.log("feedback:", response.data.data);
+				const data = response.data.data;
+				console.log('data: ', data);
+				setFeedback(data);
+			}
+
+		}
+		catch (error) {
+			console.error("fetch all property:", error.message);
+		}
+	}
+
+
+
+
+
 
 	useEffect(() => {
 		setTimeout(() => {
 			setLoading(false);
+			totalPropertyCount();
+			totalRentCount();
+			totalSellCount();
+			totalUserCount();
+			totalAgentCount();
+			getFeedbacks()
 		}, 500)
 	}, []);
 
@@ -77,31 +232,31 @@ const Dashboard = () => {
 				) : (
 
 
-					<div className=' tw-ml-[250px] md:tw-mt-[-600px] tw-mt-[-500px] p-3 '>
+					<div className='tw-ml-[250px] md:tw-mt-[-1100px] tw-mt-[-520px] p-3'>
 						{/* <div className=' tw-ml-[250px] md:tw-mt-[-1000px] tw-mt-[-500px] p-3 '> */}
 						<div className="cart-content">
 							<Grid container spacing={3}>
 								<Grid item xs={12} sm={6} md={6}>
 									<Card className="cancleCard">
-										<CardContent className=' tw-cursor-pointer' onClick={handleProperty}>
+										<CardContent className=' tw-cursor-pointer' onClick={handleTotalProperty}>
 											<Typography variant="h6 dashCardText" >Available Property</Typography>
-											<Typography variant="h4">{totalTotalReview}</Typography>
+											<Typography variant="h4">{totalProCount}</Typography>
 										</CardContent>
 									</Card>
 								</Grid>
 								<Grid item xs={12} sm={6} md={6}>
 									<Card className="penddingPayment">
-										<CardContent>
+										<CardContent className=' tw-cursor-pointer' onClick={handleRentProperty}>
 											<Typography variant="h6 dashCardText">Property For Rent</Typography>
-											<Typography variant="h4">{totalShippedOrders}</Typography>
+											<Typography variant="h4">{totalReCount}</Typography>
 										</CardContent>
 									</Card>
 								</Grid>
 								<Grid item xs={12} sm={6} md={6}>
 									<Card className="completePayment">
-										<CardContent>
+										<CardContent className=' tw-cursor-pointer' onClick={handleSellProperty}>
 											<Typography variant="h6 dashCardText">Property For Sale</Typography>
-											<Typography variant="h4">{totalRevenue}</Typography>
+											<Typography variant="h4">{totalSeCount}</Typography>
 										</CardContent>
 									</Card>
 								</Grid>
@@ -109,7 +264,24 @@ const Dashboard = () => {
 									<Card className="users">
 										<CardContent>
 											<Typography variant="h6 dashCardText">Total Earning</Typography>
-											<Typography variant="h4">{totalUsers}/-</Typography>
+											<Typography variant="h4">{ }/-</Typography>
+										</CardContent>
+									</Card>
+								</Grid>
+								<Grid item xs={12} sm={6} md={6}>
+									<Card className="cancleCard">
+										<CardContent className=' tw-cursor-pointer' onClick={handleUserDetails}>
+											<Typography variant="h6 dashCardText" >Total User</Typography>
+											<Typography variant="h4">{totalUseCount}</Typography>
+										</CardContent>
+									</Card>
+								</Grid>
+
+								<Grid item xs={12} sm={6} md={6}>
+									<Card className="users">
+										<CardContent className=' tw-cursor-pointer' onClick={handleAgentDetails}>
+											<Typography variant="h6 dashCardText">Total Agent</Typography>
+											<Typography variant="h4">{totalAgeCount}</Typography>
 										</CardContent>
 									</Card>
 								</Grid>
@@ -349,171 +521,43 @@ const Dashboard = () => {
 
 													{isCardOpen4 && (
 														<div>
-															<div className='tw-mt-[45px] tw-mb-6'>
-																<div className='tw-flex tw-ml-[15px] tw-mt-[50px] '>
-																	<img src={me} alt="" style={{ height: '80px', width: "80px", borderRadius: '50%' }} />
-																	<div className=' tw-ml-7 tw-font-semibold'>
-																		<h2 style={{ fontFamily: 'Cormorant Garamond, serif', fontSize: '25px' }} >Ayushi Dobariya</h2>
+															{feedback.map((slide, index) => (
+																<div className='tw-mt-[45px] tw-mb-6'>
+																	<div className='tw-flex tw-ml-[15px] tw-mt-[50px] '>
+																		<img src={slide.profilePic} alt="" style={{ height: '80px', width: "80px", borderRadius: '50%' }} />
+																		<div className=' tw-ml-7 tw-font-semibold'>
+																			<h2 style={{ fontFamily: 'Cormorant Garamond, serif', fontSize: '25px' }} >{slide.name}</h2>
+																		</div>
+																	</div>
+
+																	<div className=' md:tw-mt-[-40px] tw-mt-[-10px] tw-ml-[122px]'>
+																		<div>
+																			{[...Array(slide.rating)].map((value) => (
+																				<StarIcon
+																					key={value}
+																					className=''
+																					style={{ height: "20px", width: "20px", color: "#d3a478", marginRight: '-3px' }}
+
+																				/>
+																			))}
+																		</div>
+																	</div>
+																	<div className='tw-ml-[122px] tw-mt-4 md:tw-mr-14 tw-mr-10'>
+																		<p style={{ color: 'gray' }}>{slide.message}</p>
+																	</div>
+
+																	<div className=' tw-mt-7 tw-w-[1132px] tw-ml-4'>
+																		<hr />
 																	</div>
 																</div>
 
-																<div className=' md:tw-mt-[-40px] tw-mt-[-10px] tw-ml-[122px]'>
-																	<div>
-																		{[1, 2, 3, 4, 5].map((value) => (
-																			<StarIcon
-																				key={value}
-																				className=''
-																				style={{ height: "20px", width: "20px", color: "#d3a478", marginRight: '-3px' }}
 
-																			/>
-																		))}
-																	</div>
-																</div>
-																<div className='tw-ml-[122px] tw-mt-4 md:tw-mr-14 tw-mr-10'>
-																	<p style={{ color: 'gray' }}>Fermentum mus porttitor tempor arcu posuere.</p>
-																</div>
-																<div className='link_hover tw-text-sm tw-ml-[122px] tw-mt-[20px]'>
-																	<a
-																		href=""
-																		className='me-4'
-																	>
-																		Approve
-																	</a>
-																	<a href=""
-																		className="me-4"
-																	>Delete</a>
-																	<a href="" className='me-4'>Spam</a>
-																	<a href="" className='me-4'>View</a>
 
-																</div>
-																<div className=' tw-mt-7 tw-w-[1132px] tw-ml-4'>
-																	<hr />
-																</div>
-															</div>
 
-															<div className='tw-mt-[45px] tw-mb-6 tw-ml-[60px]'>
-																<div className='tw-flex tw-ml-[10px] tw-mt-[50px] '>
-																	<img src={armisha} alt="" style={{ height: '80px', width: "80px", borderRadius: '50%' }} />
-																	<div className=' tw-ml-6 tw-font-semibold'>
-																		<h2 style={{ fontFamily: 'Cormorant Garamond, serif', fontSize: '25px' }} >Armisha Dobariya</h2>
-																	</div>
-																</div>
+															))}
 
-																<div className=' md:tw-mt-[-40px] tw-mt-[-10px] tw-ml-[115px]'>
-																	<div>
-																		{[1, 2, 3, 4, 5].map((value) => (
-																			<StarIcon
-																				key={value}
-																				className=''
-																				style={{ height: "20px", width: "20px", color: "#d3a478", marginRight: '-3px' }}
 
-																			/>
-																		))}
-																	</div>
-																</div>
-																<div className='tw-ml-[115px] tw-mt-4 tw-mr-10'>
-																	<p style={{ color: 'gray' }}>Fermentum mus porttitor tempor arcu posuere.</p>
-																</div>
-																<div className='link_hover tw-text-sm tw-ml-[115px] tw-mt-[20px]'>
-																	<a
-																		href=""
-																		className='me-4'
-																	>
-																		Approve
-																	</a>
-																	<a href=""
-																		className="me-4"
-																	>Delete</a>
-																	<a href="" className='me-4'>Spam</a>
-																	<a href="" className='me-4'>View</a>
 
-																</div>
-																<div className=' tw-mt-7 tw-w-[1132px] tw-ml-[-45px]'>
-																	<hr />
-																</div>
-															</div>
-
-															<div className='tw-mt-[45px] tw-mb-6'>
-																<div className='tw-flex tw-ml-[15px] tw-mt-[50px] '>
-																	<img src={me} alt="" style={{ height: '80px', width: "80px", borderRadius: '50%' }} />
-																	<div className=' tw-ml-7 tw-font-semibold'>
-																		<h2 style={{ fontFamily: 'Cormorant Garamond, serif', fontSize: '25px' }} >Ayushi Dobariya</h2>
-																	</div>
-																</div>
-
-																<div className=' md:tw-mt-[-40px] tw-mt-[-10px] tw-ml-[122px]'>
-																	<div>
-																		{[1, 2, 3, 4, 5].map((value) => (
-																			<StarIcon
-																				key={value}
-																				className=''
-																				style={{ height: "20px", width: "20px", color: "#d3a478", marginRight: '-3px' }}
-
-																			/>
-																		))}
-																	</div>
-																</div>
-																<div className='tw-ml-[122px] tw-mt-4 md:tw-mr-14 tw-mr-10'>
-																	<p style={{ color: 'gray' }}>Fermentum mus porttitor tempor arcu posuere.</p>
-																</div>
-																<div className='link_hover tw-text-sm tw-ml-[122px] tw-mt-[20px]'>
-																	<a
-																		href=""
-																		className='me-4'
-																	>
-																		Approve
-																	</a>
-																	<a href=""
-																		className="me-4"
-																	>Delete</a>
-																	<a href="" className='me-4'>Spam</a>
-																	<a href="" className='me-4'>View</a>
-
-																</div>
-																<div className=' tw-mt-7 tw-w-[1132px] tw-ml-4'>
-																	<hr />
-																</div>
-															</div>
-
-															<div className='tw-mt-[45px] tw-mb-6 tw-ml-[60px]'>
-																<div className='tw-flex tw-ml-[10px] tw-mt-[50px] '>
-																	<img src={armisha} alt="" style={{ height: '80px', width: "80px", borderRadius: '50%' }} />
-																	<div className=' tw-ml-6 tw-font-semibold'>
-																		<h2 style={{ fontFamily: 'Cormorant Garamond, serif', fontSize: '25px' }} >Armisha Dobariya</h2>
-																	</div>
-																</div>
-
-																<div className=' md:tw-mt-[-40px] tw-mt-[-10px] tw-ml-[115px]'>
-																	<div>
-																		{[1, 2, 3, 4, 5].map((value) => (
-																			<StarIcon
-																				key={value}
-																				className=''
-																				style={{ height: "20px", width: "20px", color: "#d3a478", marginRight: '-3px' }}
-
-																			/>
-																		))}
-																	</div>
-																</div>
-																<div className='md:tw-ml-[115px]  tw-mt-4 tw-mr-10'>
-																	<p style={{ color: 'gray' }}>Fermentum mus porttitor tempor arcu posuere.</p>
-																</div>
-																<div className='link_hover tw-text-sm tw-ml-[115px] tw-mt-[20px]'>
-																	<a
-																		href=""
-																		className='me-4'
-																	>
-																		Approve
-																	</a>
-																	<a href=""
-																		className="me-4"
-																	>Delete</a>
-																	<a href="" className='me-4'>Spam</a>
-																	<a href="" className='me-4'>View</a>
-
-																</div>
-
-															</div>
 														</div>
 													)}
 												</CardContent>

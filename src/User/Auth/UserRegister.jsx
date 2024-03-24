@@ -14,6 +14,8 @@ import axios from "axios";
 import { signUpUrl } from "../Components/Api";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { jwtDecode } from 'jwt-decode';
+import { googleLoginUrl } from '../Components/Api';
 
 const UserRegister = () => {
 	// const [isHovered, setHovered] = useState(false);
@@ -58,6 +60,15 @@ const UserRegister = () => {
 		return true;
 	}
 
+	const handleKeyDown = (event) => {
+		console.log("clicked");
+
+		if (event.key === 'Enter') {
+			console.log("enter clicked");
+			UserRegister(event);
+		};
+	}
+
 	const UserRegister = async (e) => {
 		try {
 			e.preventDefault();
@@ -75,7 +86,7 @@ const UserRegister = () => {
 
 				const responseData = await axios.post(signUpUrl, reqdata);
 
-				if (responseData.data.statusCode === 201) {
+				if (responseData.status === 201) {
 
 					const { token } = responseData.data;
 					console.log('token: ', token);
@@ -84,15 +95,18 @@ const UserRegister = () => {
 					setResponse("success", "success ...");
 					navigate('/');
 					console.log("register email: ", email);
+					toast.success(responseData.data.message);
 
 				}
 				else {
-					console.log(responseData.data.message);
-					toast.error(responseData.data.message);
+					// console.log(responseData.data.message);
+					// toast.error(responseData.data.message);
 				}
 			}
 		} catch (error) {
 			setResponse("error", "error...");
+			toast.error(error.response.data.message);
+
 
 			// setResponse(alert(error.response.message))
 		}
@@ -132,13 +146,8 @@ const UserRegister = () => {
 						}}
 					></div>
 				</div>
-<<<<<<< HEAD
-				<div className="absolute tw-top-0 tw-left-0 tw-w-full tw-h-full tw-bg-cover  tw-grid tw-items-center tw-justify-center">
-					<h5 className=' tw-text-center tw-text-white tw-text-2xl tw-font-semibold'>
-=======
 				<div className="absolute tw-top-0 tw-left-0 tw-w-full tw-h-full tw-bg-cover tw-flex tw-grid tw-items-center tw-justify-center">
 					<h5 className=" tw-text-center tw-text-white tw-text-2xl tw-font-semibold">
->>>>>>> b0280027273868ab506dff49c3aea9868ab4ec1d
 						<Link to="/">{`Home >> Register`}</Link>
 					</h5>
 					<div
@@ -254,13 +263,57 @@ const UserRegister = () => {
 														placeholder="Phone"
 														required
 														value={mobileNo}
+														onKeyDown={handleKeyDown}
+
 														onChange={(e) => setMobileNo(e.target.value)}
 													/>
 												</div>
 											</div>
 											<div>
-												<GoogleOAuthProvider>
+												{/* <GoogleOAuthProvider>
 													<GoogleLogin />
+												</GoogleOAuthProvider> */}
+
+
+												<GoogleOAuthProvider clientId="295805594505-sq8l6g2m1dlgnlepvim7h03gmo48gco3.apps.googleusercontent.com">
+													<GoogleLogin
+
+														style={{
+															backgroundColor: 'black',
+															color: 'white',
+															width: '700px',
+															padding: '10px',
+															borderRadius: '5px',
+															cursor: 'pointer',
+														}}
+
+														onSuccess={async (credentialResponse) => {
+															try {
+																console.log(credentialResponse);
+																const data = jwtDecode(credentialResponse.credential)
+																console.log(data)
+
+																const token = credentialResponse.credential;
+																const response = await axios.post(googleLoginUrl, {
+																	"token": token,
+																});
+
+																if (response.status === 200) {
+
+																	const { token } = response.data;
+																	localStorage.setItem("token", token);
+																	navigate("/");
+																}
+																console.log('Google Login Response:', response.data);
+															} catch (error) {
+																console.error('Error:', error.message);
+															}
+														}}
+														onError={() => {
+															console.log('Login Failed');
+														}}
+
+													/>
 												</GoogleOAuthProvider>
 											</div>
 											<div className="col-md-12 ">

@@ -16,8 +16,7 @@ import a4 from "../../Assests/Image/About/about_2.jpg"
 import a5 from "../../Assests/Image/About/about_2.jpg"
 import a6 from "../../Assests/Image/About/about_2.jpg"
 
-import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
-import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+
 import { Autoplay } from 'swiper/modules';
 
 
@@ -25,17 +24,17 @@ export const AboutSlide = () => {
 	const swiperRef = useRef(null);
 
 
-	const goPrev = () => {
-		if (swiperRef.current) {
-			swiperRef.current.swiper.slidePrev();
-		}
-	};
+	// const goPrev = () => {
+	// 	if (swiperRef.current) {
+	// 		swiperRef.current.swiper.slidePrev();
+	// 	}
+	// };
 
-	const goNext = () => {
-		if (swiperRef.current) {
-			swiperRef.current.swiper.slideNext();
-		}
-	};
+	// const goNext = () => {
+	// 	if (swiperRef.current) {
+	// 		swiperRef.current.swiper.slideNext();
+	// 	}
+	// };
 	return (
 		<>
 			<div className='tw-flex tw-justify-center'>

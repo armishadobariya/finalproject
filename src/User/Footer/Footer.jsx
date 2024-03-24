@@ -50,10 +50,10 @@ export const Footer = () => {
 								<h3 className=' tw-text-xl  tw-font-semibold ' style={{ color: "#d3a478" }}>Follow</h3>
 								<h2 className=' tw-text-2xl tw-mt-4'>Social</h2>
 								<div className=' tw-mt-8 tw-flex tw-space-x-3'>
-									<p><FacebookIcon className=' hover:tw-text-3xl hover:tw-text-blue-600 tw-cursor-pointer' /></p>
-									<p><TwitterIcon className=' hover:tw-text-3xl hover:tw-text-blue-600 tw-cursor-pointer' /></p>
-									<p><LinkedInIcon className=' hover:tw-text-3xl hover:tw-text-blue-600 tw-cursor-pointer' /></p>
-									<p><InstagramIcon className=' hover:tw-text-3xl hover:tw-text-blue-600 tw-cursor-pointer' /></p>
+									<p><FacebookIcon className='  hover:tw-text-blue-600 tw-cursor-pointer' /></p>
+									<p><TwitterIcon className='  hover:tw-text-blue-600 tw-cursor-pointer' /></p>
+									<p><LinkedInIcon className='  hover:tw-text-blue-600 tw-cursor-pointer' /></p>
+									<p><InstagramIcon className='  hover:tw-text-blue-600 tw-cursor-pointer' /></p>
 								</div>
 							</div>
 
@@ -63,7 +63,7 @@ export const Footer = () => {
 								<h2 className=' tw-text-2xl tw-mt-4'>Newsletter</h2>
 								<div className=' tw-mt-8'>
 
-									<input type="text" placeholder='Enter Your Email' className=' tw-h-11  tw-p-2 tw-w-[160px]  tw-md:w-40' style={{ backgroundColor: "#191919", border: "2px solid #d3a478" }} /><EmailIcon className=' tw-mb-[6px] tw-text-black' style={{ height: "44px", width: "42px", backgroundColor: "#d3a478" }} />
+									<input type="text" placeholder='Enter Your Email' className=' tw-h-11  tw-p-2 tw-w-[160px]  tw-md:w-40' style={{ backgroundColor: "#191919", border: "2px solid #d3a478" }} /><EmailIcon className=' tw-mb-[2px] tw-text-black' style={{ height: "44px", width: "42px", backgroundColor: "#d3a478" }} />
 								</div>
 							</div>
 

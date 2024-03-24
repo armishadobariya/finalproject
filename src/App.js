@@ -27,11 +27,6 @@ import AdminLogin from './Admin/Auth/AdminLogin'
 import Demo from './User/Components/Demo'
 import VerifyEmail from './User/Auth/VerifyEmail'
 import { PropertyHistory } from './User/Status/PropertyHistory'
-<<<<<<< HEAD
-import { AgentRegister } from './Agent/AgentRegister'
-import Property from './Agent/Property/Property'
-import { ReadMore } from '@mui/icons-material'
-=======
 import UserEmail from './User/Auth/UserEmail'
 import { AgentRegister } from './Agent/AgentRegister'
 import Rent from './User/Rent/Rent'
@@ -39,7 +34,6 @@ import AdminStatus from './Admin/Admin_Components/AdminStatus'
 
 
 
->>>>>>> b0280027273868ab506dff49c3aea9868ab4ec1d
 const App = () => {
 	return (
 		<div>
@@ -71,22 +65,10 @@ const App = () => {
 				<Route exact path='/Admin/TotalProperty' element={<TotalProperty name="TotalProperty" />}></Route>
 				<Route exact path='/Admin/MoreDetails' element={<MoreDetails name="MoreDetails" />}></Route>
 
-<<<<<<< HEAD
-
-				<Route exact path='/Agent/' element={<AgentRegister name="AgentRegister" />}></Route>
-				<Route exact path='/Agent/Property' element={<Property name="Property" />}></Route>
-				<Route exact path='/Agent/ReadMore' element={<ReadMore name="ReadMoreDetails" />} />
-
-			</Routes>
-
-
-
-=======
 				<Route exact path='/Agent/' element={<AgentRegister name="AgentRegister" />}></Route>
 
 			</Routes>
 
->>>>>>> b0280027273868ab506dff49c3aea9868ab4ec1d
 
 
 		</div>

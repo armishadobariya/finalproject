@@ -24,6 +24,8 @@ const UserForgotPassword = () => {
 	const navigate = useNavigate();
 
 
+
+
 	const handleEmail = async () => {
 		try {
 			const reqdata = {
@@ -31,12 +33,12 @@ const UserForgotPassword = () => {
 			};
 
 			const responseData = await axios.post(forgetPasswordUrl, reqdata);
-			if (responseData.data.statusCode === 200) {
+			if (responseData.status === 200) {
 
 				toggleForm();
 			}
 			else {
-				toast.error(responseData.data.message);
+				// toast.error(responseData.data.message);
 
 			}
 		}
@@ -45,6 +47,8 @@ const UserForgotPassword = () => {
 				setResponse('error', "Email not found");
 			} else {
 				// console.error("Error:", error);
+				toast.error(error.response.data.message);
+
 
 				setResponse('error', "An unexpected error occurred");
 			}
@@ -69,7 +73,7 @@ const UserForgotPassword = () => {
 
 			const responseData = await axios.post(verifyOtpUrl, reqdata);
 
-			if (responseData.data.statusCode === 200) {
+			if (responseData.status === 200) {
 				// const { token } = responseData.data;
 				// localStorage.setItem("token", token);
 				// console.log('token: ', token);
@@ -79,12 +83,15 @@ const UserForgotPassword = () => {
 				console.log('verify email: ', email);
 			}
 			else {
-				toast.error(responseData.data.message);
+				// toast.error(responseData.data.message);
 
 			}
 		} catch (error) {
 			setResponse("error :", response.data.message);
 			console.log('hello');
+
+			toast.error(error.response.data.message);
+
 		}
 	}
 

@@ -54,7 +54,7 @@ const Admin_Nav = () => {
 			});
 	};
 	const logOut = () => {
-		navigate('/Login');
+		navigate('/admin/adminlogin');
 	};
 
 
