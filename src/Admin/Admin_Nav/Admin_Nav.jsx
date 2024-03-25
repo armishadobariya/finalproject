@@ -54,7 +54,10 @@ const Admin_Nav = () => {
 			});
 	};
 	const logOut = () => {
-		navigate('/admin/adminlogin');
+		// navigate('/admin/adminlogin');
+		localStorage.removeItem('admin');
+		console.log("remove", localStorage.removeItem('admin'));
+		navigate('/UserLogin');
 	};
 
 

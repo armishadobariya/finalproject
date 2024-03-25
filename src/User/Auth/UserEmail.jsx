@@ -9,24 +9,45 @@ const UserEmail = () => {
 	// const [isHovered, setHovered] = useState(false);
 
 	const [email, setEmail] = useState("");
+	const [emailErr, setEmailErr] = useState('');
+
 	const navigate = useNavigate();
 
+
+	const validateEmail = (email) => {
+		if (email === '') {
+			setEmailErr('Email is required');
+			return false
+		} else if (!email.match(/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/i)) {
+			setEmailErr('Invalid email address');
+			return false
+		}
+
+		setEmailErr('');
+		return true
+
+	}
 	const handleSubmit = (e) => {
-		navigate("/VerifyEmail", { state: { email } });
-		console.log("submitted");
-		e.preventDefault();
-		setEmail("");
+		if (validateEmail(email) === true) {
+
+			navigate("/VerifyEmail", { state: { email } });
+			console.log("submitted");
+			e.preventDefault();
+			setEmail("");
+		}
 
 	};
 
 
 	const handleKeyDown = (event) => {
-		console.log("clicked");
 
-		if (event.key === 'Enter') {
-			console.log("enter clicked");
-			handleSubmit(event);
-		};
+		if (validateEmail(email)) {
+
+			if (event.key === 'Enter') {
+				console.log("enter clicked");
+				handleSubmit(event);
+			};
+		}
 	}
 
 
@@ -60,11 +81,18 @@ const UserEmail = () => {
 													placeholder="Email"
 													value={email}
 													onKeyDown={handleKeyDown}
-													onChange={(e) => { setEmail(e.target.value) }}
+													onChange={(e) => {
+														setEmail(e.target.value)
+														validateEmail(e.target.value);
+
+													}}
 													required
 
 												/>
+
 											</div>
+											<p style={{ color: 'red', marginBottom: '20px' }}>{emailErr}</p>
+
 											<button type="button" class="tw-bg-black tw-mb-4 tw-w-full tw-text-center tw-text-white tw-text-lg tw-font-semibold tw-h-11"
 												onClick={handleSubmit} >
 												Verify Email

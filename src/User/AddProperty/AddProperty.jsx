@@ -76,38 +76,42 @@ export const AddProperty = () => {
 
 	const addPropertyData = async (e) => {
 		try {
-			const formData = new FormData();
-			for (let i = 0; i < propertyImage.length; i++) {
 
-				formData.append('propertyImage', propertyImage[i]);
-			}
-			formData.append('propertyType', propertyType);
-			formData.append('type', type);
-			formData.append('description', description);
-			formData.append('address', address);
-			formData.append('state', selectedState);
-			formData.append('city', selectedCity);
-			formData.append('size', size);
-			formData.append('price', price);
-			formData.append('propertyAge', age);
-			formData.append('faching', face);
-			formData.append('houseType', houseType);
-			formData.append('facility', facilities);
-			formData.append('furnishing', furnishing);
-			formData.append('mobileNo', mobileNo);
-			formData.append('email', email);
+			if (handlePriceChange()) {
+				const formData = new FormData();
+				for (let i = 0; i < propertyImage.length; i++) {
 
-			const token = localStorage.getItem("token");
-			const responseData = await axios.post(addPropertyUrl, formData, {
-				headers: {
-					"Authorization": `Bearer ${token}`,
-					"Content-Type": "multipart/form-data",
+					formData.append('propertyImage', propertyImage[i]);
 				}
-			});
+				formData.append('propertyType', propertyType);
+				formData.append('type', type);
+				formData.append('description', description);
+				formData.append('address', address);
+				formData.append('state', selectedState);
+				formData.append('city', selectedCity);
+				formData.append('size', size);
+				formData.append('price', price);
+				formData.append('propertyAge', age);
+				formData.append('faching', face);
+				formData.append('houseType', houseType);
+				formData.append('facility', facilities);
+				formData.append('furnishing', furnishing);
+				formData.append('mobileNo', mobileNo);
+				formData.append('email', email);
 
-			if (responseData.status === 200) {
-				console.log(responseData.data);
-				navigate('/');
+				const token = localStorage.getItem('user');
+			const tokenArray = JSON.parse(token);
+				const responseData = await axios.post(addPropertyUrl, formData, {
+					headers: {
+						"Authorization": `Bearer ${tokenArray[0]}`,
+						"Content-Type": "multipart/form-data",
+					}
+				});
+
+				if (responseData.status === 200) {
+					console.log(responseData.data);
+					navigate('/');
+				}
 			}
 		} catch (error) {
 			console.log(error);
@@ -153,7 +157,17 @@ export const AddProperty = () => {
 		setPropertyType(event.target.value);
 	};
 
+	// const validateName = (name) => {
+	// 	const allowAlphabet = /^[a-zA-Z]+$/;
 
+	// 	if (name.length <= 2 || !allowAlphabet.test(name)) {
+	// 		setNameErr('Name must be contain mote than two Alphabets..');
+	// 		return false;
+	// 	}
+
+	// 	setNameErr('');
+	// 	return true;
+	// }
 	const handleSizeChange = (e) => {
 		const newSize = e.target.value;
 		setSize(newSize);
@@ -519,7 +533,7 @@ export const AddProperty = () => {
 														value={mobileNo}
 														onChange={handleMobileNoChange}
 													/>
-													{mobileNoError && <p className="text-red-500">{mobileNoError}</p>}
+													{mobileNoError && <p className="text-red-500" style={{ color: "red" }}>{mobileNoError}</p>}
 												</div>
 												<div className="col-md-6 tw-grid">
 													<label htmlFor="email" className=' tw-font-semibold' >Email</label>

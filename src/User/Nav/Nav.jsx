@@ -37,6 +37,7 @@ const Nav = () => {
 	const [deletePassword, setDeletePassword] = useState("");
 
 
+	const [showButton, setShowButton] = useState(localStorage.getItem("user") === null); // State variable to track the condition
 
 
 
@@ -44,13 +45,14 @@ const Nav = () => {
 
 	const getUserData = async () => {
 		try {
-			const token = localStorage.getItem('token');
+			const token = localStorage.getItem('user');
+			const tokenArray = JSON.parse(token);
+			console.log(tokenArray[0]);
 			const response = await axios.get(userProfileUrl, {
 				headers: {
-					Authorization: `Bearer ${token}`,
+					Authorization: `Bearer ${tokenArray[0]}`,
 				},
 			});
-
 			if (response.status === 200) {
 				const data = response.data;
 				console.log('data: ', data);
@@ -285,11 +287,12 @@ const Nav = () => {
 				const formData = new FormData();
 				formData.append('profilePic', selectedImage);
 
-				const token = localStorage.getItem('token');
+				const token = localStorage.getItem('user');
+			const tokenArray = JSON.parse(token);
 				const response = await axios.post(changeProfileUrl, formData, {
 					headers: {
 						'Content-Type': 'multipart/form-data',
-						Authorization: `Bearer ${token}`,
+						Authorization: `Bearer ${tokenArray[0]}`,
 					},
 				});
 
@@ -334,8 +337,8 @@ const Nav = () => {
 
 
 	const logOut = () => {
-		localStorage.removeItem('token');
-		console.log("remove", localStorage.removeItem('token'));
+		localStorage.removeItem('user');
+		console.log("remove", localStorage.removeItem('user'));
 		navigate('/UserLogin');
 	};
 
@@ -421,35 +424,39 @@ const Nav = () => {
 								</Dialog>
 
 
-								<button
-									type="button"
-									className="btn shadow-none me-lg-3 me-3 ms-3"
-									data-bs-toggle="modal"
-									data-bs-target="#loginModal"
-									onClick={showLogin}
-									id='btnLogin'
-									style={{ background: '#d3a478' }}
-								>
-									Login
-								</button>
-
-								<PopupState variant="popover" popupId="demo-popup-menu">
-									{(popupState) => (
-										<>
-											<AccountCircleIcon
-												style={{ color: "#d3a478", height: "36px", width: "36px", marginRight: "10px", marginTop: '5px', cursor: 'pointer', overflowY: 'auto' }}
-												variant="contained"
-												{...bindTrigger(popupState)}
-											>
-											</AccountCircleIcon>
-											<Menu {...bindMenu(popupState)} style={{ marginTop: '50px' }}>
-												<MenuItem onClick={() => handleShowProfile(popupState)}>Profile</MenuItem>
-												<MenuItem onClick={() => logOut(popupState)}>Logout</MenuItem>
-												<MenuItem onClick={() => handleSetting(popupState)}>Settings</MenuItem>
-											</Menu>
-										</>
-									)}
-								</PopupState>
+								{showButton ? (
+									// Render button if showButton is true
+									<button
+										type="button"
+										className="btn shadow-none me-lg-3 me-3 ms-3"
+										data-bs-toggle="modal"
+										data-bs-target="#loginModal"
+										onClick={showLogin}
+										id='btnLogin'
+										style={{ background: '#d3a478' }}
+									>
+										Login
+									</button>
+								) : (
+									// Render popup box if showButton is false
+									<PopupState variant="popover" popupId="demo-popup-menu">
+										{(popupState) => (
+											<>
+												<AccountCircleIcon
+													style={{ color: "#d3a478", height: "36px", width: "36px", marginRight: "10px", marginTop: '5px', cursor: 'pointer', overflowY: 'auto' }}
+													variant="contained"
+													{...bindTrigger(popupState)}
+												>
+												</AccountCircleIcon>
+												<Menu {...bindMenu(popupState)} style={{ marginTop: '50px' }}>
+													<MenuItem onClick={() => handleShowProfile(popupState)}>Profile</MenuItem>
+													<MenuItem onClick={() => logOut(popupState)}>Logout</MenuItem>
+													<MenuItem onClick={() => handleSetting(popupState)}>Settings</MenuItem>
+												</Menu>
+											</>
+										)}
+									</PopupState>
+								)}
 
 
 

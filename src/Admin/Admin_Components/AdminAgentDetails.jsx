@@ -15,11 +15,11 @@ const AdminAgentDetails = () => {
 
     const getAgent = async () => {
         try {
-            const token = localStorage.getItem('token');
-
+            const token = localStorage.getItem('admin');
+            const tokenArray = JSON.parse(token);
             const response = await axios.get(getAgentUrl, {
                 headers: {
-                    Authorization: `Bearer ${token}`,
+                    Authorization: `Bearer ${tokenArray[0]}`,
                 },
             });
             console.log("agent:", response.data.agents);

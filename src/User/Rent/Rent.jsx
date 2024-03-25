@@ -52,11 +52,12 @@ const Rent = () => {
 
 	const getRentProperty = async () => {
 		try {
-			const token = localStorage.getItem('token');
+			const token = localStorage.getItem('user');
+			const tokenArray = JSON.parse(token);
 
 			const response = await axios.get(getRentPropertyUrl, {
 				headers: {
-					Authorization: `Bearer ${token}`,
+					Authorization: `Bearer ${tokenArray[0]}`,
 				},
 			});
 

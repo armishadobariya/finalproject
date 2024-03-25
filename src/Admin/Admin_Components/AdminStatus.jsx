@@ -34,11 +34,12 @@ const AdminStatus = () => {
 
 	const getProperty = async () => {
 		try {
-			const token = localStorage.getItem('token');
+			const token = localStorage.getItem('admin');
+			const tokenArray = JSON.parse(token);
 
 			const response = await axios.get(getPropertyUrl, {
 				headers: {
-					Authorization: `Bearer ${token}`,
+					Authorization: `Bearer ${tokenArray[0]}`,
 				},
 			});
 
@@ -56,7 +57,8 @@ const AdminStatus = () => {
 
 	const approveProperty = (propertyId) => async () => {
 		try {
-			const token = localStorage.getItem('token');
+			const token = localStorage.getItem('admin');
+			const tokenArray = JSON.parse(token);
 
 			const approvedata = {
 				id: propertyId,
@@ -66,7 +68,7 @@ const AdminStatus = () => {
 
 			const response = await axios.post(setApproveUrl, approvedata, {
 				headers: {
-					Authorization: `Bearer ${token}`,
+					Authorization: `Bearer ${tokenArray[0]}`,
 				},
 			});
 
@@ -84,8 +86,8 @@ const AdminStatus = () => {
 
 	const rejectProperty = (propertyId) => async () => {
 		try {
-			const token = localStorage.getItem('token');
-			console.log(token);
+			const token = localStorage.getItem('admin');
+			const tokenArray = JSON.parse(token);
 			console.log(propertyId);
 			const rejectdata = {
 				id: propertyId,
@@ -95,7 +97,7 @@ const AdminStatus = () => {
 
 			const response = await axios.post(setRejectUrl, rejectdata, {
 				headers: {
-					Authorization: `Bearer ${token}`,
+					Authorization: `Bearer ${tokenArray[0]}`,
 				},
 			});
 			console.log(response.message);
@@ -120,11 +122,12 @@ const AdminStatus = () => {
 			const selectedValue = event.target.value;
 			setSelectedStatus(selectedValue);
 			console.log(selectedValue);
-			const token = localStorage.getItem("token");
+			const token = localStorage.getItem('admin');
+			const tokenArray = JSON.parse(token);
 			console.log(token);
 			const response = await axios.get(`${getAdminSelectedPropertyUrl}/${selectedValue}`, {
 				headers: {
-					Authorization: `Bearer ${token}`,
+					Authorization: `Bearer ${tokenArray[0]}`,
 				},
 			});
 			console.log(response);

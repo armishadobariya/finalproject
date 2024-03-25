@@ -78,11 +78,13 @@ const Dashboard = () => {
 
 	const totalPropertyCount = async () => {
 		try {
-			const token = localStorage.getItem('token');
+			const token = localStorage.getItem('admin');
+			const tokenArray = JSON.parse(token);
+
 
 			const response = await axios.get(totalPropertyCountUrl, {
 				headers: {
-					Authorization: `Bearer ${token}`,
+					Authorization: `Bearer ${tokenArray[0]}`,
 				},
 			});
 			console.log("response:", response.data.property);
@@ -99,11 +101,12 @@ const Dashboard = () => {
 
 	const totalRentCount = async () => {
 		try {
-			const token = localStorage.getItem('token');
+			const token = localStorage.getItem('admin');
+			const tokenArray = JSON.parse(token);
 
 			const response = await axios.get(totalRentCountUrl, {
 				headers: {
-					Authorization: `Bearer ${token}`,
+					Authorization: `Bearer ${tokenArray[0]}`,
 				},
 			});
 			console.log("response:", response.data.property);
@@ -119,11 +122,12 @@ const Dashboard = () => {
 	}
 	const totalSellCount = async () => {
 		try {
-			const token = localStorage.getItem('token');
+			const token = localStorage.getItem('admin');
+			const tokenArray = JSON.parse(token);
 
 			const response = await axios.get(totalSellCountUrl, {
 				headers: {
-					Authorization: `Bearer ${token}`,
+					Authorization: `Bearer ${tokenArray[0]}`,
 				},
 			});
 			console.log("response:", response.data.property);
@@ -140,11 +144,12 @@ const Dashboard = () => {
 
 	const totalUserCount = async () => {
 		try {
-			const token = localStorage.getItem('token');
+			const token = localStorage.getItem('admin');
+			const tokenArray = JSON.parse(token);
 
 			const response = await axios.get(totalUserCountUrl, {
 				headers: {
-					Authorization: `Bearer ${token}`,
+					Authorization: `Bearer ${tokenArray[0]}`,
 				},
 			});
 			console.log("response:", response.data.users);
@@ -161,11 +166,12 @@ const Dashboard = () => {
 
 	const totalAgentCount = async () => {
 		try {
-			const token = localStorage.getItem('token');
+			const token = localStorage.getItem('admin');
+			const tokenArray = JSON.parse(token);
 
 			const response = await axios.get(totalAgentCountUrl, {
 				headers: {
-					Authorization: `Bearer ${token}`,
+					Authorization: `Bearer ${tokenArray[0]}`,
 				},
 			});
 			console.log("response:", response.data.agents);
@@ -181,11 +187,11 @@ const Dashboard = () => {
 	}
 	const getFeedbacks = async () => {
 		try {
-			const token = localStorage.getItem('token');
-
+			const token = localStorage.getItem('admin');
+			const tokenArray = JSON.parse(token);
 			const response = await axios.get(getFeedbackUrl, {
 				headers: {
-					Authorization: `Bearer ${token}`,
+					Authorization: `Bearer ${tokenArray[0]}`,
 				},
 			});
 			if (response.status === 200) {

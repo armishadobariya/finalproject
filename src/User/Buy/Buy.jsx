@@ -58,11 +58,12 @@ const Buy = () => {
 
 	const getSellProperty = async () => {
 		try {
-			const token = localStorage.getItem('token');
+			const token = localStorage.getItem('user');
+			const tokenArray = JSON.parse(token);
 
 			const response = await axios.get(getSellPropertyUrl, {
 				headers: {
-					Authorization: `Bearer ${token}`,
+					Authorization: `Bearer ${tokenArray[0]}`,
 				},
 			});
 

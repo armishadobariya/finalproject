@@ -47,13 +47,24 @@ const UserLogin = () => {
 
 
 				if (responseData.data.data.role === 'USER') {
+					const data = [];
 					const { token } = responseData.data;
-					localStorage.setItem("token", token);
+					data[0] = token;
+					data[1] = "USER"
+
+					console.log(responseData.data.data);
+					localStorage.setItem("user", JSON.stringify(data));
 					navigate("/", { state: email });
 				}
 				else if (responseData.data.data.role === 'ADMIN') {
+					const data = [];
 					const { token } = responseData.data;
-					localStorage.setItem("token", token);
+					data[0] = token;
+					data[1] = "ADMIN";
+					console.log(data);
+					console.log(responseData.data.data);
+
+					localStorage.setItem("admin", JSON.stringify(data));
 					navigate("/admin", { state: email });
 				}
 				else {

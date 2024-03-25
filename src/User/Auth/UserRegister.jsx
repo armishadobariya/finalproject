@@ -28,6 +28,7 @@ const UserRegister = () => {
 	const [response, setResponse] = useState("");
 	const [nameErr, setNameErr] = useState('');
 	const [passwordErr, setPasswordErr] = useState('');
+	const [emailErr, setEmailErr] = useState('');
 	const navigate = useNavigate();
 	const location = useLocation();
 
@@ -51,6 +52,8 @@ const UserRegister = () => {
 		return true;
 	}
 
+
+
 	const validatePassword = (pass) => {
 		if (pass.length < 8) {
 			setPasswordErr('Password must be between 8 characters');
@@ -59,6 +62,7 @@ const UserRegister = () => {
 		setPasswordErr('');
 		return true;
 	}
+
 
 	const handleKeyDown = (event) => {
 		console.log("clicked");
