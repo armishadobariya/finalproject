@@ -40,9 +40,7 @@ const ReadMore = () => {
 					</div>
 
 					<div className='row tw-mt-10 '>
-						<div className="col-lg-7">
-							{/* <img src={img} alt="" className='tw-w-[700px] tw-h-[400px] tw-rounded-sm' /> */}
-						</div>
+
 
 
 						<div className="col-lg-5 md:w-full shadow-lg tw-p-6 tw-flex  tw-place-content-center tw-rounded-sm">

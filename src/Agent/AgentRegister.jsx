@@ -34,10 +34,20 @@ export const AgentRegister = () => {
 
 	const [showModal, setShowModal] = useState(false);
 
+<<<<<<< HEAD
 	const [error, setError] = useState('');
 	const [mobileNoError, setMobileNoError] = useState('');
+=======
+	const [nameErr, setNameErr] = useState('');
+	const [mobileError, setMobileError] = useState('');
+	const [passwordErr, setPasswordErr] = useState('');
+>>>>>>> Armisha
 
+	// const handleNameChange = (e) => {
+	// 	const name = e.target.value;
+	// 	setAgentName(name);
 
+<<<<<<< HEAD
 	const handleNameChange = (e) => {
 		const name = e.target.value;
 		setAgentName(name);
@@ -51,8 +61,61 @@ export const AgentRegister = () => {
 			setError('');
 		}
 	};
+=======
+	// 	// Validation logic
+	// 	if (name.trim() === '') {
+	// 		setError('Name cannot be empty');
+	// 	} else if (/\d/.test(name)) {
+	// 		setError('Name cannot contain digits');
+	// 	} else {
+	// 		setError('');
+	// 	}
+	// };
+>>>>>>> Armisha
 
+	const validateName = (name) => {
+		const allowAlphabet = /^[a-zA-Z]+$/;
 
+		if (name.length <= 2 || !allowAlphabet.test(name)) {
+			setNameErr('Name must be contain more than two Alphabets..');
+			return false;
+		}
+		setNameErr('');
+		return true;
+	}
+	const validateMno = (contact) => {
+
+		const mobileRegex = /^\d{10}$/;
+
+		if (!mobileRegex.test(contact)) {
+			setMobileError('Please enter a valid 10-digit mobile number');
+			return false;
+		}
+
+		setMobileError('');
+		return true;
+	}
+
+	const validatePassword = (password) => {
+		if (password.length < 8) {
+			setPasswordErr('Password must be between 8 characters');
+			return false;
+		}
+		setPasswordErr('');
+		return true;
+	}
+	// const handleContactChange = (e) => {
+	// 	const contact = e.target.value;
+	// 	setAgentContact(contact);
+
+	// 	// Mobile number validation
+	// 	const mobileRegex = /^\d{10}$/;
+	// 	if (!mobileRegex.test(contact)) {
+	// 		setMobileError('Please enter a valid 10-digit mobile number');
+	// 	} else {
+	// 		setMobileError('');
+	// 	}
+	// };
 	const addAgentData = async (e) => {
 		e.preventDefault();
 		// console.log('hello');
@@ -183,6 +246,7 @@ export const AgentRegister = () => {
 							</Box>
 							<form>
 								{step === 1 && (
+
 									<div>
 										<div className="tw-grid">
 											<label htmlFor="name" className="tw-font-semibold">
@@ -193,9 +257,18 @@ export const AgentRegister = () => {
 												id="name"
 												className="tw-border-2 rounded-2 tw-w-full tw-h-11 tw-p-2"
 												value={agentName}
+<<<<<<< HEAD
 												onChange={handleNameChange}
 											/>
 											{error && <p className="error" style={{ color: 'red' }}>{error}</p>}
+=======
+												onChange={(e) => {
+													setAgentName(e.target.value)
+													validateName(e.target.value)
+												}}
+											/>
+											<p style={{ color: 'red', marginBottom: '20px' }}>{nameErr}</p>
+>>>>>>> Armisha
 										</div>
 										<div className="tw-grid tw-mt-3">
 											<label htmlFor="email" className="tw-font-semibold">
@@ -207,15 +280,35 @@ export const AgentRegister = () => {
 											<label htmlFor="contact" className="tw-font-semibold">
 												Contact No.
 											</label>
-											<input type="text" id="contact" className="tw-border-2 rounded-2 tw-h-11 tw-p-2 tw-mt-1" value={agentContact} onChange={(e) => { setAgentContact(e.target.value) }} />
+											<input
+												type="text"
+												id="contact"
+												className="tw-border-2 rounded-2 tw-h-11 tw-p-2 tw-mt-1"
+												value={agentContact}
+												onChange={(e) => {
+													setAgentContact(e.target.value)
+													validateMno(e.target.value)
+												}}
+											/>
+											<p style={{ color: 'red', marginBottom: '20px' }}>{mobileError}</p>
 										</div>
 										<div className="tw-grid tw-mt-3">
 											<label htmlFor="password" className="tw-font-semibold">
 												Password
 											</label>
-											<input type="password" id="password" className="tw-border-2 rounded-2 tw-h-11 tw-p-2 tw-mt-1" value={agentPassword} onChange={(e) => { setAgentPassword(e.target.value) }} />
+											<input type="password"
+												id="password"
+												className="tw-border-2 rounded-2 tw-h-11 tw-p-2 tw-mt-1"
+												value={agentPassword}
+												onChange={(e) => {
+													setAgentPassword(e.target.value)
+													validatePassword(e.target.value)
+												}} />
+											<p style={{ color: 'red', marginBottom: '20px' }}>{passwordErr}</p>
+
 										</div>
 									</div>
+
 								)}
 								{step === 2 && (
 									<div>
@@ -282,10 +375,10 @@ export const AgentRegister = () => {
 											<div className=' tw-flex tw-gap-2'>
 
 
-												<input type="file" id='adharFrontFile' style={{ display: "none" }} onChange={(e) => handleImage(e, 'adharCardFront')} multiple />
+												<input type="file" id='adharFrontFile' placeholder='Front side of adhar' style={{ display: "none" }} onChange={(e) => handleImage(e, 'adharCardFront')} multiple />
 												<label htmlFor="adharFrontFile" className='tw-place-content-center tw-flex tw-gap-3 tw-p-1 tw-h-full tw-w-full tw-mt-1 rounded-3' style={{ color: "#de0611", border: "1px dashed black" }}>
-													<h1 className='tw-place-content-center tw-grid'>  <FileUploadIcon style={{ height: "28px", width: "28px", color: "#ddd" }} className='border-2 rounded-3' /></h1>
-													<h1 className='  tw-place-content-center tw-grid tw-pl-2' style={{ color: "#aaa" }}>Front side of Adhar</h1>
+													{/* <h1 className='tw-place-content-center tw-grid'>  <FileUploadIcon style={{ height: "28px", width: "28px", color: "#ddd" }} className='border-2 rounded-3' /></h1>
+													<h1 className='  tw-place-content-center tw-grid tw-pl-2' style={{ color: "#aaa" }}>Front side of Adhar</h1> */}
 													{adharCardFront && adharCardFront.map((image, index) => (
 														<h1 key={index} style={{ color: 'black', fontWeight: '500' }}>{image.name}</h1>
 													))}
@@ -295,10 +388,10 @@ export const AgentRegister = () => {
 
 												<div className=' tw-w-full'>
 
-													<input type="file" id='adharBackFile' style={{ display: "none" }} onChange={(e) => handleImage(e, 'adharCardBack')} multiple />
+													<input type="file" id='adharBackFile' placeholder='back side od adhar' style={{ display: "none" }} onChange={(e) => handleImage(e, 'adharCardBack')} multiple />
 													<label htmlFor="adharBackFile" className='tw-place-content-center tw-flex tw-gap-3 tw-p-1 tw-h-full tw-w-full tw-mt-1 rounded-3' style={{ color: "#de0611", border: "1px dashed black" }}>
-														<h1 className='tw-place-content-center tw-grid'>  <FileUploadIcon style={{ height: "28px", width: "28px", color: "#ddd" }} className='border-2 rounded-3' /></h1>
-														<h1 className='  tw-place-content-center tw-grid tw-pl-2' style={{ color: "#aaa" }}>Back side of Adhar</h1>
+														{/* <h1 className='tw-place-content-center tw-grid'>  <FileUploadIcon style={{ height: "28px", width: "28px", color: "#ddd" }} className='border-2 rounded-3' /></h1>
+														<h1 className='  tw-place-content-center tw-grid tw-pl-2' style={{ color: "#aaa" }}>Back side of Adhar</h1> */}
 														{adharCardBack && adharCardBack.map((image, index) => (
 															<h1 key={index} style={{ color: 'black', fontWeight: '500' }}>{image.name}</h1>
 														))}
@@ -311,9 +404,9 @@ export const AgentRegister = () => {
 											<div className=' tw-flex tw-gap-4 '>
 												<div className=' tw-w-full'>
 													<input type="file" id='panFrontFile' style={{ display: "none" }} onChange={(e) => handleImage(e, 'panCard')} multiple />
-													<label htmlFor="panFrontFile" className='tw-place-content-center tw-flex tw-gap-3 tw-p-1 tw-h-full tw-w-full tw-mt-1 rounded-3' style={{ color: "#de0611", border: "1px dashed black" }}>
-														<h1 className='tw-place-content-center tw-grid'>  <FileUploadIcon style={{ height: "28px", width: "28px", color: "#ddd" }} className='border-2 rounded-3' /></h1>
-														<h1 className='  tw-place-content-center tw-grid tw-pl-2' style={{ color: "#aaa" }}>Front side of Pan</h1>
+													<label htmlFor="panFrontFile" placeholder="pan card" className='tw-place-content-center tw-flex tw-gap-3 tw-p-1 tw-h-full tw-w-full tw-mt-1 rounded-3' style={{ color: "#de0611", border: "1px dashed black" }}>
+														{/* <h1 className='tw-place-content-center tw-grid'>  <FileUploadIcon style={{ height: "28px", width: "28px", color: "#ddd" }} className='border-2 rounded-3' /></h1>
+														<h1 className='  tw-place-content-center tw-grid tw-pl-2' style={{ color: "#aaa" }}>Front side of Pan</h1> */}
 														{panCard && panCard.map((image, index) => (
 															<h1 key={index} style={{ color: 'black', fontWeight: '500' }}>{image.name}</h1>
 														))}
@@ -357,4 +450,9 @@ export const AgentRegister = () => {
 			</div>
 		</>
 	);
+<<<<<<< HEAD
 }
+=======
+}
+
+>>>>>>> Armisha

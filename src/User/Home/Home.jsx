@@ -29,7 +29,7 @@ import Nav from '../Nav/Nav';
 import { Footer } from '../Footer/Footer';
 import HomeSlide from './HomeSlide';
 import axios from 'axios';
-import { getFeedbackUrl } from '../Components/Api';
+import { getFeedbackUrl, deleteProfileUrl } from '../Components/Api';
 
 const Home = () => {
 
@@ -42,11 +42,11 @@ const Home = () => {
 
 	const getFeedbacks = async () => {
 		try {
-			const token = localStorage.getItem('token');
-
+			const token = localStorage.getItem('user');
+			const tokenArray = JSON.parse(token);
 			const response = await axios.get(getFeedbackUrl, {
 				headers: {
-					Authorization: `Bearer ${token}`,
+					Authorization: `Bearer ${tokenArray[0]}`,
 				},
 			});
 			if (response.status === 200) {

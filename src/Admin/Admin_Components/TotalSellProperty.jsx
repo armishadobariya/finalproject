@@ -41,11 +41,11 @@ const TotalSellProperty = () => {
 
   const getProperty = async () => {
     try {
-      const token = localStorage.getItem('token');
-
+      const token = localStorage.getItem('admin');
+      const tokenArray = JSON.parse(token);
       const response = await axios.get(getAdminAllSellPropertyUrl, {
         headers: {
-          Authorization: `Bearer ${token}`,
+          Authorization: `Bearer ${tokenArray[0]}`,
         },
       });
       console.log("response:", response.data.data);
@@ -285,4 +285,3 @@ const TotalSellProperty = () => {
 }
 
 export default TotalSellProperty
-

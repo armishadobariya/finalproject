@@ -45,11 +45,12 @@ const TotalProperty = () => {
 
 	const getProperty = async () => {
 		try {
-			const token = localStorage.getItem('token');
-
+			const token = localStorage.getItem('admin');
+			const tokenArray = JSON.parse(token);
+			console.log(tokenArray[0]);
 			const response = await axios.get(getAdminAllPropertyUrl, {
 				headers: {
-					Authorization: `Bearer ${token}`,
+					Authorization: `Bearer ${tokenArray[0]}`,
 				},
 			});
 			console.log("response:", response.data.data);
@@ -284,4 +285,4 @@ const TotalProperty = () => {
 	)
 }
 
-export default TotalProperty;
+export default TotalProperty

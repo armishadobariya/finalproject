@@ -148,7 +148,6 @@ import AdminUserDetails from './Admin/Admin_Components/AdminUserDetails'
 import AdminAgentDetails from './Admin/Admin_Components/AdminAgentDetails'
 import TotalRentProperty from './Admin/Admin_Components/TotalRentProperty'
 import TotalSellProperty from './Admin/Admin_Components/TotalSellProperty'
-import PropertyListMoreDetails from './User/AddProperty/PropertyListMoreDetails'
 
 
 const App = () => {
@@ -192,7 +191,6 @@ const App = () => {
 				<Route exact path='/Admin/TotalRentProperty' element={<TotalRentProperty />}></Route>
 				<Route exact path='/Admin/TotalSellProperty' element={<TotalSellProperty />}></Route>
 				<Route exact path='/Admin/RentMoreDetails' element={<RentMoreDetails />}></Route>
-				<Route exact path='/PropertyListMoreDetails' element={<PropertyListMoreDetails />}></Route>
 
 				<Route exact path='/Admin/MoreDetails' element={<MoreDetails />}></Route>
 

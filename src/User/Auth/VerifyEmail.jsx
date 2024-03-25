@@ -20,6 +20,7 @@ const VerifyEmail = () => {
 	const [response, setResponse] = useState(null);
 	const location = useLocation();
 	const navigate = useNavigate();
+	const [emailErr, setEmailErr] = useState('');
 
 	useEffect(() => {
 		const { email } = location.state || {};
@@ -37,6 +38,7 @@ const VerifyEmail = () => {
 			handleVerifyEmail(event);
 		};
 	}
+
 
 	const handleVerifyEmail = async () => {
 		try {
@@ -150,9 +152,12 @@ const VerifyEmail = () => {
 													readOnly
 													onKeyDown={handleEmail}
 													onChange={(e) => {
+														console.log(e);
 														setEmail(e.target.value);
 													}}
 												/>
+												<p style={{ color: 'red', marginLeft: '45px', marginBottom: '20px' }}>{emailErr}</p>
+
 											</div>
 											<button
 												type="button"

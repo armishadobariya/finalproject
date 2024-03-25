@@ -29,11 +29,12 @@ const Feedback = () => {
 			console.log("feedback login:", email);
 
 
-			const token = localStorage.getItem("token");
+			const token = localStorage.getItem('user');
+			const tokenArray = JSON.parse(token);
 			const responseData = await axios.post(addFeedbackUrl, reqData, {
 
 				headers: {
-					"Authorization": `Bearer ${token}`,
+					"Authorization": `Bearer ${tokenArray[0]}`,
 					"Content-Type": "application/json",
 				}
 			});
