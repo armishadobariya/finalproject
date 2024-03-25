@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/pagination';
@@ -13,9 +13,86 @@ import { Footer } from '../Footer/Footer';
 import Nav from '../Nav/Nav';
 import { useNavigate } from 'react-router-dom';
 import ContactSlide from './ContactSlide';
+import { addUserQueryUrl, userProfileUrl } from '../Components/Api';
+import axios from 'axios';
 
 
 const Contact = () => {
+
+	const [name, setName] = useState('');
+	const [email, setEmail] = useState('');
+	const [subject, setSubject] = useState('');
+	const [message, setMessage] = useState('');
+	const [userData, setUserData] = useState([]);
+
+
+
+
+	const sendUserQuery = async (e, name, email) => {
+		try {
+
+
+			const reqData = {
+				name: name,
+				email: email,
+				subject: subject,
+				message: message,
+			}
+
+			console.log("feedback login:", email);
+			console.log(reqData);
+
+			const token = localStorage.getItem("token");
+			const responseData = await axios.post(addUserQueryUrl, reqData, {
+
+				headers: {
+					"Authorization": `Bearer ${token}`,
+
+				}
+			});
+
+
+			console.log("response:", responseData);
+
+		}
+		catch (error) {
+
+			console.log('error');
+
+		}
+	}
+
+	const getUserData = async () => {
+		try {
+			const token = localStorage.getItem('token');
+			const response = await axios.get(userProfileUrl, {
+				headers: {
+					Authorization: `Bearer ${token}`,
+				},
+			});
+
+			if (response.status === 200) {
+				const data = response.data;
+				console.log('data: ', data);
+
+				// setUserEmail(data.userData.email);
+				// setUserMobile(data.userData.mobileNo);
+				// setIsLogin(data.isLogin);
+				setUserData(data.userData);
+			}
+		} catch (error) {
+			console.error("fetch user data:", error.message);
+		}
+	}
+
+
+	useEffect(() => {
+		getUserData();
+	}, []);
+
+
+
+
 
 	const navigate = useNavigate();
 	return (
@@ -39,20 +116,20 @@ const Contact = () => {
 				</div>
 				<div className=' tw-mt-4'>
 
-					<ContactSlide />
+					{/* <ContactSlide /> */}
 
 				</div>
 			</div>
 
 
-			<div className=' tw-flex tw-place-content-center'>
-				<div className="faq-contact tw-m-5 tw-shadow-lg tw-p-3 tw-bg-white tw-rounded-md md:tw-w-[700px] md:tw-top-18">
+			<div className=' tw-flex tw-place-content-center '>
+				<div className="faq-contact tw-m-5 shadow tw-p-10 tw-bg-white tw-rounded-md md:tw-w-[700px] md:tw-top-18 ">
 					<h3 className=' tw-text-2xl tw-font-bold tw-text-center'>Ask Your Question</h3>
 					<form id="contactForm ">
 						<div className="row tw-mt-4">
 							<div className="col-lg-6 col-md-12">
 								<div className="form-group">
-									<input
+									<h1
 										type="text"
 										name="name"
 										id="name"
@@ -61,60 +138,52 @@ const Contact = () => {
 										data-error="Please enter your name"
 										placeholder="Name"
 
-									/>
+
+									>
+
+										{userData.name}
+									</h1>
 									<br />
 									<div className="help-block with-errors" />
 								</div>
 							</div>
 							<div className="col-lg-6 col-md-12">
 								<div className="form-group">
-									<input
-										type="email"
-										name="email"
-										id="email"
+									<h1
+										type="text"
+										name="name"
+										id="name"
 										className="form-control"
 										required=""
-										data-error="Please enter your email"
-										placeholder="Email"
-									/>
-									<br />
-									<div className="help-block with-errors" />
-								</div>
-							</div>
-							<div className="col-lg-6 col-md-6">
-								<div className="form-group">
-									<input
-										type="number"
-										name="phone"
-										id="phone_number"
-										required=""
-										data-error="Please enter your number"
-										className="form-control"
-										placeholder="Phone"
-									/>
-									<br />
-									<div className="help-block with-errors" />
-								</div>
-							</div>
-							<div className="col-lg-6 col-md-6">
-								<div className="form-group">
-									<select
-										name="subject"
-										id="phone_number"
-										required=""
-										data-error="Please enter your number"
-										className="form-control"
-										placeholder="Phone"
+										data-error="Please enter your name"
+										placeholder="Name"
+
+
 									>
-										<option value="" disabled>Subject</option>
-										<option value="Issue" >Issue</option>
-										<option value="Service" >Service</option>
-										<option value="Other" >Other</option>
-									</select>
+
+										{userData.email}
+									</h1>
+									<br />
 									<div className="help-block with-errors" />
 								</div>
 							</div>
-							<div className="col-lg-12 col-md-12 tw-mt-4">
+
+							<div className="col-lg-12 col-md-12">
+								<div className="form-group">
+									<input
+										type="text"
+										required=""
+										data-error="Please enter your subject"
+										className="form-control"
+										placeholder="Subject"
+										onChange={(e) => setSubject(e.target.value)}
+
+									/>
+									<br />
+									<div className="help-block with-errors" />
+								</div>
+							</div>
+							<div className="col-lg-12 col-md-12 tw-mt-4 tw-mb-4">
 								<div className="form-group">
 									<textarea
 										name="message"
@@ -125,34 +194,16 @@ const Contact = () => {
 										required=""
 										data-error="Write your message"
 										placeholder="Your Message"
-										defaultValue={""}
+										onChange={(e) => setMessage(e.target.value)}
+
 									/>
 									<div className="help-block with-errors" />
 								</div>
 							</div>
-							<div className="col-lg-12 col-md-12">
-								<div className="form-group">
-									<div className="form-check tw-mt-4">
-										<input
-											name="gridCheck"
-											defaultValue="I agree to the terms and privacy policy."
-											className="form-check-input"
-											type="checkbox"
-											id="gridCheck"
-											required=""
-										/>
-										<label className="form-check-label " htmlFor="gridCheck">
-											I agree to the <a href="#">terms</a> and{" "}
-											<a href="#">privacy policy</a>
-										</label>
-										<br /> <br />
 
-										<div className="help-block with-errors gridCheck-error" />
-									</div>
-								</div>
-							</div>
 							<div className="col-lg-12 col-md-12">
-								<button type="submit" className='  tw-border-2 tw-p-2 tw-bg-black tw-text-white tw-font-semibold'>
+								<button type="submit" className='  tw-border-2 tw-p-2 tw-bg-black tw-text-white tw-font-semibold'
+									onClick={() => { sendUserQuery(userData.name, userData.email) }}>
 									Send Message
 								</button>
 								<div id="msgSubmit" className="h3 tw-text-center tw-hidden" />

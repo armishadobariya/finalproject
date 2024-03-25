@@ -46,7 +46,6 @@ const UserRegister = () => {
 			setNameErr('Name must be contain mote than two Alphabets..');
 			return false;
 		}
-
 		setNameErr('');
 		return true;
 	}
@@ -73,7 +72,7 @@ const UserRegister = () => {
 		try {
 			e.preventDefault();
 
-			if (validatePassword(password)) {
+			if (validatePassword(password) && validateName(name)) {
 
 				const reqdata = {
 					email: email,
@@ -95,7 +94,7 @@ const UserRegister = () => {
 					setResponse("success", "success ...");
 					navigate('/');
 					console.log("register email: ", email);
-					toast.success(responseData.data.message);
+					// toast.success(responseData.data.message);
 
 				}
 				else {
@@ -146,13 +145,8 @@ const UserRegister = () => {
 						}}
 					></div>
 				</div>
-<<<<<<< HEAD
-				<div className="absolute tw-top-0 tw-left-0 tw-w-full tw-h-full tw-bg-cover  tw-grid tw-items-center tw-justify-center">
-					<h5 className=' tw-text-center tw-text-white tw-text-2xl tw-font-semibold'>
-=======
 				<div className="absolute tw-top-0 tw-left-0 tw-w-full tw-h-full tw-bg-cover tw-flex tw-grid tw-items-center tw-justify-center">
 					<h5 className=" tw-text-center tw-text-white tw-text-2xl tw-font-semibold">
->>>>>>> b0280027273868ab506dff49c3aea9868ab4ec1d
 						<Link to="/">{`Home >> Register`}</Link>
 					</h5>
 					<div
@@ -211,6 +205,7 @@ const UserRegister = () => {
 														id="name"
 														type="name"
 														name="name"
+														// pattern="/^[A-Za-z]+$/"
 														className="tw-w-full tw-border-2 tw-h-12 tw-p-3 tw-mb-1 "
 														placeholder="Name"
 														required

@@ -159,7 +159,7 @@ const VerifyEmail = () => {
 												class="tw-bg-black tw-mb-4 tw-w-full tw-text-center tw-text-white tw-text-lg tw-font-semibold tw-h-11"
 												onClick={handleVerifyEmail}
 											>
-												Verify Email
+												Get OTP
 											</button>
 										</div>
 

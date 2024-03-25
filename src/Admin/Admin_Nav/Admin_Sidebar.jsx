@@ -67,26 +67,37 @@ const Admin_Sidebar = () => {
 							<hr className='tw-mt-4 tw-ml-2 tw-w-60 ' style={{ color: '#d3a478' }} />
 							<div className={`collapse navbar-collapse ${isSidebar ? 'show' : ''}`} id="showNavbar">
 								<ul className='nav nav-pills flex-column mt-2'>
-									<li className='nav-link text-white fs-4 my-1'>
-										<NavLink to="/admin" className='text-white fs-5' aria-current='page'>
+									<NavLink to="/admin/Dashboard" className='text-white fs-5' aria-current='page'>
+										<li className='nav-link text-white fs-5 my-1'>
 											<span className='ms-3'>Dashboard</span>
-										</NavLink>
-									</li>
-									<li className='nav-link text-white fs-4 my-1'>
-										<NavLink to="/admin/seller" className=' text-white fs-5' aria-current='page'>
-											<span className='ms-3'>Seller</span>
-										</NavLink>
-									</li>
-									<li className='nav-link  text-white fs-4 my-1'>
-										<NavLink to="/admin/status" className=' text-white fs-5' aria-current='page'>
+										</li>
+									</NavLink>
+
+									<NavLink to="/admin/status" className=' text-white fs-5' aria-current='page'>
+										<li className='nav-link  text-white fs-5 my-1'>
 											<span className='ms-3'>Status</span>
-										</NavLink>
-									</li>
-									<li className='nav-link text-white fs-4 my-1'>
-										<NavLink to="/admin/userqueries" className='text-white fs-5' aria-current='page'>
+										</li>
+									</NavLink>
+
+									<NavLink to="/admin/adminuserdetails" className=' text-white fs-5' aria-current='page'>
+										<li className='nav-link text-white fs-5 my-1'>
+											<span className='ms-3'>User</span>
+										</li>
+									</NavLink>
+
+									<NavLink to="/admin/adminagentdetails" className=' text-white fs-5' aria-current='page'>
+										<li className='nav-link text-white fs-5 my-1'>
+											<span className='ms-3'>Agent</span>
+										</li>
+									</NavLink>
+
+									<NavLink to="/admin/userqueries" className='text-white fs-5' aria-current='page'>
+										<li className='nav-link text-white fs-5 my-1'>
 											<span className='ms-3'>User Queries</span>
-										</NavLink>
-									</li>
+										</li>
+									</NavLink>
+
+
 								</ul>
 							</div>
 						</div>

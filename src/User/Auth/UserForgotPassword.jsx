@@ -3,10 +3,8 @@ import "./UserForgotPassword.css";
 import backgroundImage from '../../Assests/Image/home3.avif';
 import '../../../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import PersonIcon from '@mui/icons-material/Person';
-// import LockIcon from '@mui/icons-material/Lock';
-// import { Link } from 'react-router-dom';
+
 import 'animate.css';
-// import PasswordIcon from '@mui/icons-material/Password';
 import OtpInput from 'react-otp-input';
 import axios from 'axios';
 import { forgetPasswordUrl, verifyOtpUrl } from '../Components/Api';
@@ -38,7 +36,6 @@ const UserForgotPassword = () => {
 				toggleForm();
 			}
 			else {
-				// toast.error(responseData.data.message);
 
 			}
 		}
@@ -46,7 +43,6 @@ const UserForgotPassword = () => {
 			if (error.response && error.response.status === 404) {
 				setResponse('error', "Email not found");
 			} else {
-				// console.error("Error:", error);
 				toast.error(error.response.data.message);
 
 
@@ -57,41 +53,48 @@ const UserForgotPassword = () => {
 
 	const toggleForm = () => {
 		setShowOtp(!showOtp);
-		console.log('hello');
 
 	}
 
 
 	const handleOtp = async (e) => {
 		try {
-			e.preventDefault();
 
 			const reqdata = {
 				email: email,
 				otp: otp,
 			};
+			console.log('forgot reqdata: ', reqdata.email);
+
+
+
 
 			const responseData = await axios.post(verifyOtpUrl, reqdata);
+			console.log('forgot email: ', responseData);
+
+
 
 			if (responseData.status === 200) {
-				// const { token } = responseData.data;
-				// localStorage.setItem("token", token);
-				// console.log('token: ', token);
 
 				setResponse("success: ", responseData.data);
 				navigate("/UserResetPassword", { state: { email: email } });
 				console.log('verify email: ', email);
 			}
 			else {
-				// toast.error(responseData.data.message);
+				console.log("error");
+				toast.error(responseData.data.message);
+				console.log('responseData.data.message: ', responseData.data.message);
 
 			}
 		} catch (error) {
-			setResponse("error :", response.data.message);
-			console.log('hello');
 
-			toast.error(error.response.data.message);
 
+			if (error.response && error.response.data && error.response.data.message) {
+				toast.error(error.response.data.message);
+			} else {
+				toast.error("An unexpected error occurred");
+			}
+			console.error("Error:", error);
 		}
 	}
 

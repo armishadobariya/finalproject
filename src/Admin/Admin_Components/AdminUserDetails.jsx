@@ -9,133 +9,133 @@ import axios from 'axios';
 
 const AdminUserDetails = () => {
 
-    const navigate = useNavigate();
-    const [loading, setLoading] = useState(true);
-    const [userData, setUserData] = useState([]);
+	const navigate = useNavigate();
+	const [loading, setLoading] = useState(true);
+	const [userData, setUserData] = useState([]);
 
-    const getUser = async () => {
-        try {
-            const token = localStorage.getItem('token');
+	const getUser = async () => {
+		try {
+			const token = localStorage.getItem('token');
 
-            const response = await axios.get(getUserUrl, {
-                headers: {
-                    Authorization: `Bearer ${token}`,
-                },
-            });
-            console.log("response:", response.data.data);
+			const response = await axios.get(getUserUrl, {
+				headers: {
+					Authorization: `Bearer ${token}`,
+				},
+			});
+			console.log("response:", response.data.data);
 
-            if (response.status === 200) {
-                const data = response.data.data;
-                console.log('data: ', data);
-                setUserData(data);
-            }
-        } catch (error) {
-            console.error("fetch all property:", error.message);
-        }
-    }
-
-
+			if (response.status === 200) {
+				const data = response.data.data;
+				console.log('data: ', data);
+				setUserData(data);
+			}
+		} catch (error) {
+			console.error("fetch all property:", error.message);
+		}
+	}
 
 
 
 
 
-    useEffect(() => {
-        setTimeout(() => {
-            setLoading(false);
-            getUser();
-        }, 500)
-
-    }, []);
 
 
-    const formatDate = (dateString) => {
-        const date = new Date(dateString);
-        const day = date.getDate().toString().padStart(2, '0');
-        const month = (date.getMonth() + 1).toString().padStart(2, '0');
-        const year = date.getFullYear();
-        return `${day}-${month}-${year}`;
-    };
+	useEffect(() => {
+		setTimeout(() => {
+			setLoading(false);
+			getUser();
+		}, 500)
+
+	}, []);
 
 
-    return (
-        <>
-
-            <Admin_Nav />
-
-            <div className='sticky-sidebar'>
-                <Admin_Sidebar className="" />
-            </div>
-
-            {loading ? (
-                <div className="loader">
-                    <div class="spinner"></div>
-                </div>
-            ) : (
+	const formatDate = (dateString) => {
+		const date = new Date(dateString);
+		const day = date.getDate().toString().padStart(2, '0');
+		const month = (date.getMonth() + 1).toString().padStart(2, '0');
+		const year = date.getFullYear();
+		return `${day}-${month}-${year}`;
+	};
 
 
-                <>
-                    <div class="container-fluid" id="main-content">
-                        <div class="row">
-                            <div class="col-lg-10 ms-auto p-4 overfloe-hidden">
-                                <h3 class="mb-4 tw-text-2xl tw-font-semibold">USERS INFORMATION</h3>
+	return (
+		<>
 
-                                <div class="card border-0 shadow mb-4">
-                                    <div class="card-body">
+			<Admin_Nav />
 
-                                        <div class="text-end mb-4">
+			<div className='sticky-sidebar'>
+				<Admin_Sidebar className="" />
+			</div>
+
+			{loading ? (
+				<div className="loader">
+					<div class="spinner"></div>
+				</div>
+			) : (
+
+
+				<>
+					<div class="container-fluid" id="main-content">
+						<div class="row">
+							<div class="col-lg-10 ms-auto p-4 overfloe-hidden">
+								<h3 class="mb-4 tw-text-2xl tw-font-semibold">USERS INFORMATION</h3>
+
+								<div class="card border-0 shadow mb-4">
+									<div class="card-body">
+
+										{/* <div class="text-end mb-4">
                                             <input type="text" oninput="search_user(this.value)" class="form-control shadow-none w-25 ms-auto" placeholder="Type to search" />
-                                        </div>
+                                        </div> */}
 
-                                        <div class="table-responsive">
-                                            <table class="table table-hover border text-center">
-                                                <thead>
-                                                    <tr class="bg-dark text-light" style={{ "backgroundColor": "black", "color": "white" }}>
-                                                        <th scope="col">Profile</th>
-                                                        <th scope="col">User_Id</th>
-                                                        <th scope="col">Name</th>
-                                                        <th scope="col">Email</th>
-                                                        <th scope="col">Created At</th>
+										<div class="table-responsive">
+											<table class="table table-hover border text-center">
+												<thead>
+													<tr class="bg-dark text-light" style={{ "backgroundColor": "black", "color": "white" }}>
+														<th scope="col">Profile</th>
+														<th scope="col">User_Id</th>
+														<th scope="col">Name</th>
+														<th scope="col">Email</th>
+														<th scope="col">Created At</th>
 
-                                                    </tr>
-                                                </thead>
-                                                <tbody >
-                                                    {userData.map((data, index) => (
-                                                        <tr style={{ alignItems: "center" }}>
-                                                            <td><img src={data.profilePic} alt="" style={{ "borderRadius": "50%", height: "46px", width: "46px" }} /></td>
-                                                            <td>{data._id}</td>
-                                                            <td>{data.name}</td>
-                                                            <td>{data.email}</td>
-                                                            <td>{formatDate(data.createdAt)}</td>
-                                                        </tr>
-                                                    ))}
-
-
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                    </div>
-                                </div>
+													</tr>
+												</thead>
+												<tbody >
+													{userData.map((data, index) => (
+														<tr style={{ alignItems: "center" }}>
+															<td><img src={data.profilePic} alt="" style={{ "borderRadius": "50%", height: "46px", width: "46px" }} /></td>
+															<td>{data._id}</td>
+															<td>{data.name}</td>
+															<td>{data.email}</td>
+															<td>{formatDate(data.createdAt)}</td>
+														</tr>
+													))}
 
 
-                            </div>
-                        </div>
-                    </div>
+												</tbody>
+											</table>
+										</div>
+									</div>
+								</div>
 
 
+							</div>
+						</div>
+					</div>
 
 
 
 
 
-                </>
-
-            )
-            }
 
 
-        </>
-    )
+				</>
+
+			)
+			}
+
+
+		</>
+	)
 }
 
 export default AdminUserDetails;

@@ -31,7 +31,8 @@ export const addFeedbackUrl = `${baseUrl}/feedback/add-feedback`;
 export const getFeedbackUrl = `${baseUrl}/feedback/get-feedbacks`;
 export const getUserAllPropertyUrl = `${baseUrl}/property/getuserall-property`;
 export const getUserSelectedPropertyUrl = `${baseUrl}/property/get-selected-property-user`;
-
-
 export const getUserUrl = `${baseUrl}/admin/getall-user`;
 export const getAgentUrl = `${baseUrl}/admin/getall-agent`;
+export const setMeetingUrl = `${baseUrl}/agent/set-meeting`;
+export const addUserQueryUrl = `${baseUrl}/contact/add-userquery`;
+export const getUserQueryUrl = `${baseUrl}/contact/get-userqueries`;
