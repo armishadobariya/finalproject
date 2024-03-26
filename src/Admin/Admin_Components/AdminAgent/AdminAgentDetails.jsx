@@ -26,14 +26,15 @@ const AdminAgentDetails = () => {
 	}
 	const getAgent = async () => {
 		try {
-			const token = localStorage.getItem('token');
+			const token = localStorage.getItem('admin');
+			const tokenArray = JSON.parse(token);
 
 			const response = await axios.get(getAgentUrl, {
 				headers: {
-					Authorization: `Bearer ${token}`,
+					Authorization: `Bearer ${tokenArray[0]}`,
 				},
 			});
-			console.log("agent:", response.data.agents);
+			console.log("agent", response.data.agents);
 
 			if (response.status === 200) {
 				const data = response.data.agents;
@@ -143,7 +144,10 @@ const AdminAgentDetails = () => {
 														<th scope="col">Location</th>
 														<th scope="col">Bank Details</th>
 														<th scope="col">Proof</th>
-														<th scope="col">Verify</th>
+
+														<th scope="col">Meeting</th>
+														<th scope="col">Status</th>
+
 
 													</tr>
 												</thead>
@@ -184,10 +188,10 @@ const AdminAgentDetails = () => {
 																			<span>Adhar Card:</span>
 																		</td>
 																		<td style={{ paddingRight: '15px', paddingBottom: '10px' }}>
-																			<img src={data.aadharCardPic} style={{ height: "60px", width: "80px" }} className="rounded" alt="" />
+																			<img src={data.adharCardFront} style={{ height: "60px", width: "300px" }} className="rounded" alt="" />
 																		</td>
 																		<td>
-																			<img src={data.aadharCardPic} style={{ height: "60px", width: "80px" }} className="rounded" alt="" />
+																			<img src={data.adharCardBack} style={{ height: "60px", width: "300px" }} className="rounded" alt="" />
 																		</td>
 																	</tr>
 																	<tr style={{ marginTop: "10px" }}>
@@ -195,16 +199,25 @@ const AdminAgentDetails = () => {
 																			<span>Pan <br /> Card:</span>
 																		</td>
 																		<td style={{ paddingLeft: '5px' }}>
-																			<img src={data.panCardPic} style={{ height: "60px", width: "80px" }} className="rounded" alt="" />
+																			<img src={data.panCard} style={{ height: "60px", width: "80px" }} className="rounded" alt="" />
 																		</td>
 																	</tr>
 
 
 																</td>
-																<td style={{ paddingLeft: '30px' }} >
+																<td style={{ paddingLeft: '20px' }} >
+																	<button
+																		className='bg-black text-white py-1 px-3 pb-2 md:ml-8 rounded md:static font-semibold duration-500 tw-mt-6'
+																		onClick={() => handlePopUp(data)}>Set-Meeting</button>
+																</td>
+																<td style={{ paddingLeft: '20px' }} >
+																	<p className='tw-border-2 tw-rounded-lg py-1 px-1 pb-1 tw-mb-2'>{data.status}</p>
 																	<button
 																		className='bg-black text-white py-1 px-3 pb-2 md:ml-8 rounded md:static font-semibold duration-500'
-																		onClick={() => handlePopUp(data)}> Verify</button>
+																		>Approve</button>
+																	<button
+																		className='bg-black text-white py-1 px-4 pb-2 md:ml-8 rounded md:static font-semibold duration-500 tw-mt-4'
+																		onClick={() => handlePopUp(data)}>Cancle</button>
 																</td>
 
 

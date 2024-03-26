@@ -56,7 +56,7 @@ const Nav = () => {
 			});
 			if (response.status === 200) {
 				const data = response.data;
-				console.log('data: ', data);
+				// console.log('data: ', data);
 				setUserName(data.userData.name);
 				setUserImage((pre) => {
 					const image = {
@@ -134,6 +134,7 @@ const Nav = () => {
 				console.log(responseData.data.message);
 				setResponse('success', 'success..');
 				setEmail('');
+				alert("mail is Send Successfully on this Email Id please check this .")
 
 			}
 		} catch (error) {

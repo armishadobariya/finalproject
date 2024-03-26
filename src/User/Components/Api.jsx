@@ -42,7 +42,9 @@ export const getAgentUrl = `${baseUrl}/admin/getall-agent`;//admin
 export const getRecentPropertyUrl = `${baseUrl}/admin/recent-property`;
 
 export const setMeetingUrl = `${baseUrl}/admin/set-meeting`;
-
+export const approveAgentUrl = `${baseUrl}/admin/set-approveagent`;
+export const cancleAgentUrl = `${baseUrl}/admin/set-cancleagent`;
 export const addUserQueryUrl = `${baseUrl}/contact/add-userquery`;
 export const getUserQueryUrl = `${baseUrl}/contact/get-userqueries`;
+
 
