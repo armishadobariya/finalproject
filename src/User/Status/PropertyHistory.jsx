@@ -10,6 +10,29 @@ export const PropertyHistory = () => {
 	const [selectedStatus, setSelectedStatus] = useState("All");
 	// const [propertyData, setPropertyData] = useState([]);
 
+
+
+	const validatePrice = (currentBalance) => {
+		try {
+			// suffix = {' ', 'k', 'M', 'B', 'T', 'P', 'E'};
+			let number = currentBalance;
+
+			if (number < 1000) {
+				return number.toString();
+			} else if (number < 1000000) {
+				return `${(number / 1000).toFixed(1)} K`;
+			} else if (number < 10000000) {
+				return `${(number / 100000).toFixed(1)} Lakh`;
+			} else {
+				return `${(number / 10000000).toFixed(1)} Crore`;
+			}
+		} catch (e) {
+			console.log(e)
+		}
+		return currentBalance;
+
+	}
+
 	const getAllProperty = async () => {
 		try {
 			const token = localStorage.getItem('user');
@@ -108,7 +131,7 @@ export const PropertyHistory = () => {
 											<div className='flex'>
 												<div>
 													<h2 className="font-semibold text-2xl tw-text-black">{property.address}</h2>
-													<h4 className='font-semibold mb-4 text-xl mt-2 tw-text-gray-600'>₹ {property.price}/-</h4>
+													<h4 className='font-semibold mb-4 text-xl mt-2 tw-text-gray-600'>₹ {validatePrice(property.price)}/-</h4>
 												</div>
 
 												<div className='tw-ml-auto tw-mt-3'>

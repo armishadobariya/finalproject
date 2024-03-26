@@ -511,6 +511,7 @@ const Nav = () => {
 										{(popupState) => (
 											<>
 												<AccountCircleIcon
+													className=' tw-ml-4'
 													style={{ color: "#d3a478", height: "36px", width: "36px", marginRight: "10px", marginTop: '5px', cursor: 'pointer', overflowY: 'auto' }}
 													variant="contained"
 													{...bindTrigger(popupState)}

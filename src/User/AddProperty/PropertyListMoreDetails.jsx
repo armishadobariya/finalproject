@@ -27,17 +27,13 @@ const PropertyListMoreDetails = () => {
 			<div>
 
 
-
-
-
-
 				<div class=" tw-my-5 tw-mb-4 tw-px-4 tw-ml-[90px]">
 
 					<h1 className='tw-text-3xl tw-font-bold tw-mt-14 tw-ml-[40px]'>{propertyData.address}</h1>
 					<div className=' tw-mt-4'>
-						<h5 class=" tw-text-gray-500 tw-ml-[40px] tw-flex"><h4 className='tw-cursor-pointer' onClick={() => navigate('/AddProperty')}>Sell</h4>
+						<h5 class=" tw-text-gray-500 tw-ml-[40px] tw-flex"><h4 className='tw-cursor-pointer' onClick={() => navigate('/')}>Home</h4>
 							<span class="tw-text-gray-500 tw-ml-[5px] tw-mr-[2px]">  {' >'} </span>
-							<h4 className=' tw-cursor-pointer' onClick={() => navigate('/PropertyListMoreDetails')}>More_Details</h4>
+							<h4 className=' tw-cursor-pointer' onClick={() => navigate('/AddProperty')}>Sell</h4>
 						</h5>
 
 						<div className=' tw-flex'>

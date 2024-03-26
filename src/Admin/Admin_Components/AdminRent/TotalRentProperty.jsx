@@ -1,16 +1,18 @@
 import React, { useState, useEffect } from 'react';
-import img from "../../Assests/Image/Home1/reg_bg.jpeg";
-import h1 from "../../Assests/Image/Admin/Dashboard/TotalProperty/home1.jpg";
-import h2 from "../../Assests/Image/Admin/Dashboard/TotalProperty/h2.jpeg";
-import h3 from "../../Assests/Image/Admin/Dashboard/TotalProperty/h3.jpg";
-import h4 from "../../Assests/Image/Admin/Dashboard/TotalProperty/h4.jpg";
-import h5 from "../../Assests/Image/Admin/Dashboard/TotalProperty/h5.png";
-import Admin_Nav from '../Admin_Nav/Admin_Nav';
+// import img from "../../Assests/Image/Home1/reg_bg.jpeg";
+// import h1 from "../../Assests/Image/Admin/Dashboard/TotalProperty/home1.jpg";
+// import h2 from "../../Assests/Image/Admin/Dashboard/TotalProperty/h2.jpeg";
+// import h3 from "../../Assests/Image/Admin/Dashboard/TotalProperty/h3.jpg";
+// import h4 from "../../Assests/Image/Admin/Dashboard/TotalProperty/h4.jpg";
+// import h5 from "../../Assests/Image/Admin/Dashboard/TotalProperty/h5.png";
+import Admin_Nav from '../../Admin_Nav/Admin_Nav';
 import "./TotalRentProperty.css";
 import { useNavigate } from 'react-router-dom';
-import Admin_Sidebar from '../Admin_Nav/Admin_Sidebar';
-import "./Common.css";
-import { getAdminAllRentPropertyUrl } from '../../User/Components/Api';
+import Admin_Sidebar from '../../Admin_Nav/Admin_Sidebar';
+// import "./Common.css";
+import "./../AdminDashboard/Common.css";
+
+import { getAdminAllRentPropertyUrl } from '../../../User/Components/Api';
 import axios from 'axios';
 
 
@@ -26,13 +28,10 @@ const TotalRentProperty = () => {
 
 	const handleMoreDetail = (property) => {
 
-		navigate('/Admin/MoreDetails', { state: { propertyData: property } });
+		navigate('/Admin/RentMoreDetails', { state: { propertyData: property } });
 	};
 
 
-	// const moreDetail = () => {
-	// 	navigate('/Admin/MoreDetails')
-	// }
 
 
 	const handleShowMore = () => {
@@ -59,6 +58,27 @@ const TotalRentProperty = () => {
 		} catch (error) {
 			console.error("fetch all property:", error.message);
 		}
+	}
+
+	const validatePrice = (currentBalance) => {
+		try {
+			// suffix = {' ', 'k', 'M', 'B', 'T', 'P', 'E'};
+			let number = currentBalance;
+
+			if (number < 1000) {
+				return number.toString();
+			} else if (number < 1000000) {
+				return `${(number / 1000).toFixed(1)} K`;
+			} else if (number < 10000000) {
+				return `${(number / 100000).toFixed(1)} Lakh`;
+			} else {
+				return `${(number / 10000000).toFixed(1)} Crore`;
+			}
+		} catch (e) {
+			console.log(e)
+		}
+		return currentBalance;
+
 	}
 
 
@@ -105,7 +125,7 @@ const TotalRentProperty = () => {
 									<div class=" tw-ml-6 tw-mt-6 ">
 
 										<h4 className=' tw-font-semibold tw-text-xl '>{property.address}</h4>
-										<h2 class=" tw-font-semibold tw-text-lg tw-mb-4 tw-mt-1">₹ {property.price}</h2>
+										<h2 class=" tw-font-semibold tw-text-lg tw-mb-4 tw-mt-1">₹ {validatePrice(property.price)}</h2>
 										<div className=" tw-bg-gray-100 tw-pl-[7px] tw-pr-[5px] tw-pt-[2px] tw-rounded-2xl tw-text-sm tw-mb-3 tw-mt-4 tw-w-[150px]">
 											<h5 className='tw-text-sm'><span className='tw-font-semibold '>Property For</span>  - {property.type}</h5>
 

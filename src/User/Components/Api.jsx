@@ -1,40 +1,3 @@
-// export const baseUrl = "https://homehubmarket.onrender.com/api/v1";
-// export const verifyEmailUrl = `${baseUrl}/auth/verify-email`;
-// export const verifyOtpUrl = `${baseUrl}/auth/verify-otp`;
-// export const signUpUrl = `${baseUrl}/auth/sign-up`;
-// export const signInUrl = `${baseUrl}/auth/sign-in`;
-// export const forgetPasswordUrl = `${baseUrl}/auth/forgot-password`;
-// export const resetPasswordUrl = `${baseUrl}/auth/reset-password`;
-// export const googleLoginUrl = `${baseUrl}/auth/google-login`;
-// export const addPropertyUrl = `${baseUrl}/property/add-property`;
-// export const userProfileUrl = `${baseUrl}/auth/get-user`;
-// export const changeProfileUrl = `${baseUrl}/auth/change-profilePic`;
-// export const deleteProfileUrl = `${baseUrl}/auth/delete-profilePic`;
-// export const getPropertyUrl = `${baseUrl}/property/getall-property`;
-// export const getAdminAllPropertyUrl = `${baseUrl}/admin/getall-property-admin`;
-// export const getAdminAllRentPropertyUrl = `${baseUrl}/admin/getall-rentproperty-admin`;
-// export const getAdminAllSellPropertyUrl = `${baseUrl}/admin/getall-sellproperty-admin`;
-// export const setApproveUrl = `${baseUrl}/property/set-approveproperty`;
-// export const setRejectUrl = `${baseUrl}/property/set-cancelproperty`;
-// export const getRentPropertyUrl = `${baseUrl}/property/getall-rentproperty`;
-// export const getSellPropertyUrl = `${baseUrl}/property/getall-sellproperty`;
-// export const getAdminSelectedPropertyUrl = `${baseUrl}/property/get-selected-property`;
-// export const totalPropertyCountUrl = `${baseUrl}/admin/total-property-count`;
-// export const totalRentCountUrl = `${baseUrl}/admin/total-rentproperty-count`;
-// export const totalSellCountUrl = `${baseUrl}/admin/total-sellproperty-count`;
-// export const totalUserCountUrl = `${baseUrl}/admin/total-user-count`;
-// export const totalAgentCountUrl = `${baseUrl}/admin/total-agent-count`;
-// export const agentVerifyUrl = `${baseUrl}/agent/verify-agent`;
-// export const agentAddUrl = `${baseUrl}/agent/add-agent`;
-// export const getUserAllPropertyUrl = `${baseUrl}/property/getuserall-property`;
-// export const getUserSelectedPropertyUrl = `${baseUrl}/property/get-selected-property-user`;
-// export const getUserUrl = `${baseUrl}/admin/getall-user`;
-// export const getAgentUrl = `${baseUrl}/admin/getall-agent`;
-// export const addFeedback = `${baseUrl}/feedback/add-feedback`;
-// export const getFeedbackUrl = `${baseUrl}/feedback/get-feedbacks`;
-
-
-
 export const baseUrl = "https://homehubmarket.onrender.com/api/v1";
 export const verifyEmailUrl = `${baseUrl}/auth/verify-email`; //user ///done
 export const verifyOtpUrl = `${baseUrl}/auth/verify-otp`;//user //done
@@ -76,4 +39,9 @@ export const getUserSelectedPropertyUrl = `${baseUrl}/property/get-selected-prop
 
 export const getUserUrl = `${baseUrl}/admin/getall-user`; // admin
 export const getAgentUrl = `${baseUrl}/admin/getall-agent`;//admin
+export const getRecentPropertyUrl = `${baseUrl}/admin/recent-property`;
+
+export const setMeetingUrl = `${baseUrl}/admin/set-meeting`;
+// export const addUserQueryUrl = `${baseUrl}/contact/add-userquery`;
+export const addUserQueryUrl = `https://homehubmarket.onrender.com/api/v1/contact/add-userquery`;
 

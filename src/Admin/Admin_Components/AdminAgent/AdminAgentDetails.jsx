@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './AdminAgentDetails.css';
-import h5 from "../../Assests/Image/Admin/Dashboard/TotalProperty/h5.png";
-import Admin_Sidebar from '../Admin_Nav/Admin_Sidebar';
-import Admin_Nav from '../Admin_Nav/Admin_Nav';
-import { getAgentUrl, getUserUrl, setMeetingUrl } from '../../User/Components/Api';
+// import h5 from "../../Assests/Image/Admin/Dashboard/TotalProperty/h5.png";
+import Admin_Sidebar from '../../Admin_Nav/Admin_Sidebar';
+import Admin_Nav from '../../Admin_Nav/Admin_Nav';
+import { getAgentUrl, getUserUrl, setMeetingUrl } from '../../../User/Components/Api';
 import axios from 'axios';
 import CloseIcon from '@mui/icons-material/Close';
 
@@ -19,13 +19,18 @@ const AdminAgentDetails = () => {
 	const [meetingLink, setMeetingLink] = useState('');
 	const [showModal, setShowModal] = useState(false);
 
+	const handlePopUp = (data) => {
+		setShowModal(true);
+		setAgentDataForModal(data);
+		console.log(agentDataForModal);
+	}
 	const getAgent = async () => {
 		try {
-			const token = localStorage.getItem('admin');
-			const tokenArray = JSON.parse(token);
+			const token = localStorage.getItem('token');
+
 			const response = await axios.get(getAgentUrl, {
 				headers: {
-					Authorization: `Bearer ${tokenArray[0]}`,
+					Authorization: `Bearer ${token}`,
 				},
 			});
 			console.log("agent:", response.data.agents);

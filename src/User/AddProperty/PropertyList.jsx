@@ -20,15 +20,12 @@ const PropertyList = () => {
 
 	const navigate = useNavigate();
 
-
-
-
 	const handleShowMore = () => {
 		setShowMore(!showMore);
 	};
 	const handleMoreDetail = (property) => {
 
-		navigate('/PropertyListMoreDetails', { state: { propertyData: property } });
+		navigate('/AddProperty/PropertyListMoreDetails', { state: { propertyData: property } });
 	};
 
 

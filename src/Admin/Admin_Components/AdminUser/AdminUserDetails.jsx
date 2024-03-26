@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import './AdminAgentDetails.css';
-import h5 from "../../Assests/Image/Admin/Dashboard/TotalProperty/h5.png";
-import Admin_Sidebar from '../Admin_Nav/Admin_Sidebar';
-import Admin_Nav from '../Admin_Nav/Admin_Nav';
-import { getAgentUrl, getUserUrl } from '../../User/Components/Api';
+// import "./AdminAgent/AdminAgentDetails.css"
+import "./../AdminAgent/AdminAgentDetails.css";
+// import h5 from "../../Assests/Image/Admin/Dashboard/TotalProperty/h5.png";
+import Admin_Sidebar from '../../Admin_Nav/Admin_Sidebar';
+import Admin_Nav from '../../Admin_Nav/Admin_Nav';
+import { getAgentUrl, getUserUrl } from '../../../User/Components/Api';
 import axios from 'axios';
 
 const AdminUserDetails = () => {

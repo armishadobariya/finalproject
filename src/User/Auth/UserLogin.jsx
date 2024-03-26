@@ -65,7 +65,7 @@ const UserLogin = () => {
 					console.log(responseData.data.data);
 
 					localStorage.setItem("admin", JSON.stringify(data));
-					navigate("/admin", { state: email });
+					navigate("/admin/Dashboard", { state: email });
 				}
 				else {
 					const { token } = responseData.data;

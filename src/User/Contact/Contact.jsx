@@ -28,29 +28,31 @@ const Contact = () => {
 
 
 
-	const sendUserQuery = async (e, name, email) => {
+	const sendUserQuery = async (userData) => {
 		try {
-
+			console.log(userData.name);
+			console.log(userData.email);
 
 			const reqData = {
-				name: name,
-				email: email,
+				name: userData.name,
+				email: userData.email,
 				subject: subject,
 				message: message,
 			}
 
-			console.log("feedback login:", email);
-			console.log(reqData);
+			console.log("contact:", reqData);
 
-			const token = localStorage.getItem("token");
+			const token = localStorage.getItem('user');
+			const tokenArray = JSON.parse(token);
+			console.log('tokenArray: ', tokenArray);
 			const responseData = await axios.post(addUserQueryUrl, reqData, {
-
 				headers: {
-					"Authorization": `Bearer ${token}`,
+					"Authorization": `Bearer ${tokenArray[0]}`,
 
 				}
 			});
 
+			console.log('responseData: ', responseData);
 
 			console.log("response:", responseData);
 
@@ -64,10 +66,11 @@ const Contact = () => {
 
 	const getUserData = async () => {
 		try {
-			const token = localStorage.getItem('token');
+			const token = localStorage.getItem('user');
+			const tokenArray = JSON.parse(token);
 			const response = await axios.get(userProfileUrl, {
 				headers: {
-					Authorization: `Bearer ${token}`,
+					Authorization: `Bearer ${tokenArray[0]}`,
 				},
 			});
 
@@ -105,7 +108,7 @@ const Contact = () => {
 					<div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', background: 'rgba(0, 0, 0, 0.5)' }}></div>
 				</div>
 				<div className=" tw-absolute tw-top-0 tw-left-0 tw-w-full tw-h-full tw-bg-cover  tw-text-center tw-text-white tw-grid tw-place-content-center ">
-					<h2 className=' tw-text-3xl tw-mt-[-120px] tw-font-bold '>Contact</h2>
+					<h2 className=' tw-text-3xl tw-mt-[10px] tw-font-bold '>Contact</h2>
 					<h5 className=' tw-text-2xl tw-font-semibold tw-cursor-pointer  tw-mt-[-70px] ' ><span onClick={() => navigate('/')} >Home</span> {'>>'} Contact </h5>
 				</div>
 			</div >
@@ -150,15 +153,13 @@ const Contact = () => {
 							<div className="col-lg-6 col-md-12">
 								<div className="form-group">
 									<h1
-										type="text"
-										name="name"
-										id="name"
+										type="email"
+										name="email"
+										id="email"
 										className="form-control"
 										required=""
-										data-error="Please enter your name"
-										placeholder="Name"
-
-
+										data-error="Please enter your email"
+										placeholder="email"
 									>
 
 										{userData.email}
@@ -203,7 +204,7 @@ const Contact = () => {
 
 							<div className="col-lg-12 col-md-12">
 								<button type="submit" className='  tw-border-2 tw-p-2 tw-bg-black tw-text-white tw-font-semibold'
-									onClick={() => { sendUserQuery(userData.name, userData.email) }}>
+									onClick={() => { sendUserQuery(userData) }}>
 									Send Message
 								</button>
 								<div id="msgSubmit" className="h3 tw-text-center tw-hidden" />

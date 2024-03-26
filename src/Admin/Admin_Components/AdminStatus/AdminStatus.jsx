@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './AdminStatus.css';
-import img from '../../Assests/Image/Home1/reg_bg.jpeg';
-import EditIcon from '@mui/icons-material/Edit';
-import DeleteIcon from '@mui/icons-material/Delete';
-import Admin_Sidebar from '../Admin_Nav/Admin_Sidebar';
-import Admin_Nav from '../Admin_Nav/Admin_Nav';
-import { getAdminSelectedPropertyUrl, getPropertyUrl, setApproveUrl, setRejectUrl } from '../../User/Components/Api';
+// import img from '../../Assests/Image/Home1/reg_bg.jpeg';
+// import EditIcon from '@mui/icons-material/Edit';
+// import DeleteIcon from '@mui/icons-material/Delete';
+import Admin_Sidebar from '../../Admin_Nav/Admin_Sidebar';
+import Admin_Nav from '../../Admin_Nav/Admin_Nav';
+import { getAdminSelectedPropertyUrl, getPropertyUrl, setApproveUrl, setRejectUrl } from '../../../User/Components/Api';
 import axios from 'axios';
 
 const AdminStatus = () => {
@@ -143,6 +143,27 @@ const AdminStatus = () => {
 		}
 	}
 
+	const validatePrice = (currentBalance) => {
+		try {
+			// suffix = {' ', 'k', 'M', 'B', 'T', 'P', 'E'};
+			let number = currentBalance;
+
+			if (number < 1000) {
+				return number.toString();
+			} else if (number < 1000000) {
+				return `${(number / 1000).toFixed(1)} K`;
+			} else if (number < 10000000) {
+				return `${(number / 100000).toFixed(1)} Lakh`;
+			} else {
+				return `${(number / 10000000).toFixed(1)} Crore`;
+			}
+		} catch (e) {
+			console.log(e)
+		}
+		return currentBalance;
+
+	}
+
 
 	return (
 		<>
@@ -195,7 +216,7 @@ const AdminStatus = () => {
 												</div>
 
 												<div class="col-md-9 px-lg-3 px-md-3 px-0">
-													<h2 class=" font-semibold text-xl">₹ {property.price}</h2>
+													<h2 class=" font-semibold text-xl">₹ {validatePrice(property.price)}</h2>
 													<h4 className=' font-semibold mb-4'>{property.address}</h4>
 													<div className="border bg-light p-3 rounded mb-3">
 														<div class="features ">

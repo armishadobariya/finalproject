@@ -34,34 +34,14 @@ export const AgentRegister = () => {
 
 	const [showModal, setShowModal] = useState(false);
 
-<<<<<<< HEAD
-	const [error, setError] = useState('');
-	const [mobileNoError, setMobileNoError] = useState('');
-=======
 	const [nameErr, setNameErr] = useState('');
 	const [mobileError, setMobileError] = useState('');
 	const [passwordErr, setPasswordErr] = useState('');
->>>>>>> Armisha
 
 	// const handleNameChange = (e) => {
 	// 	const name = e.target.value;
 	// 	setAgentName(name);
 
-<<<<<<< HEAD
-	const handleNameChange = (e) => {
-		const name = e.target.value;
-		setAgentName(name);
-
-		// Validation logic
-		if (name.trim() === '') {
-			setError('Name cannot be empty');
-		} else if (/\d/.test(name)) {
-			setError('Name cannot contain digits');
-		} else {
-			setError('');
-		}
-	};
-=======
 	// 	// Validation logic
 	// 	if (name.trim() === '') {
 	// 		setError('Name cannot be empty');
@@ -71,7 +51,6 @@ export const AgentRegister = () => {
 	// 		setError('');
 	// 	}
 	// };
->>>>>>> Armisha
 
 	const validateName = (name) => {
 		const allowAlphabet = /^[a-zA-Z]+$/;
@@ -257,18 +236,12 @@ export const AgentRegister = () => {
 												id="name"
 												className="tw-border-2 rounded-2 tw-w-full tw-h-11 tw-p-2"
 												value={agentName}
-<<<<<<< HEAD
-												onChange={handleNameChange}
-											/>
-											{error && <p className="error" style={{ color: 'red' }}>{error}</p>}
-=======
 												onChange={(e) => {
 													setAgentName(e.target.value)
 													validateName(e.target.value)
 												}}
 											/>
 											<p style={{ color: 'red', marginBottom: '20px' }}>{nameErr}</p>
->>>>>>> Armisha
 										</div>
 										<div className="tw-grid tw-mt-3">
 											<label htmlFor="email" className="tw-font-semibold">
@@ -450,9 +423,5 @@ export const AgentRegister = () => {
 			</div>
 		</>
 	);
-<<<<<<< HEAD
-}
-=======
 }
 
->>>>>>> Armisha

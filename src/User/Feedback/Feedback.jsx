@@ -39,6 +39,11 @@ const Feedback = () => {
 				}
 			});
 
+			setName('');
+			setEmail('');
+			setRating('');
+			setMessage('');
+
 
 			console.log("response:", responseData);
 
