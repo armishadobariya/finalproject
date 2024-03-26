@@ -4,7 +4,7 @@ import './AdminAgentDetails.css';
 // import h5 from "../../Assests/Image/Admin/Dashboard/TotalProperty/h5.png";
 import Admin_Sidebar from '../../Admin_Nav/Admin_Sidebar';
 import Admin_Nav from '../../Admin_Nav/Admin_Nav';
-import { getAgentUrl, getUserUrl, setMeetingUrl } from '../../../User/Components/Api';
+import { approveAgentUrl, cancleAgentUrl, getAgentUrl, getUserUrl, setMeetingUrl } from '../../../User/Components/Api';
 import axios from 'axios';
 import CloseIcon from '@mui/icons-material/Close';
 
@@ -77,6 +77,61 @@ const AdminAgentDetails = () => {
 			console.error("Error:", error.message);
 		}
 	}
+
+	const approveAgent = (AgentId) => async () => {
+		try {
+			const token = localStorage.getItem('admin');
+			const tokenArray = JSON.parse(token);
+
+			const approvedata = {
+				id: AgentId,
+
+			};
+			console.log(approvedata.id);
+
+			const response = await axios.post(approveAgentUrl, approvedata, {
+				headers: {
+					Authorization: `Bearer ${tokenArray[0]}`,
+				},
+			});
+
+			if (response.status === 200) {
+				getAgent();
+
+
+			}
+		} catch (error) {
+			console.error("Error:", error.message);
+		}
+	}
+	const cancleAgent = (AgentId) => async () => {
+		try {
+			const token = localStorage.getItem('admin');
+			const tokenArray = JSON.parse(token);
+
+			const cancledata = {
+				id: AgentId,
+
+			};
+
+
+			const response = await axios.post(cancleAgentUrl, cancledata, {
+				headers: {
+					Authorization: `Bearer ${tokenArray[0]}`,
+				},
+			});
+			console.log(response);
+			if (response.status === 200) {
+				getAgent();
+
+
+			}
+		} catch (error) {
+			console.error("Error:", error.message);
+		}
+	}
+
+
 
 
 
@@ -214,10 +269,10 @@ const AdminAgentDetails = () => {
 																	<p className='tw-border-2 tw-rounded-lg py-1 px-1 pb-1 tw-mb-2'>{data.status}</p>
 																	<button
 																		className='bg-black text-white py-1 px-3 pb-2 md:ml-8 rounded md:static font-semibold duration-500'
-																		>Approve</button>
+																		onClick={approveAgent(data._id)}>Approve</button>
 																	<button
 																		className='bg-black text-white py-1 px-4 pb-2 md:ml-8 rounded md:static font-semibold duration-500 tw-mt-4'
-																		onClick={() => handlePopUp(data)}>Cancle</button>
+																		onClick={cancleAgent(data._id)}>Cancle</button>
 																</td>
 
 
