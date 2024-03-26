@@ -22,7 +22,7 @@ const Rent = () => {
 
 	const handleMoreDetail = (property) => {
 
-		navigate('/Rent/RentMoreDetails', { state: { propertyData: property } });
+		navigate('/Rent/RentDetails', { state: { propertyData: property } });
 	};
 
 
@@ -44,6 +44,28 @@ const Rent = () => {
 	};
 
 
+	const validatePrice = (currentBalance) => {
+		try {
+			// suffix = {' ', 'k', 'M', 'B', 'T', 'P', 'E'};
+			let number = currentBalance;
+
+			if (number < 1000) {
+				return number.toString();
+			} else if (number < 1000000) {
+				return `${(number / 1000).toFixed(1)} K`;
+			} else if (number < 10000000) {
+				return `${(number / 100000).toFixed(1)} Lakh`;
+			} else {
+				return `${(number / 10000000).toFixed(1)} Crore`;
+			}
+		} catch (e) {
+			console.log(e)
+		}
+		return currentBalance;
+
+	}
+
+
 
 	useEffect(() => {
 		getRentProperty();
@@ -52,11 +74,12 @@ const Rent = () => {
 
 	const getRentProperty = async () => {
 		try {
-			const token = localStorage.getItem('token');
+			const token = localStorage.getItem('user');
+			const tokenArray = JSON.parse(token);
 
 			const response = await axios.get(getRentPropertyUrl, {
 				headers: {
-					Authorization: `Bearer ${token}`,
+					Authorization: `Bearer ${tokenArray[0]}`,
 				},
 			});
 
@@ -191,7 +214,7 @@ const Rent = () => {
 								</div>
 
 								<div class="col-md-8 px-lg-3 px-md-3 px-0">
-									<h2 class=" font-semibold text-xl">₹ {property.price}</h2>
+									<h2 class=" font-semibold text-xl">₹ {validatePrice(property.price)}</h2>
 									<h4 className=' font-semibold mb-4'>{property.address}</h4>
 									<div className="border bg-light p-3 rounded mb-3">
 

@@ -1,27 +1,119 @@
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
 // import './Swiper.css';
 import { Autoplay, Pagination, Navigation } from 'swiper/modules';
-import WhatsAppIcon from '@mui/icons-material/WhatsApp';
-import InstagramIcon from '@mui/icons-material/Instagram';
-import LinkedInIcon from '@mui/icons-material/LinkedIn';
+
 import ContactImg from '../../Assests/Image/Contact/contact.jpg';
 import '../../../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import './Contact.css';
-import GitHubIcon from '@mui/icons-material/GitHub';
 import { Footer } from '../Footer/Footer';
 import Nav from '../Nav/Nav';
 import { useNavigate } from 'react-router-dom';
+import ContactSlide from './ContactSlide';
+import { addUserQueryUrl, userProfileUrl } from '../Components/Api';
+import axios from 'axios';
+
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+
 
 const Contact = () => {
+
+	// const [name, setName] = useState('');
+	// const [email, setEmail] = useState('');
+	const [subject, setSubject] = useState('');
+	const [message, setMessage] = useState('');
+	const [userData, setUserData] = useState([]);
+
+
+	const sendUserQuery = async (userData) => {
+		try {
+
+			console.log(userData.name);
+			console.log(userData.email);
+
+			const reqData = {
+				name: userData.name,
+				email: userData.email,
+				subject: subject,
+				message: message,
+			}
+
+			console.log("contact:", reqData);
+
+			const token = localStorage.getItem('user');
+			const tokenArray = JSON.parse(token);
+			console.log('tokenArray: ', tokenArray);
+			const responseData = await axios.post(addUserQueryUrl, reqData, {
+				headers: {
+					"Authorization": `Bearer ${tokenArray[0]}`,
+					"Content-Type": "application/json",
+				}
+			});
+
+			console.log('responseData: ', responseData);
+
+			console.log("response:", responseData);
+			if (responseData.status == 200) {
+				// alert("successs....");
+				toast.success(responseData.data.message);
+
+			}
+
+		}
+		catch (error) {
+
+			console.log('error');
+			toast.error(error.response.data.message);
+
+
+		}
+	}
+
+	const getUserData = async (e) => {
+		try {
+
+			const token = localStorage.getItem('user');
+			const tokenArray = JSON.parse(token);
+			const response = await axios.get(userProfileUrl, {
+				headers: {
+					Authorization: `Bearer ${tokenArray[0]}`,
+				},
+			});
+
+			if (response.status === 200) {
+				const data = response.data;
+				// console.log('data: ', data);
+
+				// setUserEmail(data.userData.email);
+				// setUserMobile(data.userData.mobileNo);
+				// setIsLogin(data.isLogin);
+				setUserData(data.userData);
+			}
+		} catch (error) {
+			console.error("fetch user data:", error.message);
+		}
+	}
+
+
+	useEffect(() => {
+		getUserData();
+	}, []);
+
+
+
+
 
 	const navigate = useNavigate();
 	return (
 		<>
 			<Nav />
+			<ToastContainer position='top-right' />
+
 			<div className="tw-relative tw-mb-10">
 				<div className="" style={{ position: 'relative' }}>
 
@@ -29,7 +121,7 @@ const Contact = () => {
 					<div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', background: 'rgba(0, 0, 0, 0.5)' }}></div>
 				</div>
 				<div className=" tw-absolute tw-top-0 tw-left-0 tw-w-full tw-h-full tw-bg-cover  tw-text-center tw-text-white tw-grid tw-place-content-center ">
-					<h2 className=' tw-text-3xl tw-mt-[-120px] tw-font-bold '>Contact</h2>
+					<h2 className=' tw-text-3xl tw-mt-[10px] tw-font-bold '>Contact</h2>
 					<h5 className=' tw-text-2xl tw-font-semibold tw-cursor-pointer  tw-mt-[-70px] ' ><span onClick={() => navigate('/')} >Home</span> {'>>'} Contact </h5>
 				</div>
 			</div >
@@ -39,250 +131,24 @@ const Contact = () => {
 					<h3 className=' tw-font-semibold tw-text-3xl  tw-flex tw-justify-center tw-mt-1'>Meet Our Team</h3>
 				</div>
 				<div className=' tw-mt-4'>
-					<Swiper
-						slidesPerView={3}
-						centeredSlides={true}
-						spaceBetween={10}
-						// grabCursor={true}
-						autoplay={{
-							delay: 2500,
-							disableOnInteraction: false,
-						}}
-						// pagination={{
-						//     clickable: true,
-						// }}
-						navigation={true}
-						modules={[Autoplay, Pagination, Navigation]}
-						className="mySwiper"
-					>
-						<SwiperSlide><div className="col-lg-8 col-md-8  tw-flex tw-place-content-center">
-							<div className="container">
-								<img
-									src="https://images.unsplash.com/photo-1554080353-a576cf803bda?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8cGhvdG98ZW58MHx8MHx8fDA%3D"
-									alt="Avatar"
-									className="image"
 
-								/>
-								<div className="middle">
-									<div className="text">
-										<ul className=' tw-flex'>
-											<li className='tw-p-2'>
-												<a href="https://web.whatsapp.com/">
-													<WhatsAppIcon />
-												</a>
-											</li>
-											<li className='tw-p-2'>
-												<a href="https://web.whatsapp.com/">
-													<WhatsAppIcon />
-												</a>
-											</li>
-											<li className='tw-p-2'>
-												<a href="https://web.whatsapp.com/">
-													<WhatsAppIcon />
-												</a>
-											</li>
+					<ContactSlide />
 
-										</ul>
-										<h3 className=' tw-font-bold tw-text-2xl'> Demo</h3>
-										<span className=' tw-text-lg tw-font-semibold'>Founder</span>
-									</div>
-								</div>
-							</div>
-						</div>
-						</SwiperSlide>
-						<SwiperSlide>
-							<div className="col-lg-8 col-md-8  tw-flex tw-place-content-center">
-								<div className="container">
-									<img
-										src="https://images.unsplash.com/photo-1554080353-a576cf803bda?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8cGhvdG98ZW58MHx8MHx8fDA%3D"
-										alt="Avatar"
-										className="image"
-
-									/>
-									<div className="middle">
-										<div className="text">
-											<ul className=' tw-flex'>
-												<li className='tw-p-2'>
-													<a href="https://web.whatsapp.com/">
-														<WhatsAppIcon />
-													</a>
-												</li>
-												<li className='tw-p-2'>
-													<a href="https://web.whatsapp.com/">
-														<WhatsAppIcon />
-													</a>
-												</li>
-												<li className='tw-p-2'>
-													<a href="https://web.whatsapp.com/">
-														<WhatsAppIcon />
-													</a>
-												</li>
-
-											</ul>
-											<h3 className=' tw-font-bold tw-text-2xl'> Demo</h3>
-											<span className=' tw-text-lg tw-font-semibold'>Founder</span>
-										</div>
-									</div>
-								</div>
-							</div>
-						</SwiperSlide>
-						<SwiperSlide><div className="col-lg-8 col-md-8 tw-flex tw-place-content-center">
-							<div className="container">
-								<img
-									src="https://images.unsplash.com/photo-1554080353-a576cf803bda?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8cGhvdG98ZW58MHx8MHx8fDA%3D"
-									alt="Avatar"
-									className="image"
-
-								/>
-								<div className="middle">
-									<div className="text">
-										<ul className=' tw-flex'>
-											<li className='tw-p-2'>
-												<a href="https://web.whatsapp.com/">
-													<WhatsAppIcon />
-												</a>
-											</li>
-											<li className='tw-p-2'>
-												<a href="https://web.whatsapp.com/">
-													<WhatsAppIcon />
-												</a>
-											</li>
-											<li className='tw-p-2'>
-												<a href="https://web.whatsapp.com/">
-													<WhatsAppIcon />
-												</a>
-											</li>
-
-										</ul>
-										<h3 className=' tw-font-bold tw-text-2xl'> Demo</h3>
-										<span className=' tw-text-lg tw-font-semibold'>Founder</span>
-									</div>
-								</div>
-							</div>
-						</div>
-						</SwiperSlide>
-						<SwiperSlide><div className="col-lg-8 col-md-8  tw-flex tw-place-content-center">
-							<div className="container">
-								<img
-									src="https://images.unsplash.com/photo-1554080353-a576cf803bda?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8cGhvdG98ZW58MHx8MHx8fDA%3D"
-									alt="Avatar"
-									className="image"
-
-								/>
-								<div className="middle">
-									<div className="text">
-										<ul className=' tw-flex'>
-											<li className='tw-p-2'>
-												<a href="https://web.whatsapp.com/">
-													<WhatsAppIcon />
-												</a>
-											</li>
-											<li className='tw-p-2'>
-												<a href="https://web.whatsapp.com/">
-													<WhatsAppIcon />
-												</a>
-											</li>
-											<li className='tw-p-2'>
-												<a href="https://web.whatsapp.com/">
-													<WhatsAppIcon />
-												</a>
-											</li>
-
-										</ul>
-										<h3 className=' tw-font-bold tw-text-2xl'> Demo</h3>
-										<span className=' tw-text-lg tw-font-semibold'>Founder</span>
-									</div>
-								</div>
-							</div>
-						</div>
-						</SwiperSlide>
-						<SwiperSlide>
-							<div className="col-lg-8 col-md-8  ">
-								<div className="container">
-									<img
-										src="https://images.unsplash.com/photo-1554080353-a576cf803bda?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8cGhvdG98ZW58MHx8MHx8fDA%3D"
-										alt="Avatar"
-										className="image"
-
-									/>
-									<div className="middle">
-										<div className="text">
-											<ul className=' tw-flex'>
-												<li className='tw-p-2'>
-													<a href="https://github.com/">
-														<GitHubIcon />
-													</a>
-												</li>
-												<li className='tw-p-2'>
-													<a href="https://web.whatsapp.com/">
-														<InstagramIcon />
-													</a>
-												</li>
-												<li className='tw-p-2'>
-													<a href="https://web.whatsapp.com/">
-														<LinkedInIcon />
-													</a>
-												</li>
-
-											</ul>
-											<h3 className=' tw-font-bold tw-text-2xl'> Demo</h3>
-											<span className=' tw-text-lg tw-font-semibold'>Founder</span>
-										</div>
-									</div>
-								</div>
-
-							</div>
-						</SwiperSlide>
-						<SwiperSlide>
-							<div className="col-lg-8 col-md-8  ">
-								<div className="container">
-									<img
-										src="https://images.unsplash.com/photo-1554080353-a576cf803bda?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8cGhvdG98ZW58MHx8MHx8fDA%3D"
-										alt="Avatar"
-										className="image"
-
-									/>
-									<div className="middle">
-										<div className="text">
-											<ul className=' tw-flex'>
-												<li className='tw-p-2'>
-													<a href="https://github.com/">
-														<GitHubIcon />
-													</a>
-												</li>
-												<li className='tw-p-2'>
-													<a href="https://web.whatsapp.com/">
-														<InstagramIcon />
-													</a>
-												</li>
-												<li className='tw-p-2'>
-													<a href="https://web.whatsapp.com/">
-														<LinkedInIcon />
-													</a>
-												</li>
-
-											</ul>
-											<h3 className=' tw-font-bold tw-text-2xl'> Demo</h3>
-											<span className=' tw-text-lg tw-font-semibold'>Founder</span>
-										</div>
-									</div>
-								</div>
-
-							</div>
-						</SwiperSlide>
-					</Swiper>
 				</div>
 			</div>
 
 
-			<div className=' tw-flex tw-place-content-center'>
-				<div className="faq-contact tw-m-5 tw-shadow-lg tw-p-3 tw-bg-white tw-rounded-md md:tw-w-[700px] md:tw-top-18">
+			<div className=' tw-flex tw-place-content-center tw-mt-10 tw-mb-5 '>
+				<div className="faq-contact tw-m-5 shadow tw-p-10 tw-bg-white tw-rounded-md md:tw-w-[700px] md:tw-top-18 ">
 					<h3 className=' tw-text-2xl tw-font-bold tw-text-center'>Ask Your Question</h3>
-					<form id="contactForm ">
+					<form id="contactForm" onSubmit={(e) => {
+						e.preventDefault();
+						sendUserQuery(userData);
+					}}>
 						<div className="row tw-mt-4">
 							<div className="col-lg-6 col-md-12">
 								<div className="form-group">
-									<input
+									<h1
 										type="text"
 										name="name"
 										id="name"
@@ -291,60 +157,50 @@ const Contact = () => {
 										data-error="Please enter your name"
 										placeholder="Name"
 
-									/>
+
+									>
+
+										{userData.name}
+									</h1>
 									<br />
 									<div className="help-block with-errors" />
 								</div>
 							</div>
 							<div className="col-lg-6 col-md-12">
 								<div className="form-group">
-									<input
+									<h1
 										type="email"
 										name="email"
 										id="email"
 										className="form-control"
 										required=""
 										data-error="Please enter your email"
-										placeholder="Email"
-									/>
+										placeholder="email"
+									>
+
+										{userData.email}
+									</h1>
 									<br />
 									<div className="help-block with-errors" />
 								</div>
 							</div>
-							<div className="col-lg-6 col-md-6">
+
+							<div className="col-lg-12 col-md-12">
 								<div className="form-group">
 									<input
-										type="number"
-										name="phone"
-										id="phone_number"
+										type="text"
 										required=""
-										data-error="Please enter your number"
+										data-error="Please enter your subject"
 										className="form-control"
-										placeholder="Phone"
+										placeholder="Subject"
+										onChange={(e) => setSubject(e.target.value)}
+
 									/>
 									<br />
 									<div className="help-block with-errors" />
 								</div>
 							</div>
-							<div className="col-lg-6 col-md-6">
-								<div className="form-group">
-									<select
-										name="subject"
-										id="phone_number"
-										required=""
-										data-error="Please enter your number"
-										className="form-control"
-										placeholder="Phone"
-									>
-										<option value="" disabled>Subject</option>
-										<option value="Issue" >Issue</option>
-										<option value="Service" >Service</option>
-										<option value="Other" >Other</option>
-									</select>
-									<div className="help-block with-errors" />
-								</div>
-							</div>
-							<div className="col-lg-12 col-md-12 tw-mt-4">
+							<div className="col-lg-12 col-md-12 tw-mt-4 tw-mb-4">
 								<div className="form-group">
 									<textarea
 										name="message"
@@ -355,34 +211,17 @@ const Contact = () => {
 										required=""
 										data-error="Write your message"
 										placeholder="Your Message"
-										defaultValue={""}
+										onChange={(e) => setMessage(e.target.value)}
+
 									/>
 									<div className="help-block with-errors" />
 								</div>
 							</div>
-							<div className="col-lg-12 col-md-12">
-								<div className="form-group">
-									<div className="form-check tw-mt-4">
-										<input
-											name="gridCheck"
-											defaultValue="I agree to the terms and privacy policy."
-											className="form-check-input"
-											type="checkbox"
-											id="gridCheck"
-											required=""
-										/>
-										<label className="form-check-label " htmlFor="gridCheck">
-											I agree to the <a href="#">terms</a> and{" "}
-											<a href="#">privacy policy</a>
-										</label>
-										<br /> <br />
 
-										<div className="help-block with-errors gridCheck-error" />
-									</div>
-								</div>
-							</div>
 							<div className="col-lg-12 col-md-12">
-								<button type="submit" className='  tw-border-2 tw-p-2 tw-bg-black tw-text-white tw-font-semibold'>
+								<button type="submit" className='  tw-border-2 tw-p-2 tw-bg-black tw-text-white tw-font-semibold'
+								// onClick={sendUserQuery(userData)}
+								>
 									Send Message
 								</button>
 								<div id="msgSubmit" className="h3 tw-text-center tw-hidden" />
@@ -390,9 +229,9 @@ const Contact = () => {
 							</div>
 						</div>
 					</form>
-				</div>
+				</div >
 
-			</div>
+			</div >
 			<Footer />
 		</>
 	)

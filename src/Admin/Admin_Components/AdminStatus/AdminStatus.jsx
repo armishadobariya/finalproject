@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './AdminStatus.css';
-import img from '../../Assests/Image/Home1/reg_bg.jpeg';
-import EditIcon from '@mui/icons-material/Edit';
-import DeleteIcon from '@mui/icons-material/Delete';
-import Admin_Sidebar from '../Admin_Nav/Admin_Sidebar';
-import Admin_Nav from '../Admin_Nav/Admin_Nav';
-import { getAdminSelectedPropertyUrl, getPropertyUrl, setApproveUrl, setRejectUrl } from '../../User/Components/Api';
+// import img from '../../Assests/Image/Home1/reg_bg.jpeg';
+// import EditIcon from '@mui/icons-material/Edit';
+// import DeleteIcon from '@mui/icons-material/Delete';
+import Admin_Sidebar from '../../Admin_Nav/Admin_Sidebar';
+import Admin_Nav from '../../Admin_Nav/Admin_Nav';
+import { getAdminSelectedPropertyUrl, getPropertyUrl, setApproveUrl, setRejectUrl } from '../../../User/Components/Api';
 import axios from 'axios';
 
 const AdminStatus = () => {
@@ -34,11 +34,12 @@ const AdminStatus = () => {
 
 	const getProperty = async () => {
 		try {
-			const token = localStorage.getItem('token');
+			const token = localStorage.getItem('admin');
+			const tokenArray = JSON.parse(token);
 
 			const response = await axios.get(getPropertyUrl, {
 				headers: {
-					Authorization: `Bearer ${token}`,
+					Authorization: `Bearer ${tokenArray[0]}`,
 				},
 			});
 
@@ -56,7 +57,8 @@ const AdminStatus = () => {
 
 	const approveProperty = (propertyId) => async () => {
 		try {
-			const token = localStorage.getItem('token');
+			const token = localStorage.getItem('admin');
+			const tokenArray = JSON.parse(token);
 
 			const approvedata = {
 				id: propertyId,
@@ -66,7 +68,7 @@ const AdminStatus = () => {
 
 			const response = await axios.post(setApproveUrl, approvedata, {
 				headers: {
-					Authorization: `Bearer ${token}`,
+					Authorization: `Bearer ${tokenArray[0]}`,
 				},
 			});
 
@@ -84,8 +86,8 @@ const AdminStatus = () => {
 
 	const rejectProperty = (propertyId) => async () => {
 		try {
-			const token = localStorage.getItem('token');
-			console.log(token);
+			const token = localStorage.getItem('admin');
+			const tokenArray = JSON.parse(token);
 			console.log(propertyId);
 			const rejectdata = {
 				id: propertyId,
@@ -95,7 +97,7 @@ const AdminStatus = () => {
 
 			const response = await axios.post(setRejectUrl, rejectdata, {
 				headers: {
-					Authorization: `Bearer ${token}`,
+					Authorization: `Bearer ${tokenArray[0]}`,
 				},
 			});
 			console.log(response.message);
@@ -120,11 +122,12 @@ const AdminStatus = () => {
 			const selectedValue = event.target.value;
 			setSelectedStatus(selectedValue);
 			console.log(selectedValue);
-			const token = localStorage.getItem("token");
+			const token = localStorage.getItem('admin');
+			const tokenArray = JSON.parse(token);
 			console.log(token);
 			const response = await axios.get(`${getAdminSelectedPropertyUrl}/${selectedValue}`, {
 				headers: {
-					Authorization: `Bearer ${token}`,
+					Authorization: `Bearer ${tokenArray[0]}`,
 				},
 			});
 			console.log(response);
@@ -138,6 +141,27 @@ const AdminStatus = () => {
 		} catch (error) {
 			console.error("Error deleting user:", error.message);
 		}
+	}
+
+	const validatePrice = (currentBalance) => {
+		try {
+			// suffix = {' ', 'k', 'M', 'B', 'T', 'P', 'E'};
+			let number = currentBalance;
+
+			if (number < 1000) {
+				return number.toString();
+			} else if (number < 1000000) {
+				return `${(number / 1000).toFixed(1)} K`;
+			} else if (number < 10000000) {
+				return `${(number / 100000).toFixed(1)} Lakh`;
+			} else {
+				return `${(number / 10000000).toFixed(1)} Crore`;
+			}
+		} catch (e) {
+			console.log(e)
+		}
+		return currentBalance;
+
 	}
 
 
@@ -167,7 +191,7 @@ const AdminStatus = () => {
 						<div className='tw-grid  shadow-lg lg:tw-p-5 tw-rounded-md '>
 							<div>
 								<div >
-									<div className=' tw-flex tw-place-center tw-font-bold tw-text-xl'>
+									<div className=' tw-flex tw-place-center tw-font-semibold tw-text-xl'>
 										<h1>Property Status</h1>
 									</div>
 									<div className=' tw-flex  tw-justify-end '>
@@ -192,7 +216,7 @@ const AdminStatus = () => {
 												</div>
 
 												<div class="col-md-9 px-lg-3 px-md-3 px-0">
-													<h2 class=" font-semibold text-xl">₹ {property.price}</h2>
+													<h2 class=" font-semibold text-xl">₹ {validatePrice(property.price)}</h2>
 													<h4 className=' font-semibold mb-4'>{property.address}</h4>
 													<div className="border bg-light p-3 rounded mb-3">
 														<div class="features ">
@@ -243,7 +267,7 @@ const AdminStatus = () => {
 															<div className="facilities tw-ml-1 flex">
 																<p className='tw-mt-1 tw-font-semibold tw-text-lg'>Status :</p>
 																<div className='tw-ml-2'>
-																	<h6 className="tw-mb-3 tw-p-2 tw-ml-1 tw-mt-[-4px] tw-rounded-md  tw-bg-white tw-text-black tw-font-[550] tw-text-lg" >{property.status}</h6>
+																	<h6 className="tw-mb-3 tw-p-2 tw-ml-1 tw-mt-[-4px] tw-rounded-md  tw-bg-white tw-text-lg" >{property.status}</h6>
 																</div>
 															</div>
 														</div>

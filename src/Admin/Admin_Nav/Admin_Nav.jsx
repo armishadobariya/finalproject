@@ -28,33 +28,33 @@ const Admin_Nav = () => {
 	const handleShowProfile = (popupState) => {
 		popupState.close();
 		Swal.fire({
-			title: "Profile",
+			title: "Admin Profile",
 			html: `
-				<div className="profile-container">
-					<div className="avatar-container" style="display: flex; justify-content: center;">
-						<img alt="Admin Image" src="https://cdn.vectorstock.com/i/preview-1x/34/96/flat-business-man-user-profile-avatar-in-suit-vector-4333496.jpg" />
+			<hr style="border-color: #333; margin-top:5px; margin-bottom:15px" />
+
+				<div class="profile-container">
+					<div class="avatar-container" style="display: flex; justify-content: center;">
+						<img alt="Admin Image" id="profileImage" src="https://res.cloudinary.com/dliioswvx/image/upload/v1702384770/profile_pic/a_tqmqce.png" style="cursor: pointer; margin-bottom:20px; height:150px; width:150px; border-radius: 50%; " onclick="profile()"  />
+
 					</div>
-					<div className="profile-details">
-						<p>Admin Name: Admin</p>
-						<p>Email: admin123@gmail.com</p>
-						<p>Role: Administrator</p>
+					<div class="profile-details">
+						<p style="font-weight: bold">Name: Admin</p>
+						<p style="font-weight: bold">Email: admin@gmail.com</p>
+						
 					</div>
 				</div>
 			`,
 			showCancelButton: true,
-			// confirmButtonText: "Logout",
 			showConfirmButton: false,
 			cancelButtonText: "Close",
-		})
-			.then((result) => {
-				// if (result.isConfirmed) {
-				// 	navigate("/login");
-				// 	logOut();
-				// }
-			});
+		});
+
 	};
 	const logOut = () => {
-		navigate('/admin/adminlogin');
+		// navigate('/admin/adminlogin');
+		localStorage.removeItem('admin');
+		console.log("remove", localStorage.removeItem('admin'));
+		navigate('/UserLogin');
 	};
 
 

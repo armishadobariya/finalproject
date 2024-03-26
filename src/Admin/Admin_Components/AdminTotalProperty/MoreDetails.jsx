@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react'
-import Admin_Nav from '../Admin_Nav/Admin_Nav'
+import Admin_Nav from '../../Admin_Nav/Admin_Nav'
 import './MoreDetails.css';
 import { useNavigate } from 'react-router-dom';
 
-import h5 from "../../Assests/Image/Admin/Dashboard/TotalProperty/h5.png";
-import Admin_Sidebar from '../Admin_Nav/Admin_Sidebar';
-import "./Common.css";
+// import h5 from "../../Assests/Image/Admin/Dashboard/TotalProperty/h5.png";
+import Admin_Sidebar from '../../Admin_Nav/Admin_Sidebar';
+// import "./Common.css";
+import "./../AdminDashboard/Common.css";
 import { useLocation } from 'react-router-dom';
 import { Autoplay, Navigation, Pagination } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -19,6 +20,27 @@ const MoreDetails = () => {
 	const [loading, setLoading] = useState(true);
 	const { state } = useLocation();
 	const propertyData = state?.propertyData;
+
+	const validatePrice = (currentBalance) => {
+		try {
+			// suffix = {' ', 'k', 'M', 'B', 'T', 'P', 'E'};
+			let number = currentBalance;
+
+			if (number < 1000) {
+				return number.toString();
+			} else if (number < 1000000) {
+				return `${(number / 1000).toFixed(1)} K`;
+			} else if (number < 10000000) {
+				return `${(number / 100000).toFixed(1)} Lakh`;
+			} else {
+				return `${(number / 10000000).toFixed(1)} Crore`;
+			}
+		} catch (e) {
+			console.log(e)
+		}
+		return currentBalance;
+
+	}
 
 
 	useEffect(() => {
@@ -48,7 +70,7 @@ const MoreDetails = () => {
 
 						<h1 className='tw-text-3xl tw-font-bold tw-mt-14 tw-ml-[40px]'>{propertyData.address}</h1>
 						<div className=' tw-mt-4'>
-							<h5 class=" tw-text-gray-500 tw-ml-[40px] tw-flex"><h4 className='tw-cursor-pointer' onClick={() => navigate('/Admin/')}>Dashboard </h4>
+							<h5 class=" tw-text-gray-500 tw-ml-[40px] tw-flex"><h4 className='tw-cursor-pointer' onClick={() => navigate('/Admin/Dashboard')}>Dashboard </h4>
 								<span class="tw-text-gray-500 tw-ml-[5px] tw-mr-[2px]">  {' >'} </span>
 								<h4 className=' tw-cursor-pointer' onClick={() => navigate('/Admin/TotalProperty')}>TotalProperty</h4>
 							</h5>
@@ -85,7 +107,7 @@ const MoreDetails = () => {
 								<div className=" tw-w-[530px]">
 									<div className=" tw-p-3  tw-mt-6 tw-me-10 tw-mb-4 tw-border-0  tw-shadow-lg tw-rounded-md">
 										<div className="">
-											<h1 className=' tw-font-semibold tw-text-2xl tw-mt-4 tw-ml-4'>₹ {propertyData.price}</h1>
+											<h1 className=' tw-font-semibold tw-text-2xl tw-mt-4 tw-ml-4'>₹ {validatePrice(propertyData.price)}</h1>
 										</div>
 
 										<div >

@@ -12,8 +12,8 @@ import { signInUrl, googleLoginUrl } from '../Components/Api';
 import { jwtDecode } from 'jwt-decode';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { auth, provider } from "./config";
-import { signInWithPopup } from "firebase/auth";
+// import { auth, provider } from "./config";
+// import { signInWithPopup } from "firebase/auth";
 import { FcGoogle } from "react-icons/fc";
 
 
@@ -41,20 +41,31 @@ const UserLogin = () => {
 				password: password,
 			};
 			const responseData = await axios.post(signInUrl, reqdata);
-			console.log(responseData.data.data.role);
 
+			console.log("login data :", responseData.data.data.role);
 			if (responseData.status === 200) {
 
 
 				if (responseData.data.data.role === 'USER') {
+					const data = [];
 					const { token } = responseData.data;
-					localStorage.setItem("token", token);
+					data[0] = token;
+					data[1] = "USER"
+
+					console.log(responseData.data.data);
+					localStorage.setItem("user", JSON.stringify(data));
 					navigate("/", { state: email });
 				}
 				else if (responseData.data.data.role === 'ADMIN') {
+					const data = [];
 					const { token } = responseData.data;
-					localStorage.setItem("token", token);
-					navigate("/admin", { state: email });
+					data[0] = token;
+					data[1] = "ADMIN";
+					console.log(data);
+					console.log(responseData.data.data);
+
+					localStorage.setItem("admin", JSON.stringify(data));
+					navigate("/admin/Dashboard", { state: email });
 				}
 				else {
 					const { token } = responseData.data;
@@ -102,12 +113,12 @@ const UserLogin = () => {
 
 
 	const handleClick = () => {
-		signInWithPopup(auth, provider).then((data) => {
-			console.log(data.user);
-			setValue(data.user);
-			console.log(data.user.uid);
-			navigate("/");
-		})
+		// signInWithPopup(auth, provider).then((data) => {
+		// 	console.log(data.user);
+		// 	setValue(data.user);
+		// 	console.log(data.user.uid);
+		// 	navigate("/");
+		// })
 	}
 
 
@@ -120,7 +131,7 @@ const UserLogin = () => {
 				{response && <div>{response.message}</div>}
 			</div>
 			<div style={{ position: 'relative', marginTop: '-80px' }}>
-				<img className="tw-w-full md:tw-h-[800px] tw-h-[100vh] " src={backgroundImage} alt="background" srcset="" />
+				<img className="tw-w-full md:tw-h-[100vh] tw-h-[100vh] " src={backgroundImage} alt="background" srcset="" />
 				<div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', background: 'rgba(0, 0, 0, 0.3)' }}>
 				</div>
 				<div >
@@ -165,22 +176,11 @@ const UserLogin = () => {
 											/>
 										</div>
 										<div>
-											{/* <GoogleOAuthProvider>
-												<GoogleLogin
-												// onSuccess={async (credentialResponse) => {
-												// 	console.log(credentialResponse);
-												// 	const data = jwtDecode(credentialResponse.credential)
-												// 	console.log(data);
-												// }}
-												// onError={() => {
-												// 	console.log('Login Failed');
-												// }}
-												/>
-											</GoogleOAuthProvider> */}
 
 
 
-											<button
+
+											{/* <button
 												id='password'
 												type="password"
 												name="password"
@@ -189,16 +189,25 @@ const UserLogin = () => {
 												onClick={handleClick}
 
 											><FcGoogle className=' tw-text-2xl tw-mt-[-1px] tw-ml-[90px]' /><p className=' tw-mt-[-24px] tw-ml-[40px]'>Continue With Google</p>
-											</button>
+											</button> */}
 
-											{/* <GoogleOAuthProvider clientId="295805594505-sq8l6g2m1dlgnlepvim7h03gmo48gco3.apps.googleusercontent.com">
-												476940860490-r2o45p41fj6g0jkq7ntkg84v2ssuv2fl.apps.googleusercontent.com
+											<GoogleOAuthProvider clientId="295805594505-sq8l6g2m1dlgnlepvim7h03gmo48gco3.apps.googleusercontent.com" >
 												<GoogleLogin
+
+													style={{
+														backgroundColor: 'black',
+														color: 'white',
+														width: '700px',
+														padding: '10px',
+														borderRadius: '5px',
+														cursor: 'pointer',
+													}}
+
 													onSuccess={async (credentialResponse) => {
 														try {
 															console.log(credentialResponse);
 															const data = jwtDecode(credentialResponse.credential)
-															console.log(data);
+															console.log(data)
 
 															const token = credentialResponse.credential;
 															const response = await axios.post(googleLoginUrl, {
@@ -211,9 +220,7 @@ const UserLogin = () => {
 																localStorage.setItem("token", token);
 																navigate("/");
 															}
-
 															console.log('Google Login Response:', response.data);
-
 														} catch (error) {
 															console.error('Error:', error.message);
 														}
@@ -221,18 +228,19 @@ const UserLogin = () => {
 													onError={() => {
 														console.log('Login Failed');
 													}}
+
 												/>
-											</GoogleOAuthProvider> */}
+											</GoogleOAuthProvider>
 
 										</div>
 										<div className=''>
-											<input type="checkbox"
+											{/* <input type="checkbox"
 												id='remember'
 												className='tw-h-3 tw-w-3 md:tw-ml-[-102px]  '
 											/>
 											<label className=' tw-text-gray-400 p-2 md:tw-ml-1  tw-mt-[10px] tw-mb-4 ' htmlFor='remember'>
-												Remember me</label>
-											<a href="/UserForgotPassword" className=' tw-text-gray-600 tw-float-right tw-mt-4'>Forget Your Password?</a>
+												Remember me</label> */}
+											<a href="/UserForgotPassword" className=' tw-text-gray-600 tw-float-right tw-mt-10 tw-mb-4'>Forget Your Password?</a>
 											<Link className="text-slate-600  text-sm grid place-content-end mb-6 md:tw-mt-[-30px] tw-mt-[-20px] " style={{ textDecoration: "none" }} to="/UserForgotPassword">Forgot Your Password?</Link>
 										</div>
 										<div >

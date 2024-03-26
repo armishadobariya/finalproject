@@ -20,6 +20,7 @@ const VerifyEmail = () => {
 	const [response, setResponse] = useState(null);
 	const location = useLocation();
 	const navigate = useNavigate();
+	const [emailErr, setEmailErr] = useState('');
 
 	useEffect(() => {
 		const { email } = location.state || {};
@@ -37,6 +38,7 @@ const VerifyEmail = () => {
 			handleVerifyEmail(event);
 		};
 	}
+
 
 	const handleVerifyEmail = async () => {
 		try {
@@ -97,7 +99,7 @@ const VerifyEmail = () => {
 
 			<div style={{ position: "relative", marginTop: "-80px" }}>
 				<img
-					class="tw-w-full md:tw-h-[800px] tw-h-[100vh] "
+					class="tw-w-full md:tw-h-[100vh] tw-h-[100vh] "
 					src={backgroundImage}
 					alt="background"
 					srcset=""
@@ -150,16 +152,19 @@ const VerifyEmail = () => {
 													readOnly
 													onKeyDown={handleEmail}
 													onChange={(e) => {
+														console.log(e);
 														setEmail(e.target.value);
 													}}
 												/>
+												<p style={{ color: 'red', marginLeft: '45px', marginBottom: '20px' }}>{emailErr}</p>
+
 											</div>
 											<button
 												type="button"
 												class="tw-bg-black tw-mb-4 tw-w-full tw-text-center tw-text-white tw-text-lg tw-font-semibold tw-h-11"
 												onClick={handleVerifyEmail}
 											>
-												Verify Email
+												Get OTP
 											</button>
 										</div>
 

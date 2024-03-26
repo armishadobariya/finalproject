@@ -1,28 +1,35 @@
 import React, { useState, useEffect } from 'react';
-import Admin_Nav from '../Admin_Nav/Admin_Nav';
-import Admin_Sidebar from '../Admin_Nav/Admin_Sidebar';
+import Admin_Nav from '../../Admin_Nav/Admin_Nav';
+import Admin_Sidebar from '../../Admin_Nav/Admin_Sidebar';
 import './Dash.css';
 import { Card, CardContent, Typography, Grid } from "@mui/material";
-import home from "../../Assests/Image/Admin/house1.png";
-import comment from "../../Assests/Image/Admin/comment.png";
-import view from "../../Assests/Image/Admin/eye.png";
-import book from "../../Assests/Image/Admin/heart.png";
-import close from "../../Assests/Image/Admin/down-arrow.png";
+// import home from "../../Assests/Image/Admin/house1.png";
+import home from "../../../Assests/Image/Admin/house1.png"
+// import comment from "../../Assests/Image/Admin/comment.png";
+import comment from "../../../Assests/Image/Admin/comment.png"
+import view from "../../../Assests/Image/Admin/eye.png"
+import book from "../../../Assests/Image/Admin/heart.png"
+// import view from "../../Assests/Image/Admin/eye.png";
+// import book from "../../Assests/Image/Admin/heart.png";
+// import close from "../../Assests/Image/Admin/down-arrow.png";
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "./Dasboard.css";
 import StarIcon from '@mui/icons-material/Star';
-import me from "../../Assests/Image/Home1/4me.jpeg";
-import armisha from "../../Assests/Image/Home1/armisha.jpeg";
-import p1 from "../../Assests/Image/Admin/Dashboard/01.jpg";
-import p2 from "../../Assests/Image/Admin/Dashboard/02.jpg";
-import p3 from "../../Assests/Image/Admin/Dashboard/03.jpg";
-import p4 from "../../Assests/Image/Admin/Dashboard/04.jpg";
-import map from "../../Assests/Image/Admin/map.png";
+// import me from "../../Assests/Image/Home1/4me.jpeg";
+// import armisha from "../../Assests/Image/Home1/armisha.jpeg";
+// import p1 from "../../Assests/Image/Admin/Dashboard/01.jpg";
+// import p2 from "../../Assests/Image/Admin/Dashboard/02.jpg";
+// import p3 from "../../Assests/Image/Admin/Dashboard/03.jpg";
+// import p4 from "../../Assests/Image/Admin/Dashboard/04.jpg";
+// import map from "../../Assests/Image/Admin/map.png";
+import map from "../../../Assests/Image/Admin/map.png";
 import { useNavigate } from 'react-router-dom';
-import "./Common.css";
-import { totalAgentCountUrl, totalPropertyCountUrl, totalRentCountUrl, totalSellCountUrl, totalUserCountUrl } from '../../User/Components/Api';
+// import "./Common.css";
+import "../AdminDashboard/Common.css";
+import { getFeedbackUrl, getRecentPropertyUrl, totalAgentCountUrl, totalPropertyCountUrl, totalRentCountUrl, totalSellCountUrl, totalUserCountUrl } from '../../../User/Components/Api';
 import axios from 'axios';
+import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 
 const Dashboard = () => {
 
@@ -37,6 +44,9 @@ const Dashboard = () => {
 	const [isCardOpen4, setIsCardOpen4] = useState(true);
 	const [loading, setLoading] = useState(true);
 	const navigate = useNavigate();
+	const [currentFeedback, setCurrentFeedback] = useState(0);
+	const [feedback, setFeedback] = useState([])
+	const [recentPropertyData, setRecentPropertyData] = useState([]);
 
 	const toggleCard1 = () => {
 		console.log("hello");
@@ -66,15 +76,23 @@ const Dashboard = () => {
 	const handleSellProperty = () => {
 		navigate('/Admin/TotalSellProperty');
 	}
+	const handleUserDetails = () => {
+		navigate('/Admin/AdminUserDetails');
+	}
+	const handleAgentDetails = () => {
+		navigate('/Admin/AdminAgentDetails');
+	}
 
 
 	const totalPropertyCount = async () => {
 		try {
-			const token = localStorage.getItem('token');
+			const token = localStorage.getItem('admin');
+			const tokenArray = JSON.parse(token);
+
 
 			const response = await axios.get(totalPropertyCountUrl, {
 				headers: {
-					Authorization: `Bearer ${token}`,
+					Authorization: `Bearer ${tokenArray[0]}`,
 				},
 			});
 			console.log("response:", response.data.property);
@@ -91,11 +109,12 @@ const Dashboard = () => {
 
 	const totalRentCount = async () => {
 		try {
-			const token = localStorage.getItem('token');
+			const token = localStorage.getItem('admin');
+			const tokenArray = JSON.parse(token);
 
 			const response = await axios.get(totalRentCountUrl, {
 				headers: {
-					Authorization: `Bearer ${token}`,
+					Authorization: `Bearer ${tokenArray[0]}`,
 				},
 			});
 			console.log("response:", response.data.property);
@@ -111,11 +130,12 @@ const Dashboard = () => {
 	}
 	const totalSellCount = async () => {
 		try {
-			const token = localStorage.getItem('token');
+			const token = localStorage.getItem('admin');
+			const tokenArray = JSON.parse(token);
 
 			const response = await axios.get(totalSellCountUrl, {
 				headers: {
-					Authorization: `Bearer ${token}`,
+					Authorization: `Bearer ${tokenArray[0]}`,
 				},
 			});
 			console.log("response:", response.data.property);
@@ -132,11 +152,12 @@ const Dashboard = () => {
 
 	const totalUserCount = async () => {
 		try {
-			const token = localStorage.getItem('token');
+			const token = localStorage.getItem('admin');
+			const tokenArray = JSON.parse(token);
 
 			const response = await axios.get(totalUserCountUrl, {
 				headers: {
-					Authorization: `Bearer ${token}`,
+					Authorization: `Bearer ${tokenArray[0]}`,
 				},
 			});
 			console.log("response:", response.data.users);
@@ -153,11 +174,12 @@ const Dashboard = () => {
 
 	const totalAgentCount = async () => {
 		try {
-			const token = localStorage.getItem('token');
+			const token = localStorage.getItem('admin');
+			const tokenArray = JSON.parse(token);
 
 			const response = await axios.get(totalAgentCountUrl, {
 				headers: {
-					Authorization: `Bearer ${token}`,
+					Authorization: `Bearer ${tokenArray[0]}`,
 				},
 			});
 			console.log("response:", response.data.agents);
@@ -171,6 +193,58 @@ const Dashboard = () => {
 			console.error("fetch all property:", error.message);
 		}
 	}
+	const getFeedbacks = async () => {
+		try {
+			const token = localStorage.getItem('admin');
+			const tokenArray = JSON.parse(token);
+			const response = await axios.get(getFeedbackUrl, {
+				headers: {
+					Authorization: `Bearer ${tokenArray[0]}`,
+				},
+			});
+			if (response.status === 200) {
+				console.log("feedback:", response.data.data);
+				const data = response.data.data;
+				console.log('data: ', data);
+				setFeedback(data);
+			}
+
+		}
+		catch (error) {
+			console.error("fetch all property:", error.message);
+		}
+	}
+
+
+	const getRecentProperty = async () => {
+		try {
+			const token = localStorage.getItem('admin');
+			const tokenArray = JSON.parse(token);
+			const response = await axios.get(getRecentPropertyUrl, {
+				headers: {
+					Authorization: `Bearer ${tokenArray[0]}`,
+				},
+			});
+			console.log("response:", response.data.recentProperty);
+
+			if (response.status === 200) {
+				const data = response.data.recentProperty;
+				console.log('data: ', data);
+				setRecentPropertyData(data);
+			}
+		} catch (error) {
+			console.error("fetch all property:", error.message);
+		}
+	}
+
+	const formatDate = (dateString) => {
+		const date = new Date(dateString);
+		const day = date.getDate().toString().padStart(2, '0');
+		const month = (date.getMonth() + 1).toString().padStart(2, '0');
+		const year = date.getFullYear();
+		return `${day} -${month} -${year}`;
+	};
+
 
 
 
@@ -183,6 +257,8 @@ const Dashboard = () => {
 			totalSellCount();
 			totalUserCount();
 			totalAgentCount();
+			getFeedbacks();
+			getRecentProperty();
 		}, 500)
 	}, []);
 
@@ -238,7 +314,7 @@ const Dashboard = () => {
 								</Grid>
 								<Grid item xs={12} sm={6} md={6}>
 									<Card className="cancleCard">
-										<CardContent >
+										<CardContent className=' tw-cursor-pointer' onClick={handleUserDetails}>
 											<Typography variant="h6 dashCardText" >Total User</Typography>
 											<Typography variant="h4">{totalUseCount}</Typography>
 										</CardContent>
@@ -247,7 +323,7 @@ const Dashboard = () => {
 
 								<Grid item xs={12} sm={6} md={6}>
 									<Card className="users">
-										<CardContent>
+										<CardContent className=' tw-cursor-pointer' onClick={handleAgentDetails}>
 											<Typography variant="h6 dashCardText">Total Agent</Typography>
 											<Typography variant="h4">{totalAgeCount}</Typography>
 										</CardContent>
@@ -392,7 +468,7 @@ const Dashboard = () => {
 													</div>
 
 
-													{isCardOpen3 && (
+													{/* {isCardOpen3 && (
 														<div>
 															<div className='tw-mt-[45px] tw-mb-6'>
 																<div className='tw-flex tw-ml-[15px] tw-mt-[50px] '>
@@ -462,6 +538,36 @@ const Dashboard = () => {
 																</div>
 															</div>
 														</div>
+													)} */}
+
+
+													{isCardOpen3 && (
+														<div>
+															{recentPropertyData.map((slide, index) => (
+																<div className='tw-mt-[45px] tw-mb-6'>
+																	<div className='tw-flex tw-ml-[15px] tw-mt-[50px] '>
+																		<img src={slide.propertyImage[0]} alt="" style={{ height: '150px', width: "170px" }} />
+																		<div>
+																			<div className=' tw-ml-7 tw-mt-[20px] tw-font-semibold'>
+																				<h2 style={{ fontFamily: 'Cormorant Garamond, serif', fontSize: '25px' }} >{slide.address}</h2>
+																			</div>
+																			<div className=''>
+																				<img src={map} alt="" height='20px' width='20px' className='tw-mt-4 tw-ml-6 ' />
+																				<p className=' tw-mt-[-22px] tw-ml-[50px]' style={{ color: 'gray' }}>{slide.city} ,{slide.state}</p>
+																			</div>
+																			<div className='tw-flex'>
+																				<CalendarMonthIcon style={{ color: '#d3a478', height: '20px', width: '20px' }} className='tw-mt-4 tw-ml-6 tw-font-[#d3a478]' />
+																				<p className='tw-ml-3 tw-mt-4' style={{ color: 'gray' }}>{formatDate(slide.createdAt)}</p>
+																			</div>
+																		</div>
+
+
+																	</div>
+
+																</div>
+
+															))}
+														</div>
 													)}
 												</CardContent>
 											</Card>
@@ -489,171 +595,43 @@ const Dashboard = () => {
 
 													{isCardOpen4 && (
 														<div>
-															<div className='tw-mt-[45px] tw-mb-6'>
-																<div className='tw-flex tw-ml-[15px] tw-mt-[50px] '>
-																	<img src={me} alt="" style={{ height: '80px', width: "80px", borderRadius: '50%' }} />
-																	<div className=' tw-ml-7 tw-font-semibold'>
-																		<h2 style={{ fontFamily: 'Cormorant Garamond, serif', fontSize: '25px' }} >Ayushi Dobariya</h2>
+															{feedback.map((slide, index) => (
+																<div className='tw-mt-[45px] tw-mb-6'>
+																	<div className='tw-flex tw-ml-[15px] tw-mt-[50px] '>
+																		<img src={slide.profilePic} alt="" style={{ height: '80px', width: "80px", borderRadius: '50%' }} />
+																		<div className=' tw-ml-7 tw-font-semibold'>
+																			<h2 style={{ fontFamily: 'Cormorant Garamond, serif', fontSize: '25px' }} >{slide.name}</h2>
+																		</div>
+																	</div>
+
+																	<div className=' md:tw-mt-[-40px] tw-mt-[-10px] tw-ml-[122px]'>
+																		<div>
+																			{[...Array(slide.rating)].map((value) => (
+																				<StarIcon
+																					key={value}
+																					className=''
+																					style={{ height: "20px", width: "20px", color: "#d3a478", marginRight: '-3px' }}
+
+																				/>
+																			))}
+																		</div>
+																	</div>
+																	<div className='tw-ml-[122px] tw-mt-4 md:tw-mr-14 tw-mr-10'>
+																		<p style={{ color: 'gray' }}>{slide.message}</p>
+																	</div>
+
+																	<div className=' tw-mt-7 tw-w-[1132px] tw-ml-4'>
+																		<hr />
 																	</div>
 																</div>
 
-																<div className=' md:tw-mt-[-40px] tw-mt-[-10px] tw-ml-[122px]'>
-																	<div>
-																		{[1, 2, 3, 4, 5].map((value) => (
-																			<StarIcon
-																				key={value}
-																				className=''
-																				style={{ height: "20px", width: "20px", color: "#d3a478", marginRight: '-3px' }}
 
-																			/>
-																		))}
-																	</div>
-																</div>
-																<div className='tw-ml-[122px] tw-mt-4 md:tw-mr-14 tw-mr-10'>
-																	<p style={{ color: 'gray' }}>Fermentum mus porttitor tempor arcu posuere.</p>
-																</div>
-																<div className='link_hover tw-text-sm tw-ml-[122px] tw-mt-[20px]'>
-																	<a
-																		href=""
-																		className='me-4'
-																	>
-																		Approve
-																	</a>
-																	<a href=""
-																		className="me-4"
-																	>Delete</a>
-																	<a href="" className='me-4'>Spam</a>
-																	<a href="" className='me-4'>View</a>
 
-																</div>
-																<div className=' tw-mt-7 tw-w-[1132px] tw-ml-4'>
-																	<hr />
-																</div>
-															</div>
 
-															<div className='tw-mt-[45px] tw-mb-6 tw-ml-[60px]'>
-																<div className='tw-flex tw-ml-[10px] tw-mt-[50px] '>
-																	<img src={armisha} alt="" style={{ height: '80px', width: "80px", borderRadius: '50%' }} />
-																	<div className=' tw-ml-6 tw-font-semibold'>
-																		<h2 style={{ fontFamily: 'Cormorant Garamond, serif', fontSize: '25px' }} >Armisha Dobariya</h2>
-																	</div>
-																</div>
+															))}
 
-																<div className=' md:tw-mt-[-40px] tw-mt-[-10px] tw-ml-[115px]'>
-																	<div>
-																		{[1, 2, 3, 4, 5].map((value) => (
-																			<StarIcon
-																				key={value}
-																				className=''
-																				style={{ height: "20px", width: "20px", color: "#d3a478", marginRight: '-3px' }}
 
-																			/>
-																		))}
-																	</div>
-																</div>
-																<div className='tw-ml-[115px] tw-mt-4 tw-mr-10'>
-																	<p style={{ color: 'gray' }}>Fermentum mus porttitor tempor arcu posuere.</p>
-																</div>
-																<div className='link_hover tw-text-sm tw-ml-[115px] tw-mt-[20px]'>
-																	<a
-																		href=""
-																		className='me-4'
-																	>
-																		Approve
-																	</a>
-																	<a href=""
-																		className="me-4"
-																	>Delete</a>
-																	<a href="" className='me-4'>Spam</a>
-																	<a href="" className='me-4'>View</a>
 
-																</div>
-																<div className=' tw-mt-7 tw-w-[1132px] tw-ml-[-45px]'>
-																	<hr />
-																</div>
-															</div>
-
-															<div className='tw-mt-[45px] tw-mb-6'>
-																<div className='tw-flex tw-ml-[15px] tw-mt-[50px] '>
-																	<img src={me} alt="" style={{ height: '80px', width: "80px", borderRadius: '50%' }} />
-																	<div className=' tw-ml-7 tw-font-semibold'>
-																		<h2 style={{ fontFamily: 'Cormorant Garamond, serif', fontSize: '25px' }} >Ayushi Dobariya</h2>
-																	</div>
-																</div>
-
-																<div className=' md:tw-mt-[-40px] tw-mt-[-10px] tw-ml-[122px]'>
-																	<div>
-																		{[1, 2, 3, 4, 5].map((value) => (
-																			<StarIcon
-																				key={value}
-																				className=''
-																				style={{ height: "20px", width: "20px", color: "#d3a478", marginRight: '-3px' }}
-
-																			/>
-																		))}
-																	</div>
-																</div>
-																<div className='tw-ml-[122px] tw-mt-4 md:tw-mr-14 tw-mr-10'>
-																	<p style={{ color: 'gray' }}>Fermentum mus porttitor tempor arcu posuere.</p>
-																</div>
-																<div className='link_hover tw-text-sm tw-ml-[122px] tw-mt-[20px]'>
-																	<a
-																		href=""
-																		className='me-4'
-																	>
-																		Approve
-																	</a>
-																	<a href=""
-																		className="me-4"
-																	>Delete</a>
-																	<a href="" className='me-4'>Spam</a>
-																	<a href="" className='me-4'>View</a>
-
-																</div>
-																<div className=' tw-mt-7 tw-w-[1132px] tw-ml-4'>
-																	<hr />
-																</div>
-															</div>
-
-															<div className='tw-mt-[45px] tw-mb-6 tw-ml-[60px]'>
-																<div className='tw-flex tw-ml-[10px] tw-mt-[50px] '>
-																	<img src={armisha} alt="" style={{ height: '80px', width: "80px", borderRadius: '50%' }} />
-																	<div className=' tw-ml-6 tw-font-semibold'>
-																		<h2 style={{ fontFamily: 'Cormorant Garamond, serif', fontSize: '25px' }} >Armisha Dobariya</h2>
-																	</div>
-																</div>
-
-																<div className=' md:tw-mt-[-40px] tw-mt-[-10px] tw-ml-[115px]'>
-																	<div>
-																		{[1, 2, 3, 4, 5].map((value) => (
-																			<StarIcon
-																				key={value}
-																				className=''
-																				style={{ height: "20px", width: "20px", color: "#d3a478", marginRight: '-3px' }}
-
-																			/>
-																		))}
-																	</div>
-																</div>
-																<div className='md:tw-ml-[115px]  tw-mt-4 tw-mr-10'>
-																	<p style={{ color: 'gray' }}>Fermentum mus porttitor tempor arcu posuere.</p>
-																</div>
-																<div className='link_hover tw-text-sm tw-ml-[115px] tw-mt-[20px]'>
-																	<a
-																		href=""
-																		className='me-4'
-																	>
-																		Approve
-																	</a>
-																	<a href=""
-																		className="me-4"
-																	>Delete</a>
-																	<a href="" className='me-4'>Spam</a>
-																	<a href="" className='me-4'>View</a>
-
-																</div>
-
-															</div>
 														</div>
 													)}
 												</CardContent>
@@ -678,9 +656,3 @@ const Dashboard = () => {
 };
 
 export default Dashboard;
-
-
-
-
-
-

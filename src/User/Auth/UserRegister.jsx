@@ -28,6 +28,7 @@ const UserRegister = () => {
 	const [response, setResponse] = useState("");
 	const [nameErr, setNameErr] = useState('');
 	const [passwordErr, setPasswordErr] = useState('');
+	const [emailErr, setEmailErr] = useState('');
 	const navigate = useNavigate();
 	const location = useLocation();
 
@@ -46,10 +47,11 @@ const UserRegister = () => {
 			setNameErr('Name must be contain mote than two Alphabets..');
 			return false;
 		}
-
 		setNameErr('');
 		return true;
 	}
+
+
 
 	const validatePassword = (pass) => {
 		if (pass.length < 8) {
@@ -59,6 +61,7 @@ const UserRegister = () => {
 		setPasswordErr('');
 		return true;
 	}
+
 
 	const handleKeyDown = (event) => {
 		console.log("clicked");
@@ -73,7 +76,7 @@ const UserRegister = () => {
 		try {
 			e.preventDefault();
 
-			if (validatePassword(password)) {
+			if (validatePassword(password) && validateName(name)) {
 
 				const reqdata = {
 					email: email,
@@ -95,7 +98,7 @@ const UserRegister = () => {
 					setResponse("success", "success ...");
 					navigate('/');
 					console.log("register email: ", email);
-					toast.success(responseData.data.message);
+					// toast.success(responseData.data.message);
 
 				}
 				else {
@@ -134,7 +137,7 @@ const UserRegister = () => {
 			<div className="msg">{response && <div> {response}</div>}</div>
 			<div className="relative">
 				<div style={{ position: "relative", marginTop: "-80px" }}>
-					<img className="h-[130vh] bg-cover w-full" src={img2} alt="" />
+					<img className="h-[100vh] bg-cover w-full" src={img2} alt="" />
 					<div
 						style={{
 							position: "absolute",
@@ -147,11 +150,11 @@ const UserRegister = () => {
 					></div>
 				</div>
 				<div className="absolute tw-top-0 tw-left-0 tw-w-full tw-h-full tw-bg-cover tw-flex tw-grid tw-items-center tw-justify-center">
-					<h5 className=" tw-text-center tw-text-white tw-text-2xl tw-font-semibold">
+					{/* <h5 className=" tw-text-center tw-text-white tw-text-2xl tw-font-semibold">
 						<Link to="/">{`Home >> Register`}</Link>
-					</h5>
+					</h5> */}
 					<div
-						className="tw-shadow-sm tw-mb-16 tw-m-3 tw-pt-10 tw-pb-11  tw-rounded-md md:tw-w-[700px] "
+						className="tw-shadow-sm tw-mb-16 tw-mt-10 tw-pt-10 tw-pb-11  tw-rounded-md md:tw-w-[700px] "
 						style={{ backgroundColor: "white" }}
 					>
 						<div className="row">
@@ -206,6 +209,7 @@ const UserRegister = () => {
 														id="name"
 														type="name"
 														name="name"
+														// pattern="/^[A-Za-z]+$/"
 														className="tw-w-full tw-border-2 tw-h-12 tw-p-3 tw-mb-1 "
 														placeholder="Name"
 														required
@@ -269,13 +273,13 @@ const UserRegister = () => {
 													/>
 												</div>
 											</div>
-											<div>
+											<div className="" style={{ maxWidth: '100%' }}>
 												{/* <GoogleOAuthProvider>
 													<GoogleLogin />
 												</GoogleOAuthProvider> */}
 
 
-												<GoogleOAuthProvider clientId="295805594505-sq8l6g2m1dlgnlepvim7h03gmo48gco3.apps.googleusercontent.com">
+												<GoogleOAuthProvider clientId="295805594505-sq8l6g2m1dlgnlepvim7h03gmo48gco3.apps.googleusercontent.com" >
 													<GoogleLogin
 
 														style={{

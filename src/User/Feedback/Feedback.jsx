@@ -3,10 +3,64 @@ import './Feedback.css';
 import StarIcon from '@mui/icons-material/Star';
 import { Footer } from '../Footer/Footer';
 import Nav from '../Nav/Nav';
+import axios from 'axios';
+import { addFeedbackUrl } from '../Components/Api';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Feedback = () => {
-	const [rating, setRating] = useState(0);
 	const [hover, setHover] = useState(null);
+
+	const [name, setName] = useState('');
+	const [email, setEmail] = useState('');
+	const [rating, setRating] = useState(0);
+	const [message, setMessage] = useState('');
+
+	const addFeedback = async (e) => {
+		try {
+
+			e.preventDefault();
+
+			const reqData = {
+				name: name,
+				email: email,
+				rating: rating,
+				message: message,
+			}
+
+			console.log("feedback login:", email);
+
+
+			const token = localStorage.getItem('user');
+			const tokenArray = JSON.parse(token);
+			const responseData = await axios.post(addFeedbackUrl, reqData, {
+
+				headers: {
+					"Authorization": `Bearer ${tokenArray[0]}`,
+					"Content-Type": "application/json",
+				}
+			});
+
+			setName('');
+			setEmail('');
+			setRating('');
+			setMessage('');
+
+
+			console.log("response:", responseData);
+			toast.success(responseData.data.message);
+
+
+
+		}
+		catch (error) {
+
+			console.log('error');
+			toast.error(error.response.data.message);
+
+
+		}
+	}
 
 	const handleRatingClick = (clickedRating) => {
 		setRating(clickedRating);
@@ -16,22 +70,48 @@ const Feedback = () => {
 	return (
 		<>
 			<Nav />
+			<ToastContainer position='top-right' />
+
 			<div>
 				<div className=' '>
 					<div className='gradient_background tw-grid tw-h-screen tw-place-content-center'>
 						<section className="tw-grid tw-content-center tw-bg-white tw-rounded-sm tw-text-center tw-border-2 md:tw-w-[600px] tw-h-auto tw-p-2 tw-m-3 tw-shadow-md ">
+							<h3 class="tw-text-3xl tw-font-bold  tw-text-black tw-mb-6 tw-mt-10">
+								Rate Your Experience
+							</h3>
 
+							<div>
+								<div className=' tw-p-6'>
+									<h2>We highly  value Your Feedback! Kindly Take  a moment to  rate your experienc and provide  us with your valuable feedback.</h2>
+								</div>
+
+							</div>
 							<div className=" md:tw-p-5">
-								<h3 class="tw-text-3xl tw-font-bold  tw-text-black tw-mb-10">
-									Rate Your Experience
-								</h3>
-								<form>
-									<div>
-										<div className=' tw-mb-4'>
-											<h2>We highly  value Your Feedback! Kindly Take  a moment to  rate your experienc and provide  us with your valuable feedback.</h2>
-										</div>
-
+								<div>
+									<div className='tw-mb-3'>
+										<input type='text'
+											className='form-control'
+											rows='3'
+											placeholder='Name'
+											value={name}
+											onChange={(e) => { setName(e.target.value) }}
+										/>
 									</div>
+
+									<div className='tw-mb-7'>
+										<input type='email'
+											className='form-control'
+											rows='3'
+											placeholder='Email'
+											value={email}
+											onChange={(e) => { setEmail(e.target.value) }}
+										/>
+									</div>
+								</div>
+
+
+								<form>
+
 									<div>
 
 										{[1, 2, 3, 4, 5].map((value) => (
@@ -54,9 +134,14 @@ const Feedback = () => {
 												className='form-control'
 												rows='3'
 												placeholder='Tell us about your experience!'
+												value={message}
+												onChange={(e) => { setMessage(e.target.value) }}
 											/>
 										</div>
-										<button type="button" class="tw-bg-black  tw-w-full tw-text-center tw-text-white tw-text-lg tw-font-semibold tw-h-11 tw-mb-3 tw-mt-2 tw-rounded-sm " >
+										<button type="button" class="tw-bg-black  tw-w-full tw-text-center tw-text-white tw-text-lg tw-font-semibold tw-h-11 tw-mb-3 tw-mt-2 tw-rounded-sm "
+
+											onClick={addFeedback}
+										>
 											Send
 										</button>
 

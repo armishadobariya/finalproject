@@ -76,9 +76,15 @@ export const UserResetPassword = () => {
 			}
 		}
 		catch (error) {
-			setResponse(error);
-			setResponse("error:", 'error');
-			toast.error(error.response.data.message);
+
+
+
+			if (error.response && error.response.data && error.response.data.message) {
+				toast.error(error.response.data.message);
+			} else {
+				toast.error("An unexpected error occurred");
+			}
+			console.error("Error:", error);
 
 
 		}
@@ -105,7 +111,7 @@ export const UserResetPassword = () => {
 				{response && <div>{response.message}</div>}
 			</div>
 			<div style={{ position: 'relative', marginTop: '-80px' }}>
-				<img class="tw-w-full md:tw-h-[800px] tw-h-[100vh] " src={backgroundImage} alt="background" srcset="" />
+				<img class="tw-w-full md:tw-h-[100vh] tw-h-[100vh] " src={backgroundImage} alt="background" srcset="" />
 				<div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', background: 'rgba(0, 0, 0, 0.5)' }}>
 				</div>
 				<div >

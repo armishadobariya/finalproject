@@ -14,10 +14,32 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 
 
 
-const ReadMoreDetails = () => {
+const BuyMoreDetails = () => {
 	const { state } = useLocation();
 	const propertyData = state?.propertyData;
 	const navigate = useNavigate();
+
+	const validatePrice = (currentBalance) => {
+		try {
+			// suffix = {' ', 'k', 'M', 'B', 'T', 'P', 'E'};
+			let number = currentBalance;
+
+			if (number < 1000) {
+				return number.toString();
+			} else if (number < 1000000) {
+				return `${(number / 1000).toFixed(1)} K`;
+			} else if (number < 10000000) {
+				return `${(number / 100000).toFixed(1)} Lakh`;
+			} else {
+				return `${(number / 10000000).toFixed(1)} Crore`;
+			}
+		} catch (e) {
+			console.log(e)
+		}
+		return currentBalance;
+
+	}
+
 	return (
 		<>
 
@@ -30,9 +52,9 @@ const ReadMoreDetails = () => {
 						<h1 className=' tw-font-bold text-3xl' >{propertyData.propertyType}</h1>
 						<div className='tw-mt-4'>
 
-							<h5 class=" tw-text-gray-500 tw-flex"><h4 className='tw-cursor-pointer' onClick={() => navigate('/Buy')}>Buy </h4>
+							<h5 class=" tw-text-gray-500 tw-flex"><h4 className='tw-cursor-pointer' onClick={() => navigate('/')}>Home</h4>
 								<span class="tw-text-gray-500 tw-ml-[5px] tw-mr-[2px]">  {' >'} </span>
-								<h4 className=' tw-cursor-pointer' onClick={() => navigate('/Buy/ReadMoreDetails')}>More Details</h4>
+								<h4 className=' tw-cursor-pointer' onClick={() => navigate('/Buy')}>Buy</h4>
 							</h5>
 						</div>
 					</div>
@@ -70,7 +92,7 @@ const ReadMoreDetails = () => {
 
 						<div className="col-lg-5 md:w-full shadow-lg tw-p-6 tw-flex  tw-place-content-center tw-rounded-sm">
 							<div className=' tw-ml-3 place-content-center'>
-								<h1 className='tw-font-semibold text-2xl mt-2'>₹ {propertyData.price}</h1>
+								<h1 className='tw-font-semibold text-2xl mt-2'>₹ {validatePrice(propertyData.price)}</h1>
 								<div className="col-sm-3">
 									<h1 className='border-1 w-full flex items-center justify-center p-2 rounded-2 mt-3 tw-font-semibold tw-border-black'>For Buy</h1>
 								</div>
@@ -111,4 +133,4 @@ const ReadMoreDetails = () => {
 	)
 }
 
-export default ReadMoreDetails;
+export default BuyMoreDetails;
