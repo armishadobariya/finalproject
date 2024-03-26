@@ -42,6 +42,7 @@ export const getAgentUrl = `${baseUrl}/admin/getall-agent`;//admin
 export const getRecentPropertyUrl = `${baseUrl}/admin/recent-property`;
 
 export const setMeetingUrl = `${baseUrl}/admin/set-meeting`;
-// export const addUserQueryUrl = `${baseUrl}/contact/add-userquery`;
-export const addUserQueryUrl = `https://homehubmarket.onrender.com/api/v1/contact/add-userquery`;
+
+export const addUserQueryUrl = `${baseUrl}/contact/add-userquery`;
+export const getUserQueryUrl = `${baseUrl}/contact/get-userqueries`;
 

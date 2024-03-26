@@ -5,7 +5,7 @@ import "./../AdminAgent/AdminAgentDetails.css"
 // import h5 from "../../Assests/Image/Admin/Dashboard/TotalProperty/h5.png";
 import Admin_Sidebar from '../../Admin_Nav/Admin_Sidebar';
 import Admin_Nav from '../../Admin_Nav/Admin_Nav';
-import { getAgentUrl, getUserUrl } from '../../../User/Components/Api';
+import { getAgentUrl, getUserQueryUrl, getUserUrl } from '../../../User/Components/Api';
 import axios from 'axios';
 
 const User_Queries = () => {
@@ -16,14 +16,16 @@ const User_Queries = () => {
 
 	const getUser = async () => {
 		try {
-			const token = localStorage.getItem('token');
+			const token = localStorage.getItem('admin');
+			const tokenArray = JSON.parse(token);
+			console.log(tokenArray);
 
-			const response = await axios.get(getUserUrl, {
+			const response = await axios.get(getUserQueryUrl, {
 				headers: {
-					Authorization: `Bearer ${token}`,
+					Authorization: `Bearer ${tokenArray[0]}`,
 				},
 			});
-			console.log("response:", response.data.data);
+			console.log("response:", response.data);
 
 			if (response.status === 200) {
 				const data = response.data.data;
@@ -34,12 +36,6 @@ const User_Queries = () => {
 			console.error("fetch all property:", error.message);
 		}
 	}
-
-
-
-
-
-
 
 	useEffect(() => {
 		setTimeout(() => {
@@ -55,7 +51,7 @@ const User_Queries = () => {
 		const day = date.getDate().toString().padStart(2, '0');
 		const month = (date.getMonth() + 1).toString().padStart(2, '0');
 		const year = date.getFullYear();
-		return `${day}-${month}-${year}`;
+		return `${day} -${month} -${year}`;
 	};
 
 
@@ -109,7 +105,7 @@ const User_Queries = () => {
 															<td>{data.email}</td>
 															<td>{data.subject}</td>
 															<td>{data.message}</td>
-															<td>{formatDate(data.date)}</td>
+															<td>{formatDate(data.createdAt)}</td>
 														</tr>
 													))}
 
@@ -124,13 +120,6 @@ const User_Queries = () => {
 							</div>
 						</div>
 					</div>
-
-
-
-
-
-
-
 				</>
 
 			)
@@ -142,6 +131,3 @@ const User_Queries = () => {
 }
 
 export default User_Queries;
-
-
-

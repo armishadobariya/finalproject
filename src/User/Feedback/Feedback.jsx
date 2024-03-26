@@ -5,6 +5,8 @@ import { Footer } from '../Footer/Footer';
 import Nav from '../Nav/Nav';
 import axios from 'axios';
 import { addFeedbackUrl } from '../Components/Api';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Feedback = () => {
 	const [hover, setHover] = useState(null);
@@ -46,11 +48,16 @@ const Feedback = () => {
 
 
 			console.log("response:", responseData);
+			toast.success(responseData.data.message);
+
+
 
 		}
 		catch (error) {
 
 			console.log('error');
+			toast.error(error.response.data.message);
+
 
 		}
 	}
@@ -63,6 +70,8 @@ const Feedback = () => {
 	return (
 		<>
 			<Nav />
+			<ToastContainer position='top-right' />
+
 			<div>
 				<div className=' '>
 					<div className='gradient_background tw-grid tw-h-screen tw-place-content-center'>

@@ -89,9 +89,9 @@ const AdminUserDetails = () => {
                                         </div> */}
 
 										<div class="table-responsive">
-											<table class="table table-hover border text-center">
+											<table className="table table-hover tw-border tw-text-center">
 												<thead>
-													<tr class="bg-dark text-light" style={{ "backgroundColor": "black", "color": "white" }}>
+													<tr className=' tw-bg-black'>
 														<th scope="col">Profile</th>
 														<th scope="col">User_Id</th>
 														<th scope="col">Name</th>

@@ -99,7 +99,7 @@ const VerifyEmail = () => {
 
 			<div style={{ position: "relative", marginTop: "-80px" }}>
 				<img
-					class="tw-w-full md:tw-h-[800px] tw-h-[100vh] "
+					class="tw-w-full md:tw-h-[100vh] tw-h-[100vh] "
 					src={backgroundImage}
 					alt="background"
 					srcset=""

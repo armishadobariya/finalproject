@@ -317,7 +317,6 @@ const Nav = () => {
 
 					<div class="profile-container" style="font-family: Arial, sans-serif; margin-top: 8px; padding: 20px;">
 						<h1 style="color: #333; font-weight:bold; font-size:24px; color:grey;">Profile Picture</h1>
-				<i style="float:right; margin-top:-30px;" class="fas fa-times"></i>   
 
 						<hr style="border-color: #333; margin-top:10px;" />
 						<p style="color: #666; margin-top:5px; font-size:15px">A picture helps people recognize you and lets you know when you’re signed in to your account.</p>

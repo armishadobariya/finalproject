@@ -16,20 +16,23 @@ import ContactSlide from './ContactSlide';
 import { addUserQueryUrl, userProfileUrl } from '../Components/Api';
 import axios from 'axios';
 
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+
 
 const Contact = () => {
 
-	const [name, setName] = useState('');
-	const [email, setEmail] = useState('');
+	// const [name, setName] = useState('');
+	// const [email, setEmail] = useState('');
 	const [subject, setSubject] = useState('');
 	const [message, setMessage] = useState('');
 	const [userData, setUserData] = useState([]);
 
 
-
-
 	const sendUserQuery = async (userData) => {
 		try {
+
 			console.log(userData.name);
 			console.log(userData.email);
 
@@ -48,24 +51,32 @@ const Contact = () => {
 			const responseData = await axios.post(addUserQueryUrl, reqData, {
 				headers: {
 					"Authorization": `Bearer ${tokenArray[0]}`,
-
+					"Content-Type": "application/json",
 				}
 			});
 
 			console.log('responseData: ', responseData);
 
 			console.log("response:", responseData);
+			if (responseData.status == 200) {
+				// alert("successs....");
+				toast.success(responseData.data.message);
+
+			}
 
 		}
 		catch (error) {
 
 			console.log('error');
+			toast.error(error.response.data.message);
+
 
 		}
 	}
 
-	const getUserData = async () => {
+	const getUserData = async (e) => {
 		try {
+
 			const token = localStorage.getItem('user');
 			const tokenArray = JSON.parse(token);
 			const response = await axios.get(userProfileUrl, {
@@ -76,7 +87,7 @@ const Contact = () => {
 
 			if (response.status === 200) {
 				const data = response.data;
-				console.log('data: ', data);
+				// console.log('data: ', data);
 
 				// setUserEmail(data.userData.email);
 				// setUserMobile(data.userData.mobileNo);
@@ -101,6 +112,8 @@ const Contact = () => {
 	return (
 		<>
 			<Nav />
+			<ToastContainer position='top-right' />
+
 			<div className="tw-relative tw-mb-10">
 				<div className="" style={{ position: 'relative' }}>
 
@@ -119,16 +132,19 @@ const Contact = () => {
 				</div>
 				<div className=' tw-mt-4'>
 
-					{/* <ContactSlide /> */}
+					<ContactSlide />
 
 				</div>
 			</div>
 
 
-			<div className=' tw-flex tw-place-content-center '>
+			<div className=' tw-flex tw-place-content-center tw-mt-10 tw-mb-5 '>
 				<div className="faq-contact tw-m-5 shadow tw-p-10 tw-bg-white tw-rounded-md md:tw-w-[700px] md:tw-top-18 ">
 					<h3 className=' tw-text-2xl tw-font-bold tw-text-center'>Ask Your Question</h3>
-					<form id="contactForm ">
+					<form id="contactForm" onSubmit={(e) => {
+						e.preventDefault();
+						sendUserQuery(userData);
+					}}>
 						<div className="row tw-mt-4">
 							<div className="col-lg-6 col-md-12">
 								<div className="form-group">
@@ -204,7 +220,8 @@ const Contact = () => {
 
 							<div className="col-lg-12 col-md-12">
 								<button type="submit" className='  tw-border-2 tw-p-2 tw-bg-black tw-text-white tw-font-semibold'
-									onClick={() => { sendUserQuery(userData) }}>
+								// onClick={sendUserQuery(userData)}
+								>
 									Send Message
 								</button>
 								<div id="msgSubmit" className="h3 tw-text-center tw-hidden" />
@@ -212,9 +229,9 @@ const Contact = () => {
 							</div>
 						</div>
 					</form>
-				</div>
+				</div >
 
-			</div>
+			</div >
 			<Footer />
 		</>
 	)
