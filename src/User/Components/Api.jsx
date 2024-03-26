@@ -30,8 +30,7 @@ export const totalUserCountUrl = `${baseUrl}/admin/total-user-count`;//admin
 export const totalAgentCountUrl = `${baseUrl}/admin/total-agent-count`;//addmin
 
 export const agentVerifyUrl = `${baseUrl}/agent/verify-agent`;
-export const agentAddUrl = `${baseUrl}/agent/add-agent`;
-// export const pendingStatusUrl = `${baseUrl}/property/getuserpending-property`;
+export const agentAddUrl = `${baseUrl}/agent/add-agent`;// export const pendingStatusUrl = `${baseUrl}/property/getuserpending-property`;
 export const addFeedbackUrl = `${baseUrl}/feedback/add-feedback`;//user
 export const getFeedbackUrl = `${baseUrl}/feedback/get-feedbacks`;//user
 export const getUserAllPropertyUrl = `${baseUrl}/property/getuserall-property`;//admin
