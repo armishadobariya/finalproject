@@ -1,4 +1,5 @@
 export const baseUrl = "https://homehubmarket.onrender.com/api/v1";
+// export const baseUrl = "http://localhost:8000/api/v1";
 export const verifyEmailUrl = `${baseUrl}/auth/verify-email`; //user ///done
 export const verifyOtpUrl = `${baseUrl}/auth/verify-otp`;//user //done
 export const signUpUrl = `${baseUrl}/auth/sign-up`;//user //done
