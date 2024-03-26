@@ -229,7 +229,7 @@ const Nav = () => {
 						
 						
 						<div style=" justify-content: center; margin-top:30px">
-							<div style=" border: 2px solid white; padding: 8px; box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2); cursor:pointer;"><span style="font-size:18px;margin-left:-250px;">Delete My Account</span><p style="margin-left:380px; margin-top:-27px; font-size:15px; font-weight:bold;">></p></div>
+							<div style=" border: 2px solid white; padding: 8px; box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2); cursor:pointer;" onclick="deleteAcc()"><span style="font-size:18px;margin-left:-250px;">Delete My Account</span><p style="margin-left:380px; margin-top:-27px; font-size:15px; font-weight:bold;">></p></div>
 							</div>
 					</div>
 				`,
