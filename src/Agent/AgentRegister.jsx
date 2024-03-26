@@ -37,6 +37,8 @@ export const AgentRegister = () => {
 	const [nameErr, setNameErr] = useState('');
 	const [mobileError, setMobileError] = useState('');
 	const [passwordErr, setPasswordErr] = useState('');
+	const [IFSCError, setIFSCError] = useState('');
+	const [accountNumberError, setAccountNumberError] = useState('');
 
 	// const handleNameChange = (e) => {
 	// 	const name = e.target.value;
@@ -74,6 +76,31 @@ export const AgentRegister = () => {
 		setMobileError('');
 		return true;
 	}
+	const validateIFSC = (ifscCode) => {
+		console.log(ifscCode);
+		const ifscRegex = /^[A-Z]{4}0[A-Z0-9]{6}$/;
+
+		if (!ifscRegex.test(ifscCode)) {
+			setIFSCError('Invalid IFSC code format');
+			return false;
+		}
+		setIFSCError('');
+		return true;
+
+	};
+	const validateAccountNumber = (accountNumber) => {
+
+		const accountNumberRegex = /^[0-9]{9,18}$/;
+
+
+		if (!accountNumber.trim()) {
+			setAccountNumberError('Account number is required');
+		} else if (!accountNumberRegex.test(accountNumber)) {
+			setAccountNumberError('Invalid account number format');
+		} else {
+			setAccountNumberError('');
+		}
+	}
 
 	const validatePassword = (password) => {
 		if (password.length < 8) {
@@ -83,18 +110,8 @@ export const AgentRegister = () => {
 		setPasswordErr('');
 		return true;
 	}
-	// const handleContactChange = (e) => {
-	// 	const contact = e.target.value;
-	// 	setAgentContact(contact);
 
-	// 	// Mobile number validation
-	// 	const mobileRegex = /^\d{10}$/;
-	// 	if (!mobileRegex.test(contact)) {
-	// 		setMobileError('Please enter a valid 10-digit mobile number');
-	// 	} else {
-	// 		setMobileError('');
-	// 	}
-	// };
+
 	const addAgentData = async (e) => {
 		e.preventDefault();
 		// console.log('hello');
@@ -334,11 +351,22 @@ export const AgentRegister = () => {
 
 											<div className="tw-grid tw-w-full tw-mt-2">
 												<label htmlFor="name" className='tw-font-semibold'>Bank Acc No.</label>
-												<input type="text" id="name" className='tw-border-2 rounded-2 tw-h-10 tw-p-2' value={agentBankAcc} onChange={(e) => { setAgentBankAcc(e.target.value) }} required />
+												<input type="text" id="name" className='tw-border-2 rounded-2 tw-h-10 tw-p-2' value={agentBankAcc}
+													onChange={(e) => {
+														setAgentBankAcc(e.target.value)
+														validateAccountNumber(e.target.value)
+													}} required />
+												<p style={{ color: 'red', marginBottom: '20px' }}>{accountNumberError}</p>
 											</div>
 											<div className="tw-grid tw-ml-3 tw-w-full tw-mt-2">
 												<label htmlFor="email" className='tw-font-semibold'>IFSC No.</label>
-												<input type="text" id="email" className='tw-border-2 rounded-2 tw-h-10 tw-p-2 tw-mt-1' value={agentIfscNo} onChange={(e) => { setAgentIfscNo(e.target.value) }} required />
+												<input type="text" id="email" className='tw-border-2 rounded-2 tw-h-10 tw-p-2 tw-mt-1' value={agentIfscNo}
+													onChange={(e) => {
+														setAgentIfscNo(e.target.value)
+														validateIFSC(e.target.value)
+													}} required />
+												<p style={{ color: 'red', marginBottom: '20px' }}>{IFSCError}</p>
+
 											</div>
 										</div>
 
