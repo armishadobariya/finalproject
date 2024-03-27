@@ -69,8 +69,14 @@ const UserLogin = () => {
 				}
 				else {
 					const { token } = responseData.data;
-					localStorage.setItem("token", token);
-					navigate("/Agent", { state: email });
+					const data = [];
+					data[0] = token;
+					data[1] = "AGENT";
+					console.log(data);
+					console.log(responseData.data.data);
+
+					localStorage.setItem("agent", JSON.stringify(data));
+					navigate("/Agent/Property", { state: email });
 
 				}
 

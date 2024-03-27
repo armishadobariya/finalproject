@@ -48,3 +48,10 @@ export const addUserQueryUrl = `${baseUrl}/contact/add-userquery`;
 export const getUserQueryUrl = `${baseUrl}/contact/get-userqueries`;
 
 
+
+export const deleteAccountUrl = `${baseUrl}/user/delete-user`;
+
+
+
+
+
