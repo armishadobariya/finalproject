@@ -62,7 +62,6 @@ const PropertyList = () => {
 		try {
 			const token = localStorage.getItem('user');
 			const tokenArray = JSON.parse(token);
-
 			const response = await axios.get(getUserAllPropertyUrl, {
 				headers: {
 					Authorization: `Bearer ${tokenArray[0]}`,

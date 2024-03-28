@@ -13,7 +13,7 @@ import PopupState, { bindTrigger, bindMenu } from 'material-ui-popup-state';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
-import { agentVerifyUrl, changeProfileUrl, deleteProfileUrl, userProfileUrl } from '../Components/Api';
+import { agentVerifyUrl, changeProfileUrl, deleteAccountUrl, deleteProfileUrl, userProfileUrl } from '../Components/Api';
 import axios from 'axios';
 import "./menu.css";
 import { toast } from 'react-toastify';
@@ -38,6 +38,7 @@ const Nav = () => {
 	const [deletePassword, setDeletePassword] = useState("");
 
 
+
 	const [showButton, setShowButton] = useState(localStorage.getItem("user") === null); // State variable to track the condition
 
 
@@ -56,7 +57,7 @@ const Nav = () => {
 			});
 			if (response.status === 200) {
 				const data = response.data;
-				console.log('data: ', data);
+				// console.log('data: ', data);
 				setUserName(data.userData.name);
 				setUserImage((pre) => {
 					const image = {
@@ -103,6 +104,7 @@ const Nav = () => {
 		setOpen(false);
 	};
 
+
 	const handleNavbarToggle = () => {
 		setIsNavbarCollapsed(!isNavbarCollapsed);
 		setIsNavbarActive(!isNavbarActive);
@@ -134,6 +136,7 @@ const Nav = () => {
 				console.log(responseData.data.message);
 				setResponse('success', 'success..');
 				setEmail('');
+				alert("mail is Send Successfully on this Email Id please check this .")
 
 			}
 		} catch (error) {
@@ -167,6 +170,44 @@ const Nav = () => {
 			}
 		};
 
+		window.handleDeleteAccount = async () => {
+			try {
+				const token = localStorage.getItem('user');
+				const tokenArray = JSON.parse(token);
+				const passwordInput = document.getElementById('passwordInput');
+				const deletePassword = passwordInput.value;
+				const deleteData = {
+					password: deletePassword,
+				};
+				const response = await axios.delete(deleteAccountUrl, {
+					headers: {
+						Authorization: `Bearer ${tokenArray[0]}`,
+					},
+					data: deleteData
+				});
+				if (response.status === 200) {
+					console.log('success');
+					localStorage.removeItem('token');
+					Swal.close();
+					navigate("/UserLogin");
+				}
+			} catch (error) {
+				// console.error("Error deleting user:", error.message);
+				alert(error.response.data.message);
+
+			}
+		}
+
+		// window.handlePasswordInputChange = (event) => {
+		// 	setDeletePassword(event.target.value);
+
+		// };
+		// window.handleDeleteAccount = () => {
+		// 	console.log('Delete Password', deletePassword);
+		// 	deleteAccount(localStorage.getItem("token"), deletePassword);
+
+		// };
+
 		window.confirmDelete = () => {
 
 			Swal.fire({
@@ -181,7 +222,7 @@ const Nav = () => {
 
 						
 						<div style="display: flex; justify-content: center; margin-top:30px">
-							<button id="deleteButton" style="margin-right: 10px; padding: 10px 20px; background-color: #FF0000; color: #fff; border: none; cursor: pointer; border-radius: 5px;">Delete</button>
+							<button id="deleteButton" style="margin-right: 10px; padding: 10px 20px; background-color: #FF0000; color: #fff; border: none; cursor: pointer; border-radius: 5px;"  onclick="handleDeleteAccount()">Delete</button>
 						</div>
 					</div>
 				`,
@@ -228,7 +269,7 @@ const Nav = () => {
 						
 						
 						<div style=" justify-content: center; margin-top:30px">
-							<div style=" border: 2px solid white; padding: 8px; box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2); cursor:pointer;"><span style="font-size:18px;margin-left:-250px;">Delete My Account</span><p style="margin-left:380px; margin-top:-27px; font-size:15px; font-weight:bold;">></p></div>
+							<div style=" border: 2px solid white; padding: 8px; box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2); cursor:pointer;" onclick="deleteAcc()"><span style="font-size:18px;margin-left:-250px;">Delete My Account</span><p style="margin-left:380px; margin-top:-27px; font-size:15px; font-weight:bold;">></p></div>
 							</div>
 					</div>
 				`,
