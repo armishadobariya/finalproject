@@ -188,6 +188,7 @@ const Nav = () => {
 				if (response.status === 200) {
 					console.log('success');
 					localStorage.removeItem('token');
+					Swal.close();
 					navigate("/UserLogin");
 				}
 			} catch (error) {
