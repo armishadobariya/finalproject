@@ -12,10 +12,10 @@ import { GoogleOAuthProvider } from "@react-oauth/google";
 import { Link, Navigate, useNavigate, useLocation } from "react-router-dom";
 import axios from "axios";
 import { signUpUrl } from "../Components/Api";
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-import { jwtDecode } from 'jwt-decode';
-import { googleLoginUrl } from '../Components/Api';
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { jwtDecode } from "jwt-decode";
+import { googleLoginUrl } from "../Components/Api";
 
 const UserRegister = () => {
 	// const [isHovered, setHovered] = useState(false);
@@ -26,9 +26,9 @@ const UserRegister = () => {
 	const [cpassword, setCpassword] = useState("");
 	const [mobileNo, setMobileNo] = useState("");
 	const [response, setResponse] = useState("");
-	const [nameErr, setNameErr] = useState('');
-	const [passwordErr, setPasswordErr] = useState('');
-	const [emailErr, setEmailErr] = useState('');
+	const [nameErr, setNameErr] = useState("");
+	const [passwordErr, setPasswordErr] = useState("");
+	const [emailErr, setEmailErr] = useState("");
 	const navigate = useNavigate();
 	const location = useLocation();
 
@@ -44,40 +44,36 @@ const UserRegister = () => {
 		const allowAlphabet = /^[a-zA-Z]+$/;
 
 		if (name.length <= 2 || !allowAlphabet.test(name)) {
-			setNameErr('Name must be contain mote than two Alphabets..');
+			setNameErr("Name must be contain mote than two Alphabets..");
 			return false;
 		}
-		setNameErr('');
+		setNameErr("");
 		return true;
-	}
-
-
+	};
 
 	const validatePassword = (pass) => {
 		if (pass.length < 8) {
-			setPasswordErr('Password must be between 8 characters');
+			setPasswordErr("Password must be between 8 characters");
 			return false;
 		}
-		setPasswordErr('');
+		setPasswordErr("");
 		return true;
-	}
-
+	};
 
 	const handleKeyDown = (event) => {
 		console.log("clicked");
 
-		if (event.key === 'Enter') {
+		if (event.key === "Enter") {
 			console.log("enter clicked");
 			UserRegister(event);
-		};
-	}
+		}
+	};
 
 	const UserRegister = async (e) => {
 		try {
 			e.preventDefault();
 
 			if (validatePassword(password) && validateName(name)) {
-
 				const reqdata = {
 					email: email,
 					name: name,
@@ -90,18 +86,15 @@ const UserRegister = () => {
 				const responseData = await axios.post(signUpUrl, reqdata);
 
 				if (responseData.status === 201) {
-
 					const { token } = responseData.data;
-					console.log('token: ', token);
+					console.log("token: ", token);
 					localStorage.setItem("token", token);
-					console.log('responseData: ', responseData);
+					console.log("responseData: ", responseData);
 					setResponse("success", "success ...");
-					navigate('/');
+					navigate("/");
 					console.log("register email: ", email);
 					// toast.success(responseData.data.message);
-
-				}
-				else {
+				} else {
 					// console.log(responseData.data.message);
 					// toast.error(responseData.data.message);
 				}
@@ -110,12 +103,9 @@ const UserRegister = () => {
 			setResponse("error", "error...");
 			toast.error(error.response.data.message);
 
-
 			// setResponse(alert(error.response.message))
 		}
 	};
-
-
 
 	// const handleOtp = () => {
 	// 	navigate("/VerifyEmail", { state: email });
@@ -130,6 +120,8 @@ const UserRegister = () => {
 		setCpassword("");
 		setMobileNo("");
 	};
+
+
 
 	return (
 		<>
@@ -149,15 +141,32 @@ const UserRegister = () => {
 						}}
 					></div>
 				</div>
-<<<<<<< HEAD
-				<div className="absolute tw-top-0 tw-left-0 tw-w-full tw-h-full tw-bg-cover tw-flex tw-grid tw-items-center tw-justify-center">
-					{/* <h5 className=" tw-text-center tw-text-white tw-text-2xl tw-font-semibold">
-						<Link to="/">{`Home >> Register`}</Link>
-=======
 				<div className="absolute tw-top-0 tw-left-0 tw-w-full tw-h-full tw-bg-cover  tw-grid tw-items-center tw-justify-center">
 					{/* <h5 className=" tw-text-center tw-text-white tw-text-2xl tw-font-semibold">
 						<Link to="/">{Home >> Register}</Link>
->>>>>>> pansuriya
+=======
+  return (
+    <>
+      <ToastContainer position="top-right" />
+      <div className="msg">{response && <div> {response}</div>}</div>
+      <div className="relative">
+        <div style={{ position: "relative", marginTop: "-80px" }}>
+          <img className="h-[100vh] bg-cover w-full" src={img2} alt="" />
+          <div
+            style={{
+              position: "absolute",
+              top: 0,
+              left: 0,
+              width: "100%",
+              height: "100%",
+              background: "rgba(0, 0, 0, 0.5)",
+            }}
+          ></div>
+        </div>
+        <div className="absolute tw-top-0 tw-left-0 tw-w-full tw-h-full tw-bg-cover  tw-grid tw-items-center tw-justify-center">
+          {/* <h5 className=" tw-text-center tw-text-white tw-text-2xl tw-font-semibold">
+						<Link to="/">{Home >> Register}</Link>
+>>>>>>> karan
 					</h5> */}
 					<div
 						className="tw-shadow-sm tw-mb-16 tw-mt-10 tw-pt-10 tw-pb-11  tw-rounded-md md:tw-w-[700px] "
@@ -202,7 +211,6 @@ const UserRegister = () => {
 												</div>
 											</div>
 
-
 											<div className="col-md-12">
 												<div className="tw-flex tw-mb-4 tw-mt-4">
 													<label
@@ -221,12 +229,20 @@ const UserRegister = () => {
 														required
 														value={name}
 														onChange={(e) => {
-															setName(e.target.value)
-															validateName(e.target.value)
+															setName(e.target.value);
+															validateName(e.target.value);
 														}}
 													/>
 												</div>
-												<p style={{ color: 'red', marginLeft: '45px', marginBottom: '20px' }}>{nameErr}</p>
+												<p
+													style={{
+														color: "red",
+														marginLeft: "45px",
+														marginBottom: "20px",
+													}}
+												>
+													{nameErr}
+												</p>
 											</div>
 
 											<div className="col-md-12  mb-4">
@@ -246,16 +262,15 @@ const UserRegister = () => {
 														required
 														value={password}
 														onChange={(e) => {
-															setPassword(e.target.value)
+															setPassword(e.target.value);
 															validatePassword(e.target.value);
-														}
-														}
+														}}
 													/>
 												</div>
-												<p style={{ color: 'red', marginLeft: '45px' }}>{passwordErr}</p>
-
+												<p style={{ color: "red", marginLeft: "45px" }}>
+													{passwordErr}
+												</p>
 											</div>
-
 
 											<div className="col-md-12  mb-4">
 												<div className="tw-flex">
@@ -274,18 +289,16 @@ const UserRegister = () => {
 														required
 														value={mobileNo}
 														onKeyDown={handleKeyDown}
-
 														onChange={(e) => setMobileNo(e.target.value)}
 													/>
 												</div>
 											</div>
-											<div className="" style={{ maxWidth: '100%' }}>
+											<div className="" style={{ maxWidth: "100%" }}>
 												{/* <GoogleOAuthProvider>
 													<GoogleLogin />
 												</GoogleOAuthProvider> */}
 
-
-												<GoogleOAuthProvider clientId="295805594505-sq8l6g2m1dlgnlepvim7h03gmo48gco3.apps.googleusercontent.com" >
+												{/* <GoogleOAuthProvider clientId="295805594505-sq8l6g2m1dlgnlepvim7h03gmo48gco3.apps.googleusercontent.com" >
 													<GoogleLogin
 
 														style={{
@@ -324,7 +337,7 @@ const UserRegister = () => {
 														}}
 
 													/>
-												</GoogleOAuthProvider>
+												</GoogleOAuthProvider> */}
 											</div>
 											<div className="col-md-12 ">
 												<div className="relative group tw-mt-6">
@@ -346,15 +359,10 @@ const UserRegister = () => {
 													Register
 												</button> */}
 												<button
-													disabled={
-														!name || !email || !password || !mobileNo
-													}
+													disabled={!name || !email || !password || !mobileNo}
 													type="submit"
 													className={`tw-w-full tw-text-center tw-text-lg tw-font-semibold tw-h-11
-    												${!name ||
-															!email ||
-															!password ||
-															!mobileNo
+    												${!name || !email || !password || !mobileNo
 															? "tw-bg-gray-300 tw-cursor-not-allowed tw-text-gray-600"
 															: "tw-bg-black hover:bg-green-400 tw-text-white"
 														}`}
@@ -383,7 +391,8 @@ const UserRegister = () => {
 			</div>
 		</>
 	);
-};
+}
+
 
 export default UserRegister;
 
@@ -440,8 +449,6 @@ export default UserRegister;
 // 		return true;
 // 	}
 
-
-
 // 	const validatePassword = (pass) => {
 // 		if (pass.length < 8) {
 // 			setPasswordErr('Password must be between 8 characters');
@@ -450,7 +457,6 @@ export default UserRegister;
 // 		setPasswordErr('');
 // 		return true;
 // 	}
-
 
 // 	const handleKeyDown = (event) => {
 // 		console.log("clicked");
@@ -499,12 +505,9 @@ export default UserRegister;
 // 			setResponse("error", "error...");
 // 			toast.error(error.response.data.message);
 
-
 // 			// setResponse(alert(error.response.message))
 // 		}
 // 	};
-
-
 
 // 	// const handleOtp = () => {
 // 	// 	navigate("/VerifyEmail", { state: email });
@@ -585,7 +588,6 @@ export default UserRegister;
 // 												</div>
 // 											</div>
 
-
 // 											<div className="col-md-12">
 // 												<div className="tw-flex tw-mb-4 tw-mt-4">
 // 													<label
@@ -639,7 +641,6 @@ export default UserRegister;
 
 // 											</div>
 
-
 // 											<div className="col-md-12  mb-4">
 // 												<div className="tw-flex">
 // 													<label
@@ -666,7 +667,6 @@ export default UserRegister;
 // 												{/* <GoogleOAuthProvider>
 // 													<GoogleLogin />
 // 												</GoogleOAuthProvider> */}
-
 
 // 												<GoogleOAuthProvider clientId="295805594505-sq8l6g2m1dlgnlepvim7h03gmo48gco3.apps.googleusercontent.com" >
 // 													<GoogleLogin
@@ -769,3 +769,4 @@ export default UserRegister;
 // };
 
 // export default UserRegister;
+
